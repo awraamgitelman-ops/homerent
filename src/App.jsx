@@ -8,6 +8,7 @@ import { SellModal } from './components/SellModal';
 
 // Pages
 import { HomePage } from './pages/HomePage';
+import { MapPage } from './pages/MapPage';
 import { CatalogPage } from './pages/CatalogPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { CalculatorPage } from './pages/CalculatorPage';
@@ -45,21 +46,7 @@ export function App() {
   };
 
   const handleOpenMap = () => {
-    setCatalogViewMode('map');
-    if (currentPath === '#/') {
-      const el = document.getElementById('catalog');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        navigate('#/catalog');
-      }
-    } else {
-      navigate('#/catalog');
-      setTimeout(() => {
-        const el = document.getElementById('catalog');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
+    navigate('#/map');
   };
 
   const handleSelectProperty = (property) => {
@@ -81,6 +68,18 @@ export function App() {
   // Route Renderer
   const renderCurrentPage = () => {
     const clean = currentPath.toLowerCase();
+
+    // Dedicated Map Page (Separate Tab with its own URL #/map)
+    if (clean.startsWith('#/map')) {
+      return (
+        <MapPage
+          properties={properties}
+          onSelectProperty={handleSelectProperty}
+          onBookViewing={handleBookViewing}
+          onOpenConsultModal={handleOpenConsultModal}
+        />
+      );
+    }
 
     if (clean.startsWith('#/catalog')) {
       return (
@@ -129,7 +128,7 @@ export function App() {
       return <LegalPage />;
     }
 
-    // Default: HomePage
+    // Default: HomePage (Map and Catalog remain on Home as well)
     return (
       <HomePage
         properties={properties}
@@ -140,10 +139,12 @@ export function App() {
         onSelectService={handleSelectService}
         onOpenConsultModal={handleOpenConsultModal}
         onOpenMap={handleOpenMap}
-        initialViewMode={catalogViewMode}
+        initialViewMode="split"
       />
     );
   };
+
+  const isMapRoute = currentPath.toLowerCase().startsWith('#/map');
 
   return (
     <div className="app-container">
@@ -154,12 +155,12 @@ export function App() {
       />
 
       {/* Main Routed Page */}
-      <main className="main-content">
+      <main className={`main-content ${isMapRoute ? 'map-route-active' : ''}`}>
         {renderCurrentPage()}
       </main>
 
-      {/* Site Footer */}
-      <Footer />
+      {/* Site Footer (Hidden on full-screen map route for immersive view) */}
+      {!isMapRoute && <Footer />}
 
       {/* Fixed Bottom Bar on Mobile */}
       <MobileNav

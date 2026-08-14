@@ -41,11 +41,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
   const handlePickPropertyClick = (e) => {
     if (e) e.preventDefault();
     setIsSidebarOpen(false);
-    if (onOpenMap) {
-      onOpenMap();
-    } else {
-      navigate('#/catalog');
-    }
+    navigate('#/map');
   };
 
   return (
@@ -71,7 +67,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           <nav className="ref-desktop-nav">
             <button 
               type="button"
-              className="ref-nav-link text-highlight"
+              className={`ref-nav-link text-highlight ${currentPath.includes('/map') ? 'active' : ''}`}
               onClick={handlePickPropertyClick}
             >
               Підібрати нерухомість
