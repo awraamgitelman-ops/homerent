@@ -469,7 +469,7 @@ export const MapPage = ({
         .map-page-wrapper {
           display: flex;
           flex-direction: column;
-          height: calc(100vh - 76px);
+          height: calc(100vh - 94px);
           min-height: 550px;
           background: #f8fafc;
           overflow: hidden;
@@ -915,7 +915,7 @@ export const MapPage = ({
         /* Mobile Adjustments */
         @media (max-width: 900px) {
           .map-page-wrapper {
-            height: calc(100vh - 64px - 68px);
+            height: calc(100vh - 94px - 68px);
           }
 
           .mobile-view-tabs {

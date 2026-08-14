@@ -110,7 +110,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 className="ref-circle-msg ref-vb"
                 title="Viber"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="#ffffff">
                   <path d="M19.5 3.5C17.3 1.3 14.3 0 11.2 0 5 0 0 5 0 11.2c0 2.2.6 4.3 1.8 6.1L.1 23.4c-.1.4.2.8.6.7l6.3-1.6c1.7 1 3.7 1.5 5.7 1.5 6.2 0 11.2-5 11.2-11.2 0-3.1-1.2-6.1-3.4-8.3zM12 20.3c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.5-1.6-3.3-1.6-5.1 0-5.1 4.2-9.3 9.3-9.3 2.5 0 4.8 1 6.6 2.7 1.8 1.8 2.7 4.1 2.7 6.6 0 5.1-4.2 9.3-9.3 9.3zm5.1-6.9c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4z"/>
                 </svg>
               </a>
@@ -123,7 +123,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 className="ref-circle-msg ref-tg"
                 title="Telegram"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="#ffffff">
                   <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.29c-.15.66-.54.82-1.09.51l-3.02-2.22-1.46 1.41c-.16.16-.3.3-.61.3l.22-3.08 5.6-5.06c.24-.22-.05-.34-.38-.13l-6.92 4.36-2.99-.93c-.65-.2-.66-.65.14-.96l11.68-4.5c.54-.2 1.01.12.87.91z"/>
                 </svg>
               </a>
@@ -136,7 +136,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               onClick={() => setIsSidebarOpen(true)}
               aria-label="Відкрити бічне меню"
             >
-              <Menu size={26} />
+              <Menu size={32} />
             </button>
           </div>
         </div>
@@ -314,11 +314,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
       <style>{`
         .ref-site-header {
           background: #ffffff;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
           position: sticky;
           top: 0;
           z-index: 1000;
-          height: 76px;
+          height: 94px;
         }
 
         .ref-header-inner {
@@ -332,14 +332,14 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-logo {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 14px;
           cursor: pointer;
           user-select: none;
         }
 
         .ref-brand-logo-img {
-          width: 40px;
-          height: 40px;
+          width: 56px;
+          height: 56px;
           object-fit: contain;
           flex-shrink: 0;
         }
@@ -347,44 +347,44 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-logo-text {
           display: flex;
           flex-direction: column;
-          line-height: 1;
+          line-height: 1.05;
         }
 
         .ref-logo-title {
-          font-size: 1.25rem;
+          font-size: 1.55rem;
           font-weight: 900;
           color: #1e3a8a;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.6px;
         }
 
         .ref-logo-sub {
-          font-size: 0.72rem;
+          font-size: 0.82rem;
           font-weight: 800;
           color: #1e293b;
-          margin-top: 2px;
-          letter-spacing: 0.5px;
+          margin-top: 3px;
+          letter-spacing: 0.6px;
         }
 
         .ref-logo-tag {
-          font-size: 0.58rem;
+          font-size: 0.64rem;
           font-weight: 700;
           color: #64748b;
-          margin-top: 2px;
-          letter-spacing: 0.5px;
+          margin-top: 3px;
+          letter-spacing: 0.8px;
         }
 
         /* Nav links */
         .ref-desktop-nav {
           display: flex;
           align-items: center;
-          gap: 22px;
+          gap: 28px;
         }
 
         .ref-nav-link {
-          font-size: 0.95rem;
+          font-size: 1.06rem;
           font-weight: 600;
           color: #334155;
-          padding: 8px 4px;
+          padding: 10px 6px;
           transition: var(--transition);
           position: relative;
         }
@@ -394,8 +394,9 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-nav-link.text-highlight {
-          font-weight: 700;
+          font-weight: 800;
           color: #1e293b;
+          font-size: 1.1rem;
         }
 
         .ref-nav-link.text-highlight:hover {
@@ -406,14 +407,15 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-header-right {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: 20px;
         }
 
         .ref-phone-link {
-          font-size: 1.05rem;
-          font-weight: 800;
+          font-size: 1.22rem;
+          font-weight: 900;
           color: #1e3a8a;
           white-space: nowrap;
+          letter-spacing: -0.2px;
         }
 
         .ref-phone-link:hover {
@@ -423,22 +425,24 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-messengers-group {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
         }
 
         .ref-circle-msg {
-          width: 32px;
-          height: 32px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: transform 0.2s ease, opacity 0.2s ease;
+          transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
         }
 
         .ref-circle-msg:hover {
           transform: scale(1.1);
-          opacity: 0.9;
+          opacity: 0.95;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .ref-vb {
@@ -451,15 +455,18 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
 
         .ref-hamburger-btn {
           color: #1e293b;
-          padding: 6px;
+          padding: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
+          border-radius: 8px;
+          transition: background 0.2s ease;
         }
 
         .ref-hamburger-btn:hover {
           color: #1e3a8a;
+          background: #f1f5f9;
         }
 
         /* Sidebar Backdrop */
