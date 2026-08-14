@@ -50,15 +50,15 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         <div className="container ref-header-inner">
           {/* 1. Left: Brand Logo */}
           <div className="ref-logo" onClick={() => navigate('#/')}>
-            <img 
-              src="/logo-transparent-filleted.png" 
-              alt="НОВА ОСЕЛЯ Логотип" 
-              className="ref-brand-logo-img" 
-            />
-            <div className="ref-logo-text">
+            <div className="ref-logo-top">
+              <img 
+                src="/logo-transparent-filleted.png" 
+                alt="НОВА ОСЕЛЯ" 
+                className="ref-brand-logo-img" 
+              />
               <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
-              <span className="ref-logo-sub">АГЕНТСТВО НЕРУХОМОСТІ</span>
             </div>
+            <span className="ref-logo-sub">АГЕНТСТВО НЕРУХОМОСТІ</span>
           </div>
 
           {/* 2. Center: Navigation Links */}
@@ -148,15 +148,15 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             {/* Sidebar Header */}
             <div className="ref-sidebar-header">
               <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
-                <img 
-                  src="/logo-transparent-filleted.png" 
-                  alt="НОВА ОСЕЛЯ" 
-                  className="ref-brand-logo-img" 
-                />
-                <div className="ref-logo-text">
+                <div className="ref-logo-top">
+                  <img 
+                    src="/logo-transparent-filleted.png" 
+                    alt="НОВА ОСЕЛЯ" 
+                    className="ref-brand-logo-img" 
+                  />
                   <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
-                  <span className="ref-logo-sub">ПОЛТАВА</span>
                 </div>
+                <span className="ref-logo-sub">АГЕНТСТВО НЕРУХОМОСТІ</span>
               </div>
 
               <button 
@@ -327,49 +327,47 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           height: 100%;
         }
 
-        /* Logo */
+        /* Logo (Exact user screenshot lockup) */
         .ref-logo {
           display: flex;
-          align-items: center;
-          gap: 14px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1px;
           cursor: pointer;
           user-select: none;
         }
 
+        .ref-logo-top {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
         .ref-brand-logo-img {
-          width: 56px;
-          height: 56px;
+          width: 44px;
+          height: 44px;
           object-fit: contain;
           flex-shrink: 0;
         }
 
-        .ref-logo-text {
-          display: flex;
-          flex-direction: column;
-          line-height: 1.05;
-        }
-
         .ref-logo-title {
-          font-size: 1.55rem;
+          font-size: 2.15rem;
           font-weight: 900;
           color: #1e3a8a;
-          letter-spacing: 0.6px;
+          letter-spacing: 0.5px;
+          line-height: 1;
         }
 
         .ref-logo-sub {
           font-size: 0.82rem;
-          font-weight: 800;
-          color: #1e293b;
-          margin-top: 3px;
-          letter-spacing: 0.6px;
-        }
-
-        .ref-logo-tag {
-          font-size: 0.64rem;
-          font-weight: 700;
-          color: #64748b;
-          margin-top: 3px;
-          letter-spacing: 0.8px;
+          font-weight: 900;
+          color: #0f172a;
+          letter-spacing: 3.2px;
+          text-transform: uppercase;
+          line-height: 1;
+          margin-top: 2px;
+          padding-left: 2px;
+          white-space: nowrap;
         }
 
         /* Nav links */
