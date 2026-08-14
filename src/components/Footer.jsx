@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { 
-  Building, 
+  Building2, 
   MapPin, 
   Phone, 
   Mail, 
   Clock, 
-  ShieldCheck,
-  ChevronRight,
-  ExternalLink
+  ShieldCheck, 
+  ArrowUpRight, 
+  Send, 
+  MessageSquare, 
+  PhoneCall, 
+  FileCheck2, 
+  Check, 
+  Copy,
+  Sparkles
 } from 'lucide-react';
 
-export const Footer = ({ onOpenLegalModal }) => {
+export const Footer = ({ onOpenConsultModal }) => {
   const { navigate } = useRouter();
+  const [copiedEdrpou, setCopiedEdrpou] = useState(false);
+
+  const handleCopyEdrpou = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText('43980756');
+    setCopiedEdrpou(true);
+    setTimeout(() => setCopiedEdrpou(false), 2000);
+  };
 
   const handleViberClick = (e) => {
     e.preventDefault();
@@ -32,280 +46,547 @@ export const Footer = ({ onOpenLegalModal }) => {
   };
 
   return (
-    <footer className="site-footer">
+    <footer className="nx-footer">
       <div className="container">
-        <div className="footer-main-grid">
-          {/* Col 1: Brand & Registration */}
-          <div className="footer-col brand-col">
-            <div className="footer-logo" onClick={() => navigate('#/')}>
-              <div className="fl-icon"><Building size={22} /></div>
+        {/* 1. Pre-Footer Action Banner */}
+        <div className="nx-prefooter-card">
+          <div className="nx-pfc-left">
+            <div className="nx-pfc-badge">
+              <Sparkles size={14} />
+              <span>Індивідуальний підбір нерухомості</span>
+            </div>
+            <h3 className="nx-pfc-title">Потрібна допомога у виборі чи продажу житла в Полтаві?</h3>
+            <p className="nx-pfc-desc">
+              Залиште заявку на безкоштовну консультацію юриста або отримайте персональну добірку з 1 198+ об'єктів без комісійних націнок.
+            </p>
+          </div>
+          <div className="nx-pfc-right">
+            <a href="tel:+380988612938" className="nx-pfc-phone-btn">
+              <PhoneCall size={18} />
+              <div className="nx-ppb-text">
+                <span className="nx-ppb-label">Гаряча лінія агенції</span>
+                <span className="nx-ppb-num">+380 (98) 861-29-38</span>
+              </div>
+            </a>
+            <button 
+              onClick={onOpenConsultModal} 
+              className="btn btn-primary nx-pfc-action-btn"
+            >
+              <span>Замовити консультацію</span>
+              <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* 2. Main Footer Architectural Grid */}
+        <div className="nx-footer-grid">
+          {/* Brand Identity & Location Column */}
+          <div className="nx-footer-col nx-brand-block">
+            <div className="nx-brand-header" onClick={() => navigate('#/')}>
+              <div className="nx-brand-icon">
+                <Building2 size={24} />
+              </div>
               <div>
-                <span className="fl-name">НОВЕКС ІНВЕСТ</span>
-                <span className="fl-sub">Агентство нерухомості • Полтава</span>
+                <span className="nx-brand-title">НОВЕКС ІНВЕСТ</span>
+                <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
               </div>
             </div>
 
-            <p className="footer-desc">
-              Провідне агентство нерухомості та управління активами у м. Полтава. Повний спектр послуг з купівлі, продажу, оренди та юридичної експертизи житла.
+            <p className="nx-brand-text">
+              Офіційне підприємство у сфері нерухомості Полтави. Повна юридична перевірка кожного об'єкта, прозорі договори та безпечний супровід угод.
             </p>
 
-            <div className="footer-legal-badge">
-              <ShieldCheck size={16} className="text-green" />
-              <span>ТОВ «НОВЕКС ІНВЕСТ» • ЄДРПОУ 43980756</span>
+            <div className="nx-legal-pill">
+              <ShieldCheck size={16} className="text-primary" />
+              <span>ТОВ «НОВЕКС ІНВЕСТ» (ЄДРПОУ 43980756)</span>
+              <button 
+                onClick={handleCopyEdrpou} 
+                className="nx-pill-copy"
+                title="Копіювати код ЄДРПОУ"
+              >
+                {copiedEdrpou ? <Check size={12} className="text-green" /> : <Copy size={12} />}
+              </button>
             </div>
-          </div>
 
-          {/* Col 2: Navigation */}
-          <div className="footer-col">
-            <h4 className="footer-heading">Навігація</h4>
-            <ul className="footer-links">
-              <li><button onClick={() => navigate('#/catalog')}>Каталог об'єктів Полтави</button></li>
-              <li><button onClick={() => navigate('#/map')}>Карта нерухомості Полтави</button></li>
-              <li><button onClick={() => navigate('#/services')}>Всі послуги агентства</button></li>
-              <li><button onClick={() => navigate('#/about')}>Про компанію та команду</button></li>
-              <li><button onClick={() => navigate('#/requisites')}>Реєстраційні дані та реквізити</button></li>
-              <li><button onClick={() => navigate('#/contacts')}>Контакти та офіс</button></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Popular Poltava Districts */}
-          <div className="footer-col">
-            <h4 className="footer-heading">Нерухомість у Полтаві</h4>
-            <ul className="footer-links">
-              <li><button onClick={() => navigate('#/catalog')}>Квартири в Центрі Полтави</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Житло на Леваді та Подолі</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Квартири на Алмазному та Садах</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Будинки та котеджі в передмісті</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Новобудови та вторинний ринок</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Комерційні приміщення</button></li>
-            </ul>
-          </div>
-
-          {/* Col 4: Contacts & Office */}
-          <div className="footer-col">
-            <h4 className="footer-heading">Контактна інформація</h4>
-            <div className="footer-contact-list">
-              <a href="tel:+380988612938" className="fc-item fc-phone">
-                <Phone size={15} className="text-primary" />
-                <span>+380 (98) 861-29-38</span>
-              </a>
-
-              <div className="fc-messengers">
-                <a href="https://t.me/rudmonolit" target="_blank" rel="noopener noreferrer" className="fc-msg fc-tg">
-                  Telegram
-                </a>
-                <a href="https://viber.click/380988612938" onClick={handleViberClick} target="_blank" rel="noopener noreferrer" className="fc-msg fc-vb">
-                  Viber
-                </a>
-                <a href="https://wa.me/380988612938" target="_blank" rel="noopener noreferrer" className="fc-msg fc-wa">
-                  WhatsApp
-                </a>
-              </div>
-
-              <div className="fc-item">
-                <Mail size={15} className="text-primary" />
-                <span>novexinvest.poltava@gmail.com</span>
-              </div>
-
-              <div className="fc-item">
+            <div className="nx-meta-contacts">
+              <div className="nx-mc-row">
                 <MapPin size={15} className="text-primary" />
-                <span>м. Полтава, вул. Європейська, буд. 2 (офіс 202)</span>
+                <span>м. Полтава, вул. Європейська, 2, оф. 202</span>
               </div>
-
-              <div className="fc-item">
+              <div className="nx-mc-row">
                 <Clock size={15} className="text-primary" />
                 <span>Пн–Нд: 09:00 — 20:00 (без вихідних)</span>
               </div>
+              <div className="nx-mc-row">
+                <Mail size={15} className="text-primary" />
+                <span>novexinvest.poltava@gmail.com</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation Hub */}
+          <div className="nx-footer-col">
+            <h4 className="nx-col-title">Каталог та пошук</h4>
+            <ul className="nx-col-nav">
+              <li><button onClick={() => navigate('#/catalog')}>🏢 Оренда квартир</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>🔑 Купівля квартир у Полтаві</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>🏡 Будинки та котеджі</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>🏬 Комерційна нерухомість</button></li>
+              <li><button onClick={() => navigate('#/map')}>🗺️ Інтерактивна карта об'єктів</button></li>
+              <li><button onClick={() => navigate('#/services')}>💼 Всі послуги агентства</button></li>
+            </ul>
+          </div>
+
+          {/* Popular Poltava Districts */}
+          <div className="nx-footer-col">
+            <h4 className="nx-col-title">Популярні райони</h4>
+            <ul className="nx-col-nav">
+              <li><button onClick={() => navigate('#/catalog')}>Центр та Корпусний сад</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Левада та річка Ворскла</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Поділ та Першотравневий</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Алмазний та вул. Івана Мазепи</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Сади-1, Сади-2 та Огнівка</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Половки та Браїлки</button></li>
+            </ul>
+          </div>
+
+          {/* Company & Quick Connect Column */}
+          <div className="nx-footer-col">
+            <h4 className="nx-col-title">Зв'язок з керівником</h4>
+            <p className="nx-connect-desc">
+              Прямий контакт з керівництвом агентства для вирішення термінових та нестандартних питань:
+            </p>
+
+            <div className="nx-messengers-grid">
+              <a 
+                href="https://viber.click/380988612938" 
+                onClick={handleViberClick} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="nx-msg-card viber"
+              >
+                <MessageSquare size={16} />
+                <span>Viber</span>
+              </a>
+
+              <a 
+                href="https://t.me/novexinvest" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="nx-msg-card telegram"
+              >
+                <Send size={16} />
+                <span>Telegram</span>
+              </a>
+
+              <a 
+                href="https://wa.me/380988612938" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="nx-msg-card whatsapp"
+              >
+                <Phone size={16} />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+
+            <div className="nx-doc-links">
+              <button onClick={() => navigate('#/about')} className="nx-doc-btn">
+                <FileCheck2 size={14} />
+                <span>Про компанію та команду</span>
+              </button>
+              <button onClick={() => navigate('#/requisites')} className="nx-doc-btn">
+                <FileCheck2 size={14} />
+                <span>Юридичні реквізити (КВЕД 68.31)</span>
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Legal Copyright Bar */}
-        <div className="footer-bottom-bar">
-          <div className="fbb-left">
+        {/* 3. Bottom Certification Bar */}
+        <div className="nx-bottom-bar">
+          <div className="nx-bb-left">
             <span>© {new Date().getFullYear()} ТОВ «НОВЕКС ІНВЕСТ». Всі права захищено.</span>
-            <span className="sep">•</span>
-            <button onClick={() => navigate('#/requisites')} className="fbb-link">
-              Офіційні реєстраційні дані (ЄДРПОУ 43980756)
-            </button>
+            <span className="nx-bb-divider">/</span>
+            <span>Ліцензована діяльність у м. Полтава</span>
           </div>
 
-          <div className="fbb-right">
-            <span>м. Полтава, Україна</span>
+          <div className="nx-bb-right">
+            <div className="nx-status-chip">
+              <span className="nx-status-dot"></span>
+              <span>Офіс приймає клієнтів: Полтава, вул. Європейська, 2</span>
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Scoped CSS for Modern Footer */}
       <style>{`
-        .site-footer {
-          background: #0f172a;
+        .nx-footer {
+          background: #090d16;
           color: #94a3b8;
           padding: 60px 0 30px;
           border-top: 1px solid #1e293b;
+          position: relative;
         }
 
-        .footer-main-grid {
-          display: grid;
-          grid-template-columns: 1.4fr 1fr 1.1fr 1.3fr;
-          gap: 36px;
-          margin-bottom: 40px;
-        }
-
-        .footer-logo {
+        /* 1. Pre-Footer Action Banner */
+        .nx-prefooter-card {
+          background: linear-gradient(135deg, #172554 0%, #1e1b4b 100%);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 18px;
+          padding: 32px 36px;
           display: flex;
           align-items: center;
-          gap: 10px;
-          cursor: pointer;
-          margin-bottom: 16px;
+          justify-content: space-between;
+          gap: 32px;
+          margin-bottom: 56px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
         }
 
-        .fl-icon {
-          width: 40px;
-          height: 40px;
-          border-radius: var(--radius-md);
-          background: var(--c-primary);
+        .nx-pfc-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 0.76rem;
+          font-weight: 700;
+          color: #93c5fd;
+          margin-bottom: 10px;
+        }
+
+        .nx-pfc-title {
+          font-size: 1.45rem;
+          font-weight: 900;
+          color: #ffffff;
+          margin-bottom: 6px;
+          letter-spacing: -0.3px;
+        }
+
+        .nx-pfc-desc {
+          font-size: 0.9rem;
+          color: #cbd5e1;
+          max-width: 600px;
+          line-height: 1.5;
+        }
+
+        .nx-pfc-right {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-shrink: 0;
+        }
+
+        .nx-pfc-phone-btn {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 12px;
+          padding: 10px 18px;
+          color: #ffffff;
+          transition: all 0.2s ease;
+        }
+
+        .nx-pfc-phone-btn:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #60a5fa;
+        }
+
+        .nx-ppb-text {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .nx-ppb-label {
+          font-size: 0.7rem;
+          color: #94a3b8;
+          font-weight: 600;
+        }
+
+        .nx-ppb-num {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #ffffff;
+        }
+
+        .nx-pfc-action-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 13px 22px;
+          font-size: 0.9rem;
+          font-weight: 800;
+          border-radius: 12px;
+          background: #2563eb;
+          border-color: #2563eb;
+          white-space: nowrap;
+        }
+
+        .nx-pfc-action-btn:hover {
+          background: #1d4ed8;
+        }
+
+        /* 2. Main Grid */
+        .nx-footer-grid {
+          display: grid;
+          grid-template-columns: 1.35fr 1fr 1.05fr 1.2fr;
+          gap: 40px;
+          padding-bottom: 48px;
+          border-bottom: 1px solid #1e293b;
+        }
+
+        .nx-brand-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          cursor: pointer;
+          margin-bottom: 14px;
+        }
+
+        .nx-brand-icon {
+          width: 44px;
+          height: 44px;
+          border-radius: 10px;
+          background: #2563eb;
           color: #ffffff;
           display: flex;
           align-items: center;
           justify-content: center;
+          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
         }
 
-        .fl-name {
+        .nx-brand-title {
           display: block;
-          font-size: 1.2rem;
+          font-size: 1.25rem;
           font-weight: 900;
           color: #ffffff;
-          line-height: 1.1;
+          letter-spacing: -0.3px;
         }
 
-        .fl-sub {
+        .nx-brand-subtitle {
           display: block;
           font-size: 0.72rem;
           color: #94a3b8;
-        }
-
-        .footer-desc {
-          font-size: 0.85rem;
-          line-height: 1.55;
-          margin-bottom: 18px;
-          color: #cbd5e1;
-        }
-
-        .footer-legal-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          padding: 6px 12px;
-          border-radius: var(--radius-sm);
-          font-size: 0.75rem;
-          color: #e2e8f0;
           font-weight: 600;
         }
 
-        .footer-heading {
-          font-size: 1rem;
-          font-weight: 800;
-          color: #ffffff;
+        .nx-brand-text {
+          font-size: 0.86rem;
+          color: #94a3b8;
+          line-height: 1.6;
           margin-bottom: 18px;
         }
 
-        .footer-links {
+        .nx-legal-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #1e293b;
+          border: 1px solid #334155;
+          padding: 6px 12px;
+          border-radius: 8px;
+          font-size: 0.76rem;
+          font-weight: 700;
+          color: #e2e8f0;
+          margin-bottom: 20px;
+        }
+
+        .nx-pill-copy {
+          background: #334155;
+          border: none;
+          border-radius: 4px;
+          padding: 3px 6px;
+          color: #cbd5e1;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+        }
+
+        .nx-pill-copy:hover {
+          background: #475569;
+          color: #ffffff;
+        }
+
+        .nx-meta-contacts {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .nx-mc-row {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 0.82rem;
+          color: #cbd5e1;
+        }
+
+        .nx-col-title {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #ffffff;
+          margin-bottom: 18px;
+          letter-spacing: 0.2px;
+        }
+
+        .nx-col-nav {
           list-style: none;
           display: flex;
           flex-direction: column;
           gap: 10px;
         }
 
-        .footer-links button {
-          font-size: 0.86rem;
-          color: #cbd5e1;
+        .nx-col-nav button {
+          font-size: 0.85rem;
+          color: #94a3b8;
+          text-align: left;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          transition: all 0.15s ease;
+          padding: 0;
+        }
+
+        .nx-col-nav button:hover {
+          color: #60a5fa;
+          transform: translateX(4px);
+        }
+
+        .nx-connect-desc {
+          font-size: 0.84rem;
+          color: #94a3b8;
+          line-height: 1.5;
+          margin-bottom: 14px;
+        }
+
+        .nx-messengers-grid {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 20px;
+        }
+
+        .nx-msg-card {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 8px 10px;
+          border-radius: 8px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #ffffff;
+          transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+
+        .nx-msg-card:hover {
+          opacity: 0.9;
+          transform: translateY(-2px);
+        }
+
+        .nx-msg-card.viber { background: #7360f2; }
+        .nx-msg-card.telegram { background: #0088cc; }
+        .nx-msg-card.whatsapp { background: #25d366; }
+
+        .nx-doc-links {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .nx-doc-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: #94a3b8;
+          background: transparent;
+          border: 1px solid #1e293b;
+          border-radius: 6px;
+          padding: 7px 12px;
+          cursor: pointer;
+          transition: all 0.15s ease;
           text-align: left;
         }
 
-        .footer-links button:hover {
+        .nx-doc-btn:hover {
           color: #ffffff;
-          transform: translateX(3px);
+          border-color: #334155;
+          background: #1e293b;
         }
 
-        .footer-contact-list {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .fc-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 8px;
-          font-size: 0.85rem;
-          color: #cbd5e1;
-        }
-
-        .fc-phone {
-          font-weight: 800;
-          font-size: 1rem;
-          color: #ffffff;
-        }
-
-        .fc-messengers {
-          display: flex;
-          gap: 6px;
-        }
-
-        .fc-msg {
-          padding: 3px 8px;
-          border-radius: 4px;
-          font-size: 0.72rem;
-          font-weight: 700;
-          color: #ffffff;
-        }
-
-        .fc-tg { background: #29b6f6; }
-        .fc-vb { background: #7360f2; }
-        .fc-wa { background: #25d366; }
-
-        /* Bottom Bar */
-        .footer-bottom-bar {
+        /* 3. Bottom Bar */
+        .nx-bottom-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
           padding-top: 24px;
-          border-top: 1px solid #1e293b;
           font-size: 0.8rem;
           color: #64748b;
           flex-wrap: wrap;
-          gap: 12px;
+          gap: 16px;
         }
 
-        .fbb-left {
+        .nx-bb-left {
           display: flex;
           align-items: center;
           gap: 8px;
           flex-wrap: wrap;
         }
 
-        .fbb-link {
-          color: #94a3b8;
-          text-decoration: underline;
+        .nx-bb-divider {
+          color: #334155;
         }
 
-        .fbb-link:hover {
-          color: #ffffff;
+        .nx-status-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 0.76rem;
+          color: #94a3b8;
+        }
+
+        .nx-status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #22c55e;
+          box-shadow: 0 0 8px #22c55e;
         }
 
         @media (max-width: 1024px) {
-          .footer-main-grid {
+          .nx-prefooter-card {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .nx-pfc-right {
+            width: 100%;
+            flex-wrap: wrap;
+          }
+          .nx-footer-grid {
             grid-template-columns: repeat(2, 1fr);
           }
         }
 
         @media (max-width: 640px) {
-          .footer-main-grid {
+          .nx-footer-grid {
             grid-template-columns: 1fr;
           }
-          .site-footer {
+          .nx-pfc-phone-btn, .nx-pfc-action-btn {
+            width: 100%;
+            justify-content: center;
+          }
+          .nx-footer {
             padding-bottom: 95px; /* Clear mobile bottom nav */
           }
         }
