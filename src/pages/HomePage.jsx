@@ -21,6 +21,7 @@ export const HomePage = ({
       {/* 1. Hero Search Filter */}
       <HeroSearch
         onSearch={onSearch}
+        properties={properties}
         totalCount={properties.length}
         onOpenConsultModal={onOpenConsultModal}
       />

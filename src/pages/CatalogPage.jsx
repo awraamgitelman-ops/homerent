@@ -15,6 +15,7 @@ export const CatalogPage = ({
     <div className="catalog-page-wrapper">
       <HeroSearch
         onSearch={onSearch}
+        properties={properties}
         totalCount={properties.length}
         onOpenConsultModal={onOpenConsultModal}
       />

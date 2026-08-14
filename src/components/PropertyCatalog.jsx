@@ -46,6 +46,33 @@ export const PropertyCatalog = ({
     }
   }, [initialViewMode]);
 
+  // Synchronize when filters prop is updated from HeroSearch
+  useEffect(() => {
+    if (filters) {
+      if (filters.transaction && filters.transaction !== 'all') {
+        setActiveTransaction(filters.transaction);
+        setCurrency(filters.transaction === 'rent' ? 'UAH' : 'USD');
+      }
+      if (filters.type && filters.type !== 'all') {
+        setSelectedCategory(filters.type);
+      }
+      if (filters.district) {
+        setSelectedDistrict(filters.district);
+      }
+      if (filters.rooms && filters.rooms !== 'all') {
+        setSubFilter(filters.rooms);
+      } else if (filters.rooms === 'all') {
+        setSubFilter('all');
+      }
+      if (filters.priceMin !== undefined) {
+        setPriceMin(filters.priceMin);
+      }
+      if (filters.priceMax !== undefined) {
+        setPriceMax(filters.priceMax);
+      }
+    }
+  }, [filters]);
+
   // Click outside to close custom district dropdown
   useEffect(() => {
     const handleClickOutside = (e) => {

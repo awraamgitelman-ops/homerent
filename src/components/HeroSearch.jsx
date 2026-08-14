@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Building2, 
   Home, 
@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { POLTAVA_DISTRICTS, PROPERTY_TYPES, TRANSACTION_TYPES, ROOM_OPTIONS } from '../data/poltavaDistricts';
 
-export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) => {
+export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpenConsultModal }) => {
   const [selectedType, setSelectedType] = useState('apartment');
   const [transaction, setTransaction] = useState('rent');
   const [district, setDistrict] = useState('all');
@@ -25,7 +25,79 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
   const [currency, setCurrency] = useState('UAH');
   const [areaMin, setAreaMin] = useState('');
   const [areaMax, setAreaMax] = useState('');
-  const [showAdvanced, setShowAdvanced] = useState(false);
+
+  // Dynamically compute the exact count of matching properties
+  const matchingCount = useMemo(() => {
+    if (!properties || properties.length === 0) return totalCount;
+    return properties.filter((p) => {
+      // 1. Transaction
+      if (p.transaction !== transaction) return false;
+
+      // 2. Property Type
+      if (selectedType !== 'all' && p.type !== selectedType) return false;
+
+      // 3. District
+      if (district !== 'all' && p.district !== district && p.districtId !== district) return false;
+
+      // 4. Rooms
+      if (rooms !== 'all') {
+        if (rooms === '4+') {
+          if (p.rooms < 4) return false;
+        } else {
+          if (String(p.rooms) !== String(rooms)) return false;
+        }
+      }
+
+      // 5. Price
+      const currentPrice = currency === 'USD' ? p.priceUSD : p.priceUAH;
+      if (priceMin && currentPrice < Number(priceMin)) return false;
+      if (priceMax && currentPrice > Number(priceMax)) return false;
+
+      // 6. Area
+      if (areaMin && p.area && p.area < Number(areaMin)) return false;
+      if (areaMax && p.area && p.area > Number(areaMax)) return false;
+
+      return true;
+    }).length;
+  }, [properties, selectedType, transaction, district, rooms, priceMin, priceMax, currency, areaMin, areaMax, totalCount]);
+
+  const applySearch = (overrideParams = {}) => {
+    const currentParams = {
+      type: selectedType,
+      transaction,
+      district,
+      rooms,
+      priceMin: priceMin ? Number(priceMin) : '',
+      priceMax: priceMax ? Number(priceMax) : '',
+      currency,
+      areaMin: areaMin ? Number(areaMin) : '',
+      areaMax: areaMax ? Number(areaMax) : '',
+      ...overrideParams
+    };
+    onSearch(currentParams);
+  };
+
+  const handleCategoryClick = (typeId) => {
+    setSelectedType(typeId);
+    applySearch({ type: typeId });
+  };
+
+  const handleTransactionChange = (tId) => {
+    setTransaction(tId);
+    const newCurr = tId === 'rent' ? 'UAH' : 'USD';
+    setCurrency(newCurr);
+    applySearch({ transaction: tId, currency: newCurr });
+  };
+
+  const handleDistrictChange = (dId) => {
+    setDistrict(dId);
+    applySearch({ district: dId });
+  };
+
+  const handleRoomsChange = (rId) => {
+    setRooms(rId);
+    applySearch({ rooms: rId });
+  };
 
   const handleReset = () => {
     setSelectedType('apartment');
@@ -36,6 +108,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
     setPriceMax('');
     setAreaMin('');
     setAreaMax('');
+    setCurrency('UAH');
     onSearch({
       type: 'apartment',
       transaction: 'rent',
@@ -51,17 +124,11 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
 
   const handleApplySearch = (e) => {
     if (e) e.preventDefault();
-    onSearch({
-      type: selectedType,
-      transaction,
-      district,
-      rooms,
-      priceMin: priceMin ? Number(priceMin) : '',
-      priceMax: priceMax ? Number(priceMax) : '',
-      currency,
-      areaMin: areaMin ? Number(areaMin) : '',
-      areaMax: areaMax ? Number(areaMax) : ''
-    });
+    applySearch();
+    const el = document.getElementById('catalog') || document.querySelector('.catalog-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (
@@ -71,13 +138,13 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
       <div className="container hero-content">
         {/* Main Headline */}
         <h1 className="hero-headline">
-          <span className="hl-accent">ЗНАЙДИ</span> Свою нерухомість у ПОЛТАВІ
+          <span className="hl-accent">ЗНАЙДИ</span> нерухомість у ПОЛТАВІ
         </h1>
         <p className="hero-subheadline">
-          Купівля, продаж, оренда квартир, котеджів та комерційних площ. Повний юридичний супровід та перевірка документів.
+          Купівля, продаж, оренда квартир, котеджів та комерційних площ.
         </p>
 
-        {/* Hero Search Box (Exact reference layout) */}
+        {/* Hero Search Box */}
         <div className="hero-search-card">
           {/* Top Category Tabs */}
           <div className="hs-tabs-row">
@@ -88,10 +155,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
                   key={pt.id}
                   type="button"
                   className={`hs-tab-btn ${isActive ? 'active' : ''}`}
-                  onClick={() => {
-                    setSelectedType(pt.id);
-                    onSearch({ type: pt.id, transaction, district, rooms, priceMin, priceMax, currency, areaMin, areaMax });
-                  }}
+                  onClick={() => handleCategoryClick(pt.id)}
                 >
                   {pt.id === 'apartment' && <Building2 size={16} />}
                   {pt.id === 'house' && <Home size={16} />}
@@ -113,7 +177,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
                     key={tt.id}
                     type="button"
                     className={`trans-btn ${transaction === tt.id ? 'active' : ''}`}
-                    onClick={() => setTransaction(tt.id)}
+                    onClick={() => handleTransactionChange(tt.id)}
                   >
                     {tt.name}
                   </button>
@@ -127,7 +191,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
               <div className="select-wrapper">
                 <select 
                   value={district} 
-                  onChange={(e) => setDistrict(e.target.value)}
+                  onChange={(e) => handleDistrictChange(e.target.value)}
                   className="hs-select"
                 >
                   {POLTAVA_DISTRICTS.map((d) => (
@@ -221,7 +285,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
           {/* Bottom Controls Row */}
           <div className="hs-bottom-row">
             <div className="hs-bottom-left">
-              <span className="hs-verified-note">✓ Всі {totalCount} об'єктів перевірені експертами агентства</span>
+              <span className="hs-verified-note">✓ Всі {matchingCount} об'єктів перевірені експертами агентства</span>
             </div>
 
             <div className="hs-bottom-actions">
@@ -240,7 +304,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
                 className="btn btn-accent btn-sm hs-search-btn"
               >
                 <Search size={16} />
-                <span>Знайти об'єкти ({totalCount})</span>
+                <span>Знайти об'єкти ({matchingCount})</span>
               </button>
             </div>
           </div>
