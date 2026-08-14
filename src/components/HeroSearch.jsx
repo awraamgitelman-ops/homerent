@@ -321,7 +321,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
         }
 
         .hl-accent {
-          background: #ef4444;
+          background: #2563eb;
           color: #ffffff;
           padding: 2px 14px;
           border-radius: var(--radius-sm);
@@ -384,16 +384,16 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
         }
 
         .hs-tab-btn.tab-invest {
-          background: #b91c1c;
+          background: #1e40af;
           color: #ffffff;
         }
 
         .hs-tab-btn.tab-invest:hover {
-          background: #991b1b;
+          background: #1e3a8a;
         }
 
         .hs-tab-btn.tab-invest.active {
-          background: #dc2626;
+          background: #2563eb;
           color: #ffffff;
         }
 
@@ -582,15 +582,15 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
         }
 
         .hero-cta-btn {
-          background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+          background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
           color: #ffffff;
           padding: 14px 28px;
           font-size: 1rem;
-          box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);
+          box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
         }
 
         .hero-cta-btn:hover {
-          background: #991b1b;
+          background: #1e40af;
           transform: translateY(-2px);
         }
 

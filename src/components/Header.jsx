@@ -52,8 +52,8 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           <div className="ref-logo" onClick={() => navigate('#/')}>
             <div className="ref-logo-mark">
               <svg width="38" height="38" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 2L42 38H2L22 2Z" stroke="#b91c1c" strokeWidth="4" strokeLinejoin="round" />
-                <path d="M22 14L32 32H12L22 14Z" fill="#b91c1c" />
+                <path d="M22 2L42 38H2L22 2Z" stroke="#2563eb" strokeWidth="4" strokeLinejoin="round" />
+                <path d="M22 14L32 32H12L22 14Z" fill="#2563eb" />
               </svg>
             </div>
             <div className="ref-logo-text">
@@ -118,7 +118,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
 
               {/* Telegram Round Button */}
               <a
-                href="https://t.me/rudmonolit"
+                href="https://t.me/novexinvest"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ref-circle-msg ref-tg"
@@ -152,8 +152,8 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
                 <div className="ref-logo-mark">
                   <svg width="34" height="34" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 2L42 38H2L22 2Z" stroke="#b91c1c" strokeWidth="4" strokeLinejoin="round" />
-                    <path d="M22 14L32 32H12L22 14Z" fill="#b91c1c" />
+                    <path d="M22 2L42 38H2L22 2Z" stroke="#2563eb" strokeWidth="4" strokeLinejoin="round" />
+                    <path d="M22 14L32 32H12L22 14Z" fill="#2563eb" />
                   </svg>
                 </div>
                 <div className="ref-logo-text">
@@ -354,7 +354,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-logo-title {
           font-size: 1.25rem;
           font-weight: 900;
-          color: #b91c1c;
+          color: #2563eb;
           letter-spacing: 0.5px;
         }
 
@@ -391,7 +391,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-nav-link:hover, .ref-nav-link.active {
-          color: #b91c1c;
+          color: #2563eb;
         }
 
         .ref-nav-link.text-highlight {
@@ -400,7 +400,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-nav-link.text-highlight:hover {
-          color: #b91c1c;
+          color: #2563eb;
         }
 
         /* Header Right */
@@ -413,12 +413,12 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-phone-link {
           font-size: 1.05rem;
           font-weight: 800;
-          color: #dc2626;
+          color: #2563eb;
           white-space: nowrap;
         }
 
         .ref-phone-link:hover {
-          color: #b91c1c;
+          color: #1d4ed8;
         }
 
         .ref-messengers-group {
@@ -460,7 +460,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-hamburger-btn:hover {
-          color: #b91c1c;
+          color: #2563eb;
         }
 
         /* Sidebar Backdrop */
@@ -534,7 +534,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-sb-item:hover {
-          color: #b91c1c;
+          color: #2563eb;
         }
 
         .ref-sb-item.text-bold-link {
@@ -543,11 +543,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-sb-item.text-bold-link:hover {
-          color: #b91c1c;
+          color: #2563eb;
         }
 
         .ref-sb-item.text-accent-link {
-          color: #b91c1c;
+          color: #2563eb;
           font-weight: 600;
         }
 
@@ -583,7 +583,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-sb-sublist button:hover {
-          color: #b91c1c;
+          color: #2563eb;
         }
 
         /* Sidebar Footer */
@@ -597,7 +597,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           display: block;
           font-size: 1.25rem;
           font-weight: 800;
-          color: #dc2626;
+          color: #2563eb;
           margin-bottom: 14px;
         }
 

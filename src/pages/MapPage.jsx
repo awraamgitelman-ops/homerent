@@ -520,7 +520,7 @@ export const MapPage = ({
         }
 
         .mmt-btn.active.buy {
-          background: #b91c1c;
+          background: #1d4ed8;
           color: #ffffff;
           box-shadow: var(--shadow-sm);
         }
@@ -552,7 +552,7 @@ export const MapPage = ({
         }
 
         .mf-select:focus {
-          border-color: #b91c1c;
+          border-color: #2563eb;
           background: #ffffff;
         }
 
@@ -718,7 +718,7 @@ export const MapPage = ({
         }
 
         .mls-counter.buy-badge {
-          background: #b91c1c;
+          background: #1d4ed8;
           color: #ffffff;
           font-size: 0.72rem;
           font-weight: 800;
@@ -764,13 +764,13 @@ export const MapPage = ({
         }
 
         .mls-card:hover, .mls-card.selected {
-          border-color: #b91c1c;
-          box-shadow: 0 4px 12px rgba(185, 28, 28, 0.12);
+          border-color: #2563eb;
+          box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
           transform: translateY(-2px);
         }
 
         .mls-card.selected {
-          background: #fff5f5;
+          background: #eff6ff;
         }
 
         .mls-card-img-box {
@@ -805,7 +805,7 @@ export const MapPage = ({
         }
 
         .mls-card-tag.tag-buy {
-          background: #b91c1c;
+          background: #1d4ed8;
         }
 
         .mls-card-info {
@@ -825,7 +825,7 @@ export const MapPage = ({
         .mls-card-price {
           font-size: 1.1rem;
           font-weight: 900;
-          color: #b91c1c;
+          color: #1d4ed8;
           line-height: 1.1;
         }
 
@@ -861,10 +861,11 @@ export const MapPage = ({
 
         .mls-card-metrics {
           display: flex;
+          align-items: center;
           gap: 8px;
-          font-size: 0.7rem;
+          font-size: 0.74rem;
+          font-weight: 700;
           color: #475569;
-          font-weight: 600;
           margin-bottom: 8px;
         }
 
@@ -878,11 +879,11 @@ export const MapPage = ({
           flex: 1;
           font-size: 0.74rem;
           padding: 5px 8px;
-          background: #b91c1c;
+          background: #2563eb;
         }
 
         .mls-book-btn:hover {
-          background: #991b1b;
+          background: #1e40af;
         }
 
         .mls-details-btn {
@@ -936,7 +937,7 @@ export const MapPage = ({
 
           .mvt-btn.active {
             background: #ffffff;
-            color: #b91c1c;
+            color: #1d4ed8;
             box-shadow: var(--shadow-sm);
           }
 

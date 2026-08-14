@@ -77,7 +77,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
       // 30 km boundary line
       const radiusCircle = L.circle(poltavaCenter, {
         radius: 30000,
-        color: '#dc2626',
+        color: '#2563eb',
         weight: 2,
         opacity: 0.85,
         fill: false,
@@ -200,7 +200,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
             📍 ${prop.address}
           </div>
           <div style="display: flex; gap: 6px;">
-            <button id="map-prop-btn-${prop.id}" style="flex: 1; padding: 7px 10px; background: #b91c1c; color: white; border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer;">
+            <button id="map-prop-btn-${prop.id}" style="flex: 1; padding: 7px 10px; background: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer;">
               Деталі →
             </button>
             <a href="${googleMapsDirectUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; padding: 7px 10px; background: #f1f5f9; color: #1e293b; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none;" title="Відкрити в Google Maps">
@@ -280,7 +280,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     <div className="property-map-container-wrapper">
       {/* 30 km Radius Active Zone Badge */}
       <div className="map-radius-indicator-pill">
-        <Compass size={13} className="text-red-500" />
+        <Compass size={13} className="text-primary" />
         <span>Зона обслуговування: <strong>Полтава + 30 км</strong></span>
       </div>
 
@@ -344,7 +344,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
 
         .map-radius-indicator-pill strong {
-          color: #fca5a5;
+          color: #93c5fd;
         }
 
         .google-map-layer-controls {
@@ -378,7 +378,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
 
         .gmc-btn.active {
-          background: #b91c1c;
+          background: #2563eb;
           color: #ffffff;
         }
 
@@ -421,10 +421,10 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
 
         .google-map-price-badge:hover {
-          background: #dc2626 !important;
+          background: #2563eb !important;
           transform: translate(-50%, -50%) scale(1.12);
           z-index: 1000;
-          box-shadow: 0 6px 20px rgba(220, 38, 38, 0.55);
+          box-shadow: 0 6px 20px rgba(37, 99, 235, 0.55);
         }
 
         /* Modern High-Performance Cluster & Single Bubbles */
@@ -472,9 +472,9 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           font-size: 0.95rem;
         }
 
-        /* Level 3: 100+ objects (Bold Crimson) */
+        /* Level 3: 100+ objects (Royal Navy Blue) */
         .custom-map-cluster-bubble.cluster-lvl-3 {
-          background: linear-gradient(135deg, #ef4444, #b91c1c);
+          background: linear-gradient(135deg, #1d4ed8, #172554);
           font-size: 1.05rem;
         }
 

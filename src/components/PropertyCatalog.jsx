@@ -758,10 +758,10 @@ export const PropertyCatalog = ({
         }
 
         .cmt-tab.active.buy {
-          background: #b91c1c;
+          background: #1d4ed8;
           color: #ffffff;
-          border-color: #b91c1c;
-          box-shadow: 0 4px 14px rgba(185, 28, 28, 0.25);
+          border-color: #1d4ed8;
+          box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
         }
 
         .cmt-count {
@@ -1050,7 +1050,7 @@ export const PropertyCatalog = ({
         }
 
         .cpf-clear:hover {
-          color: #ef4444;
+          color: #2563eb;
         }
 
         .catalog-curr-toggle {
@@ -1070,7 +1070,7 @@ export const PropertyCatalog = ({
 
         .cct-btn.active {
           background: #ffffff;
-          color: #b91c1c;
+          color: #1d4ed8;
           box-shadow: var(--shadow-sm);
         }
 
@@ -1113,7 +1113,7 @@ export const PropertyCatalog = ({
 
         .vmt-btn.active {
           background: #ffffff;
-          color: #b91c1c;
+          color: #1d4ed8;
           box-shadow: var(--shadow-sm);
         }
 
@@ -1167,9 +1167,9 @@ export const PropertyCatalog = ({
           padding: 6px 12px;
           font-size: 0.78rem;
           font-weight: 700;
-          color: #b91c1c;
-          background: #fee2e2;
-          border: 1px solid #fca5a5;
+          color: #1e40af;
+          background: #eff6ff;
+          border: 1px solid #bfdbfe;
           border-radius: var(--radius-full);
           cursor: pointer;
           transition: all 0.2s ease;
@@ -1177,7 +1177,7 @@ export const PropertyCatalog = ({
         }
 
         .sfc-reset-btn:hover {
-          background: #fecaca;
+          background: #dbeafe;
         }
 
         /* 5. Strict 2-Column Grid Layout */
