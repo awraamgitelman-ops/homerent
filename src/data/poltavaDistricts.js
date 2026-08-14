@@ -21,15 +21,12 @@ export const POLTAVA_DISTRICTS = [
 export const PROPERTY_TYPES = [
   { id: 'apartment', name: 'Квартири', icon: 'Building2' },
   { id: 'house', name: 'Будинки та котеджі', icon: 'Home' },
-  { id: 'land', name: 'Земельні ділянки', icon: 'Trees' },
-  { id: 'commercial', name: 'Комерційна', icon: 'Briefcase' },
-  { id: 'investment', name: 'Інвестиції', icon: 'TrendingUp' }
+  { id: 'commercial', name: 'Комерційна', icon: 'Briefcase' }
 ];
 
 export const TRANSACTION_TYPES = [
-  { id: 'buy', name: 'Купити' },
   { id: 'rent', name: 'Орендувати' },
-  { id: 'daily', name: 'Подобово' }
+  { id: 'buy', name: 'Купити' }
 ];
 
 export const ROOM_OPTIONS = [

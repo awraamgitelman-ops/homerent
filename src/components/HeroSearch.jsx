@@ -92,7 +92,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
                 <button
                   key={pt.id}
                   type="button"
-                  className={`hs-tab-btn ${isActive ? 'active' : ''} ${pt.id === 'investment' ? 'tab-invest' : ''}`}
+                  className={`hs-tab-btn ${isActive ? 'active' : ''}`}
                   onClick={() => {
                     setSelectedType(pt.id);
                     onSearch({ type: pt.id, transaction, district, rooms, priceMin, priceMax, currency, areaMin, areaMax });
@@ -100,9 +100,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
                 >
                   {pt.id === 'apartment' && <Building2 size={16} />}
                   {pt.id === 'house' && <Home size={16} />}
-                  {pt.id === 'land' && <Trees size={16} />}
                   {pt.id === 'commercial' && <Briefcase size={16} />}
-                  {pt.id === 'investment' && <TrendingUp size={16} />}
                   <span>{pt.name}</span>
                 </button>
               );
@@ -228,7 +226,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
           {/* Bottom Controls Row */}
           <div className="hs-bottom-row">
             <div className="hs-bottom-left">
-              <span className="hs-verified-note">✓ Всі 89 об'єктів перевірені експертами агентства</span>
+              <span className="hs-verified-note">✓ Всі {totalCount} об'єктів перевірені експертами агентства</span>
             </div>
 
             <div className="hs-bottom-actions">
