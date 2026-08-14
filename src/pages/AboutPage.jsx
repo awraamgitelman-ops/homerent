@@ -187,14 +187,6 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                     <PhoneCall size={16} />
                     <span>Зв'язатися з керівництвом</span>
                   </button>
-
-                  <button 
-                    onClick={() => navigate('#/requisites')} 
-                    className="btn btn-outline btn-block av2-sub-btn"
-                  >
-                    <FileText size={16} />
-                    <span>Повні реквізити та ліцензія</span>
-                  </button>
                 </div>
               </div>
             </div>

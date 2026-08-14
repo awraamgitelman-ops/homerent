@@ -125,7 +125,7 @@ export function App() {
     }
 
     if (clean.startsWith('#/requisites') || clean.startsWith('#/legal')) {
-      return <LegalPage />;
+      return <AboutPage onOpenConsultModal={handleOpenConsultModal} />;
     }
 
     // Default: HomePage (Map and Catalog remain on Home as well)

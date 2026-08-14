@@ -96,16 +96,8 @@ export const Footer = ({ onOpenConsultModal }) => {
               Офіційне підприємство у сфері нерухомості Полтави. Повна юридична перевірка кожного об'єкта, прозорі договори та безпечний супровід угод.
             </p>
 
-            <div className="nx-legal-pill">
-              <ShieldCheck size={16} className="text-primary" />
-              <span>ТОВ «НОВЕКС ІНВЕСТ» (ЄДРПОУ 43980756)</span>
-              <button 
-                onClick={handleCopyEdrpou} 
-                className="nx-pill-copy"
-                title="Копіювати код ЄДРПОУ"
-              >
-                {copiedEdrpou ? <Check size={12} className="text-green" /> : <Copy size={12} />}
-              </button>
+            <div className="nx-legal-subtle">
+              <span>ТОВ «НОВЕКС ІНВЕСТ» • ЄДРПОУ 43980756</span>
             </div>
 
             <div className="nx-meta-contacts">
@@ -194,10 +186,6 @@ export const Footer = ({ onOpenConsultModal }) => {
               <button onClick={() => navigate('#/about')} className="nx-doc-btn">
                 <FileCheck2 size={14} />
                 <span>Про компанію та команду</span>
-              </button>
-              <button onClick={() => navigate('#/requisites')} className="nx-doc-btn">
-                <FileCheck2 size={14} />
-                <span>Юридичні реквізити (КВЕД 68.31)</span>
               </button>
             </div>
           </div>
@@ -382,34 +370,11 @@ export const Footer = ({ onOpenConsultModal }) => {
           margin-bottom: 18px;
         }
 
-        .nx-legal-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: #1e293b;
-          border: 1px solid #334155;
-          padding: 6px 12px;
-          border-radius: 8px;
-          font-size: 0.76rem;
-          font-weight: 700;
-          color: #e2e8f0;
-          margin-bottom: 20px;
-        }
-
-        .nx-pill-copy {
-          background: #334155;
-          border: none;
-          border-radius: 4px;
-          padding: 3px 6px;
-          color: #cbd5e1;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-        }
-
-        .nx-pill-copy:hover {
-          background: #475569;
-          color: #ffffff;
+        .nx-legal-subtle {
+          font-size: 0.78rem;
+          color: #64748b;
+          font-weight: 500;
+          margin-bottom: 18px;
         }
 
         .nx-meta-contacts {
