@@ -10,12 +10,11 @@ import {
   ArrowUpRight, 
   Send, 
   MessageSquare, 
-  Copy, 
+  PhoneCall, 
+  FileCheck2, 
   Check, 
-  FileText,
-  HelpCircle,
-  Compass,
-  Layers
+  Copy,
+  Sparkles
 } from 'lucide-react';
 
 export const Footer = ({ onOpenConsultModal }) => {
@@ -47,49 +46,126 @@ export const Footer = ({ onOpenConsultModal }) => {
   };
 
   return (
-    <footer className="nx-editorial-footer">
+    <footer className="nx-footer">
       <div className="container">
-        {/* Top Section: Brand Identity & Direct Contact Cards */}
-        <div className="nef-top-section">
-          <div className="nef-brand-info">
-            <div className="nef-logo-wrap" onClick={() => navigate('#/')}>
-              <Building2 size={26} className="nef-logo-icon" />
-              <div className="nef-logo-titles">
-                <span className="nef-title">НОВЕКС ІНВЕСТ</span>
-                <span className="nef-subtitle">Агентство нерухомості</span>
+        {/* 1. Pre-Footer Action Banner */}
+        <div className="nx-prefooter-card">
+          <div className="nx-pfc-left">
+            <div className="nx-pfc-badge">
+              <Sparkles size={14} />
+              <span>Індивідуальний підбір нерухомості</span>
+            </div>
+            <h3 className="nx-pfc-title">Потрібна допомога у виборі чи продажу житла в Полтаві?</h3>
+            <p className="nx-pfc-desc">
+              Залиште заявку на безкоштовну консультацію юриста або отримайте персональну добірку з 1 198+ об'єктів без комісійних націнок.
+            </p>
+          </div>
+          <div className="nx-pfc-right">
+            <a href="tel:+380988612938" className="nx-pfc-phone-btn">
+              <PhoneCall size={18} />
+              <div className="nx-ppb-text">
+                <span className="nx-ppb-label">Гаряча лінія агенції</span>
+                <span className="nx-ppb-num">+380 (98) 861-29-38</span>
+              </div>
+            </a>
+            <button 
+              onClick={onOpenConsultModal} 
+              className="btn btn-primary nx-pfc-action-btn"
+            >
+              <span>Замовити консультацію</span>
+              <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* 2. Main Footer Grid */}
+        <div className="nx-footer-grid">
+          {/* Brand Identity & Location Column */}
+          <div className="nx-footer-col nx-brand-block">
+            <div className="nx-brand-header" onClick={() => navigate('#/')}>
+              <div className="nx-brand-icon">
+                <Building2 size={24} />
+              </div>
+              <div>
+                <span className="nx-brand-title">НОВЕКС ІНВЕСТ</span>
+                <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
               </div>
             </div>
-            
-            <p className="nef-manifesto">
-              Професійні операції з житловою та комерційною нерухомістю у місті Полтава. Повний комплекс послуг: оренда, купівля, продаж, юридичний аудит та оцінка активів.
+
+            <p className="nx-brand-text">
+              Офіційне підприємство у сфері нерухомості Полтави. Повна юридична перевірка кожного об'єкта, прозорі договори та безпечний супровід угод.
             </p>
 
-            <div className="nef-hours">
-              <Clock size={14} className="nef-dim-icon" />
-              <span>Відділ обслуговування клієнтів: щоденно 09:00 — 20:00</span>
+            <div className="nx-legal-pill">
+              <ShieldCheck size={16} className="text-primary" />
+              <span>ТОВ «НОВЕКС ІНВЕСТ» (ЄДРПОУ 43980756)</span>
+              <button 
+                onClick={handleCopyEdrpou} 
+                className="nx-pill-copy"
+                title="Копіювати код ЄДРПОУ"
+              >
+                {copiedEdrpou ? <Check size={12} className="text-green" /> : <Copy size={12} />}
+              </button>
+            </div>
+
+            <div className="nx-meta-contacts">
+              <div className="nx-mc-row">
+                <MapPin size={15} className="text-primary" />
+                <span>м. Полтава, вул. Європейська, 2, оф. 202</span>
+              </div>
+              <div className="nx-mc-row">
+                <Clock size={15} className="text-primary" />
+                <span>Пн–Нд: 09:00 — 20:00 (без вихідних)</span>
+              </div>
+              <div className="nx-mc-row">
+                <Mail size={15} className="text-primary" />
+                <span>novexinvest.poltava@gmail.com</span>
+              </div>
             </div>
           </div>
 
-          {/* Quick Contact Matrix */}
-          <div className="nef-contacts-matrix">
-            <a href="tel:+380988612938" className="nef-contact-card primary">
-              <div className="ncc-icon"><Phone size={18} /></div>
-              <div className="ncc-data">
-                <span className="ncc-label">Гаряча лінія</span>
-                <span className="ncc-val">+380 (98) 861-29-38</span>
-              </div>
-              <ArrowUpRight size={16} className="ncc-arrow" />
-            </a>
+          {/* Navigation Hub */}
+          <div className="nx-footer-col">
+            <h4 className="nx-col-title">Каталог та пошук</h4>
+            <ul className="nx-col-nav">
+              <li><button onClick={() => navigate('#/catalog')}>Оренда квартир</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Купівля квартир у Полтаві</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Будинки та котеджі</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Комерційна нерухомість</button></li>
+              <li><button onClick={() => navigate('#/map')}>Інтерактивна карта об'єктів</button></li>
+              <li><button onClick={() => navigate('#/services')}>Всі послуги агентства</button></li>
+            </ul>
+          </div>
 
-            <div className="nef-messengers-row">
+          {/* Popular Poltava Districts */}
+          <div className="nx-footer-col">
+            <h4 className="nx-col-title">Популярні райони</h4>
+            <ul className="nx-col-nav">
+              <li><button onClick={() => navigate('#/catalog')}>Центр та Корпусний сад</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Левада та Поділ</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Алмазний та Сади</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Огнівка та Мотель</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Половки та Браїлки</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Інститут зв'язку та Юрівка</button></li>
+            </ul>
+          </div>
+
+          {/* Company & Quick Connect Column */}
+          <div className="nx-footer-col">
+            <h4 className="nx-col-title">Зв'язок з керівником</h4>
+            <p className="nx-connect-desc">
+              Прямий контакт з керівництвом агентства для вирішення термінових та нестандартних питань:
+            </p>
+
+            <div className="nx-messengers-grid">
               <a 
                 href="https://viber.click/380988612938" 
                 onClick={handleViberClick} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="nef-msg-btn viber"
+                className="nx-msg-card viber"
               >
-                <MessageSquare size={15} />
+                <MessageSquare size={16} />
                 <span>Viber</span>
               </a>
 
@@ -97,9 +173,9 @@ export const Footer = ({ onOpenConsultModal }) => {
                 href="https://t.me/novexinvest" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="nef-msg-btn telegram"
+                className="nx-msg-card telegram"
               >
-                <Send size={15} />
+                <Send size={16} />
                 <span>Telegram</span>
               </a>
 
@@ -107,503 +183,410 @@ export const Footer = ({ onOpenConsultModal }) => {
                 href="https://wa.me/380988612938" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="nef-msg-btn whatsapp"
+                className="nx-msg-card whatsapp"
               >
-                <Phone size={15} />
+                <Phone size={16} />
                 <span>WhatsApp</span>
               </a>
             </div>
 
-            <div className="nef-info-row">
-              <div className="nef-info-item">
-                <MapPin size={14} className="nef-accent-icon" />
-                <span>м. Полтава, вул. Європейська, 2 (офіс 202)</span>
-              </div>
-              <div className="nef-info-item">
-                <Mail size={14} className="nef-accent-icon" />
-                <span>novexinvest.poltava@gmail.com</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Middle Section: Organized Horizontal Category & District Hubs */}
-        <div className="nef-hub-section">
-          {/* Categories Strip */}
-          <div className="nef-hub-block">
-            <div className="nef-hub-header">
-              <Layers size={15} className="nef-accent-icon" />
-              <span>Категорії нерухомості</span>
-            </div>
-            <div className="nef-tags-cloud">
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Оренда квартир</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Купівля квартир</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Будинки та котеджі</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Комерційні об'єкти</button>
-              <button onClick={() => navigate('#/map')} className="nef-tag">Карта об'єктів Полтави</button>
-              <button onClick={() => navigate('#/services')} className="nef-tag">Послуги та супровід</button>
-              <button onClick={onOpenConsultModal} className="nef-tag highlight">Безкоштовна консультація</button>
-            </div>
-          </div>
-
-          {/* Districts Strip */}
-          <div className="nef-hub-block">
-            <div className="nef-hub-header">
-              <Compass size={15} className="nef-accent-icon" />
-              <span>Райони міста Полтава</span>
-            </div>
-            <div className="nef-tags-cloud">
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Центр</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Левада</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Поділ</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Алмазний</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Сади-1</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Сади-2</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Огнівка</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Половки</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Браїлки</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Мотель</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Інститут зв'язку</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Юрівка</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Дублянщина</button>
-              <button onClick={() => navigate('#/catalog')} className="nef-tag">Яківці</button>
-            </div>
-          </div>
-        </div>
-
-        {/* Corporate Legal & Verified Credentials Panel */}
-        <div className="nef-legal-panel">
-          <div className="nef-lp-left">
-            <div className="nef-lp-badge">
-              <ShieldCheck size={15} className="text-primary" />
-              <span>Правова ідентифікація</span>
-            </div>
-            <div className="nef-lp-company">
-              <strong>ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ «НОВЕКС ІНВЕСТ»</strong>
-              <span className="nef-lp-kved">Основний вид діяльності: 68.31 Агентства нерухомості</span>
-            </div>
-          </div>
-
-          <div className="nef-lp-right">
-            <div className="nef-edrpou-chip">
-              <span>ЄДРПОУ: <strong>43980756</strong></span>
-              <button 
-                onClick={handleCopyEdrpou} 
-                className="nef-copy-btn" 
-                title="Копіювати код ЄДРПОУ"
-              >
-                {copiedEdrpou ? <Check size={13} className="text-green" /> : <Copy size={13} />}
-                <span>{copiedEdrpou ? 'Скопійовано' : 'Копіювати'}</span>
+            <div className="nx-doc-links">
+              <button onClick={() => navigate('#/about')} className="nx-doc-btn">
+                <FileCheck2 size={14} />
+                <span>Про компанію та команду</span>
               </button>
-            </div>
-
-            <div className="nef-lp-links">
-              <button onClick={() => navigate('#/about')} className="nef-btn-link">
-                <FileText size={14} />
-                <span>Про компанію</span>
-              </button>
-              <button onClick={() => navigate('#/requisites')} className="nef-btn-link">
-                <FileText size={14} />
-                <span>Реєстраційні дані</span>
+              <button onClick={() => navigate('#/requisites')} className="nx-doc-btn">
+                <FileCheck2 size={14} />
+                <span>Юридичні реквізити (КВЕД 68.31)</span>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Minimal Copyright Bar */}
-        <div className="nef-bottom-bar">
-          <div className="nef-bb-left">
-            <span>© {new Date().getFullYear()} ТОВ «НОВЕКС ІНВЕСТ». Усі права захищено відповідно до чинного законодавства України.</span>
+        {/* 3. Bottom Certification Bar */}
+        <div className="nx-bottom-bar">
+          <div className="nx-bb-left">
+            <span>© {new Date().getFullYear()} ТОВ «НОВЕКС ІНВЕСТ». Всі права захищено.</span>
+            <span className="nx-bb-divider">/</span>
+            <span>Ліцензована діяльність у м. Полтава</span>
           </div>
-          <div className="nef-bb-right">
-            <span>м. Полтава, Україна</span>
+
+          <div className="nx-bb-right">
+            <div className="nx-status-chip">
+              <span className="nx-status-dot"></span>
+              <span>Офіс приймає клієнтів: Полтава, вул. Європейська, 2</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Scoped CSS for Modern Editorial Footer */}
+      {/* Scoped CSS for Modern Footer */}
       <style>{`
-        .nx-editorial-footer {
-          background: #080c14;
+        .nx-footer {
+          background: #090d16;
           color: #94a3b8;
-          padding: 56px 0 32px;
+          padding: 60px 0 30px;
           border-top: 1px solid #1e293b;
-          font-family: inherit;
+          position: relative;
         }
 
-        /* 1. Top Section */
-        .nef-top-section {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 48px;
-          padding-bottom: 36px;
-          border-bottom: 1px solid #1e293b;
-          align-items: start;
+        /* 1. Pre-Footer Action Banner */
+        .nx-prefooter-card {
+          background: linear-gradient(135deg, #172554 0%, #1e1b4b 100%);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 18px;
+          padding: 32px 36px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 32px;
+          margin-bottom: 56px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
         }
 
-        .nef-logo-wrap {
+        .nx-pfc-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 0.76rem;
+          font-weight: 700;
+          color: #93c5fd;
+          margin-bottom: 10px;
+        }
+
+        .nx-pfc-title {
+          font-size: 1.45rem;
+          font-weight: 900;
+          color: #ffffff;
+          margin-bottom: 6px;
+          letter-spacing: -0.3px;
+        }
+
+        .nx-pfc-desc {
+          font-size: 0.9rem;
+          color: #cbd5e1;
+          max-width: 600px;
+          line-height: 1.5;
+        }
+
+        .nx-pfc-right {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-shrink: 0;
+        }
+
+        .nx-pfc-phone-btn {
           display: flex;
           align-items: center;
           gap: 12px;
-          cursor: pointer;
-          margin-bottom: 16px;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 12px;
+          padding: 10px 18px;
+          color: #ffffff;
+          transition: all 0.2s ease;
         }
 
-        .nef-logo-icon {
-          color: #3b82f6;
+        .nx-pfc-phone-btn:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #60a5fa;
         }
 
-        .nef-logo-titles {
+        .nx-ppb-text {
           display: flex;
           flex-direction: column;
         }
 
-        .nef-title {
-          font-size: 1.3rem;
+        .nx-ppb-label {
+          font-size: 0.7rem;
+          color: #94a3b8;
+          font-weight: 600;
+        }
+
+        .nx-ppb-num {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #ffffff;
+        }
+
+        .nx-pfc-action-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 13px 22px;
+          font-size: 0.9rem;
+          font-weight: 800;
+          border-radius: 12px;
+          background: #2563eb;
+          border-color: #2563eb;
+          white-space: nowrap;
+        }
+
+        .nx-pfc-action-btn:hover {
+          background: #1d4ed8;
+        }
+
+        /* 2. Main Grid */
+        .nx-footer-grid {
+          display: grid;
+          grid-template-columns: 1.35fr 1fr 1.05fr 1.2fr;
+          gap: 40px;
+          padding-bottom: 48px;
+          border-bottom: 1px solid #1e293b;
+        }
+
+        .nx-brand-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          cursor: pointer;
+          margin-bottom: 14px;
+        }
+
+        .nx-brand-icon {
+          width: 44px;
+          height: 44px;
+          border-radius: 10px;
+          background: #2563eb;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+        }
+
+        .nx-brand-title {
+          display: block;
+          font-size: 1.25rem;
           font-weight: 900;
           color: #ffffff;
           letter-spacing: -0.3px;
         }
 
-        .nef-subtitle {
-          font-size: 0.74rem;
-          font-weight: 600;
-          color: #64748b;
-          text-transform: uppercase;
-          letter-spacing: 0.6px;
-        }
-
-        .nef-manifesto {
-          font-size: 0.88rem;
-          line-height: 1.6;
-          color: #94a3b8;
-          max-width: 520px;
-          margin-bottom: 16px;
-        }
-
-        .nef-hours {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 0.8rem;
-          color: #64748b;
-        }
-
-        .nef-dim-icon {
-          color: #475569;
-        }
-
-        .nef-accent-icon {
-          color: #3b82f6;
-        }
-
-        /* Contacts Matrix */
-        .nef-contacts-matrix {
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-        }
-
-        .nef-contact-card {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 14px 18px;
-          background: #0f172a;
-          border: 1px solid #1e293b;
-          border-radius: 12px;
-          color: #ffffff;
-          transition: all 0.2s ease;
-        }
-
-        .nef-contact-card:hover {
-          border-color: #3b82f6;
-          background: #131d35;
-          transform: translateY(-1px);
-        }
-
-        .ncc-icon {
-          width: 36px;
-          height: 36px;
-          border-radius: 8px;
-          background: #2563eb;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #ffffff;
-          margin-right: 14px;
-          flex-shrink: 0;
-        }
-
-        .ncc-data {
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-        }
-
-        .ncc-label {
+        .nx-brand-subtitle {
+          display: block;
           font-size: 0.72rem;
           color: #94a3b8;
           font-weight: 600;
         }
 
-        .ncc-val {
-          font-size: 1.05rem;
-          font-weight: 800;
-          color: #ffffff;
+        .nx-brand-text {
+          font-size: 0.86rem;
+          color: #94a3b8;
+          line-height: 1.6;
+          margin-bottom: 18px;
         }
 
-        .ncc-arrow {
-          color: #64748b;
-        }
-
-        .nef-messengers-row {
-          display: flex;
-          gap: 10px;
-        }
-
-        .nef-msg-btn {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          padding: 10px;
-          border-radius: 8px;
-          font-size: 0.8rem;
-          font-weight: 700;
-          color: #ffffff;
-          transition: all 0.15s ease;
-        }
-
-        .nef-msg-btn:hover {
-          opacity: 0.92;
-          transform: translateY(-1px);
-        }
-
-        .nef-msg-btn.viber { background: #6c5ce7; }
-        .nef-msg-btn.telegram { background: #0088cc; }
-        .nef-msg-btn.whatsapp { background: #20bf6b; }
-
-        .nef-info-row {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          margin-top: 4px;
-        }
-
-        .nef-info-item {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 0.82rem;
-          color: #cbd5e1;
-        }
-
-        /* 2. Middle Hubs Section */
-        .nef-hub-section {
-          padding: 32px 0;
-          border-bottom: 1px solid #1e293b;
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-        }
-
-        .nef-hub-block {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .nef-hub-header {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 0.8rem;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 0.6px;
-          color: #cbd5e1;
-        }
-
-        .nef-tags-cloud {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-
-        .nef-tag {
-          padding: 6px 14px;
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: #cbd5e1;
-          background: #0f172a;
-          border: 1px solid #1e293b;
-          border-radius: 6px;
-          cursor: pointer;
-          transition: all 0.15s ease;
-        }
-
-        .nef-tag:hover {
-          border-color: #3b82f6;
-          color: #ffffff;
-          background: #172554;
-        }
-
-        .nef-tag.highlight {
-          background: #172554;
-          color: #93c5fd;
-          border-color: #2563eb;
-          font-weight: 700;
-        }
-
-        .nef-tag.highlight:hover {
-          background: #2563eb;
-          color: #ffffff;
-        }
-
-        /* 3. Legal Panel */
-        .nef-legal-panel {
-          padding: 28px 0;
-          border-bottom: 1px solid #1e293b;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 32px;
-          flex-wrap: wrap;
-        }
-
-        .nef-lp-left {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .nef-lp-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 0.74rem;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 0.6px;
-          color: #60a5fa;
-        }
-
-        .nef-lp-company strong {
-          display: block;
-          font-size: 0.95rem;
-          color: #ffffff;
-          margin-bottom: 2px;
-        }
-
-        .nef-lp-kved {
-          font-size: 0.8rem;
-          color: #64748b;
-        }
-
-        .nef-lp-right {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          flex-wrap: wrap;
-        }
-
-        .nef-edrpou-chip {
+        .nx-legal-pill {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: #0f172a;
+          background: #1e293b;
           border: 1px solid #334155;
           padding: 6px 12px;
           border-radius: 8px;
-          font-size: 0.8rem;
+          font-size: 0.76rem;
+          font-weight: 700;
           color: #e2e8f0;
+          margin-bottom: 20px;
         }
 
-        .nef-copy-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 4px;
-          background: #1e293b;
-          border: 1px solid #334155;
+        .nx-pill-copy {
+          background: #334155;
+          border: none;
           border-radius: 4px;
           padding: 3px 6px;
-          font-size: 0.72rem;
           color: #cbd5e1;
           cursor: pointer;
+          display: flex;
+          align-items: center;
         }
 
-        .nef-copy-btn:hover {
-          background: #334155;
+        .nx-pill-copy:hover {
+          background: #475569;
           color: #ffffff;
         }
 
-        .nef-lp-links {
+        .nx-meta-contacts {
           display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .nx-mc-row {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 0.82rem;
+          color: #cbd5e1;
+        }
+
+        .nx-col-title {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #ffffff;
+          margin-bottom: 18px;
+          letter-spacing: 0.2px;
+        }
+
+        .nx-col-nav {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .nx-col-nav button {
+          font-size: 0.85rem;
+          color: #94a3b8;
+          text-align: left;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          transition: all 0.15s ease;
+          padding: 0;
+        }
+
+        .nx-col-nav button:hover {
+          color: #60a5fa;
+          transform: translateX(4px);
+        }
+
+        .nx-connect-desc {
+          font-size: 0.84rem;
+          color: #94a3b8;
+          line-height: 1.5;
+          margin-bottom: 14px;
+        }
+
+        .nx-messengers-grid {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 20px;
+        }
+
+        .nx-msg-card {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 8px 10px;
+          border-radius: 8px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #ffffff;
+          transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+
+        .nx-msg-card:hover {
+          opacity: 0.9;
+          transform: translateY(-2px);
+        }
+
+        .nx-msg-card.viber { background: #7360f2; }
+        .nx-msg-card.telegram { background: #0088cc; }
+        .nx-msg-card.whatsapp { background: #25d366; }
+
+        .nx-doc-links {
+          display: flex;
+          flex-direction: column;
           gap: 8px;
         }
 
-        .nef-btn-link {
+        .nx-doc-btn {
           display: inline-flex;
           align-items: center;
-          gap: 6px;
-          padding: 7px 12px;
+          gap: 8px;
           font-size: 0.8rem;
           font-weight: 700;
-          color: #cbd5e1;
+          color: #94a3b8;
           background: transparent;
           border: 1px solid #1e293b;
           border-radius: 6px;
+          padding: 7px 12px;
           cursor: pointer;
           transition: all 0.15s ease;
+          text-align: left;
         }
 
-        .nef-btn-link:hover {
-          background: #1e293b;
+        .nx-doc-btn:hover {
           color: #ffffff;
           border-color: #334155;
+          background: #1e293b;
         }
 
-        /* 4. Bottom Bar */
-        .nef-bottom-bar {
-          padding-top: 24px;
+        /* 3. Bottom Bar */
+        .nx-bottom-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          font-size: 0.78rem;
-          color: #475569;
+          padding-top: 24px;
+          font-size: 0.8rem;
+          color: #64748b;
           flex-wrap: wrap;
-          gap: 12px;
+          gap: 16px;
         }
 
-        @media (max-width: 900px) {
-          .nef-top-section {
-            grid-template-columns: 1fr;
-            gap: 32px;
-          }
-          .nef-legal-panel {
+        .nx-bb-left {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+
+        .nx-bb-divider {
+          color: #334155;
+        }
+
+        .nx-status-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 0.76rem;
+          color: #94a3b8;
+        }
+
+        .nx-status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #22c55e;
+          box-shadow: 0 0 8px #22c55e;
+        }
+
+        @media (max-width: 1024px) {
+          .nx-prefooter-card {
             flex-direction: column;
             align-items: flex-start;
           }
-          .nef-lp-right {
+          .nx-pfc-right {
             width: 100%;
-            justify-content: flex-start;
+            flex-wrap: wrap;
+          }
+          .nx-footer-grid {
+            grid-template-columns: repeat(2, 1fr);
           }
         }
 
-        @media (max-width: 600px) {
-          .nef-messengers-row {
-            flex-direction: column;
+        @media (max-width: 640px) {
+          .nx-footer-grid {
+            grid-template-columns: 1fr;
           }
-          .nef-tags-cloud {
-            gap: 6px;
+          .nx-pfc-phone-btn, .nx-pfc-action-btn {
+            width: 100%;
+            justify-content: center;
           }
-          .nef-tag {
-            font-size: 0.78rem;
-            padding: 5px 10px;
-          }
-          .nx-editorial-footer {
+          .nx-footer {
             padding-bottom: 95px; /* Clear mobile bottom nav */
           }
         }
