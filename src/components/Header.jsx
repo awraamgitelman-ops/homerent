@@ -52,8 +52,8 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           <div className="ref-logo" onClick={() => navigate('#/')}>
             <div className="ref-logo-mark">
               <svg width="38" height="38" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 2L42 38H2L22 2Z" stroke="#f59e0b" strokeWidth="4" strokeLinejoin="round" />
-                <path d="M22 14L32 32H12L22 14Z" fill="#f59e0b" />
+                <path d="M22 2L42 38H2L22 2Z" stroke="#1e3a8a" strokeWidth="4" strokeLinejoin="round" />
+                <path d="M22 14L32 32H12L22 14Z" fill="#2563eb" />
               </svg>
             </div>
             <div className="ref-logo-text">
@@ -152,8 +152,8 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
                 <div className="ref-logo-mark">
                   <svg width="34" height="34" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 2L42 38H2L22 2Z" stroke="#f59e0b" strokeWidth="4" strokeLinejoin="round" />
-                    <path d="M22 14L32 32H12L22 14Z" fill="#f59e0b" />
+                    <path d="M22 2L42 38H2L22 2Z" stroke="#1e3a8a" strokeWidth="4" strokeLinejoin="round" />
+                    <path d="M22 14L32 32H12L22 14Z" fill="#2563eb" />
                   </svg>
                 </div>
                 <div className="ref-logo-text">
@@ -354,7 +354,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-logo-title {
           font-size: 1.25rem;
           font-weight: 900;
-          color: #d97706;
+          color: #1e3a8a;
           letter-spacing: 0.5px;
         }
 
@@ -391,7 +391,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-nav-link:hover, .ref-nav-link.active {
-          color: #d97706;
+          color: #1e3a8a;
         }
 
         .ref-nav-link.text-highlight {
@@ -400,7 +400,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-nav-link.text-highlight:hover {
-          color: #d97706;
+          color: #1e3a8a;
         }
 
         /* Header Right */
@@ -413,12 +413,12 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-phone-link {
           font-size: 1.05rem;
           font-weight: 800;
-          color: #d97706;
+          color: #1e3a8a;
           white-space: nowrap;
         }
 
         .ref-phone-link:hover {
-          color: #b45309;
+          color: #1e40af;
         }
 
         .ref-messengers-group {
@@ -460,7 +460,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-hamburger-btn:hover {
-          color: #d97706;
+          color: #1e3a8a;
         }
 
         /* Sidebar Backdrop */
@@ -534,7 +534,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-sb-item:hover {
-          color: #d97706;
+          color: #1e3a8a;
         }
 
         .ref-sb-item.text-bold-link {
@@ -543,11 +543,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-sb-item.text-bold-link:hover {
-          color: #d97706;
+          color: #1e3a8a;
         }
 
         .ref-sb-item.text-accent-link {
-          color: #d97706;
+          color: #1e3a8a;
           font-weight: 600;
         }
 
@@ -583,7 +583,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-sb-sublist button:hover {
-          color: #d97706;
+          color: #1e3a8a;
         }
 
         /* Sidebar Footer */
@@ -597,7 +597,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           display: block;
           font-size: 1.25rem;
           font-weight: 800;
-          color: #d97706;
+          color: #1e3a8a;
           margin-bottom: 14px;
         }
 
