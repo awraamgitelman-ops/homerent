@@ -102,9 +102,9 @@ export const MapPage = ({
 
   return (
     <div className="map-page-wrapper">
-      {/* 1. Top Control Bar: Mode Toggle + Clean Filters */}
+      {/* 1. Top Control Bar: Mode Toggle + Clean Filters (Positioned solidly on top of map) */}
       <div className="map-page-filter-bar">
-        <div className="container map-filter-inner">
+        <div className="map-filter-inner-fluid">
           {/* Strict Mode Switcher: Оренда vs Купівля */}
           <div className="map-mode-toggle-group">
             <button
@@ -224,7 +224,7 @@ export const MapPage = ({
         </div>
 
         {/* Tailored Quick Price Range Chips for Active Mode */}
-        <div className="container mf-quick-prices-row">
+        <div className="mf-quick-prices-fluid">
           <span className="mf-qp-title">Діапазон цін:</span>
           {transaction === 'rent' ? (
             currency === 'UAH' ? (
@@ -475,21 +475,27 @@ export const MapPage = ({
           overflow: hidden;
         }
 
-        /* Top Filter Bar */
+        /* Top Filter Bar (Solidly on top of map) */
         .map-page-filter-bar {
           background: #ffffff;
-          border-bottom: 1px solid var(--c-border);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-          z-index: 10;
-          padding: 8px 0 6px;
+          border-bottom: 1px solid #e2e8f0;
+          box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+          position: relative;
+          z-index: 1000;
+          padding: 8px 0 4px;
+          width: 100%;
+          flex-shrink: 0;
         }
 
-        .map-filter-inner {
+        .map-filter-inner-fluid {
           display: flex;
           align-items: center;
           justify-content: space-between;
           flex-wrap: wrap;
           gap: 12px;
+          padding: 0 24px;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         /* Primary Mode Switcher */
@@ -560,8 +566,8 @@ export const MapPage = ({
         .mf-price-container {
           display: flex;
           align-items: center;
-          background: #f8fafc;
-          border: 1.5px solid #cbd5e1;
+          background: #f1f5f9;
+          border: 1px solid var(--c-border);
           border-radius: var(--radius-sm);
           overflow: hidden;
           padding-left: 8px;
@@ -570,13 +576,13 @@ export const MapPage = ({
         .mf-price-label {
           font-size: 0.76rem;
           font-weight: 700;
-          color: #475569;
+          color: #64748b;
           margin-right: 4px;
         }
 
         .mf-price-input {
-          width: 75px;
-          padding: 6px 6px;
+          width: 65px;
+          padding: 6px 4px;
           font-size: 0.82rem;
           font-weight: 700;
           border: none;
@@ -604,7 +610,7 @@ export const MapPage = ({
         }
 
         /* Quick Price Range Chips Row */
-        .mf-quick-prices-row {
+        .mf-quick-prices-fluid {
           display: flex;
           align-items: center;
           gap: 6px;
