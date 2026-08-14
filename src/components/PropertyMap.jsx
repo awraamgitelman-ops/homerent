@@ -6,7 +6,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { formatCurrency } from '../utils/formatters';
 import { Layers, Map as MapIcon, Compass } from 'lucide-react';
 
-export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', selectedPropertyId }) => {
+export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', selectedPropertyId, viewMode }) => {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const tileLayerRef = useRef(null);
@@ -91,6 +91,45 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
       radiusBorderRef.current = radiusCircle;
     }
   }, []);
+
+  // 1.1 Robust Container Resizing & Invalidation (Fixes partial map tile loading on view mode toggle)
+  useEffect(() => {
+    if (!mapInstanceRef.current || !mapContainerRef.current) return;
+
+    const triggerInvalidation = () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize({ pan: false, debounceMoveend: true });
+      }
+    };
+
+    // Trigger immediately and at staggered intervals to catch CSS grid/split transitions
+    triggerInvalidation();
+    const timer1 = setTimeout(triggerInvalidation, 50);
+    const timer2 = setTimeout(triggerInvalidation, 150);
+    const timer3 = setTimeout(triggerInvalidation, 350);
+    const timer4 = setTimeout(triggerInvalidation, 600);
+
+    // Modern ResizeObserver on the map DOM container element
+    let resizeObserver = null;
+    if (window.ResizeObserver && mapContainerRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        triggerInvalidation();
+      });
+      resizeObserver.observe(mapContainerRef.current);
+    }
+
+    const onWindowResize = () => triggerInvalidation();
+    window.addEventListener('resize', onWindowResize);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener('resize', onWindowResize);
+    };
+  }, [viewMode, properties]);
 
   // 2. Populate and manage MarkerClusterGroup with singleMarkerMode & stable popups
   useEffect(() => {

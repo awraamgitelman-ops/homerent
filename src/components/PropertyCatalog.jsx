@@ -700,6 +700,7 @@ export const PropertyCatalog = ({
                     properties={filteredProperties}
                     currency={currency}
                     onSelectProperty={onSelectProperty}
+                    viewMode={viewMode}
                   />
                 </div>
               )}
