@@ -78,44 +78,8 @@ export const Footer = ({ onOpenConsultModal }) => {
           </div>
         </div>
 
-        {/* 2. Main Footer Grid */}
+        {/* 2. Main Footer Grid (Brand moved to the RIGHT) */}
         <div className="nx-footer-grid">
-          {/* Brand Identity & Location Column */}
-          <div className="nx-footer-col nx-brand-block">
-            <div className="nx-brand-header" onClick={() => navigate('#/')}>
-              <div className="nx-brand-icon">
-                <Building2 size={24} />
-              </div>
-              <div>
-                <span className="nx-brand-title">НОВЕКС ІНВЕСТ</span>
-                <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
-              </div>
-            </div>
-
-            <p className="nx-brand-text">
-              Офіційне підприємство у сфері нерухомості Полтави. Повна юридична перевірка кожного об'єкта, прозорі договори та безпечний супровід угод.
-            </p>
-
-            <div className="nx-legal-subtle">
-              <span>ТОВ «НОВЕКС ІНВЕСТ» • ЄДРПОУ 43980756</span>
-            </div>
-
-            <div className="nx-meta-contacts">
-              <div className="nx-mc-row">
-                <MapPin size={15} className="text-primary" />
-                <span>м. Полтава, вул. Європейська, 2, оф. 202</span>
-              </div>
-              <div className="nx-mc-row">
-                <Clock size={15} className="text-primary" />
-                <span>Пн–Нд: 09:00 — 20:00 (без вихідних)</span>
-              </div>
-              <div className="nx-mc-row">
-                <Mail size={15} className="text-primary" />
-                <span>novexinvest.poltava@gmail.com</span>
-              </div>
-            </div>
-          </div>
-
           {/* Navigation Hub */}
           <div className="nx-footer-col">
             <h4 className="nx-col-title">Каталог та пошук</h4>
@@ -187,6 +151,42 @@ export const Footer = ({ onOpenConsultModal }) => {
                 <FileCheck2 size={14} />
                 <span>Про компанію та команду</span>
               </button>
+            </div>
+          </div>
+
+          {/* Brand Identity & Location Column (RIGHT SIDE) */}
+          <div className="nx-footer-col nx-brand-block">
+            <div className="nx-brand-header" onClick={() => navigate('#/')}>
+              <div className="nx-brand-icon">
+                <Building2 size={24} />
+              </div>
+              <div>
+                <span className="nx-brand-title">НОВЕКС ІНВЕСТ</span>
+                <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
+              </div>
+            </div>
+
+            <p className="nx-brand-text">
+              Офіційне підприємство у сфері нерухомості Полтави. Повна юридична перевірка кожного об'єкта, прозорі договори та безпечний супровід угод.
+            </p>
+
+            <div className="nx-legal-subtle">
+              <span>ТОВ «НОВЕКС ІНВЕСТ» • ЄДРПОУ 43980756</span>
+            </div>
+
+            <div className="nx-meta-contacts">
+              <div className="nx-mc-row">
+                <MapPin size={15} className="text-primary" />
+                <span>м. Полтава, вул. Європейська, 2, оф. 202</span>
+              </div>
+              <div className="nx-mc-row">
+                <Clock size={15} className="text-primary" />
+                <span>Пн–Нд: 09:00 — 20:00 (без вихідних)</span>
+              </div>
+              <div className="nx-mc-row">
+                <Mail size={15} className="text-primary" />
+                <span>novexinvest.poltava@gmail.com</span>
+              </div>
             </div>
           </div>
         </div>
@@ -322,7 +322,7 @@ export const Footer = ({ onOpenConsultModal }) => {
         /* 2. Main Grid */
         .nx-footer-grid {
           display: grid;
-          grid-template-columns: 1.35fr 1fr 1.05fr 1.2fr;
+          grid-template-columns: 1fr 1fr 1.1fr 1.35fr;
           gap: 40px;
           padding-bottom: 48px;
           border-bottom: 1px solid #1e293b;
