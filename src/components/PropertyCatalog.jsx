@@ -1,16 +1,19 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   LayoutGrid, 
   Map as MapIcon, 
   Columns, 
   ArrowUpDown, 
-  Building,
-  RotateCcw,
-  Key,
-  Home,
-  Building2,
-  Briefcase,
-  MapPin
+  Building, 
+  RotateCcw, 
+  Key, 
+  Home, 
+  Building2, 
+  Briefcase, 
+  MapPin, 
+  ChevronDown, 
+  Check,
+  Plus
 } from 'lucide-react';
 import { PropertyCard } from './PropertyCard';
 import { PropertyMap } from './PropertyMap';
@@ -28,16 +31,31 @@ export const PropertyCatalog = ({
   const [selectedCategory, setSelectedCategory] = useState(filters?.type && filters.type !== 'all' ? filters.type : 'apartment'); // 'apartment' | 'house' | 'commercial'
   const [subFilter, setSubFilter] = useState('all'); // Sub-filter within the category
   const [selectedDistrict, setSelectedDistrict] = useState(filters?.district || 'all');
+  const [isDistrictDropdownOpen, setIsDistrictDropdownOpen] = useState(false);
+  const districtDropdownRef = useRef(null);
+
   const [sortBy, setSortBy] = useState('default');
   const [currency, setCurrency] = useState(activeTransaction === 'rent' ? 'UAH' : 'USD');
   const [priceMin, setPriceMin] = useState(filters?.priceMin || '');
   const [priceMax, setPriceMax] = useState(filters?.priceMax || '');
+  const [recLimit, setRecLimit] = useState(6);
 
   useEffect(() => {
     if (initialViewMode) {
       setViewMode(initialViewMode);
     }
   }, [initialViewMode]);
+
+  // Click outside to close custom district dropdown
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (districtDropdownRef.current && !districtDropdownRef.current.contains(e.target)) {
+        setIsDistrictDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Switch between Rent & Buy
   const handleSwitchTab = (tab) => {
@@ -46,12 +64,14 @@ export const PropertyCatalog = ({
     setSubFilter('all');
     setPriceMin('');
     setPriceMax('');
+    setRecLimit(6);
   };
 
   // Switch category (Apartments / Houses / Commercial)
   const handleSelectCategory = (cat) => {
     setSelectedCategory(cat);
     setSubFilter('all');
+    setRecLimit(6);
   };
 
   // Reset all filters
@@ -61,6 +81,7 @@ export const PropertyCatalog = ({
     setPriceMin('');
     setPriceMax('');
     setSortBy('default');
+    setRecLimit(6);
   };
 
   // Dynamic live counts for current transaction
@@ -82,6 +103,11 @@ export const PropertyCatalog = ({
 
   const rentTotal = properties.filter(p => p.transaction === 'rent').length;
   const buyTotal = properties.filter(p => p.transaction === 'buy').length;
+
+  // Current district object for display
+  const currentDistrictObj = useMemo(() => {
+    return POLTAVA_DISTRICTS.find(d => d.id === selectedDistrict) || POLTAVA_DISTRICTS[0];
+  }, [selectedDistrict]);
 
   // Strict Filter & Sort Logic
   const filteredProperties = useMemo(() => {
@@ -140,21 +166,26 @@ export const PropertyCatalog = ({
     });
   }, [properties, activeTransaction, selectedCategory, selectedDistrict, subFilter, sortBy, currency, priceMin, priceMax]);
 
-  // Recommended & alternative options (always calculated, excluding already filtered IDs)
-  const recommendedProperties = useMemo(() => {
+  // Total available recommendations pool (excluding already filtered IDs)
+  const fullRecommendationsPool = useMemo(() => {
     const filteredIds = new Set(filteredProperties.map(p => p.id));
     
     // 1. Try properties from the same transaction and category not already shown
     let pool = properties.filter(p => p.transaction === activeTransaction && p.type === selectedCategory && !filteredIds.has(p.id));
     
     // 2. If pool is small, take from same transaction
-    if (pool.length < 6) {
+    if (pool.length < 18) {
       const more = properties.filter(p => p.transaction === activeTransaction && !filteredIds.has(p.id) && !pool.some(x => x.id === p.id));
       pool = [...pool, ...more];
     }
     
-    return pool.slice(0, 6);
+    return pool;
   }, [filteredProperties, properties, activeTransaction, selectedCategory]);
+
+  // Sliced recommendations according to recLimit
+  const recommendedProperties = useMemo(() => {
+    return fullRecommendationsPool.slice(0, recLimit);
+  }, [fullRecommendationsPool, recLimit]);
 
   // Section title formatter
   const getSectionTitle = () => {
@@ -234,18 +265,50 @@ export const PropertyCatalog = ({
           </div>
 
           <div className="chb-right">
-            {/* District Selector (Fixed: no duplicate option) */}
-            <div className="catalog-district-box">
-              <MapPin size={14} className="text-muted" />
-              <select
-                value={selectedDistrict}
-                onChange={(e) => setSelectedDistrict(e.target.value)}
-                className="catalog-district-select"
+            {/* Custom Modern District Dropdown */}
+            <div className="custom-district-dropdown-container" ref={districtDropdownRef}>
+              <button
+                type="button"
+                className={`cdd-trigger-btn ${isDistrictDropdownOpen ? 'open' : ''}`}
+                onClick={() => setIsDistrictDropdownOpen(!isDistrictDropdownOpen)}
+                title="Обрати район Полтави"
               >
-                {POLTAVA_DISTRICTS.map(d => (
-                  <option key={d.id} value={d.id}>{d.name}</option>
-                ))}
-              </select>
+                <MapPin size={15} className="cdd-pin-icon" />
+                <span className="cdd-selected-name">
+                  {selectedDistrict === 'all' ? 'Всі райони Полтави' : currentDistrictObj.name.split(' (')[0]}
+                </span>
+                <ChevronDown size={14} className={`cdd-arrow ${isDistrictDropdownOpen ? 'rotated' : ''}`} />
+              </button>
+
+              {isDistrictDropdownOpen && (
+                <div className="cdd-menu-card">
+                  <div className="cdd-menu-header">
+                    <span>Райони міста Полтава</span>
+                  </div>
+                  <div className="cdd-options-list">
+                    {POLTAVA_DISTRICTS.map((d) => {
+                      const isSelected = selectedDistrict === d.id;
+                      return (
+                        <button
+                          key={d.id}
+                          type="button"
+                          className={`cdd-option-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            setSelectedDistrict(d.id);
+                            setIsDistrictDropdownOpen(false);
+                          }}
+                        >
+                          <div className="cdd-opt-text">
+                            <span className="cdd-opt-title">{d.name}</span>
+                            {d.area && <span className="cdd-opt-sub">{d.area} район</span>}
+                          </div>
+                          {isSelected && <Check size={15} className="cdd-check-icon" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Price Filter Box */}
@@ -568,6 +631,20 @@ export const PropertyCatalog = ({
                     />
                   ))}
                 </div>
+
+                {/* Show More Button */}
+                {fullRecommendationsPool.length > recLimit && (
+                  <div className="crb-more-center">
+                    <button
+                      type="button"
+                      className="crb-more-btn"
+                      onClick={() => setRecLimit(prev => prev + 6)}
+                    >
+                      <Plus size={16} />
+                      <span>Показати ще варіанти ({fullRecommendationsPool.length - recLimit})</span>
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -619,6 +696,20 @@ export const PropertyCatalog = ({
                     />
                   ))}
                 </div>
+
+                {/* Show More Button */}
+                {fullRecommendationsPool.length > recLimit && (
+                  <div className="crb-more-center">
+                    <button
+                      type="button"
+                      className="crb-more-btn"
+                      onClick={() => setRecLimit(prev => prev + 6)}
+                    >
+                      <Plus size={16} />
+                      <span>Показати ще варіанти ({fullRecommendationsPool.length - recLimit})</span>
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </>
@@ -777,25 +868,143 @@ export const PropertyCatalog = ({
           flex-wrap: wrap;
         }
 
-        /* District Dropdown in Bar */
-        .catalog-district-box {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          background: #ffffff;
-          border: 1px solid var(--c-border);
-          border-radius: var(--radius-sm);
-          padding: 4px 10px;
+        /* Custom Beautiful District Dropdown */
+        .custom-district-dropdown-container {
+          position: relative;
         }
 
-        .catalog-district-select {
-          border: none;
-          background: transparent;
+        .cdd-trigger-btn {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          background: #ffffff;
+          border: 1px solid #cbd5e1;
+          border-radius: 8px;
+          padding: 6px 12px;
           font-size: 0.82rem;
           font-weight: 700;
-          color: var(--c-slate);
-          outline: none;
+          color: #1e293b;
           cursor: pointer;
+          transition: all 0.2s ease;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .cdd-trigger-btn:hover, .cdd-trigger-btn.open {
+          border-color: #2563eb;
+          background: #ffffff;
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .cdd-pin-icon {
+          color: #2563eb;
+          flex-shrink: 0;
+        }
+
+        .cdd-selected-name {
+          max-width: 170px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .cdd-arrow {
+          color: #64748b;
+          transition: transform 0.2s ease;
+        }
+
+        .cdd-arrow.rotated {
+          transform: rotate(180deg);
+        }
+
+        .cdd-menu-card {
+          position: absolute;
+          top: calc(100% + 6px);
+          left: 0;
+          z-index: 1100;
+          min-width: 290px;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          box-shadow: 0 12px 36px rgba(15, 23, 42, 0.18), 0 4px 12px rgba(0, 0, 0, 0.05);
+          overflow: hidden;
+          animation: cddFadeIn 0.15s ease-out;
+        }
+
+        @keyframes cddFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .cdd-menu-header {
+          padding: 10px 14px;
+          font-size: 0.72rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.6px;
+          color: #94a3b8;
+          background: #f8fafc;
+          border-bottom: 1px solid #f1f5f9;
+        }
+
+        .cdd-options-list {
+          max-height: 280px;
+          overflow-y: auto;
+          padding: 6px;
+        }
+
+        .cdd-option-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          padding: 8px 10px;
+          background: transparent;
+          border: none;
+          border-radius: 6px;
+          text-align: left;
+          cursor: pointer;
+          transition: background 0.15s ease;
+        }
+
+        .cdd-option-item:hover {
+          background: #f1f5f9;
+        }
+
+        .cdd-option-item.selected {
+          background: #eff6ff;
+        }
+
+        .cdd-opt-text {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .cdd-opt-title {
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: #1e293b;
+        }
+
+        .cdd-option-item.selected .cdd-opt-title {
+          color: #1d4ed8;
+          font-weight: 800;
+        }
+
+        .cdd-opt-sub {
+          font-size: 0.7rem;
+          color: #64748b;
+        }
+
+        .cdd-check-icon {
+          color: #2563eb;
+          flex-shrink: 0;
         }
 
         /* Price Filter Inputs in Catalog Bar */
@@ -971,7 +1180,7 @@ export const PropertyCatalog = ({
           background: #fecaca;
         }
 
-        /* 5. 2-Column Grid Layout */
+        /* 5. Strict 2-Column Grid Layout */
         .properties-grid-box.full-grid-2col,
         .recommended-grid-2col {
           display: grid;
@@ -1098,6 +1307,36 @@ export const PropertyCatalog = ({
           font-size: 1.3rem;
           font-weight: 900;
           color: #0f172a;
+        }
+
+        /* Show More Button Styling */
+        .crb-more-center {
+          display: flex;
+          justify-content: center;
+          margin-top: 28px;
+        }
+
+        .crb-more-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 28px;
+          font-size: 0.92rem;
+          font-weight: 800;
+          color: #1e3a8a;
+          background: #f1f5f9;
+          border: 2px solid #cbd5e1;
+          border-radius: 30px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .crb-more-btn:hover {
+          background: #2563eb;
+          color: #ffffff;
+          border-color: #2563eb;
+          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+          transform: translateY(-1px);
         }
 
         @media (max-width: 1024px) {
