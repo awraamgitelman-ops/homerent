@@ -108,12 +108,12 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     // - singleMarkerMode: true ensures ALL objects on high/mid zoom (<15) are uniform circular bubbles!
     // - disableClusteringAtZoom: 15 unpacks ALL bubbles into rectangular price tags on street zoom!
     const clusterGroup = L.markerClusterGroup({
-      maxClusterRadius: 60,
+      maxClusterRadius: 40,
       spiderfyOnMaxZoom: true,
       showCoverageOnHover: false,
       zoomToBoundsOnClick: true,
-      singleMarkerMode: true, // Forces all individual and grouped pins to be uniform circular bubbles when zoom < 15
-      disableClusteringAtZoom: 15, // Unpacks 100% of bubbles into rectangular price tags at street zoom (15+)
+      singleMarkerMode: true, // Forces uniform circular bubbles on overview
+      disableClusteringAtZoom: 14, // Unpacks into individual price badges at 3rd zoom stage (zoom 14+)
       animate: true,
       animateAddingMarkers: false,
       chunkedLoading: true, // Ultra-fast chunked processing without UI freeze
