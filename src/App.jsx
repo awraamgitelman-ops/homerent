@@ -34,8 +34,7 @@ export function App() {
     priceMax: '',
     currency: 'UAH',
     areaMin: '',
-    areaMax: '',
-    isEoselyaOnly: false
+    areaMax: ''
   });
 
   const handleSearch = (newFilters) => {
@@ -106,7 +105,8 @@ export function App() {
 
     if (clean.startsWith('#/calculator')) {
       return (
-        <CalculatorPage
+        <ServicesPage
+          onSelectService={handleSelectService}
           onOpenConsultModal={handleOpenConsultModal}
         />
       );

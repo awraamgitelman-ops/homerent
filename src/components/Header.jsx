@@ -81,13 +81,6 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             </button>
             <button 
               type="button"
-              className={`ref-nav-link ${currentPath.includes('/calculator') ? 'active' : ''}`}
-              onClick={() => navigate('#/calculator')}
-            >
-              Іпотека (єОселя)
-            </button>
-            <button 
-              type="button"
               className={`ref-nav-link ${currentPath.includes('/about') ? 'active' : ''}`}
               onClick={() => navigate('#/about')}
             >
@@ -249,16 +242,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                   <span>Співробітники / партнери</span>
                 </button>
 
-                {/* 7. Mortgage єОселя */}
-                <button 
-                  type="button"
-                  className="ref-sb-item"
-                  onClick={() => { navigate('#/calculator'); setIsSidebarOpen(false); }}
-                >
-                  <span>Іпотечний калькулятор (єОселя 3%/7%)</span>
-                </button>
-
-                {/* 8. Vacancies */}
+                {/* 7. Vacancies */}
                 <button 
                   type="button"
                   className="ref-sb-item"

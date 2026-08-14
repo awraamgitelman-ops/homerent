@@ -60,8 +60,8 @@ export const Footer = ({ onOpenLegalModal }) => {
             <h4 className="footer-heading">Навігація</h4>
             <ul className="footer-links">
               <li><button onClick={() => navigate('#/catalog')}>Каталог об'єктів Полтави</button></li>
+              <li><button onClick={() => navigate('#/map')}>Карта нерухомості Полтави</button></li>
               <li><button onClick={() => navigate('#/services')}>Всі послуги агентства</button></li>
-              <li><button onClick={() => navigate('#/calculator')}>Іпотечний калькулятор єОселя</button></li>
               <li><button onClick={() => navigate('#/about')}>Про компанію та команду</button></li>
               <li><button onClick={() => navigate('#/requisites')}>Реєстраційні дані та реквізити</button></li>
               <li><button onClick={() => navigate('#/contacts')}>Контакти та офіс</button></li>
@@ -75,8 +75,8 @@ export const Footer = ({ onOpenLegalModal }) => {
               <li><button onClick={() => navigate('#/catalog')}>Квартири в Центрі Полтави</button></li>
               <li><button onClick={() => navigate('#/catalog')}>Житло на Леваді та Подолі</button></li>
               <li><button onClick={() => navigate('#/catalog')}>Квартири на Алмазному та Садах</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Будинки та котеджі (Яківці, Розсошенці)</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Новобудови під «єОселя 3%/7%»</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Будинки та котеджі в передмісті</button></li>
+              <li><button onClick={() => navigate('#/catalog')}>Новобудови та вторинний ринок</button></li>
               <li><button onClick={() => navigate('#/catalog')}>Комерційні приміщення</button></li>
             </ul>
           </div>

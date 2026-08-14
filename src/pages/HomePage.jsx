@@ -2,7 +2,6 @@ import React from 'react';
 import { HeroSearch } from '../components/HeroSearch';
 import { PropertyCatalog } from '../components/PropertyCatalog';
 import { ServicesSection } from '../components/ServicesSection';
-import { MortgageCalculator } from '../components/MortgageCalculator';
 import { RoadmapSection } from '../components/RoadmapSection';
 import { TrustSection } from '../components/TrustSection';
 
@@ -41,12 +40,7 @@ export const HomePage = ({
         onOpenConsultModal={onOpenConsultModal}
       />
 
-      {/* 4. Mortgage & ROI Calculator */}
-      <MortgageCalculator
-        onOpenConsultModal={onOpenConsultModal}
-      />
-
-      {/* 5. 8-Step Roadmap */}
+      {/* 4. 8-Step Roadmap */}
       <RoadmapSection />
 
       {/* 6. Trust & Stats Pillars */}

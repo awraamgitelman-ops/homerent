@@ -69,17 +69,13 @@ export const PropertyCatalog = ({
       // 6. Area Range Filter
       if (filters?.areaMin && p.area < filters.areaMin) return false;
       if (filters?.areaMax && p.area > filters.areaMax) return false;
-      
-      // 7. єОселя Checkbox (for buy)
-      if (activeTransaction === 'buy' && filters?.isEoselyaOnly && !p.badges.some(b => b.includes('єОселя'))) return false;
 
-      // 8. Quick Filter Chips
+      // 7. Quick Filter Chips
       if (quickFilter === '1' && p.rooms !== 1) return false;
       if (quickFilter === '2' && p.rooms !== 2) return false;
       if (quickFilter === '3' && p.rooms !== 3) return false;
       if (quickFilter === 'house' && p.type !== 'house') return false;
       if (quickFilter === 'commercial' && p.type !== 'commercial') return false;
-      if (quickFilter === 'eoselya' && !p.badges.some(b => b.includes('єОселя'))) return false;
 
       return true;
     }).sort((a, b) => {
@@ -270,16 +266,6 @@ export const PropertyCatalog = ({
           >
             Комерція
           </button>
-          {activeTransaction === 'buy' && (
-            <button 
-              type="button" 
-              className={`qfc-btn qfc-eoselya ${quickFilter === 'eoselya' ? 'active' : ''}`}
-              onClick={() => setQuickFilter('eoselya')}
-            >
-              <Sparkles size={13} />
-              <span>єОселя 3%/7%</span>
-            </button>
-          )}
         </div>
 
         {/* Main Display Layout */}
@@ -565,20 +551,6 @@ export const PropertyCatalog = ({
           background: #1e293b;
           color: #ffffff;
           border-color: #1e293b;
-        }
-
-        .qfc-btn.qfc-eoselya {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          border-color: #16a34a;
-          color: #16a34a;
-          background: #dcfce7;
-        }
-
-        .qfc-btn.qfc-eoselya.active {
-          background: #16a34a;
-          color: #ffffff;
         }
 
         /* Layout Grid and Split Modes */

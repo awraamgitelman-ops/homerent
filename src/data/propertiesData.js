@@ -1139,7 +1139,6 @@ export const PROPERTIES_DATA = [
     "condition": "Євроремонт (повністю укомплектована)",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Автономне опалення"
     ],
     "isExclusive": true,
@@ -1190,7 +1189,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Автономне опалення"
     ],
     "isExclusive": false,
@@ -1241,7 +1239,6 @@ export const PROPERTIES_DATA = [
     "condition": "Євроремонт (повністю укомплектована)",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Євроремонт"
     ],
     "isExclusive": true,
@@ -1292,7 +1289,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Меблі та техніка"
     ],
     "isExclusive": false,
@@ -1343,7 +1339,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Автономне опалення"
     ],
     "isExclusive": true,
@@ -1495,7 +1490,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Автономне опалення"
     ],
     "isExclusive": false,
@@ -1546,7 +1540,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Меблі та техніка"
     ],
     "isExclusive": true,
@@ -1597,7 +1590,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Автономне опалення"
     ],
     "isExclusive": false,
@@ -1648,7 +1640,6 @@ export const PROPERTIES_DATA = [
     "condition": "Євроремонт (повністю укомплектована)",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Євроремонт"
     ],
     "isExclusive": true,
@@ -1699,7 +1690,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Меблі та техніка"
     ],
     "isExclusive": false,
@@ -1750,7 +1740,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Меблі та техніка"
     ],
     "isExclusive": true,
@@ -1801,7 +1790,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Автономне опалення"
     ],
     "isExclusive": false,
@@ -1852,7 +1840,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Автономне опалення"
     ],
     "isExclusive": true,
@@ -1953,7 +1940,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Меблі та техніка"
     ],
     "isExclusive": true,
@@ -2004,7 +1990,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Меблі та техніка"
     ],
     "isExclusive": false,
@@ -2055,7 +2040,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Торг"
     ],
     "isExclusive": true,
@@ -2106,7 +2090,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Меблі та техніка"
     ],
     "isExclusive": false,
@@ -2157,7 +2140,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Меблі та техніка"
     ],
     "isExclusive": true,
@@ -2208,7 +2190,6 @@ export const PROPERTIES_DATA = [
     "condition": "Євроремонт (повністю укомплектована)",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Євроремонт"
     ],
     "isExclusive": false,
@@ -2259,7 +2240,6 @@ export const PROPERTIES_DATA = [
     "condition": "Євроремонт (повністю укомплектована)",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Євроремонт"
     ],
     "isExclusive": true,
@@ -2310,7 +2290,6 @@ export const PROPERTIES_DATA = [
     "condition": "Євроремонт (повністю укомплектована)",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Євроремонт"
     ],
     "isExclusive": false,
@@ -2361,7 +2340,6 @@ export const PROPERTIES_DATA = [
     "condition": "Житловий стан",
     "badges": [
       "Продаж",
-      "єОселя 3%/7%",
       "Автономне опалення"
     ],
     "isExclusive": true,

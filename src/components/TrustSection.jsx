@@ -20,8 +20,8 @@ export const TrustSection = () => {
             <span className="sc-stat-label">Днів — середній термін продажу об'єкта під ключ</span>
           </div>
           <div className="stat-card">
-            <span className="sc-big-number">3% / 7%</span>
-            <span className="sc-stat-label">Супровід державної програми іпотеки «єОселя»</span>
+            <span className="sc-big-number">89+</span>
+            <span className="sc-stat-label">Активних перевірених об'єктів нерухомості в Полтаві</span>
           </div>
         </div>
 

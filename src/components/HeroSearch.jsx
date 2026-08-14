@@ -15,40 +15,37 @@ import {
 } from 'lucide-react';
 import { POLTAVA_DISTRICTS, PROPERTY_TYPES, TRANSACTION_TYPES, ROOM_OPTIONS } from '../data/poltavaDistricts';
 
-export const HeroSearch = ({ onSearch, totalCount = 20, onOpenConsultModal }) => {
-  const [selectedType, setSelectedType] = useState('all');
-  const [transaction, setTransaction] = useState('all');
+export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) => {
+  const [selectedType, setSelectedType] = useState('apartment');
+  const [transaction, setTransaction] = useState('rent');
   const [district, setDistrict] = useState('all');
   const [rooms, setRooms] = useState('all');
   const [priceMin, setPriceMin] = useState('');
   const [priceMax, setPriceMax] = useState('');
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('UAH');
   const [areaMin, setAreaMin] = useState('');
   const [areaMax, setAreaMax] = useState('');
-  const [isEoselyaOnly, setIsEoselyaOnly] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
 
   const handleReset = () => {
-    setSelectedType('all');
-    setTransaction('all');
+    setSelectedType('apartment');
+    setTransaction('rent');
     setDistrict('all');
     setRooms('all');
     setPriceMin('');
     setPriceMax('');
     setAreaMin('');
     setAreaMax('');
-    setIsEoselyaOnly(false);
     onSearch({
-      type: 'all',
-      transaction: 'all',
+      type: 'apartment',
+      transaction: 'rent',
       district: 'all',
       rooms: 'all',
       priceMin: '',
       priceMax: '',
-      currency: 'USD',
+      currency: 'UAH',
       areaMin: '',
-      areaMax: '',
-      isEoselyaOnly: false
+      areaMax: ''
     });
   };
 
@@ -63,8 +60,7 @@ export const HeroSearch = ({ onSearch, totalCount = 20, onOpenConsultModal }) =>
       priceMax: priceMax ? Number(priceMax) : '',
       currency,
       areaMin: areaMin ? Number(areaMin) : '',
-      areaMax: areaMax ? Number(areaMax) : '',
-      isEoselyaOnly
+      areaMax: areaMax ? Number(areaMax) : ''
     });
   };
 
@@ -83,7 +79,7 @@ export const HeroSearch = ({ onSearch, totalCount = 20, onOpenConsultModal }) =>
           <span className="hl-accent">ЗНАЙДИ</span> Свою нерухомість у ПОЛТАВІ
         </h1>
         <p className="hero-subheadline">
-          Купівля, продаж, оренда квартир, котеджів та комерційних площ. Повний юридичний супровід та програма єОселя 3%/7%.
+          Купівля, продаж, оренда квартир, котеджів та комерційних площ. Повний юридичний супровід та перевірка документів.
         </p>
 
         {/* Hero Search Box (Exact reference layout) */}
@@ -99,7 +95,7 @@ export const HeroSearch = ({ onSearch, totalCount = 20, onOpenConsultModal }) =>
                   className={`hs-tab-btn ${isActive ? 'active' : ''} ${pt.id === 'investment' ? 'tab-invest' : ''}`}
                   onClick={() => {
                     setSelectedType(pt.id);
-                    onSearch({ type: pt.id, transaction, district, rooms, priceMin, priceMax, currency, areaMin, areaMax, isEoselyaOnly });
+                    onSearch({ type: pt.id, transaction, district, rooms, priceMin, priceMax, currency, areaMin, areaMax });
                   }}
                 >
                   {pt.id === 'apartment' && <Building2 size={16} />}
@@ -232,15 +228,7 @@ export const HeroSearch = ({ onSearch, totalCount = 20, onOpenConsultModal }) =>
           {/* Bottom Controls Row */}
           <div className="hs-bottom-row">
             <div className="hs-bottom-left">
-              <label className="hs-checkbox-label">
-                <input 
-                  type="checkbox" 
-                  checked={isEoselyaOnly} 
-                  onChange={(e) => setIsEoselyaOnly(e.target.checked)}
-                />
-                <span className="checkbox-custom"></span>
-                <span className="cb-text">Тільки об'єкти під <strong>«єОселя 3%/7%»</strong></span>
-              </label>
+              <span className="hs-verified-note">✓ Всі 89 об'єктів перевірені експертами агентства</span>
             </div>
 
             <div className="hs-bottom-actions">

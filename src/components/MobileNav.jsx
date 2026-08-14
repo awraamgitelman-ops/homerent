@@ -4,7 +4,7 @@ import {
   Home, 
   Building2, 
   PlusCircle, 
-  Calculator, 
+  MapPin, 
   PhoneCall 
 } from 'lucide-react';
 
@@ -44,11 +44,11 @@ export const MobileNav = ({ onOpenSellModal }) => {
 
       <button 
         type="button"
-        className={`mfb-item ${currentPath.includes('/calculator') ? 'active' : ''}`}
-        onClick={() => navigate('#/calculator')}
+        className={`mfb-item ${currentPath.includes('/map') ? 'active' : ''}`}
+        onClick={() => navigate('#/map')}
       >
-        <Calculator size={19} />
-        <span>єОселя</span>
+        <MapPin size={19} />
+        <span>Карта</span>
       </button>
 
       <a 

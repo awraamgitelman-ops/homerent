@@ -34,7 +34,6 @@ export const MapPage = ({
   const [priceMax, setPriceMax] = useState('');
   const [currency, setCurrency] = useState('UAH'); // UAH for rent, USD for buy
   const [sortBy, setSortBy] = useState('default');
-  const [isEoselyaOnly, setIsEoselyaOnly] = useState(false);
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
   const [mobileTab, setMobileTab] = useState('map'); // 'map' | 'list' for small screens
 
@@ -44,7 +43,6 @@ export const MapPage = ({
     setCurrency(type === 'rent' ? 'UAH' : 'USD');
     setPriceMin('');
     setPriceMax('');
-    setIsEoselyaOnly(false);
     setSelectedPropertyId(null);
   };
 
@@ -71,9 +69,6 @@ export const MapPage = ({
       if (priceMin && currentPrice < Number(priceMin)) return false;
       if (priceMax && currentPrice > Number(priceMax)) return false;
 
-      // 6. єОселя Filter (only for buy)
-      if (transaction === 'buy' && isEoselyaOnly && !p.badges.some(b => b.includes('єОселя'))) return false;
-
       return true;
     }).sort((a, b) => {
       if (sortBy === 'price-asc') return (currency === 'USD' ? a.priceUSD - b.priceUSD : a.priceUAH - b.priceUAH);
@@ -81,7 +76,7 @@ export const MapPage = ({
       if (sortBy === 'area-desc') return b.area - a.area;
       return 0;
     });
-  }, [properties, transaction, selectedType, district, rooms, priceMin, priceMax, currency, isEoselyaOnly, sortBy]);
+  }, [properties, transaction, selectedType, district, rooms, priceMin, priceMax, currency, sortBy]);
 
   // Counts for each mode
   const rentCount = properties.filter(p => p.transaction === 'rent').length;
@@ -93,7 +88,6 @@ export const MapPage = ({
     setRooms('all');
     setPriceMin('');
     setPriceMax('');
-    setIsEoselyaOnly(false);
     setSelectedPropertyId(null);
   };
 
@@ -201,19 +195,7 @@ export const MapPage = ({
               </button>
             </div>
 
-            {/* єОселя Checkbox (only for buy) */}
-            {transaction === 'buy' && (
-              <label className="mf-eoselya-label">
-                <input 
-                  type="checkbox" 
-                  checked={isEoselyaOnly} 
-                  onChange={(e) => setIsEoselyaOnly(e.target.checked)}
-                />
-                <span>єОселя 3%/7%</span>
-              </label>
-            )}
-
-            {(selectedType !== 'all' || district !== 'all' || rooms !== 'all' || priceMin || priceMax || isEoselyaOnly) && (
+            {(selectedType !== 'apartment' || district !== 'all' || rooms !== 'all' || priceMin || priceMax) && (
               <button type="button" onClick={handleReset} className="mf-reset-btn" title="Скинути фільтри">
                 <RotateCcw size={13} />
                 <span>Скинути</span>
@@ -662,23 +644,6 @@ export const MapPage = ({
           background: #1e293b;
           color: #ffffff;
           border-color: #1e293b;
-        }
-
-        .mf-eoselya-label {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: #16a34a;
-          background: #dcfce7;
-          padding: 6px 9px;
-          border-radius: var(--radius-sm);
-          cursor: pointer;
-        }
-
-        .mf-eoselya-label input {
-          accent-color: #16a34a;
         }
 
         .mf-reset-btn {

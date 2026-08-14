@@ -46,7 +46,7 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           {property.badges?.map((badge, idx) => (
             <span 
               key={idx} 
-              className={`pc-badge ${badge.includes('єОселя') ? 'badge-eoselya' : ''} ${badge.includes('Торг') ? 'badge-bargain' : ''}`}
+              className={`pc-badge ${badge.includes('Торг') ? 'badge-bargain' : ''}`}
             >
               {badge}
             </span>
@@ -205,10 +205,6 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           font-weight: 700;
           padding: 3px 8px;
           border-radius: var(--radius-sm);
-        }
-
-        .pc-badge.badge-eoselya {
-          background: #16a34a;
         }
 
         .pc-badge.badge-bargain {
