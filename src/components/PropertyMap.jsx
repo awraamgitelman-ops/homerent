@@ -1,23 +1,46 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import { formatCurrency } from '../utils/formatters';
-import { Layers, Map as MapIcon } from 'lucide-react';
+import { Layers, Map as MapIcon, Compass } from 'lucide-react';
 
 export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', selectedPropertyId }) => {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const tileLayerRef = useRef(null);
+  const maskLayerRef = useRef(null);
+  const radiusBorderRef = useRef(null);
   const markersRef = useRef({});
   const [mapType, setMapType] = useState('roadmap'); // 'roadmap' | 'satellite'
+
+  // Helper to generate circular polygon points around a center
+  const createCirclePoints = (centerLat, centerLng, radiusMeters, numPoints = 144) => {
+    const points = [];
+    const earthRadius = 6378137; // in meters
+    const dLat = (radiusMeters / earthRadius) * (180 / Math.PI);
+    const dLng = dLat / Math.cos((centerLat * Math.PI) / 180);
+
+    for (let i = 0; i < numPoints; i++) {
+      const angle = (i * 360) / numPoints;
+      const rad = (angle * Math.PI) / 180;
+      const lat = centerLat + dLat * Math.sin(rad);
+      const lng = centerLng + dLng * Math.cos(rad);
+      points.push([lat, lng]);
+    }
+    return points;
+  };
 
   // Initialize Map
   useEffect(() => {
     if (!mapContainerRef.current) return;
 
+    const poltavaCenter = [49.5883, 34.5514];
+
     if (!mapInstanceRef.current) {
       const map = L.map(mapContainerRef.current, {
-        center: [49.5883, 34.5514], // Poltava center
-        zoom: 13,
+        center: poltavaCenter,
+        zoom: 12,
+        minZoom: 9,
+        maxZoom: 20,
         zoomControl: true,
         scrollWheelZoom: true
       });
@@ -29,7 +52,36 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         attribution: '&copy; Google Maps'
       }).addTo(map);
 
+      // Create 30 km grey mask: everything outside 30 km is shaded grey
+      const worldOuterCoords = [
+        [-90, -180],
+        [-90, 180],
+        [90, 180],
+        [90, -180]
+      ];
+      const inner30kmRing = createCirclePoints(poltavaCenter[0], poltavaCenter[1], 30000); // 30,000 meters = 30 km
+
+      const maskPolygon = L.polygon([worldOuterCoords, inner30kmRing], {
+        fillColor: '#1e293b',
+        fillOpacity: 0.55,
+        stroke: false,
+        weight: 0,
+        interactive: false
+      }).addTo(map);
+
+      // 30 km red dashed border
+      const circleBorder = L.circle(poltavaCenter, {
+        radius: 30000,
+        color: '#dc2626',
+        weight: 2,
+        dashArray: '6, 8',
+        fillColor: 'transparent',
+        interactive: false
+      }).addTo(map);
+
       tileLayerRef.current = tileLayer;
+      maskLayerRef.current = maskPolygon;
+      radiusBorderRef.current = circleBorder;
       mapInstanceRef.current = map;
     }
 
@@ -116,7 +168,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     });
 
     if (bounds.length > 0 && !selectedPropertyId) {
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 13 });
     }
 
   }, [properties, currency, selectedPropertyId]);
@@ -147,11 +199,25 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
       attribution: '&copy; Google Maps'
     }).addTo(mapInstanceRef.current);
 
+    // Bring mask to top so shading remains on satellite view
+    if (maskLayerRef.current) {
+      maskLayerRef.current.bringToFront();
+    }
+    if (radiusBorderRef.current) {
+      radiusBorderRef.current.bringToFront();
+    }
+
     tileLayerRef.current = newLayer;
   };
 
   return (
     <div className="property-map-container-wrapper">
+      {/* 30 km Radius Active Zone Badge */}
+      <div className="map-radius-indicator-pill">
+        <Compass size={13} className="text-red-500" />
+        <span>Зона обслуговування: <strong>Полтава + 30 км</strong></span>
+      </div>
+
       {/* Google Maps Layer Switcher */}
       <div className="google-map-layer-controls">
         <button
@@ -190,6 +256,30 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           width: 100%;
           height: 100%;
           min-height: 480px;
+        }
+
+        /* 30 km Radius Badge */
+        .map-radius-indicator-pill {
+          position: absolute;
+          bottom: 14px;
+          left: 14px;
+          z-index: 1000;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          background: rgba(15, 23, 42, 0.88);
+          color: #ffffff;
+          font-size: 0.74rem;
+          border-radius: 20px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+          backdrop-filter: blur(4px);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          pointer-events: none;
+        }
+
+        .map-radius-indicator-pill strong {
+          color: #fca5a5;
         }
 
         .google-map-layer-controls {
@@ -235,7 +325,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           height: 0 !important;
         }
 
-        /* Price Badge styling - neatly and beautifully contained */
+        /* Price Badge styling */
         .google-map-price-badge {
           display: inline-flex;
           align-items: center;
