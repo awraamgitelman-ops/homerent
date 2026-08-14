@@ -58,7 +58,6 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             <div className="ref-logo-text">
               <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
               <span className="ref-logo-sub">АГЕНТСТВО НЕРУХОМОСТІ</span>
-              <span className="ref-logo-tag">ПОЛТАВА • ЗАТИШОК • БЕЗПЕКА</span>
             </div>
           </div>
 
