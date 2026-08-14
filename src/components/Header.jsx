@@ -327,12 +327,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           height: 100%;
         }
 
-        /* Logo (Exact user screenshot lockup) */
+        /* Logo (Exact balanced lockup) */
         .ref-logo {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 1px;
           cursor: pointer;
           user-select: none;
         }
@@ -340,33 +339,33 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-logo-top {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
         }
 
         .ref-brand-logo-img {
-          width: 44px;
-          height: 44px;
+          width: 38px;
+          height: 38px;
           object-fit: contain;
           flex-shrink: 0;
         }
 
         .ref-logo-title {
-          font-size: 2.15rem;
+          font-size: 1.7rem;
           font-weight: 900;
           color: #1e3a8a;
-          letter-spacing: 0.5px;
+          letter-spacing: -0.2px;
           line-height: 1;
         }
 
         .ref-logo-sub {
-          font-size: 0.82rem;
-          font-weight: 900;
+          font-size: 0.65rem;
+          font-weight: 800;
           color: #0f172a;
-          letter-spacing: 3.2px;
+          letter-spacing: 2.8px;
           text-transform: uppercase;
           line-height: 1;
-          margin-top: 2px;
-          padding-left: 2px;
+          margin-top: 4px;
+          padding-left: 1px;
           white-space: nowrap;
         }
 
