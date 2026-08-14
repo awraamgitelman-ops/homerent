@@ -13,9 +13,7 @@ export const POLTAVA_DISTRICTS = [
   { id: 'inst-zvyazku', name: 'Інститут зв\'язку / Зіньківська', area: 'Київський' },
   { id: 'yurivka', name: 'Юрівка / Полтава-Київська', area: 'Київський' },
   { id: 'dublyanshchyna', name: 'Дублянщина', area: 'Київський' },
-  { id: 'yakivtsi', name: 'Яківці / Поле Полтавської битви', area: 'Київський' },
-  { id: 'rozsoshentsi', name: 'Розсошенці (передмістя)', area: 'Передмістя' },
-  { id: 'shcherbani', name: 'Щербані (передмістя)', area: 'Передмістя' }
+  { id: 'yakivtsi', name: 'Яківці / Поле Полтавської битви', area: 'Київський' }
 ];
 
 export const PROPERTY_TYPES = [
