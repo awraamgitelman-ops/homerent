@@ -108,15 +108,15 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     // - singleMarkerMode: true ensures ALL objects on high/mid zoom (<15) are uniform circular bubbles!
     // - disableClusteringAtZoom: 15 unpacks ALL bubbles into rectangular price tags on street zoom!
     const clusterGroup = L.markerClusterGroup({
-      maxClusterRadius: 40,
+      maxClusterRadius: 45,
       spiderfyOnMaxZoom: true,
       showCoverageOnHover: false,
       zoomToBoundsOnClick: true,
-      singleMarkerMode: true, // Forces uniform circular bubbles on overview
-      disableClusteringAtZoom: 14, // Unpacks into individual price badges at 3rd zoom stage (zoom 14+)
+      singleMarkerMode: false, // Single markers show their real rectangular price badges!
+      disableClusteringAtZoom: 14, // Completely unpacks all clusters into price tags on 3rd zoom stage (zoom 14+)
       animate: true,
       animateAddingMarkers: false,
-      chunkedLoading: true, // Ultra-fast chunked processing without UI freeze
+      chunkedLoading: true,
       chunkInterval: 50,
       chunkDelay: 20,
       iconCreateFunction: function (cluster) {
@@ -130,9 +130,6 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         } else if (count >= 20) {
           size = 48;
           lvlClass = 'cluster-lvl-2';
-        } else if (count === 1) {
-          size = 38;
-          lvlClass = 'cluster-lvl-single';
         }
 
         return L.divIcon({
