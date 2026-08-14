@@ -148,7 +148,6 @@ export const MapPage = ({
               onChange={(e) => setDistrict(e.target.value)}
               className="mf-select"
             >
-              <option value="all">Всі райони Полтави</option>
               {POLTAVA_DISTRICTS.map(d => (
                 <option key={d.id} value={d.id}>{d.name}</option>
               ))}

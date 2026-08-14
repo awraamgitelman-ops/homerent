@@ -9,7 +9,6 @@ import {
   Key,
   Home,
   Building2,
-  Trees,
   Briefcase,
   MapPin
 } from 'lucide-react';
@@ -141,17 +140,21 @@ export const PropertyCatalog = ({
     });
   }, [properties, activeTransaction, selectedCategory, selectedDistrict, subFilter, sortBy, currency, priceMin, priceMax]);
 
-  // Fallback recommendations when filtered results are 0
+  // Recommended & alternative options (always calculated, excluding already filtered IDs)
   const recommendedProperties = useMemo(() => {
-    if (filteredProperties.length > 0) return [];
-    // 1. Try same transaction + same category
-    let recs = properties.filter(p => p.transaction === activeTransaction && p.type === selectedCategory);
-    // 2. If fewer than 4, take from same transaction
-    if (recs.length < 4) {
-      recs = properties.filter(p => p.transaction === activeTransaction);
+    const filteredIds = new Set(filteredProperties.map(p => p.id));
+    
+    // 1. Try properties from the same transaction and category not already shown
+    let pool = properties.filter(p => p.transaction === activeTransaction && p.type === selectedCategory && !filteredIds.has(p.id));
+    
+    // 2. If pool is small, take from same transaction
+    if (pool.length < 6) {
+      const more = properties.filter(p => p.transaction === activeTransaction && !filteredIds.has(p.id) && !pool.some(x => x.id === p.id));
+      pool = [...pool, ...more];
     }
-    return recs.slice(0, 6);
-  }, [filteredProperties.length, properties, activeTransaction, selectedCategory]);
+    
+    return pool.slice(0, 6);
+  }, [filteredProperties, properties, activeTransaction, selectedCategory]);
 
   // Section title formatter
   const getSectionTitle = () => {
@@ -231,7 +234,7 @@ export const PropertyCatalog = ({
           </div>
 
           <div className="chb-right">
-            {/* District Selector */}
+            {/* District Selector (Fixed: no duplicate option) */}
             <div className="catalog-district-box">
               <MapPin size={14} className="text-muted" />
               <select
@@ -239,7 +242,6 @@ export const PropertyCatalog = ({
                 onChange={(e) => setSelectedDistrict(e.target.value)}
                 className="catalog-district-select"
               >
-                <option value="all">Всі райони Полтави</option>
                 {POLTAVA_DISTRICTS.map(d => (
                   <option key={d.id} value={d.id}>{d.name}</option>
                 ))}
@@ -548,17 +550,17 @@ export const PropertyCatalog = ({
               </button>
             </div>
 
-            {/* Recommendations Block */}
+            {/* Recommendations Block in 2 Columns */}
             {recommendedProperties.length > 0 && (
               <div className="catalog-recommended-block">
                 <div className="crb-header">
                   <span className="crb-badge">Рекомендовані варіанти</span>
                   <h3 className="crb-title">Можливо, вам також підійдуть ці об'єкти у Полтаві:</h3>
                 </div>
-                <div className="properties-grid-box full-grid">
+                <div className="recommended-grid-2col">
                   {recommendedProperties.map((prop) => (
                     <PropertyCard
-                      key={prop.id}
+                      key={`empty-rec-${prop.id}`}
                       property={prop}
                       currency={currency}
                       onSelect={onSelectProperty}
@@ -570,33 +572,56 @@ export const PropertyCatalog = ({
             )}
           </div>
         ) : (
-          <div className={`catalog-layout-container mode-${viewMode}`}>
-            {/* Cards Column */}
-            {(viewMode === 'grid' || viewMode === 'split') && (
-              <div className={`properties-grid-box ${viewMode === 'split' ? 'split-cards' : 'full-grid'}`}>
-                {filteredProperties.map((prop) => (
-                  <PropertyCard
-                    key={prop.id}
-                    property={prop}
-                    currency={currency}
-                    onSelect={onSelectProperty}
-                    onBookViewing={onBookViewing}
-                  />
-                ))}
-              </div>
-            )}
+          <>
+            <div className={`catalog-layout-container mode-${viewMode}`}>
+              {/* Cards Column in 2-column format */}
+              {(viewMode === 'grid' || viewMode === 'split') && (
+                <div className={`properties-grid-box ${viewMode === 'split' ? 'split-cards' : 'full-grid-2col'}`}>
+                  {filteredProperties.map((prop) => (
+                    <PropertyCard
+                      key={prop.id}
+                      property={prop}
+                      currency={currency}
+                      onSelect={onSelectProperty}
+                      onBookViewing={onBookViewing}
+                    />
+                  ))}
+                </div>
+              )}
 
-            {/* Map Column */}
-            {(viewMode === 'split' || viewMode === 'map') && (
-              <div className={`properties-map-box ${viewMode === 'split' ? 'split-map' : 'full-map'}`}>
-                <PropertyMap
-                  properties={filteredProperties}
-                  currency={currency}
-                  onSelectProperty={onSelectProperty}
-                />
+              {/* Map Column */}
+              {(viewMode === 'split' || viewMode === 'map') && (
+                <div className={`properties-map-box ${viewMode === 'split' ? 'split-map' : 'full-map'}`}>
+                  <PropertyMap
+                    properties={filteredProperties}
+                    currency={currency}
+                    onSelectProperty={onSelectProperty}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Bottom Recommendations Block even when results were found (always 2 columns in a row) */}
+            {recommendedProperties.length > 0 && viewMode !== 'map' && (
+              <div className="catalog-bottom-recommendations">
+                <div className="crb-header">
+                  <span className="crb-badge">Також рекомендуємо переглянути</span>
+                  <h3 className="crb-title">Інші актуальні варіанти нерухомості у Полтаві:</h3>
+                </div>
+                <div className="recommended-grid-2col">
+                  {recommendedProperties.map((prop) => (
+                    <PropertyCard
+                      key={`found-rec-${prop.id}`}
+                      property={prop}
+                      currency={currency}
+                      onSelect={onSelectProperty}
+                      onBookViewing={onBookViewing}
+                    />
+                  ))}
+                </div>
               </div>
             )}
-          </div>
+          </>
         )}
       </div>
 
@@ -946,10 +971,11 @@ export const PropertyCatalog = ({
           background: #fecaca;
         }
 
-        /* 5. Layout Grid and Split Modes */
-        .catalog-layout-container.mode-grid .full-grid {
+        /* 5. 2-Column Grid Layout */
+        .properties-grid-box.full-grid-2col,
+        .recommended-grid-2col {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          grid-template-columns: repeat(2, 1fr);
           gap: 24px;
         }
 
@@ -973,6 +999,13 @@ export const PropertyCatalog = ({
           position: sticky;
           top: 80px;
           height: 850px;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
+        }
+
+        .full-map {
+          height: 750px;
           border-radius: var(--radius-lg);
           overflow: hidden;
           box-shadow: var(--shadow-md);
@@ -1035,6 +1068,15 @@ export const PropertyCatalog = ({
           box-shadow: var(--shadow-sm);
         }
 
+        .catalog-bottom-recommendations {
+          margin-top: 48px;
+          padding: 36px 24px;
+          background: #ffffff;
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--c-border);
+          box-shadow: var(--shadow-sm);
+        }
+
         .crb-header {
           margin-bottom: 24px;
         }
@@ -1068,6 +1110,10 @@ export const PropertyCatalog = ({
         }
 
         @media (max-width: 768px) {
+          .properties-grid-box.full-grid-2col,
+          .recommended-grid-2col {
+            grid-template-columns: 1fr;
+          }
           .catalog-header-bar {
             flex-direction: column;
             align-items: flex-start;
