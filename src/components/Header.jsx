@@ -55,19 +55,12 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           <div className="ref-header-left-group">
             {/* 1. Brand Logo */}
             <div className="ref-logo" onClick={() => navigate('#/')}>
-              <div className="ref-logo-top">
-                <img 
-                  src="/logo-transparent-filleted.png" 
-                  alt="НОВА ОСЕЛЯ" 
-                  className="ref-brand-logo-img" 
-                />
-                <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
-              </div>
-              <div className="ref-logo-sub" aria-label="АГЕНТСТВО НЕРУХОМОСТІ">
-                {'АГЕНТСТВО НЕРУХОМОСТІ'.split('').map((char, index) => (
-                  <span key={index} className="sub-char">{char === ' ' ? '\u00A0\u00A0' : char}</span>
-                ))}
-              </div>
+              <img 
+                src="/logo-transparent-filleted.png" 
+                alt="НОВА ОСЕЛЯ" 
+                className="ref-brand-logo-img" 
+              />
+              <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
             </div>
 
             {/* 2. Navigation Links (Adjacent to Logo) */}
@@ -204,19 +197,12 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             {/* Sidebar Header */}
             <div className="ref-sidebar-header">
               <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
-                <div className="ref-logo-top">
-                  <img 
-                    src="/logo-transparent-filleted.png" 
-                    alt="НОВА ОСЕЛЯ" 
-                    className="ref-brand-logo-img" 
-                  />
-                  <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
-                </div>
-                <div className="ref-logo-sub" aria-label="АГЕНТСТВО НЕРУХОМОСТІ">
-                  {'АГЕНТСТВО НЕРУХОМОСТІ'.split('').map((char, index) => (
-                    <span key={index} className="sub-char">{char === ' ' ? '\u00A0\u00A0' : char}</span>
-                  ))}
-                </div>
+                <img 
+                  src="/logo-transparent-filleted.png" 
+                  alt="НОВА ОСЕЛЯ" 
+                  className="ref-brand-logo-img" 
+                />
+                <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
               </div>
 
               <button 
@@ -397,53 +383,30 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           gap: 36px;
         }
 
-        /* Logo (Exact width-aligned lockup) */
+        /* Logo (Clean horizontal lockup) */
         .ref-logo {
           display: inline-flex;
-          flex-direction: column;
-          align-items: stretch;
+          align-items: center;
+          gap: 12px;
           cursor: pointer;
           user-select: none;
           flex-shrink: 0;
         }
 
-        .ref-logo-top {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
         .ref-brand-logo-img {
-          width: 44px;
-          height: 44px;
+          width: 46px;
+          height: 46px;
           object-fit: contain;
           flex-shrink: 0;
         }
 
         .ref-logo-title {
-          font-size: 2.05rem;
+          font-size: 2.15rem;
           font-weight: 900;
           color: #1e3a8a;
           letter-spacing: -0.2px;
           line-height: 1;
           white-space: nowrap;
-        }
-
-        .ref-logo-sub {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 0.68rem;
-          font-weight: 900;
-          color: #0f172a;
-          text-transform: uppercase;
-          line-height: 1;
-          margin-top: 3px;
-        }
-
-        .sub-char {
-          display: inline-block;
         }
 
         /* Nav links (Adjacent to Logo) */
