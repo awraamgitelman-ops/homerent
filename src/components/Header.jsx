@@ -48,14 +48,13 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
     <>
       <header className="ref-site-header">
         <div className="container ref-header-inner">
-          {/* 1. Left: Brand Logo (Exact screenshot styling) */}
+          {/* 1. Left: Brand Logo */}
           <div className="ref-logo" onClick={() => navigate('#/')}>
-            <div className="ref-logo-mark">
-              <svg width="38" height="38" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 2L42 38H2L22 2Z" stroke="#1e3a8a" strokeWidth="4" strokeLinejoin="round" />
-                <path d="M22 14L32 32H12L22 14Z" fill="#2563eb" />
-              </svg>
-            </div>
+            <img 
+              src="/logo-transparent-filleted.png" 
+              alt="НОВЕКС ІНВЕСТ Логотип" 
+              className="ref-brand-logo-img" 
+            />
             <div className="ref-logo-text">
               <span className="ref-logo-title">НОВЕКС</span>
               <span className="ref-logo-sub">ІНВЕСТ ПОЛТАВА</span>
@@ -150,12 +149,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             {/* Sidebar Header */}
             <div className="ref-sidebar-header">
               <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
-                <div className="ref-logo-mark">
-                  <svg width="34" height="34" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 2L42 38H2L22 2Z" stroke="#1e3a8a" strokeWidth="4" strokeLinejoin="round" />
-                    <path d="M22 14L32 32H12L22 14Z" fill="#2563eb" />
-                  </svg>
-                </div>
+                <img 
+                  src="/logo-transparent-filleted.png" 
+                  alt="НОВЕКС ІНВЕСТ" 
+                  className="ref-brand-logo-img" 
+                />
                 <div className="ref-logo-text">
                   <span className="ref-logo-title">НОВЕКС</span>
                   <span className="ref-logo-sub">ІНВЕСТ</span>
@@ -339,10 +337,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           user-select: none;
         }
 
-        .ref-logo-mark {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .ref-brand-logo-img {
+          width: 40px;
+          height: 40px;
+          object-fit: contain;
+          flex-shrink: 0;
         }
 
         .ref-logo-text {

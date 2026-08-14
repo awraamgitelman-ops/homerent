@@ -160,9 +160,11 @@ export const Footer = ({ onOpenConsultModal }) => {
           {/* Brand Identity & Location Column (RIGHT SIDE) */}
           <div className="nx-footer-col nx-brand-block">
             <div className="nx-brand-header" onClick={() => navigate('#/')}>
-              <div className="nx-brand-icon">
-                <Building2 size={24} />
-              </div>
+              <img 
+                src="/logo-squircle-200.png" 
+                alt="НОВЕКС ІНВЕСТ" 
+                className="nx-brand-logo-img" 
+              />
               <div>
                 <span className="nx-brand-title">НОВЕКС ІНВЕСТ</span>
                 <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
@@ -336,16 +338,13 @@ export const Footer = ({ onOpenConsultModal }) => {
           margin-bottom: 14px;
         }
 
-        .nx-brand-icon {
+        .nx-brand-logo-img {
           width: 44px;
           height: 44px;
           border-radius: 10px;
-          background: #2563eb;
-          color: #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+          object-fit: cover;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+          flex-shrink: 0;
         }
 
         .nx-brand-title {
