@@ -1,226 +1,696 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { 
-  Building, 
+  Building2, 
   ShieldCheck, 
-  Award, 
-  Users, 
   CheckCircle2, 
   PhoneCall,
-  FileText
+  FileText,
+  Clock,
+  MapPin,
+  Sparkles,
+  ArrowRight,
+  Copy,
+  Check,
+  Scale,
+  Users,
+  BadgeCheck,
+  Briefcase
 } from 'lucide-react';
 
 export const AboutPage = ({ onOpenConsultModal }) => {
   const { navigate } = useRouter();
+  const [copiedEdrpou, setCopiedEdrpou] = useState(false);
+
+  const handleCopyEdrpou = () => {
+    navigator.clipboard.writeText('43980756');
+    setCopiedEdrpou(true);
+    setTimeout(() => setCopiedEdrpou(false), 2000);
+  };
 
   return (
-    <div className="about-page-wrapper">
-      <div className="about-hero">
-        <div className="container text-center">
-          <span className="badge badge-blue mb-2">Про компанію</span>
-          <h1 className="ah-title">ТОВ «НОВЕКС ІНВЕСТ» — Ваш надійний партнер у Полтаві</h1>
-          <p className="ah-subtitle">
-            Професійне агентство нерухомості з бездоганною репутацією, прозорими умовами та гарантією безпеки кожної угоди.
+    <div className="about-v2-container">
+      {/* 1. Modern Premium Hero Header */}
+      <section className="av2-hero">
+        <div className="container">
+          <div className="av2-hero-badge">
+            <Sparkles size={14} className="text-primary" />
+            <span>Професійне агентство нерухомості</span>
+          </div>
+          
+          <h1 className="av2-hero-title">
+            ТОВ «НОВЕКС ІНВЕСТ»
+          </h1>
+          <p className="av2-hero-tagline">
+            Новий стандарт безпеки, прозорості та комфорту у сфері нерухомості міста Полтава.
           </p>
-        </div>
-      </div>
 
-      <div className="container py-5">
-        <div className="about-grid">
-          <div className="about-text-col">
-            <h2>Хто ми такі?</h2>
-            <p>
-              **ТОВ «НОВЕКС ІНВЕСТ»** (код ЄДРПОУ 43980756) — офіційно зареєстроване українське підприємство, що спеціалізується на операціях з нерухомістю (КВЕД 68.31), купівлі, продажу та управлінні житловим і комерційним фондом у місті Полтава та прилеглих районах.
-            </p>
-            <p>
-              Ми об'єднали досвідчених рієлторів, юристів у сфері речових прав та сертифікованих оцінювачів, щоб надати клієнтам сервіс європейського рівня без бюрократії та ризиків.
-            </p>
-
-            <h3 className="mt-4">Наші ключові принципи:</h3>
-            <ul className="principles-list">
-              <li>
-                <CheckCircle2 size={18} className="text-green" />
-                <div>
-                  <strong>100% юридична перевірка:</strong> Жоден об'єкт не виставляється на продаж без перевірки в ДРРП, судових реєстрах та реєстрах боржників.
-                </div>
-              </li>
-              <li>
-                <CheckCircle2 size={18} className="text-green" />
-                <div>
-                  <strong>Фіксована комісія:</strong> Жодних прихованих платежів — оплата здійснюється лише за фактом успішної угоди.
-                </div>
-              </li>
-              <li>
-                <CheckCircle2 size={18} className="text-green" />
-                <div>
-                  <strong>Офіційний договір:</strong> Захист інтересів обох сторін (покупця та продавця) у правовому полі України.
-                </div>
-              </li>
-            </ul>
-
-            <div className="about-actions mt-4">
-              <button onClick={() => navigate('#/requisites')} className="btn btn-outline">
-                <FileText size={16} />
-                <span>Переглянути реєстраційні дані (ЄДРПОУ 43980756)</span>
-              </button>
+          {/* Quick Metrics Bar */}
+          <div className="av2-metrics-grid">
+            <div className="av2-metric-card">
+              <span className="av2-metric-num">1 198+</span>
+              <span className="av2-metric-label">Перевірених об'єктів у Полтаві</span>
             </div>
-          </div>
-
-          {/* Legal Facts Box */}
-          <div className="about-card-col">
-            <div className="official-facts-card">
-              <div className="ofc-header">
-                <ShieldCheck size={28} className="text-primary" />
-                <div>
-                  <h4>Офіційні реквізити</h4>
-                  <span>ТОВ «НОВЕКС ІНВЕСТ»</span>
-                </div>
-              </div>
-
-              <div className="ofc-body">
-                <div className="ofc-row">
-                  <span>Код ЄДРПОУ:</span>
-                  <strong>43980756</strong>
-                </div>
-                <div className="ofc-row">
-                  <span>Керівник:</span>
-                  <strong>Омельяненко Владислав Юрійович</strong>
-                </div>
-                <div className="ofc-row">
-                  <span>Основний КВЕД:</span>
-                  <strong>68.31 Агентства нерухомості</strong>
-                </div>
-                <div className="ofc-row">
-                  <span>Юридична адреса:</span>
-                  <strong>м. Полтава, вул. Європейська, буд. 2, оф. 202</strong>
-                </div>
-                <div className="ofc-row">
-                  <span>Телефон:</span>
-                  <strong>+380 (98) 861-29-38</strong>
-                </div>
-                <div className="ofc-row">
-                  <span>Email:</span>
-                  <strong>novexinvest.poltava@gmail.com</strong>
-                </div>
-              </div>
-
-              <button onClick={onOpenConsultModal} className="btn btn-primary btn-block mt-3">
-                <PhoneCall size={16} />
-                <span>Зв'язатися з керівником</span>
-              </button>
+            <div className="av2-metric-card">
+              <span className="av2-metric-num">100%</span>
+              <span className="av2-metric-label">Юридична чистота кожної угоди</span>
+            </div>
+            <div className="av2-metric-card">
+              <span className="av2-metric-num">0 грн</span>
+              <span className="av2-metric-label">Прихованих платежів та комісій</span>
+            </div>
+            <div className="av2-metric-card">
+              <span className="av2-metric-num">№ 1</span>
+              <span className="av2-metric-label">Супровід від перегляду до ключів</span>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
+      {/* 2. Main Narrative & Core Values */}
+      <section className="av2-content-section">
+        <div className="container">
+          <div className="av2-narrative-box">
+            <div className="av2-section-heading">
+              <span className="av2-sub">Наша місія</span>
+              <h2>Створюємо цивілізований та захищений ринок нерухомості</h2>
+            </div>
+            
+            <p className="av2-lead-text">
+              <strong>ТОВ «НОВЕКС ІНВЕСТ»</strong> (код ЄДРПОУ <strong>43980756</strong>) — це офіційно зареєстроване українське підприємство з ліцензованою діяльністю у сфері операцій з нерухомістю (основний КВЕД 68.31). Ми відмовилися від застарілих рієлторських методів на користь повної правової прозорості, фіксованих умов та індивідуального супроводу.
+            </p>
+          </div>
+
+          {/* 3. Four Core Security Pillars (Interactive Bento Grid) */}
+          <div className="av2-pillars-grid">
+            <div className="av2-pillar-card">
+              <div className="av2-pillar-icon-box bg-blue">
+                <Scale size={24} />
+              </div>
+              <h3>Глибокий юридичний аудит</h3>
+              <p>
+                Кожен об'єкт перед розміщенням проходить перевірку в Державному реєстрі речових прав (ДРРП), єдиному реєстрі боржників та базах судових рішень. Ви купуєте або орендуєте житло без обтяжень, арештів чи прихованих власників.
+              </p>
+            </div>
+
+            <div className="av2-pillar-card">
+              <div className="av2-pillar-icon-box bg-emerald">
+                <ShieldCheck size={24} />
+              </div>
+              <h3>Офіційні договори та гарантії</h3>
+              <p>
+                Працюємо виключно в правовому полі України. Інтереси кожної зі сторін (орендаря, орендодавця, покупця та продавця) чітко зафіксовані в офіційному договорі з прозорими строками та фіксованою вартістю послуг.
+              </p>
+            </div>
+
+            <div className="av2-pillar-card">
+              <div className="av2-pillar-icon-box bg-purple">
+                <Users size={24} />
+              </div>
+              <h3>Персональний експерт</h3>
+              <p>
+                За вашим запитом закріплюється кваліфікований фахівець, який організовує покази у зручний для вас час, веде переговори щодо ціни та супроводжує підписання документів у нотаріуса.
+              </p>
+            </div>
+
+            <div className="av2-pillar-card">
+              <div className="av2-pillar-icon-box bg-amber">
+                <BadgeCheck size={24} />
+              </div>
+              <h3>Чесна комісія без переплат</h3>
+              <p>
+                Оплата послуг агенції здійснюється виключно за фактом успішного укладення угоди. Жодних передоплат, «платних переглядів» чи неоголошених витрат під час розрахунку.
+              </p>
+            </div>
+          </div>
+
+          {/* 4. Company Identification & Official Details Card */}
+          <div className="av2-legal-banner">
+            <div className="av2-legal-left">
+              <div className="av2-legal-tag">Офіційні дані компанії</div>
+              <h3>ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ «НОВЕКС ІНВЕСТ»</h3>
+              
+              <div className="av2-edrpou-chip">
+                <span>Код ЄДРПОУ: <strong>43980756</strong></span>
+                <button 
+                  onClick={handleCopyEdrpou} 
+                  className="av2-copy-btn"
+                  title="Скопіювати код ЄДРПОУ"
+                >
+                  {copiedEdrpou ? <Check size={14} className="text-green" /> : <Copy size={14} />}
+                  <span>{copiedEdrpou ? 'Скопійовано!' : 'Копіювати'}</span>
+                </button>
+              </div>
+
+              <div className="av2-details-list">
+                <div className="av2-detail-row">
+                  <span className="av2-d-label">Керівник:</span>
+                  <span className="av2-d-val">Омельяненко Владислав Юрійович</span>
+                </div>
+                <div className="av2-detail-row">
+                  <span className="av2-d-label">Основний вид діяльності:</span>
+                  <span className="av2-d-val">68.31 Агентства нерухомості</span>
+                </div>
+                <div className="av2-detail-row">
+                  <span className="av2-d-label">Юридична адреса:</span>
+                  <span className="av2-d-val">м. Полтава, вул. Європейська, буд. 2, оф. 202</span>
+                </div>
+                <div className="av2-detail-row">
+                  <span className="av2-d-label">Контактний телефон:</span>
+                  <span className="av2-d-val font-mono">+380 (98) 861-29-38</span>
+                </div>
+                <div className="av2-detail-row">
+                  <span className="av2-d-label">Електронна пошта:</span>
+                  <span className="av2-d-val">novexinvest.poltava@gmail.com</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="av2-legal-right">
+              <div className="av2-director-box">
+                <div className="av2-director-avatar">
+                  <Building2 size={36} className="text-white" />
+                </div>
+                <div className="av2-director-info">
+                  <h4>Владислав Омельяненко</h4>
+                  <span className="av2-dir-post">Керівник ТОВ «НОВЕКС ІНВЕСТ»</span>
+                  <p className="av2-dir-quote">
+                    «Наша головна мета — зробити кожну угоду в Полтаві на 100% захищеною, простою та комфортною для людей.»
+                  </p>
+                </div>
+
+                <div className="av2-dir-actions">
+                  <button 
+                    onClick={onOpenConsultModal} 
+                    className="btn btn-primary btn-block av2-cta-btn"
+                  >
+                    <PhoneCall size={16} />
+                    <span>Зв'язатися з керівництвом</span>
+                  </button>
+
+                  <button 
+                    onClick={() => navigate('#/requisites')} 
+                    className="btn btn-outline btn-block av2-sub-btn"
+                  >
+                    <FileText size={16} />
+                    <span>Повні реквізити та ліцензія</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 5. 4 Steps to a Safe Deal */}
+          <div className="av2-process-block">
+            <div className="av2-section-heading text-center">
+              <span className="av2-sub">Як ми працюємо</span>
+              <h2>4 простих кроки до безпечного результату</h2>
+            </div>
+
+            <div className="av2-steps-grid">
+              <div className="av2-step-item">
+                <div className="av2-step-number">01</div>
+                <h4>Заявка та консультація</h4>
+                <p>Визначаємо ваші точні критерії, бюджет та бажаний район у Полтаві.</p>
+              </div>
+
+              <div className="av2-step-item">
+                <div className="av2-step-number">02</div>
+                <h4>Організація показів</h4>
+                <p>Обираємо найкращі актуальні варіанти та плануємо перегляди в зручний час.</p>
+              </div>
+
+              <div className="av2-step-item">
+                <div className="av2-step-number">03</div>
+                <h4>Юридична перевірка</h4>
+                <p>Формуємо витяги з реєстрів та готуємо офіційний проект договору.</p>
+              </div>
+
+              <div className="av2-step-item">
+                <div className="av2-step-number">04</div>
+                <h4>Угода та передача ключів</h4>
+                <p>Підписання документів, безпечний розрахунок та отримання ключів від об'єкта.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scoped CSS for AboutPage v2 */}
       <style>{`
-        .about-hero {
-          background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        .about-v2-container {
+          background: #f8fafc;
+          padding-bottom: 80px;
+        }
+
+        /* Hero Section */
+        .av2-hero {
+          background: linear-gradient(135deg, #090d16 0%, #172554 50%, #1e1b4b 100%);
           color: #ffffff;
-          padding: 45px 0;
+          padding: 64px 0 56px;
+          position: relative;
+          overflow: hidden;
         }
 
-        .ah-title {
-          font-size: 2.2rem;
-          font-weight: 900;
-          color: #ffffff;
-          margin-bottom: 8px;
+        .av2-hero::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.18) 0%, transparent 60%);
+          pointer-events: none;
         }
 
-        .ah-subtitle {
-          font-size: 0.95rem;
-          color: #cbd5e1;
-          max-width: 760px;
-          margin: 0 auto;
-        }
-
-        .about-grid {
-          display: grid;
-          grid-template-columns: 1.3fr 1fr;
-          gap: 40px;
-          align-items: start;
-        }
-
-        .about-text-col h2 {
-          font-size: 1.8rem;
+        .av2-hero-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          padding: 6px 16px;
+          border-radius: 30px;
+          font-size: 0.84rem;
+          font-weight: 700;
+          color: #93c5fd;
           margin-bottom: 16px;
         }
 
-        .about-text-col p {
-          font-size: 0.95rem;
-          line-height: 1.6;
+        .av2-hero-title {
+          font-size: 2.7rem;
+          font-weight: 900;
+          letter-spacing: -0.5px;
+          color: #ffffff;
           margin-bottom: 14px;
         }
 
-        .principles-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-          margin-top: 12px;
+        .av2-hero-tagline {
+          font-size: 1.15rem;
+          color: #cbd5e1;
+          max-width: 720px;
+          line-height: 1.6;
+          margin-bottom: 40px;
         }
 
-        .principles-list li {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          font-size: 0.9rem;
+        /* Metrics Grid */
+        .av2-metrics-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+        }
+
+        .av2-metric-card {
+          background: rgba(255, 255, 255, 0.06);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 14px;
+          padding: 20px 18px;
+          text-align: center;
+          transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .av2-metric-card:hover {
+          background: rgba(255, 255, 255, 0.1);
+          transform: translateY(-2px);
+        }
+
+        .av2-metric-num {
+          display: block;
+          font-size: 1.85rem;
+          font-weight: 900;
+          color: #60a5fa;
+          margin-bottom: 4px;
+        }
+
+        .av2-metric-label {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #94a3b8;
+          line-height: 1.4;
+        }
+
+        /* Content Section */
+        .av2-content-section {
+          padding-top: 50px;
+        }
+
+        .av2-narrative-box {
+          background: #ffffff;
+          border-radius: 18px;
+          border: 1px solid #e2e8f0;
+          padding: 36px 40px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+          margin-bottom: 40px;
+        }
+
+        .av2-section-heading {
+          margin-bottom: 20px;
+        }
+
+        .av2-sub {
+          display: inline-block;
+          font-size: 0.78rem;
+          font-weight: 800;
+          color: #2563eb;
+          text-transform: uppercase;
+          letter-spacing: 0.8px;
+          margin-bottom: 6px;
+        }
+
+        .av2-section-heading h2 {
+          font-size: 1.8rem;
+          font-weight: 900;
+          color: #0f172a;
+          letter-spacing: -0.3px;
+        }
+
+        .av2-lead-text {
+          font-size: 1.02rem;
           color: #334155;
+          line-height: 1.7;
         }
 
-        .official-facts-card {
-          background: #f8fafc;
-          border: 1px solid var(--c-border);
-          border-radius: var(--radius-lg);
-          padding: 28px;
-          box-shadow: var(--shadow-md);
+        /* Pillars Grid */
+        .av2-pillars-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+          margin-bottom: 48px;
         }
 
-        .ofc-header {
+        .av2-pillar-card {
+          background: #ffffff;
+          border-radius: 16px;
+          border: 1px solid #e2e8f0;
+          padding: 32px 28px;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+          transition: all 0.2s ease;
+        }
+
+        .av2-pillar-card:hover {
+          border-color: #cbd5e1;
+          box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+          transform: translateY(-2px);
+        }
+
+        .av2-pillar-icon-box {
+          width: 52px;
+          height: 52px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
+          justify-content: center;
+          margin-bottom: 18px;
+        }
+
+        .av2-pillar-icon-box.bg-blue {
+          background: #eff6ff;
+          color: #2563eb;
+        }
+
+        .av2-pillar-icon-box.bg-emerald {
+          background: #ecfdf5;
+          color: #059669;
+        }
+
+        .av2-pillar-icon-box.bg-purple {
+          background: #faf5ff;
+          color: #7c3aed;
+        }
+
+        .av2-pillar-icon-box.bg-amber {
+          background: #fffbeb;
+          color: #d97706;
+        }
+
+        .av2-pillar-card h3 {
+          font-size: 1.25rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 10px;
+        }
+
+        .av2-pillar-card p {
+          font-size: 0.92rem;
+          color: #475569;
+          line-height: 1.6;
+        }
+
+        /* Legal Details Card */
+        .av2-legal-banner {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+          margin-bottom: 50px;
+        }
+
+        .av2-legal-left {
+          padding: 40px;
+        }
+
+        .av2-legal-tag {
+          font-size: 0.76rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.6px;
+          color: #2563eb;
+          background: #eff6ff;
+          display: inline-block;
+          padding: 4px 12px;
+          border-radius: 20px;
+          margin-bottom: 12px;
+        }
+
+        .av2-legal-left h3 {
+          font-size: 1.35rem;
+          font-weight: 900;
+          color: #0f172a;
+          margin-bottom: 18px;
+        }
+
+        .av2-edrpou-chip {
+          display: inline-flex;
+          align-items: center;
           gap: 12px;
-          padding-bottom: 16px;
-          border-bottom: 1px solid var(--c-border);
-          margin-bottom: 16px;
+          background: #f1f5f9;
+          padding: 6px 14px;
+          border-radius: 8px;
+          font-size: 0.86rem;
+          color: #334155;
+          margin-bottom: 24px;
         }
 
-        .ofc-header h4 {
-          font-size: 1.15rem;
-          color: var(--c-slate);
+        .av2-copy-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          background: #ffffff;
+          border: 1px solid #cbd5e1;
+          border-radius: 6px;
+          padding: 3px 8px;
+          font-size: 0.74rem;
+          font-weight: 700;
+          color: #1e293b;
+          cursor: pointer;
+          transition: all 0.15s ease;
         }
 
-        .ofc-header span {
-          font-size: 0.8rem;
-          color: var(--c-muted);
+        .av2-copy-btn:hover {
+          background: #e2e8f0;
         }
 
-        .ofc-body {
+        .av2-details-list {
           display: flex;
           flex-direction: column;
           gap: 12px;
+        }
+
+        .av2-detail-row {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid #f1f5f9;
+          padding-bottom: 8px;
           font-size: 0.88rem;
         }
 
-        .ofc-row {
-          display: flex;
-          justify-content: space-between;
-          border-bottom: 1px dashed #e2e8f0;
-          padding-bottom: 8px;
-        }
-
-        .ofc-row span {
+        .av2-d-label {
           color: #64748b;
         }
 
-        .ofc-row strong {
-          color: var(--c-dark);
+        .av2-d-val {
+          color: #0f172a;
+          font-weight: 700;
           text-align: right;
         }
 
-        @media (max-width: 860px) {
-          .about-grid {
+        .av2-legal-right {
+          background: #0f172a;
+          color: #ffffff;
+          padding: 40px 32px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .av2-director-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .av2-director-avatar {
+          width: 72px;
+          height: 72px;
+          border-radius: 50%;
+          background: #2563eb;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 16px;
+          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+        }
+
+        .av2-director-info h4 {
+          font-size: 1.25rem;
+          font-weight: 900;
+          color: #ffffff;
+          margin-bottom: 4px;
+        }
+
+        .av2-dir-post {
+          font-size: 0.8rem;
+          color: #93c5fd;
+          font-weight: 600;
+          margin-bottom: 16px;
+          display: block;
+        }
+
+        .av2-dir-quote {
+          font-size: 0.88rem;
+          color: #cbd5e1;
+          font-style: italic;
+          line-height: 1.5;
+          margin-bottom: 24px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding-top: 16px;
+        }
+
+        .av2-dir-actions {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .av2-cta-btn {
+          background: #2563eb;
+          border-color: #2563eb;
+          font-weight: 800;
+          font-size: 0.88rem;
+          padding: 12px;
+          border-radius: 8px;
+        }
+
+        .av2-cta-btn:hover {
+          background: #1d4ed8;
+        }
+
+        .av2-sub-btn {
+          background: transparent;
+          color: #ffffff;
+          border-color: rgba(255, 255, 255, 0.25);
+          font-size: 0.82rem;
+          font-weight: 700;
+          padding: 10px;
+          border-radius: 8px;
+        }
+
+        .av2-sub-btn:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: #ffffff;
+        }
+
+        /* Steps Block */
+        .av2-process-block {
+          margin-top: 20px;
+        }
+
+        .av2-steps-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          margin-top: 36px;
+        }
+
+        .av2-step-item {
+          background: #ffffff;
+          border-radius: 14px;
+          border: 1px solid #e2e8f0;
+          padding: 24px 20px;
+          position: relative;
+        }
+
+        .av2-step-number {
+          font-size: 1.6rem;
+          font-weight: 900;
+          color: #e2e8f0;
+          margin-bottom: 8px;
+        }
+
+        .av2-step-item h4 {
+          font-size: 1rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 8px;
+        }
+
+        .av2-step-item p {
+          font-size: 0.84rem;
+          color: #64748b;
+          line-height: 1.5;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+          .av2-metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .av2-legal-banner {
             grid-template-columns: 1fr;
+          }
+          .av2-steps-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .av2-hero-title {
+            font-size: 2rem;
+          }
+          .av2-pillars-grid {
+            grid-template-columns: 1fr;
+          }
+          .av2-metrics-grid {
+            grid-template-columns: 1fr;
+          }
+          .av2-steps-grid {
+            grid-template-columns: 1fr;
+          }
+          .av2-legal-left {
+            padding: 24px 20px;
+          }
+          .av2-legal-right {
+            padding: 32px 20px;
+          }
+          .av2-detail-row {
+            flex-direction: column;
+            gap: 2px;
+          }
+          .av2-d-val {
+            text-align: left;
           }
         }
       `}</style>
