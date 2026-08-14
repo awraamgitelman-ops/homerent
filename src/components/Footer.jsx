@@ -113,36 +113,39 @@ export const Footer = ({ onOpenConsultModal }) => {
               Прямий контакт з керівництвом агентства для вирішення термінових та нестандартних питань:
             </p>
 
-            <div className="nx-messengers-grid">
+            <div className="nx-messengers-icons">
               <a 
                 href="https://viber.click/380988612938" 
                 onClick={handleViberClick} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="nx-msg-card viber"
+                className="nx-msg-icon-btn"
+                title="Viber"
+                aria-label="Viber"
               >
-                <MessageSquare size={16} />
-                <span>Viber</span>
+                <MessageSquare size={17} />
               </a>
 
               <a 
                 href="https://t.me/novexinvest" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="nx-msg-card telegram"
+                className="nx-msg-icon-btn"
+                title="Telegram"
+                aria-label="Telegram"
               >
-                <Send size={16} />
-                <span>Telegram</span>
+                <Send size={17} />
               </a>
 
               <a 
                 href="https://wa.me/380988612938" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="nx-msg-card whatsapp"
+                className="nx-msg-icon-btn"
+                title="WhatsApp"
+                aria-label="WhatsApp"
               >
-                <Phone size={16} />
-                <span>WhatsApp</span>
+                <Phone size={17} />
               </a>
             </div>
 
@@ -200,10 +203,7 @@ export const Footer = ({ onOpenConsultModal }) => {
           </div>
 
           <div className="nx-bb-right">
-            <div className="nx-status-chip">
-              <span className="nx-status-dot"></span>
-              <span>Офіс приймає клієнтів: Полтава, вул. Європейська, 2</span>
-            </div>
+            <span className="nx-office-subtle">Офіс приймає клієнтів: Полтава, вул. Європейська, 2</span>
           </div>
         </div>
       </div>
@@ -429,34 +429,31 @@ export const Footer = ({ onOpenConsultModal }) => {
           margin-bottom: 14px;
         }
 
-        .nx-messengers-grid {
+        .nx-messengers-icons {
           display: flex;
-          gap: 8px;
-          margin-bottom: 20px;
+          gap: 10px;
+          margin-bottom: 16px;
         }
 
-        .nx-msg-card {
-          flex: 1;
+        .nx-msg-icon-btn {
+          width: 38px;
+          height: 38px;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 6px;
-          padding: 8px 10px;
+          background: #1e293b;
+          border: 1px solid #334155;
           border-radius: 8px;
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: #ffffff;
-          transition: transform 0.15s ease, opacity 0.15s ease;
+          color: #94a3b8;
+          transition: all 0.2s ease;
         }
 
-        .nx-msg-card:hover {
-          opacity: 0.9;
+        .nx-msg-icon-btn:hover {
+          background: #334155;
+          color: #ffffff;
+          border-color: #475569;
           transform: translateY(-2px);
         }
-
-        .nx-msg-card.viber { background: #7360f2; }
-        .nx-msg-card.telegram { background: #0088cc; }
-        .nx-msg-card.whatsapp { background: #25d366; }
 
         .nx-doc-links {
           display: flex;
@@ -509,24 +506,9 @@ export const Footer = ({ onOpenConsultModal }) => {
           color: #334155;
         }
 
-        .nx-status-chip {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          padding: 4px 12px;
-          border-radius: 20px;
-          font-size: 0.76rem;
-          color: #94a3b8;
-        }
-
-        .nx-status-dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: #22c55e;
-          box-shadow: 0 0 8px #22c55e;
+        .nx-office-subtle {
+          font-size: 0.78rem;
+          color: #64748b;
         }
 
         @media (max-width: 1024px) {
