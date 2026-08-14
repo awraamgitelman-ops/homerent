@@ -136,19 +136,6 @@ export const MapPage = ({
 
           {/* Sub Filters Row */}
           <div className="mf-group">
-            {/* Property Type */}
-            <select 
-              value={selectedType} 
-              onChange={(e) => setSelectedType(e.target.value)}
-              className="mf-select"
-            >
-              <option value="all">Всі типи об'єктів</option>
-              <option value="apartment">Квартири</option>
-              <option value="house">Будинки та котеджі</option>
-              <option value="commercial">Комерційні площі</option>
-              {transaction === 'buy' && <option value="land">Земельні ділянки</option>}
-            </select>
-
             {/* District */}
             <select 
               value={district} 
