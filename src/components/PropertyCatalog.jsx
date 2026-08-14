@@ -7,7 +7,9 @@ import {
   Filter, 
   Building,
   Sparkles,
-  RotateCcw
+  RotateCcw,
+  Key,
+  Home
 } from 'lucide-react';
 import { PropertyCard } from './PropertyCard';
 import { PropertyMap } from './PropertyMap';
@@ -20,8 +22,9 @@ export const PropertyCatalog = ({
   initialViewMode = 'split'
 }) => {
   const [viewMode, setViewMode] = useState(initialViewMode); // 'grid' | 'split' | 'map'
+  const [activeTransaction, setActiveTransaction] = useState(filters?.transaction && filters.transaction !== 'all' ? filters.transaction : 'rent'); // 'rent' | 'buy'
   const [sortBy, setSortBy] = useState('default');
-  const [currency, setCurrency] = useState(filters?.currency || 'UAH');
+  const [currency, setCurrency] = useState(activeTransaction === 'rent' ? 'UAH' : 'USD');
   const [quickFilter, setQuickFilter] = useState('all');
   const [priceMin, setPriceMin] = useState(filters?.priceMin || '');
   const [priceMax, setPriceMax] = useState(filters?.priceMax || '');
@@ -32,39 +35,50 @@ export const PropertyCatalog = ({
     }
   }, [initialViewMode]);
 
-  // Filter and Sort Logic
+  const handleSwitchTab = (tab) => {
+    setActiveTransaction(tab);
+    setCurrency(tab === 'rent' ? 'UAH' : 'USD');
+    setQuickFilter('all');
+    setPriceMin('');
+    setPriceMax('');
+  };
+
+  // Filter and Sort Logic - STRICT SEPARATION
   const filteredProperties = useMemo(() => {
     return properties.filter((p) => {
-      // Type Filter
+      // 1. Strict Transaction Filter (rent vs buy)
+      if (p.transaction !== activeTransaction) return false;
+
+      // 2. Type Filter
       if (filters?.type && filters.type !== 'all' && p.type !== filters.type) return false;
-      // Transaction Filter
-      if (filters?.transaction && filters.transaction !== 'all' && p.transaction !== filters.transaction) return false;
-      // District Filter
+      
+      // 3. District Filter
       if (filters?.district && filters.district !== 'all' && p.district !== filters.district) return false;
-      // Rooms Filter
+      
+      // 4. Rooms Filter
       if (filters?.rooms && filters.rooms !== 'all') {
         if (filters.rooms === '4+' && p.rooms < 4) return false;
         if (filters.rooms !== '4+' && filters.rooms !== 'studio' && String(p.rooms) !== filters.rooms) return false;
       }
       
-      // Price Range Filter (Dynamic in UAH or USD)
+      // 5. Price Range Filter
       const currentPrice = currency === 'USD' ? p.priceUSD : p.priceUAH;
       if (priceMin && currentPrice < Number(priceMin)) return false;
       if (priceMax && currentPrice > Number(priceMax)) return false;
       
-      // Area Range Filter
+      // 6. Area Range Filter
       if (filters?.areaMin && p.area < filters.areaMin) return false;
       if (filters?.areaMax && p.area > filters.areaMax) return false;
-      // єОселя Checkbox
-      if (filters?.isEoselyaOnly && !p.badges.some(b => b.includes('єОселя'))) return false;
+      
+      // 7. єОселя Checkbox (for buy)
+      if (activeTransaction === 'buy' && filters?.isEoselyaOnly && !p.badges.some(b => b.includes('єОселя'))) return false;
 
-      // Quick Filter Chips
+      // 8. Quick Filter Chips
       if (quickFilter === '1' && p.rooms !== 1) return false;
       if (quickFilter === '2' && p.rooms !== 2) return false;
       if (quickFilter === '3' && p.rooms !== 3) return false;
       if (quickFilter === 'house' && p.type !== 'house') return false;
-      if (quickFilter === 'rent' && p.transaction !== 'rent') return false;
-      if (quickFilter === 'buy' && p.transaction !== 'buy') return false;
+      if (quickFilter === 'commercial' && p.type !== 'commercial') return false;
       if (quickFilter === 'eoselya' && !p.badges.some(b => b.includes('єОселя'))) return false;
 
       return true;
@@ -75,16 +89,42 @@ export const PropertyCatalog = ({
       if (sortBy === 'area-desc') return b.area - a.area;
       return 0;
     });
-  }, [properties, filters, sortBy, currency, quickFilter, priceMin, priceMax]);
+  }, [properties, activeTransaction, filters, sortBy, currency, quickFilter, priceMin, priceMax]);
+
+  const rentTotal = properties.filter(p => p.transaction === 'rent').length;
+  const buyTotal = properties.filter(p => p.transaction === 'buy').length;
 
   return (
     <section className="catalog-section" id="catalog">
       <div className="container">
+        {/* Main Mode Tabs: Оренда vs Купівля */}
+        <div className="catalog-main-tabs">
+          <button 
+            type="button" 
+            className={`cmt-tab ${activeTransaction === 'rent' ? 'active rent' : ''}`}
+            onClick={() => handleSwitchTab('rent')}
+          >
+            <Key size={18} />
+            <span>Оренда нерухомості</span>
+            <span className="cmt-count">{rentTotal}</span>
+          </button>
+
+          <button 
+            type="button" 
+            className={`cmt-tab ${activeTransaction === 'buy' ? 'active buy' : ''}`}
+            onClick={() => handleSwitchTab('buy')}
+          >
+            <Home size={18} />
+            <span>Купівля (Продаж)</span>
+            <span className="cmt-count">{buyTotal}</span>
+          </button>
+        </div>
+
         {/* Catalog Control Header */}
         <div className="catalog-header-bar">
           <div className="chb-left">
             <h2 className="catalog-title">
-              Каталог нерухомості Полтави
+              {activeTransaction === 'rent' ? 'Оренда квартир та приміщень' : 'Продаж квартир та будинків'} у Полтаві
             </h2>
             <span className="catalog-count-badge">
               Знайдено {filteredProperties.length} об'єктів
@@ -186,28 +226,14 @@ export const PropertyCatalog = ({
           </div>
         </div>
 
-        {/* Quick Filter Chips */}
+        {/* Quick Filter Chips for Active Mode */}
         <div className="quick-filter-chips">
           <button 
             type="button" 
             className={`qfc-btn ${quickFilter === 'all' ? 'active' : ''}`}
             onClick={() => setQuickFilter('all')}
           >
-            Всі об'єкти
-          </button>
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === 'rent' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('rent')}
-          >
-            Оренда
-          </button>
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === 'buy' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('buy')}
-          >
-            Купівля
+            Всі {activeTransaction === 'rent' ? 'об\'єкти оренди' : 'об\'єкти продажу'}
           </button>
           <button 
             type="button" 
@@ -232,12 +258,28 @@ export const PropertyCatalog = ({
           </button>
           <button 
             type="button" 
-            className={`qfc-btn qfc-eoselya ${quickFilter === 'eoselya' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('eoselya')}
+            className={`qfc-btn ${quickFilter === 'house' ? 'active' : ''}`}
+            onClick={() => setQuickFilter('house')}
           >
-            <Sparkles size={13} />
-            <span>єОселя 3%/7%</span>
+            Будинки та котеджі
           </button>
+          <button 
+            type="button" 
+            className={`qfc-btn ${quickFilter === 'commercial' ? 'active' : ''}`}
+            onClick={() => setQuickFilter('commercial')}
+          >
+            Комерція
+          </button>
+          {activeTransaction === 'buy' && (
+            <button 
+              type="button" 
+              className={`qfc-btn qfc-eoselya ${quickFilter === 'eoselya' ? 'active' : ''}`}
+              onClick={() => setQuickFilter('eoselya')}
+            >
+              <Sparkles size={13} />
+              <span>єОселя 3%/7%</span>
+            </button>
+          )}
         </div>
 
         {/* Main Display Layout */}
@@ -245,12 +287,12 @@ export const PropertyCatalog = ({
           <div className="catalog-empty-state">
             <Building size={48} className="text-muted mb-3" />
             <h3>За вашим запитом об'єктів не знайдено</h3>
-            <p>Спробуйте розширити діапазон цін або скинути фільтри.</p>
+            <p>Спробуйте змінити фільтри або очистити діапазон цін.</p>
             <button 
               onClick={() => { setPriceMin(''); setPriceMax(''); setQuickFilter('all'); }} 
               className="btn btn-sm btn-primary mt-3"
             >
-              Скинути фільтри цін
+              Скинути фільтри
             </button>
           </div>
         ) : (
@@ -287,8 +329,60 @@ export const PropertyCatalog = ({
       {/* Scoped Styles for PropertyCatalog */}
       <style>{`
         .catalog-section {
-          padding: 40px 0 60px;
+          padding: 30px 0 60px;
           background: #f8fafc;
+        }
+
+        /* Large Primary Tabs */
+        .catalog-main-tabs {
+          display: flex;
+          gap: 12px;
+          margin-bottom: 24px;
+        }
+
+        .cmt-tab {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 24px;
+          font-size: 1rem;
+          font-weight: 800;
+          color: #475569;
+          background: #ffffff;
+          border: 2px solid #e2e8f0;
+          border-radius: var(--radius-md);
+          transition: all 0.2s ease;
+          cursor: pointer;
+        }
+
+        .cmt-tab:hover {
+          border-color: #cbd5e1;
+          background: #f1f5f9;
+        }
+
+        .cmt-tab.active.rent {
+          background: #6d28d9;
+          color: #ffffff;
+          border-color: #6d28d9;
+          box-shadow: 0 4px 14px rgba(109, 40, 217, 0.25);
+        }
+
+        .cmt-tab.active.buy {
+          background: #b91c1c;
+          color: #ffffff;
+          border-color: #b91c1c;
+          box-shadow: 0 4px 14px rgba(185, 28, 28, 0.25);
+        }
+
+        .cmt-count {
+          background: rgba(0, 0, 0, 0.15);
+          font-size: 0.8rem;
+          padding: 2px 8px;
+          border-radius: 12px;
+        }
+
+        .cmt-tab.active .cmt-count {
+          background: rgba(255, 255, 255, 0.25);
         }
 
         .catalog-header-bar {
@@ -309,7 +403,7 @@ export const PropertyCatalog = ({
         }
 
         .catalog-title {
-          font-size: 1.5rem;
+          font-size: 1.45rem;
           font-weight: 900;
           color: var(--c-slate);
         }
@@ -463,14 +557,14 @@ export const PropertyCatalog = ({
         }
 
         .qfc-btn:hover {
-          border-color: #b91c1c;
-          color: #b91c1c;
+          border-color: #1e293b;
+          color: #1e293b;
         }
 
         .qfc-btn.active {
-          background: #b91c1c;
+          background: #1e293b;
           color: #ffffff;
-          border-color: #b91c1c;
+          border-color: #1e293b;
         }
 
         .qfc-btn.qfc-eoselya {
@@ -543,6 +637,9 @@ export const PropertyCatalog = ({
         }
 
         @media (max-width: 640px) {
+          .catalog-main-tabs {
+            flex-direction: column;
+          }
           .catalog-title {
             font-size: 1.25rem;
           }

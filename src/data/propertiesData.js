@@ -29,7 +29,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Затишна 15) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Затишна 15) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-uyutnaya-ulitsa__340105660xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-uyutnaya-ulitsa__340105729xl.jpg",
@@ -80,7 +80,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 4к квартири на вул. Соборності) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 4к квартири на вул. Соборності) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-sobornosti-oktyabrskaya-ulitsa__340298650xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-sobornosti-oktyabrskaya-ulitsa__340298681xl.jpg",
@@ -131,7 +131,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Григорія Левченка 2) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Григорія Левченка 2) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-grigoriya-levchenko-sapigo-ulitsa__339576155xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-grigoriya-levchenko-sapigo-ulitsa__339576156xl.jpg",
@@ -182,7 +182,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Володимира Козака) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Володимира Козака) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-vladimira-kozaka-ulitsa__339754071xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-vladimira-kozaka-ulitsa__339754093xl.jpg",
@@ -233,7 +233,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Панянка) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Панянка) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-panyanka-ulitsa__339543536xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-panyanka-ulitsa__339543537xl.jpg",
@@ -283,7 +283,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 4к квартири на вул. Мазепи Івана) у місті Полтава (Алмазний). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 4к квартири на вул. Мазепи Івана) у місті Полтава (Алмазний). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__339187884xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__339187885xl.jpg",
@@ -333,7 +333,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на бул. Хмельницького Богдана 5/1) у місті Полтава (Левада). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на бул. Хмельницького Богдана 5/1) у місті Полтава (Левада). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-hmelnitskogo-bogdana-bulvar__338326532xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-hmelnitskogo-bogdana-bulvar__338326534xl.jpg",
@@ -384,7 +384,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Стрітенська) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Стрітенська) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-stretenskaya-komsomolskaya-ulitsa__338182854xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-stretenskaya-komsomolskaya-ulitsa__338182763xl.jpg",
@@ -435,7 +435,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Геннадія Біліченка 33) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Геннадія Біліченка 33) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-bojenka-gennadiya-bilichenko-ulitsa__338059876xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-bojenka-gennadiya-bilichenko-ulitsa__338073284xl.jpg",
@@ -486,7 +486,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Європейська 27/24) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Європейська 27/24) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-evropeyskaya-ulitsa__331099907xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-evropeyskaya-ulitsa__331099908xl.jpg",
@@ -537,7 +537,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Конституції 13) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Конституції 13) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-konstitutsii-ulitsa__334549084xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-konstitutsii-ulitsa__334549085xl.jpg",
@@ -587,7 +587,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Мазепи Івана) у місті Полтава (Алмазний). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Мазепи Івана) у місті Полтава (Алмазний). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__340377624xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__340377628xl.jpg",
@@ -638,7 +638,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Башкірцевої Марії) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Башкірцевої Марії) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-bashkirtsevoy-marii-ulitsa__340372095xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-bashkirtsevoy-marii-ulitsa__340372096xl.jpg",
@@ -688,7 +688,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на бул. Боровиковського) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на бул. Боровиковського) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-sady-3-ognivka-borovikovskogo-bulvar__340365225xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-sady-3-ognivka-borovikovskogo-bulvar__340365222xl.jpg",
@@ -738,7 +738,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Панянка) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Панянка) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levyy-podol-panyanka-ulitsa__340360249xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levyy-podol-panyanka-ulitsa__340360250xl.jpg",
@@ -789,7 +789,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 100к квартири на вул. Олександра Оксанченка) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 100к квартири на вул. Олександра Оксанченка) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__340231392xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__340231390xl.jpg",
@@ -840,7 +840,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 3к квартири на вул. Гожулівська) у місті Полтава (Браїлки). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 3к квартири на вул. Гожулівська) у місті Полтава (Браїлки). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-gojulivskiy-ulitsa__340214836xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-gojulivskiy-ulitsa__340214841xl.jpg",
@@ -891,7 +891,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Європейська) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Європейська) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-shevchenkovskiy-oktyabrskiy-evropeyskaya-ulitsa__340196388xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-shevchenkovskiy-oktyabrskiy-evropeyskaya-ulitsa__340196396xl.jpg",
@@ -942,7 +942,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Стрітенська) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Стрітенська) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-sretenskaya-ulitsa__340148137xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-sretenskaya-ulitsa__340148140xl.jpg",
@@ -993,7 +993,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Перспективна) у місті Полтава (Розсошенці). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на вул. Перспективна) у місті Полтава (Розсошенці). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-perspektivnaya-ulitsa__339541358xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-perspektivnaya-ulitsa__339541360xl.jpg",
@@ -1043,7 +1043,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на пров. Заячий 1А) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 1к квартири на пров. Заячий 1А) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-institut-svyazi-zayachiy-pereulok__339373697xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-institut-svyazi-zayachiy-pereulok__339373706xl.jpg",
@@ -1093,7 +1093,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Стрітенська 27) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довготривала оренда 2к квартири на вул. Стрітенська 27) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-sretenskaya-ulitsa__339206460xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-sretenskaya-ulitsa__338774433xl.jpg",
@@ -1144,7 +1144,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 38.1 кв. м  на вул. Великотирнівська 4А) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 38.1 кв. м  на вул. Великотирнівська 4А) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-almaznyy-velikotyrnovskaya-ulitsa__336590407xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-almaznyy-velikotyrnovskaya-ulitsa__336590434xl.jpg",
@@ -1195,7 +1195,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 34.7 кв. м  на вул. Героїв України 6А, кв. 245) у місті Полтава (Сади-1). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 34.7 кв. м  на вул. Героїв України 6А, кв. 245) у місті Полтава (Сади-1). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__340143962xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__338661692xl.jpg",
@@ -1246,7 +1246,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 49.2 кв. м  на пров. Давидовського 15Б) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 49.2 кв. м  на пров. Давидовського 15Б) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-pravyy-podol-davydovskogo-pereulok__338433957xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-pravyy-podol-davydovskogo-pereulok__338433958xl.jpg",
@@ -1297,7 +1297,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 33 кв. м  на вул. Матросова (Гостомельська) 4) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 33 кв. м  на вул. Матросова (Гостомельська) 4) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-matrosova-gostomelska-ulitsa__336256837xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-matrosova-gostomelska-ulitsa__336256836xl.jpg",
@@ -1348,7 +1348,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 46.4 кв. м  на вул. Старий Поділ 18) у місті Полтава (Поділ). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 46.4 кв. м  на вул. Старий Поділ 18) у місті Полтава (Поділ). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-rogoznoe-staryy-podol-ulitsa__339507396xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-rogoznoe-staryy-podol-ulitsa__339507395xl.jpg",
@@ -1399,7 +1399,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 4к квартири 134 кв. м  на вул. Юліана Матвійчука 28) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 4к квартири 134 кв. м  на вул. Юліана Матвійчука 28) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-yuliana-matviychuka-pushkina-ulitsa__299249163xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-yuliana-matviychuka-pushkina-ulitsa__299249162xl.jpg",
@@ -1449,7 +1449,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 3к квартири 74.2 кв. м  на вул. Соборності 77А) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 3к квартири 74.2 кв. м  на вул. Соборності 77А) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-sobornosti-ulitsa__329464417xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-sobornosti-ulitsa__329465749xl.jpg",
@@ -1500,7 +1500,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 3к квартири 93.9 кв. м  на вул. Дослідна 102) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 3к квартири 93.9 кв. м  на вул. Дослідна 102) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-opytnaya-ulitsa__336075665xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-opytnaya-ulitsa__336075666xl.jpg",
@@ -1551,7 +1551,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 36 кв. м  на бул. Боровиковського 14) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 36 кв. м  на бул. Боровиковського 14) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-3-ognivka-borovikovskogo-bulvar__329264770xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-3-ognivka-borovikovskogo-bulvar__329264766xl.jpg",
@@ -1602,7 +1602,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 44 кв. м  на вул. Героїв України 4) у місті Полтава (Сади-1). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 44 кв. м  на вул. Героїв України 4) у місті Полтава (Сади-1). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__324785482xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__324785483xl.jpg",
@@ -1653,7 +1653,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 3к квартири 66.5 кв. м  на пров. Нестора Городовенка) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 3к квартири 66.5 кв. м  на пров. Нестора Городовенка) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-nestora-gorodovenka-chaykovskogo-pereulok__336465188xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-nestora-gorodovenka-chaykovskogo-pereulok__336465151xl.jpg",
@@ -1704,7 +1704,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 47.9 кв. м  на вул. Уласа Самчука 13/18) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 47.9 кв. м  на вул. Уласа Самчука 13/18) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-aviagorodok-ulasa-samchuka-getmana-ulitsa__340112260xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-aviagorodok-ulasa-samchuka-getmana-ulitsa__340112257xl.jpg",
@@ -1755,7 +1755,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 47.9 кв. м  на вул. Ракова 2) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 47.9 кв. м  на вул. Ракова 2) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-rakovaya-ulitsa__337674690xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-rakovaya-ulitsa__337674691xl.jpg",
@@ -1806,7 +1806,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 61.76 кв. м  на вул. Великотирнівська 52/89) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 61.76 кв. м  на вул. Великотирнівська 52/89) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351497xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351401xl.jpg",
@@ -1857,7 +1857,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 46.44 кв. м  на вул. Великотирнівська 52/89) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 46.44 кв. м  на вул. Великотирнівська 52/89) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351473xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351460xl.jpg",
@@ -1907,7 +1907,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 77.4 кв. м  на вул. Антона Грицая 12А) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 77.4 кв. м  на вул. Антона Грицая 12А) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-lyahova-ulitsa__300574159xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-lyahova-ulitsa__300574481xl.jpg",
@@ -1958,7 +1958,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 26.2 кв. м  на вул. Решетилівська 50/1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 26.2 кв. м  на вул. Решетилівська 50/1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-brailki-reshetilovskaya-marshala-biryuzova-ulitsa__335989290xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-brailki-reshetilovskaya-marshala-biryuzova-ulitsa__335989281xl.jpg",
@@ -2009,7 +2009,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 56.5 кв. м  на вул. Короленка 30) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 56.5 кв. м  на вул. Короленка 30) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085579xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085571xl.jpg",
@@ -2060,7 +2060,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 33.3 кв. м  на вул. Полюсна) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 33.3 кв. м  на вул. Полюсна) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386751xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386750xl.jpg",
@@ -2111,7 +2111,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 36 кв. м  на вул. Юрія Кондратюка) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 36 кв. м  на вул. Юрія Кондратюка) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-almaznyy-yuriya-kondratyuka-ulitsa__340167575xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-almaznyy-yuriya-kondratyuka-ulitsa__340167573xl.jpg",
@@ -2162,7 +2162,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 31 кв. м  на вул. Чайковського) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 31 кв. м  на вул. Чайковського) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-chaykovskogo-ulitsa__337644134xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-chaykovskogo-ulitsa__337644138xl.jpg",
@@ -2213,7 +2213,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 50.3 кв. м  на пров. Ламаний) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 50.3 кв. м  на пров. Ламаний) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__340235493xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__340235498xl.jpg",
@@ -2264,7 +2264,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 3к квартири 59.2 кв. м  на вул. Європейська 54) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 3к квартири 59.2 кв. м  на вул. Європейська 54) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-evropeyskaya-ulitsa__340310727xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-evropeyskaya-ulitsa__340310731xl.jpg",
@@ -2315,7 +2315,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 60.5 кв. м  на вул. Європейська) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2к квартири 60.5 кв. м  на вул. Європейська) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-evropeyskaya-ulitsa__340297873xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-evropeyskaya-ulitsa__340297875xl.jpg",
@@ -2366,7 +2366,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 39.5 кв. м  на вул. Маяковського) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1к квартири 39.5 кв. м  на вул. Маяковського) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-shevchenkovskiy-oktyabrskiy-mayakovskogo-ulitsa__340216972xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-shevchenkovskiy-oktyabrskiy-mayakovskogo-ulitsa__340216973xl.jpg",
@@ -2417,7 +2417,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Довгострокова оренда будинку від посередника бесідка на вул. Патлаївська) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Довгострокова оренда будинку від посередника бесідка на вул. Патлаївська) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-dom-poltava-vakulentsy-patlaivskaya-ulitsa__334155830xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-dom-poltava-vakulentsy-patlaivskaya-ulitsa__334155831xl.jpg",
@@ -2468,7 +2468,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Здається комерційне приміщення на вул. Чураївни 2В, площа 97.6 кв.м) у місті Полтава (Левада). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Здається комерційне приміщення на вул. Чураївни 2В, площа 97.6 кв.м) у місті Полтава (Левада). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-levada-churaivny-ulitsa__339243389xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-levada-churaivny-ulitsa__339243390xl.jpg",
@@ -2517,7 +2517,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Небесної Сотні 4А, приміщень - 1, поверх - 1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Небесної Сотні 4А, приміщень - 1, поверх - 1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-shuhevicha-romana-pereulok__337337925xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-shuhevicha-romana-pereulok__337337922xl.jpg",
@@ -2567,7 +2567,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Здається спеціальне приміщення на Ярослава Мудрого 22, площа 13.2 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Здається спеціальне приміщення на Ярослава Мудрого 22, площа 13.2 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-svetlogorskoe__333663524xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-svetlogorskoe__333663530xl.jpg"
@@ -2614,7 +2614,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Воздвиженська 32, приміщень -, поверх - 1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Воздвиженська 32, приміщень -, поверх - 1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-zenkov-lenina-ulitsa__333618278xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-zenkov-lenina-ulitsa__333618305xl.jpg",
@@ -2664,7 +2664,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2 поверхового будинку з гаражем і ділянкою на 6.5 сотки, 93.9 кв. м, 2 кімнати, на 1-а вул. Черепична) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2 поверхового будинку з гаражем і ділянкою на 6.5 сотки, 93.9 кв. м, 2 кімнати, на 1-а вул. Черепична) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-kievskiy-cherepichnaya-1-ya-ulitsa__336270989xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-kievskiy-cherepichnaya-1-ya-ulitsa__336270990xl.jpg",
@@ -2715,7 +2715,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. Охтирський шлях, 2 кімнати) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. Охтирський шлях, 2 кімнати) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-yujnyy-vokzal-ohtyrskiy-put-sakko-ulitsa__338343852xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-yujnyy-vokzal-ohtyrskiy-put-sakko-ulitsa__338343858xl.jpg",
@@ -2765,7 +2765,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з ділянкою на 10 соток, 167 кв. м, 3 кімнати, на вул. Прогресивна) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з ділянкою на 10 соток, 167 кв. м, 3 кімнати, на вул. Прогресивна) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-progressivnaya-ulitsa__340304952xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-progressivnaya-ulitsa__340304953xl.jpg",
@@ -2814,7 +2814,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2 поверхового будинку з балконом і ділянкою на 5 соток, 46 кв. м, 2 кімнати, на вул. Медова) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2 поверхового будинку з балконом і ділянкою на 5 соток, 46 кв. м, 2 кімнати, на вул. Медова) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-medovaya-ulitsa__340250331xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-medovaya-ulitsa__340250077xl.jpg",
@@ -2865,7 +2865,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з верандою і ділянкою на 9 соток, 130 кв. м, 3 кімнати, на вул. Космічна) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з верандою і ділянкою на 9 соток, 130 кв. м, 3 кімнати, на вул. Космічна) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-yar-kosmicheskaya-ulitsa__337255345xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-yar-kosmicheskaya-ulitsa__337255397xl.jpg",
@@ -2915,7 +2915,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з опаленням і ділянкою на 5 соток, 70.5 кв. м, 3 кімнати, на вул. Айвова) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з опаленням і ділянкою на 5 соток, 70.5 кв. м, 3 кімнати, на вул. Айвова) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-podolskiy-ayvovyy-ulitsa__339794942xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-podolskiy-ayvovyy-ulitsa__339794945xl.jpg",
@@ -2965,7 +2965,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з ділянкою на 6 соток, 56.4 кв. м, 2 кімнати, на вул. Кармелюка) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з ділянкою на 6 соток, 56.4 кв. м, 2 кімнати, на вул. Кармелюка) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-karmelyuka-ulitsa__339798279xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-karmelyuka-ulitsa__339798278xl.jpg",
@@ -3016,7 +3016,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. Залізна 28, 2 кімнати) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. Залізна 28, 2 кімнати) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-shevchenkovskiy-oktyabrskiy-jeleznaya-ulitsa__340134996xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-shevchenkovskiy-oktyabrskiy-jeleznaya-ulitsa__340134921xl.jpg",
@@ -3067,7 +3067,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з гаражем і ділянкою на 3 сотки, 76.5 кв. м, 4 кімнати, на вул. Різдвяна) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з гаражем і ділянкою на 3 сотки, 76.5 кв. м, 4 кімнати, на вул. Різдвяна) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-grl-rojdestvenskaya-ulitsa__339788504xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-grl-rojdestvenskaya-ulitsa__339788111xl.jpg",
@@ -3118,7 +3118,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. Пантелеймона Куліша 18, 3 кімнати) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. Пантелеймона Куліша 18, 3 кімнати) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-rybtsy__337968372xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-rybtsy__337968373xl.jpg",
@@ -3169,7 +3169,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з ділянкою на 6.5 сотки, 51.3 кв. м, 2 кімнати, на вул. Астрономічна) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з ділянкою на 6.5 сотки, 51.3 кв. м, 2 кімнати, на вул. Астрономічна) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-pavlenki-astronomicheskaya-ulitsa__339737477xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-pavlenki-astronomicheskaya-ulitsa__339653667xl.jpg",
@@ -3220,7 +3220,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. Степанюка Володимира, 2 кімнати) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. Степанюка Володимира, 2 кімнати) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-rybtsy-stepanyuka-vladimira-ulitsa__340025099xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-rybtsy-stepanyuka-vladimira-ulitsa__340025079xl.jpg",
@@ -3270,7 +3270,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з ділянкою на 6 соток, 60.4 кв. м, 4 кімнати, на вул. Спартака) у місті Полтава (Яківці). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 1 поверхового будинку з ділянкою на 6 соток, 60.4 кв. м, 4 кімнати, на вул. Спартака) у місті Полтава (Яківці). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-yakovtsy-spartaka-ulitsa__339624230xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-yakovtsy-spartaka-ulitsa__339624499xl.jpg",
@@ -3320,7 +3320,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2 поверхового будинку з верандою і ділянкою на 10 соток, 146.8 кв. м, 5 кімнат, на вул. Кагамлика) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж 2 поверхового будинку з верандою і ділянкою на 10 соток, 146.8 кв. м, 5 кімнат, на вул. Кагамлика) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-kagamlika-ulitsa__339663961xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-kagamlika-ulitsa__339601620xl.jpg",
@@ -3371,7 +3371,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. 8-го Березня, 2 кімнати) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж частини будинку на вул. 8-го Березня, 2 кімнати) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-ocheretyanka-8-go-marta-ulitsa__339592739xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-ocheretyanka-8-go-marta-ulitsa__339592744xl.jpg",
@@ -3421,7 +3421,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Здається спеціальне приміщення на Володимира В’язуна 76А, площа 654.14 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Здається спеціальне приміщення на Володимира В’язуна 76А, площа 654.14 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava__340255748xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava__340255701xl.jpg",
@@ -3472,7 +3472,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Соборності, приміщень -, поверх - 2) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Соборності, приміщень -, поверх - 2) у місті Полтава (Центр). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-sobornosti-oktyabrskaya-ulitsa__340299174xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-sobornosti-oktyabrskaya-ulitsa__340299177xl.jpg",
@@ -3523,7 +3523,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Небесної Сотні 4А, приміщень -, поверх - 1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Небесної Сотні 4А, приміщень -, поверх - 1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-nebesnoy-sotni-ulitsa__340146442xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-nebesnoy-sotni-ulitsa__340146443xl.jpg",
@@ -3574,7 +3574,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Здається комерційне приміщення на вул. Сковороди, площа 23.6 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Здається комерційне приміщення на вул. Сковороди, площа 23.6 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-stadion-vorskla-skovorody-ulitsa__340026370xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-stadion-vorskla-skovorody-ulitsa__340026369xl.jpg",
@@ -3623,7 +3623,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Загородня 30, приміщень -, поверх - 2) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Загородня 30, приміщень -, поверх - 2) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-zagorodnaya-ulitsa__333609250xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-zagorodnaya-ulitsa__333609295xl.jpg",
@@ -3673,7 +3673,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на пров. Лікаря Мальцева 11А, приміщень -, поверх - 1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на пров. Лікаря Мальцева 11А, приміщень -, поверх - 1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333609605xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333609642xl.jpg",
@@ -3723,7 +3723,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Володимира Івасюка 3, приміщень -, поверх - 1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Володимира Івасюка 3, приміщень -, поверх - 1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-golovko-ulitsa__333609619xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-golovko-ulitsa__333609627xl.jpg",
@@ -3773,7 +3773,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Здається спеціальне приміщення на вул. Чорновола Вячеслава 23, площа 184.2 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Здається спеціальне приміщення на вул. Чорновола Вячеслава 23, площа 184.2 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava-chernovola-vyacheslava-ulitsa__339854895xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava-chernovola-vyacheslava-ulitsa__339854856xl.jpg",
@@ -3823,7 +3823,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. 1100-річчя Полтави 2, приміщень -, поверх - 1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. 1100-річчя Полтави 2, приміщень -, поверх - 1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-1100-letiya-poltavy-ulitsa__333625227xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-1100-letiya-poltavy-ulitsa__333625244xl.jpg",
@@ -3873,7 +3873,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Юліана Матвійчука 43, приміщень -, поверх - 1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на вул. Юліана Матвійчука 43, приміщень -, поверх - 1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-pushkina-ulitsa__333623965xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-pushkina-ulitsa__333623983xl.jpg",
@@ -3923,7 +3923,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на Семена Антонця 42/8, приміщень -, поверх - 1) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Оренда офісного приміщення на Семена Антонця 42/8, приміщень -, поверх - 1) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava__339697790xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava__339697806xl.jpg",
@@ -3973,7 +3973,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на оренду об'єкт нерухомості (Здається комерційне приміщення на вул. Олександра Оксанченка 18/28, площа 46.7 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на оренду об'єкт нерухомості (Здається комерційне приміщення на вул. Олександра Оксанченка 18/28, площа 46.7 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__339541145xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__339541147xl.jpg",
@@ -4024,7 +4024,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж спеціального приміщення на вул. Великотирнівська 52/89, площа 148.7 кв.м) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж спеціального приміщення на вул. Великотирнівська 52/89, площа 148.7 кв.м) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-spetsialnoe-pomeschenie-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351473xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-spetsialnoe-pomeschenie-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351423xl.jpg",
@@ -4075,7 +4075,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж спеціального приміщення на вул. Великотирнівська 52/89, площа 140.48 кв.м) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж спеціального приміщення на вул. Великотирнівська 52/89, площа 140.48 кв.м) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-spetsialnoe-pomeschenie-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351473xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-spetsialnoe-pomeschenie-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351423xl.jpg",
@@ -4126,7 +4126,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж спеціального приміщення на вул. Великотирнівська 52/89, площа 157.9 кв.м) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж спеціального приміщення на вул. Великотирнівська 52/89, площа 157.9 кв.м) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-spetsialnoe-pomeschenie-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351473xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-spetsialnoe-pomeschenie-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351423xl.jpg",
@@ -4176,7 +4176,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж комерційного приміщення на пров. Великий, площа 25 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж комерційного приміщення на пров. Великий, площа 25 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737331xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737334xl.jpg",
@@ -4226,7 +4226,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж офісного приміщення 25 кв.м. на 1 поверсі на пров. Великий, п`ятиповерхова будівля) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж офісного приміщення 25 кв.м. на 1 поверсі на пров. Великий, п`ятиповерхова будівля) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-kievskiy-velikiy-pereulok__339687315xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-kievskiy-velikiy-pereulok__339687312xl.jpg",
@@ -4277,7 +4277,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж комерційного приміщення на вул. Юліана Матвійчука, площа 37 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж комерційного приміщення на вул. Юліана Матвійчука, площа 37 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-tsentr-yuliana-matviychuka-pushkina-ulitsa__339355325xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-tsentr-yuliana-matviychuka-pushkina-ulitsa__339355301xl.jpg",
@@ -4327,7 +4327,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж офісного приміщення 38 кв.м. на 1 поверсі на вул. Шевченка, двоповерхова будівля) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж офісного приміщення 38 кв.м. на 1 поверсі на вул. Шевченка, двоповерхова будівля) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-shevchenko-ulitsa__338569103xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-shevchenko-ulitsa__338569105xl.jpg",
@@ -4378,7 +4378,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж комерційного приміщення на вул. Маяковського, площа 77 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж комерційного приміщення на вул. Маяковського, площа 77 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-mayakovskogo-ulitsa__337422618xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-mayakovskogo-ulitsa__337422619xl.jpg",
@@ -4429,7 +4429,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": true,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж комерційного приміщення на вул. Леоніда Каденюка 11, площа 829.8 кв.м) у місті Полтава (Полтава). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж комерційного приміщення на вул. Леоніда Каденюка 11, площа 829.8 кв.м) у місті Полтава. Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-leonida-kadenyuka-seregina-ulitsa__327540414xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-leonida-kadenyuka-seregina-ulitsa__327540812xl.jpg",
@@ -4480,7 +4480,7 @@ export const PROPERTIES_DATA = [
     ],
     "isExclusive": false,
     "isVerified": true,
-    "description": "Пропонується на продаж об'єкт нерухомості (Продаж спеціального приміщення на вул. Великотирнівська 52/89, площа 159.15 кв.м) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід від ТОВ «НОВЕКС ІНВЕСТ».",
+    "description": "Пропонується на продаж об'єкт нерухомості (Продаж спеціального приміщення на вул. Великотирнівська 52/89, площа 159.15 кв.м) у місті Полтава (Половки). Зручне розташування, чисті документи, повний юридичний супровід",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-spetsialnoe-pomeschenie-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351473xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-spetsialnoe-pomeschenie-poltava-kievskiy-velikotyrnovskaya-ulitsa__334351423xl.jpg",

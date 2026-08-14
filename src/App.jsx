@@ -27,12 +27,12 @@ export function App() {
   const [catalogViewMode, setCatalogViewMode] = useState('split');
   const [filters, setFilters] = useState({
     type: 'all',
-    transaction: 'all',
+    transaction: 'rent',
     district: 'all',
     rooms: 'all',
     priceMin: '',
     priceMax: '',
-    currency: 'USD',
+    currency: 'UAH',
     areaMin: '',
     areaMax: '',
     isEoselyaOnly: false
