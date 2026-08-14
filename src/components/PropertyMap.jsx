@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
@@ -14,6 +14,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
   const radiusBorderRef = useRef(null);
   const clusterGroupRef = useRef(null);
   const markersRef = useRef({});
+  const debounceTimerRef = useRef(null);
   const [mapType, setMapType] = useState('roadmap'); // 'roadmap' | 'satellite'
 
   // Helper to generate circular polygon points around a center
@@ -92,14 +93,23 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     }
 
     return () => {
-      // Map cleanup if needed
+      // Map cleanup
     };
   }, []);
 
-  // Update Markers with Smooth High-Performance Clustering
-  useEffect(() => {
+  // Render markers strictly within the active viewport bounds (dynamic on-demand rendering)
+  const renderViewportMarkers = useCallback(() => {
     if (!mapInstanceRef.current) return;
     const map = mapInstanceRef.current;
+
+    // Viewport bounding box with a 15% buffer margin
+    const visibleBounds = map.getBounds().pad(0.15);
+
+    // Filter only properties currently inside the visible screen rectangle
+    const visibleProps = properties.filter((p) => {
+      if (!p.lat || !p.lng) return false;
+      return visibleBounds.contains([p.lat, p.lng]);
+    });
 
     // Remove previous cluster group
     if (clusterGroupRef.current) {
@@ -107,15 +117,15 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     }
     markersRef.current = {};
 
-    // Create a new high-performance cluster group
+    // Create high-performance cluster group
     const clusterGroup = L.markerClusterGroup({
       maxClusterRadius: (zoom) => (zoom <= 11 ? 80 : zoom <= 13 ? 55 : zoom <= 14 ? 40 : 25),
       spiderfyOnMaxZoom: true,
       showCoverageOnHover: false,
       zoomToBoundsOnClick: true,
-      disableClusteringAtZoom: 16, // At zoom 16+ (street level), unpack all into individual price tags
+      disableClusteringAtZoom: 16,
       animateAddingMarkers: false,
-      chunkedLoading: true, // Smooth loading for 1,000+ items without UI stutter
+      chunkedLoading: true,
       iconCreateFunction: function (cluster) {
         const count = cluster.getChildCount();
         let size = 42;
@@ -142,13 +152,8 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
       }
     });
 
-    const bounds = [];
-
-    // Add Google-styled price badge markers to cluster group
-    properties.forEach((prop) => {
-      if (!prop.lat || !prop.lng) return;
-
-      // Clean, neat price text without "/міс"
+    // Add only visible markers to cluster
+    visibleProps.forEach((prop) => {
       let priceText = '';
       if (currency === 'USD') {
         if (prop.priceUSD >= 10000) {
@@ -220,28 +225,61 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
 
       clusterGroup.addLayer(marker);
       markersRef.current[prop.id] = marker;
-      bounds.push([prop.lat, prop.lng]);
     });
 
     map.addLayer(clusterGroup);
     clusterGroupRef.current = clusterGroup;
 
-    if (bounds.length > 0 && !selectedPropertyId) {
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 13 });
-    }
+  }, [properties, currency, selectedPropertyId, onSelectProperty]);
 
-  }, [properties, currency]);
+  // Debounced listener on map move / zoom
+  useEffect(() => {
+    if (!mapInstanceRef.current) return;
+    const map = mapInstanceRef.current;
+
+    const handleMapMovement = () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+      debounceTimerRef.current = setTimeout(() => {
+        renderViewportMarkers();
+      }, 60);
+    };
+
+    // Initial render
+    renderViewportMarkers();
+
+    // Attach listeners
+    map.on('moveend', handleMapMovement);
+    map.on('zoomend', handleMapMovement);
+
+    return () => {
+      map.off('moveend', handleMapMovement);
+      map.off('zoomend', handleMapMovement);
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [renderViewportMarkers]);
 
   // Pan to selected marker (auto-zooms through clusters if marker is clustered)
   useEffect(() => {
-    if (!selectedPropertyId || !mapInstanceRef.current || !clusterGroupRef.current) return;
-    const targetMarker = markersRef.current[selectedPropertyId];
-    if (targetMarker) {
-      clusterGroupRef.current.zoomToShowLayer(targetMarker, () => {
-        targetMarker.openPopup();
-      });
+    if (!selectedPropertyId || !mapInstanceRef.current) return;
+    const map = mapInstanceRef.current;
+
+    // Find the property object
+    const targetProp = properties.find(p => p.id === selectedPropertyId);
+    if (targetProp && targetProp.lat && targetProp.lng) {
+      map.setView([targetProp.lat, targetProp.lng], 16, { animate: true });
+      setTimeout(() => {
+        renderViewportMarkers();
+        const marker = markersRef.current[selectedPropertyId];
+        if (marker) {
+          marker.openPopup();
+        }
+      }, 250);
     }
-  }, [selectedPropertyId]);
+  }, [selectedPropertyId, properties, renderViewportMarkers]);
 
   // Switch between Google Roadmap & Google Satellite
   const toggleMapLayer = (type) => {
