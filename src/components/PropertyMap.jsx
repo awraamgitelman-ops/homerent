@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import { formatCurrency } from '../utils/formatters';
-import { Layers, Map as MapIcon, ExternalLink } from 'lucide-react';
+import { Layers, Map as MapIcon } from 'lucide-react';
 
 export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', selectedPropertyId }) => {
   const mapContainerRef = useRef(null);
@@ -45,27 +45,20 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     properties.forEach((prop) => {
       if (!prop.lat || !prop.lng) return;
 
-      // Smart Price Text on Pin
+      // Clean, neat price text without "/міс"
       let priceText = '';
       if (currency === 'USD') {
         if (prop.priceUSD >= 10000) {
           priceText = `$ ${(prop.priceUSD / 1000).toFixed(0)} тис.`;
-        } else if (prop.transaction === 'daily') {
-          priceText = `$ ${prop.priceUSD}/доб.`;
-        } else if (prop.transaction === 'rent') {
-          priceText = `$ ${prop.priceUSD}/міс`;
         } else {
-          priceText = `$ ${prop.priceUSD}`;
+          priceText = `$ ${prop.priceUSD.toLocaleString('uk-UA')}`;
         }
       } else {
-        if (prop.priceUAH >= 100000) {
-          priceText = `${(prop.priceUAH / 1000).toFixed(0)} тис. грн`;
-        } else if (prop.transaction === 'daily') {
-          priceText = `${prop.priceUAH} грн/доб.`;
-        } else if (prop.transaction === 'rent') {
-          priceText = `${prop.priceUAH.toLocaleString('uk-UA')} грн/міс`;
+        if (prop.priceUAH >= 1000000) {
+          const mln = (prop.priceUAH / 1000000).toFixed(2).replace(/\.?0+$/, '');
+          priceText = `${mln} млн грн`;
         } else {
-          priceText = `${prop.priceUAH} грн`;
+          priceText = `${prop.priceUAH.toLocaleString('uk-UA')} грн`;
         }
       }
 
@@ -75,11 +68,11 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         className: 'custom-map-price-marker',
         html: `
           <div class="google-map-price-badge ${isSelected ? 'selected' : ''} ${prop.type === 'house' ? 'house-badge' : ''} ${prop.transaction === 'rent' ? 'rent-badge' : ''}">
-            <span class="price-val">${priceText}</span>
+            <span>${priceText}</span>
           </div>
         `,
-        iconSize: [92, 34],
-        iconAnchor: [46, 17]
+        iconSize: [0, 0],
+        iconAnchor: [0, 0]
       });
 
       const marker = L.marker([prop.lat, prop.lng], { icon: customIcon }).addTo(map);
@@ -99,7 +92,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
             📍 ${prop.address}
           </div>
           <div style="display: flex; gap: 6px;">
-            <button id="map-prop-btn-${prop.id}" style="flex: 1; padding: 7px 10px; background: #1e3a8a; color: white; border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer;">
+            <button id="map-prop-btn-${prop.id}" style="flex: 1; padding: 7px 10px; background: #b91c1c; color: white; border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer;">
               Деталі →
             </button>
             <a href="${googleMapsDirectUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; padding: 7px 10px; background: #f1f5f9; color: #1e293b; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none;" title="Відкрити в Google Maps">
@@ -207,7 +200,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           display: flex;
           background: #ffffff;
           border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
           overflow: hidden;
           border: 1px solid rgba(0, 0, 0, 0.1);
         }
@@ -216,8 +209,8 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           display: flex;
           align-items: center;
           gap: 6px;
-          padding: 8px 12px;
-          font-size: 0.78rem;
+          padding: 8px 14px;
+          font-size: 0.8rem;
           font-weight: 700;
           color: #475569;
           background: #ffffff;
@@ -234,41 +227,49 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           color: #ffffff;
         }
 
+        /* Marker Container */
         .custom-map-price-marker {
-          background: transparent;
-          border: none;
+          background: transparent !important;
+          border: none !important;
+          width: 0 !important;
+          height: 0 !important;
         }
 
+        /* Price Badge styling - neatly and beautifully contained */
         .google-map-price-badge {
-          background: #1e3a8a;
-          color: #ffffff;
-          font-weight: 800;
-          font-size: 0.8rem;
-          padding: 6px 10px;
-          border-radius: 20px;
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.32);
-          text-align: center;
-          white-space: nowrap;
-          border: 2px solid #ffffff;
-          transition: transform 0.15s ease, background-color 0.15s ease;
-          display: flex;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
-        }
-
-        .google-map-price-badge:hover, .google-map-price-badge.selected {
-          background: #dc2626;
-          transform: scale(1.14);
-          z-index: 1000;
-          box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
-        }
-
-        .google-map-price-badge.house-badge {
-          background: #059669;
+          white-space: nowrap;
+          padding: 6px 12px;
+          font-size: 0.78rem;
+          font-weight: 800;
+          color: #ffffff;
+          background: #1e3a8a;
+          border-radius: 20px;
+          box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+          border: 2px solid #ffffff;
+          transform: translate(-50%, -50%);
+          cursor: pointer;
+          user-select: none;
+          line-height: 1;
+          letter-spacing: 0.3px;
+          transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
         }
 
         .google-map-price-badge.rent-badge {
-          background: #7c3aed;
+          background: #6d28d9; /* Rich purple */
+        }
+
+        .google-map-price-badge.house-badge {
+          background: #059669; /* Emerald green */
+        }
+
+        .google-map-price-badge:hover, .google-map-price-badge.selected {
+          background: #dc2626 !important;
+          transform: translate(-50%, -50%) scale(1.14);
+          z-index: 1000;
+          box-shadow: 0 6px 20px rgba(220, 38, 38, 0.55);
         }
       `}</style>
     </div>
