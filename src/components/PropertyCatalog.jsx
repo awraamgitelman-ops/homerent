@@ -141,6 +141,18 @@ export const PropertyCatalog = ({
     });
   }, [properties, activeTransaction, selectedCategory, selectedDistrict, subFilter, sortBy, currency, priceMin, priceMax]);
 
+  // Fallback recommendations when filtered results are 0
+  const recommendedProperties = useMemo(() => {
+    if (filteredProperties.length > 0) return [];
+    // 1. Try same transaction + same category
+    let recs = properties.filter(p => p.transaction === activeTransaction && p.type === selectedCategory);
+    // 2. If fewer than 4, take from same transaction
+    if (recs.length < 4) {
+      recs = properties.filter(p => p.transaction === activeTransaction);
+    }
+    return recs.slice(0, 6);
+  }, [filteredProperties.length, properties, activeTransaction, selectedCategory]);
+
   // Section title formatter
   const getSectionTitle = () => {
     const action = activeTransaction === 'rent' ? 'Оренда' : 'Продаж';
@@ -518,16 +530,44 @@ export const PropertyCatalog = ({
 
         {/* 5. Main Display Layout (Cards / Split Map) */}
         {filteredProperties.length === 0 ? (
-          <div className="catalog-empty-state">
-            <Building size={48} className="text-muted mb-3" />
-            <h3>За вашими критеріями об'єктів не знайдено</h3>
-            <p>Спробуйте обрати інший підфільтр або очистити діапазон цін.</p>
-            <button 
-              onClick={handleResetFilters} 
-              className="btn btn-sm btn-primary mt-3"
-            >
-              Скинути фільтри
-            </button>
+          <div className="catalog-empty-wrapper">
+            <div className="catalog-empty-state">
+              <div className="ces-icon-circle">
+                <Building size={32} className="text-muted" />
+              </div>
+              <h3 className="ces-title">За вашими параметрами точних збігів не знайдено</h3>
+              <p className="ces-desc">
+                Спробуйте розширити діапазон цін або обрати інший підфільтр. Нижче ми підібрали для вас найпопулярніші актуальні варіанти у Полтаві:
+              </p>
+              <button 
+                onClick={handleResetFilters} 
+                className="btn btn-sm btn-primary ces-reset-btn"
+              >
+                <RotateCcw size={14} />
+                <span>Скинути фільтри пошуку</span>
+              </button>
+            </div>
+
+            {/* Recommendations Block */}
+            {recommendedProperties.length > 0 && (
+              <div className="catalog-recommended-block">
+                <div className="crb-header">
+                  <span className="crb-badge">Рекомендовані варіанти</span>
+                  <h3 className="crb-title">Можливо, вам також підійдуть ці об'єкти у Полтаві:</h3>
+                </div>
+                <div className="properties-grid-box full-grid">
+                  {recommendedProperties.map((prop) => (
+                    <PropertyCard
+                      key={prop.id}
+                      property={prop}
+                      currency={currency}
+                      onSelect={onSelectProperty}
+                      onBookViewing={onBookViewing}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <div className={`catalog-layout-container mode-${viewMode}`}>
@@ -938,19 +978,84 @@ export const PropertyCatalog = ({
           box-shadow: var(--shadow-md);
         }
 
-        .full-map {
-          height: 750px;
-          border-radius: var(--radius-lg);
-          overflow: hidden;
-          box-shadow: var(--shadow-md);
+        .catalog-empty-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 36px;
         }
 
         .catalog-empty-state {
           text-align: center;
-          padding: 60px 20px;
+          padding: 48px 24px;
           background: #ffffff;
           border-radius: var(--radius-lg);
-          border: 1px dashed var(--c-border);
+          border: 1.5px dashed var(--c-border);
+          box-shadow: var(--shadow-sm);
+          max-width: 680px;
+          margin: 0 auto;
+        }
+
+        .ces-icon-circle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background: #f1f5f9;
+          margin-bottom: 16px;
+        }
+
+        .ces-title {
+          font-size: 1.2rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 8px;
+        }
+
+        .ces-desc {
+          font-size: 0.9rem;
+          color: #64748b;
+          max-width: 520px;
+          margin: 0 auto 20px;
+          line-height: 1.5;
+        }
+
+        .ces-reset-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .catalog-recommended-block {
+          background: #ffffff;
+          padding: 32px 24px;
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--c-border);
+          box-shadow: var(--shadow-sm);
+        }
+
+        .crb-header {
+          margin-bottom: 24px;
+        }
+
+        .crb-badge {
+          display: inline-block;
+          font-size: 0.76rem;
+          font-weight: 800;
+          color: #2563eb;
+          background: #eff6ff;
+          padding: 4px 12px;
+          border-radius: var(--radius-full);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 8px;
+        }
+
+        .crb-title {
+          font-size: 1.3rem;
+          font-weight: 900;
+          color: #0f172a;
         }
 
         @media (max-width: 1024px) {
