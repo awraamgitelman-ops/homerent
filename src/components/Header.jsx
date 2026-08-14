@@ -52,13 +52,13 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           <div className="ref-logo" onClick={() => navigate('#/')}>
             <img 
               src="/logo-transparent-filleted.png" 
-              alt="НОВЕКС ІНВЕСТ Логотип" 
+              alt="НОВА ОСЕЛЯ Логотип" 
               className="ref-brand-logo-img" 
             />
             <div className="ref-logo-text">
-              <span className="ref-logo-title">НОВЕКС</span>
-              <span className="ref-logo-sub">ІНВЕСТ ПОЛТАВА</span>
-              <span className="ref-logo-tag">АКТИВИ • РІСТ • КАПІТАЛ</span>
+              <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
+              <span className="ref-logo-sub">АГЕНТСТВО НЕРУХОМОСТІ</span>
+              <span className="ref-logo-tag">ПОЛТАВА • ЗАТИШОК • БЕЗПЕКА</span>
             </div>
           </div>
 
@@ -151,12 +151,12 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
                 <img 
                   src="/logo-transparent-filleted.png" 
-                  alt="НОВЕКС ІНВЕСТ" 
+                  alt="НОВА ОСЕЛЯ" 
                   className="ref-brand-logo-img" 
                 />
                 <div className="ref-logo-text">
-                  <span className="ref-logo-title">НОВЕКС</span>
-                  <span className="ref-logo-sub">ІНВЕСТ</span>
+                  <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
+                  <span className="ref-logo-sub">ПОЛТАВА</span>
                 </div>
               </div>
 

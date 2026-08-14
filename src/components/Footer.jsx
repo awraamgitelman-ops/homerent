@@ -162,17 +162,17 @@ export const Footer = ({ onOpenConsultModal }) => {
             <div className="nx-brand-header" onClick={() => navigate('#/')}>
               <img 
                 src="/logo-squircle-200.png" 
-                alt="НОВЕКС ІНВЕСТ" 
+                alt="НОВА ОСЕЛЯ" 
                 className="nx-brand-logo-img" 
               />
               <div>
-                <span className="nx-brand-title">НОВЕКС ІНВЕСТ</span>
+                <span className="nx-brand-title">НОВА ОСЕЛЯ</span>
                 <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
               </div>
             </div>
 
             <p className="nx-brand-text">
-              Офіційне підприємство у сфері нерухомості Полтави. Повна юридична перевірка кожного об'єкта, прозорі договори та безпечний супровід угод.
+              Офіційне агентство нерухомості Полтави. Повна юридична перевірка кожного об'єкта, прозорі договори та безпечний супровід угод.
             </p>
 
             <div className="nx-legal-subtle">
