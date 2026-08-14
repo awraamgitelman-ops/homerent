@@ -325,7 +325,7 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
       <style>{`
         .hero-search-section {
           position: relative;
-          background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a8a 100%);
+          background: linear-gradient(135deg, #3b0764 0%, #581c87 30%, #6d28d9 70%, #7c3aed 100%);
           color: #ffffff;
           padding: 48px 0 56px;
           overflow: hidden;
