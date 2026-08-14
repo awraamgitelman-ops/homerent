@@ -39,6 +39,15 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           alt={property.title}
           className="pc-img"
           loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = property.type === 'house' 
+              ? 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80'
+              : property.type === 'commercial'
+              ? 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'
+              : 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80';
+          }}
         />
 
         {/* Badges Overlay */}

@@ -106,9 +106,18 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           <div className="pm-gallery-section">
             <div className="pm-main-photo-box">
               <img 
-                src={property.images[activePhotoIdx]} 
+                src={property.images[activePhotoIdx] || property.images[0]} 
                 alt={property.title} 
                 className="pm-main-img" 
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = property.type === 'house' 
+                    ? 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80'
+                    : property.type === 'commercial'
+                    ? 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'
+                    : 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80';
+                }}
               />
             </div>
 
@@ -120,7 +129,16 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
                     className={`pm-thumb-item ${idx === activePhotoIdx ? 'active' : ''}`}
                     onClick={() => setActivePhotoIdx(idx)}
                   >
-                    <img src={img} alt="" className="pm-thumb-img" />
+                    <img 
+                      src={img} 
+                      alt="" 
+                      className="pm-thumb-img" 
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=200&q=80';
+                      }}
+                    />
                   </div>
                 ))}
               </div>

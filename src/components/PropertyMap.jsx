@@ -129,11 +129,15 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
 
       const marker = L.marker([prop.lat, prop.lng], { icon: customIcon }).addTo(map);
 
-      const googleMapsDirectUrl = `https://www.google.com/maps/search/?api=1&query=${prop.lat},${prop.lng}`;
+      const fallbackImg = prop.type === 'house' 
+        ? 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=400&q=80'
+        : prop.type === 'commercial'
+        ? 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80'
+        : 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400&q=80';
 
       const popupHtml = `
         <div style="font-family: 'Plus Jakarta Sans', sans-serif; width: 230px; padding: 4px;">
-          <img src="${prop.images[0]}" style="width: 100%; height: 115px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" />
+          <img src="${prop.images[0]}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${fallbackImg}'" style="width: 100%; height: 115px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" />
           <div style="font-weight: 900; font-size: 1.15rem; color: #1e3a8a; margin-bottom: 2px;">
             ${currency === 'USD' ? formatCurrency(prop.priceUSD, 'USD') : formatCurrency(prop.priceUAH, 'UAH')}
           </div>
