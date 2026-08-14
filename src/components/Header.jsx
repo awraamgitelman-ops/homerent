@@ -8,7 +8,10 @@ import {
   MapPin, 
   Phone,
   ShieldCheck,
-  Building2
+  Building2,
+  Plus,
+  Heart,
+  User
 } from 'lucide-react';
 
 export const Header = ({ onOpenMap, onOpenSellModal }) => {
@@ -47,64 +50,114 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
   return (
     <>
       <header className="ref-site-header">
-        <div className="container ref-header-inner">
-          {/* 1. Left: Brand Logo */}
-          <div className="ref-logo" onClick={() => navigate('#/')}>
-            <div className="ref-logo-top">
-              <img 
-                src="/logo-transparent-filleted.png" 
-                alt="НОВА ОСЕЛЯ" 
-                className="ref-brand-logo-img" 
-              />
-              <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
+        <div className="ref-header-inner-fluid">
+          {/* Left Block: Logo + Navigation Links */}
+          <div className="ref-header-left-group">
+            {/* 1. Brand Logo */}
+            <div className="ref-logo" onClick={() => navigate('#/')}>
+              <div className="ref-logo-top">
+                <img 
+                  src="/logo-transparent-filleted.png" 
+                  alt="НОВА ОСЕЛЯ" 
+                  className="ref-brand-logo-img" 
+                />
+                <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
+              </div>
+              <div className="ref-logo-sub" aria-label="АГЕНТСТВО НЕРУХОМОСТІ">
+                {'АГЕНТСТВО НЕРУХОМОСТІ'.split('').map((char, index) => (
+                  <span key={index} className="sub-char">{char === ' ' ? '\u00A0\u00A0' : char}</span>
+                ))}
+              </div>
             </div>
-            <div className="ref-logo-sub" aria-label="АГЕНТСТВО НЕРУХОМОСТІ">
-              {'АГЕНТСТВО НЕРУХОМОСТІ'.split('').map((char, index) => (
-                <span key={index} className="sub-char">{char === ' ' ? '\u00A0\u00A0' : char}</span>
-              ))}
-            </div>
+
+            {/* 2. Navigation Links (Adjacent to Logo) */}
+            <nav className="ref-desktop-nav">
+              <button 
+                type="button"
+                className={`ref-nav-link ${currentPath.includes('/catalog') ? 'active' : ''}`}
+                onClick={() => navigate('#/catalog')}
+              >
+                Продаж
+              </button>
+              <button 
+                type="button"
+                className={`ref-nav-link ${currentPath.includes('/catalog') ? 'active' : ''}`}
+                onClick={() => navigate('#/catalog')}
+              >
+                Оренда
+              </button>
+              <button 
+                type="button"
+                className={`ref-nav-link ${currentPath.includes('/map') ? 'active' : ''}`}
+                onClick={handlePickPropertyClick}
+              >
+                Новобудови
+              </button>
+              <button 
+                type="button"
+                className={`ref-nav-link ${currentPath.includes('/services') ? 'active' : ''}`}
+                onClick={() => navigate('#/services')}
+              >
+                Послуги
+              </button>
+              <button 
+                type="button"
+                className={`ref-nav-link ${currentPath.includes('/about') ? 'active' : ''}`}
+                onClick={() => navigate('#/about')}
+              >
+                Відгуки
+              </button>
+              <button 
+                type="button"
+                className={`ref-nav-link ${currentPath.includes('/contacts') ? 'active' : ''}`}
+                onClick={() => navigate('#/contacts')}
+              >
+                Контакти
+              </button>
+            </nav>
           </div>
 
-          {/* 2. Center: Navigation Links */}
-          <nav className="ref-desktop-nav">
-            <button 
-              type="button"
-              className={`ref-nav-link text-highlight ${currentPath.includes('/map') ? 'active' : ''}`}
-              onClick={handlePickPropertyClick}
-            >
-              Підібрати нерухомість
-            </button>
-            <button 
-              type="button"
-              className={`ref-nav-link ${currentPath.includes('/services') ? 'active' : ''}`}
-              onClick={() => navigate('#/services')}
-            >
-              Послуги
-            </button>
-            <button 
-              type="button"
-              className={`ref-nav-link ${currentPath.includes('/about') ? 'active' : ''}`}
-              onClick={() => navigate('#/about')}
-            >
-              Відгуки
-            </button>
-            <button 
-              type="button"
-              className={`ref-nav-link ${currentPath.includes('/contacts') ? 'active' : ''}`}
-              onClick={() => navigate('#/contacts')}
-            >
-              Контакти
-            </button>
-          </nav>
-
-          {/* 3. Right: Phone, Messengers & Hamburger */}
+          {/* Right Block: Action Buttons, Phone, Messengers & Hamburger */}
           <div className="ref-header-right">
+            {/* + Додати оголошення Button */}
+            <button 
+              type="button"
+              className="ref-add-listing-btn"
+              onClick={() => (onOpenSellModal ? onOpenSellModal() : navigate('#/contacts'))}
+            >
+              <Plus size={16} strokeWidth={2.5} />
+              <span>Додати оголошення</span>
+            </button>
+
+            {/* Favorites Button */}
+            <button 
+              type="button"
+              className="ref-icon-btn"
+              title="Збережені об'єкти"
+              onClick={() => navigate('#/catalog')}
+              aria-label="Улюблені"
+            >
+              <Heart size={19} />
+            </button>
+
+            {/* User Profile Button */}
+            <button 
+              type="button"
+              className="ref-icon-btn"
+              title="Особистий кабінет / Консультація"
+              onClick={() => (onOpenSellModal ? onOpenSellModal() : navigate('#/contacts'))}
+              aria-label="Кабінет"
+            >
+              <User size={19} />
+            </button>
+
+            {/* Phone link */}
             <a href="tel:+380988612938" className="ref-phone-link">
               +380 (98) 861-29-38
             </a>
 
+            {/* Messengers */}
             <div className="ref-messengers-group">
-              {/* Viber Round Button */}
               <a
                 href="https://viber.click/380988612938"
                 onClick={handleViberClick}
@@ -113,12 +166,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 className="ref-circle-msg ref-vb"
                 title="Viber"
               >
-                <svg width="21" height="21" viewBox="0 0 24 24" fill="#ffffff">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
                   <path d="M19.5 3.5C17.3 1.3 14.3 0 11.2 0 5 0 0 5 0 11.2c0 2.2.6 4.3 1.8 6.1L.1 23.4c-.1.4.2.8.6.7l6.3-1.6c1.7 1 3.7 1.5 5.7 1.5 6.2 0 11.2-5 11.2-11.2 0-3.1-1.2-6.1-3.4-8.3zM12 20.3c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.5-1.6-3.3-1.6-5.1 0-5.1 4.2-9.3 9.3-9.3 2.5 0 4.8 1 6.6 2.7 1.8 1.8 2.7 4.1 2.7 6.6 0 5.1-4.2 9.3-9.3 9.3zm5.1-6.9c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4z"/>
                 </svg>
               </a>
 
-              {/* Telegram Round Button */}
               <a
                 href="https://t.me/novexinvest"
                 target="_blank"
@@ -126,7 +178,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 className="ref-circle-msg ref-tg"
                 title="Telegram"
               >
-                <svg width="21" height="21" viewBox="0 0 24 24" fill="#ffffff">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
                   <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.29c-.15.66-.54.82-1.09.51l-3.02-2.22-1.46 1.41c-.16.16-.3.3-.61.3l.22-3.08 5.6-5.06c.24-.22-.05-.34-.38-.13l-6.92 4.36-2.99-.93c-.65-.2-.66-.65.14-.96l11.68-4.5c.54-.2 1.01.12.87.91z"/>
                 </svg>
               </a>
@@ -139,7 +191,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               onClick={() => setIsSidebarOpen(true)}
               aria-label="Відкрити бічне меню"
             >
-              <Menu size={32} />
+              <Menu size={30} />
             </button>
           </div>
         </div>
@@ -325,14 +377,24 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           position: sticky;
           top: 0;
           z-index: 1000;
-          height: 94px;
+          height: 86px;
+          width: 100%;
         }
 
-        .ref-header-inner {
+        .ref-header-inner-fluid {
+          width: 100%;
+          padding: 0 32px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           height: 100%;
+          box-sizing: border-box;
+        }
+
+        .ref-header-left-group {
+          display: flex;
+          align-items: center;
+          gap: 36px;
         }
 
         /* Logo (Exact width-aligned lockup) */
@@ -342,6 +404,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           align-items: stretch;
           cursor: pointer;
           user-select: none;
+          flex-shrink: 0;
         }
 
         .ref-logo-top {
@@ -351,14 +414,14 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-brand-logo-img {
-          width: 46px;
-          height: 46px;
+          width: 44px;
+          height: 44px;
           object-fit: contain;
           flex-shrink: 0;
         }
 
         .ref-logo-title {
-          font-size: 2.15rem;
+          font-size: 2.05rem;
           font-weight: 900;
           color: #1e3a8a;
           letter-spacing: -0.2px;
@@ -371,7 +434,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           font-weight: 900;
           color: #0f172a;
           text-transform: uppercase;
@@ -383,49 +446,88 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           display: inline-block;
         }
 
-        /* Nav links */
+        /* Nav links (Adjacent to Logo) */
         .ref-desktop-nav {
-          display: flex;
-          align-items: center;
-          gap: 28px;
-        }
-
-        .ref-nav-link {
-          font-size: 1.06rem;
-          font-weight: 600;
-          color: #334155;
-          padding: 10px 6px;
-          transition: var(--transition);
-          position: relative;
-        }
-
-        .ref-nav-link:hover, .ref-nav-link.active {
-          color: #1e3a8a;
-        }
-
-        .ref-nav-link.text-highlight {
-          font-weight: 800;
-          color: #1e293b;
-          font-size: 1.1rem;
-        }
-
-        .ref-nav-link.text-highlight:hover {
-          color: #1e3a8a;
-        }
-
-        /* Header Right */
-        .ref-header-right {
           display: flex;
           align-items: center;
           gap: 20px;
         }
 
+        .ref-nav-link {
+          font-size: 1.02rem;
+          font-weight: 600;
+          color: #334155;
+          padding: 8px 6px;
+          transition: var(--transition);
+          position: relative;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+        }
+
+        .ref-nav-link:hover, .ref-nav-link.active {
+          color: #1e3a8a;
+          font-weight: 700;
+        }
+
+        /* Header Right Controls */
+        .ref-header-right {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .ref-add-listing-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          border: 1.5px solid #1e3a8a;
+          background: rgba(30, 58, 138, 0.05);
+          color: #1e3a8a;
+          border-radius: 9999px;
+          font-weight: 700;
+          font-size: 0.88rem;
+          padding: 8px 18px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+
+        .ref-add-listing-btn:hover {
+          background: #1e3a8a;
+          color: #ffffff;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 14px rgba(30, 58, 138, 0.25);
+        }
+
+        .ref-icon-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: #f8fafc;
+          color: #1e293b;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #e2e8f0;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .ref-icon-btn:hover {
+          background: #e0e7ff;
+          color: #1e3a8a;
+          border-color: #c7d2fe;
+          transform: scale(1.06);
+        }
+
         .ref-phone-link {
-          font-size: 1.22rem;
-          font-weight: 900;
+          font-size: 1.15rem;
+          font-weight: 800;
           color: #1e3a8a;
           white-space: nowrap;
           letter-spacing: -0.2px;
+          margin-left: 4px;
         }
 
         .ref-phone-link:hover {
@@ -435,12 +537,12 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-messengers-group {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
         }
 
         .ref-circle-msg {
-          width: 40px;
-          height: 40px;
+          width: 38px;
+          height: 38px;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -465,12 +567,14 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
 
         .ref-hamburger-btn {
           color: #1e293b;
-          padding: 8px;
+          padding: 6px;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           border-radius: 8px;
+          background: transparent;
+          border: none;
           transition: background 0.2s ease;
         }
 
@@ -518,6 +622,8 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           align-items: center;
           justify-content: center;
           color: #64748b;
+          border: none;
+          cursor: pointer;
         }
 
         .ref-sidebar-close-btn:hover {
@@ -546,6 +652,9 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           font-weight: 500;
           color: #475569;
           padding: 4px 0;
+          background: transparent;
+          border: none;
+          cursor: pointer;
           transition: color 0.2s;
         }
 
@@ -596,6 +705,9 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           text-align: left;
           font-size: 0.92rem;
           color: #64748b;
+          background: transparent;
+          border: none;
+          cursor: pointer;
         }
 
         .ref-sb-sublist button:hover {
@@ -629,24 +741,50 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           line-height: 1.45;
         }
 
+        @media (max-width: 1200px) {
+          .ref-phone-link {
+            display: none;
+          }
+        }
+
         @media (max-width: 1024px) {
           .ref-desktop-nav {
             display: none;
+          }
+          .ref-header-inner-fluid {
+            padding: 0 20px;
           }
         }
 
         @media (max-width: 640px) {
           .ref-site-header {
-            height: 64px;
+            height: 68px;
           }
-          .ref-phone-link {
-            display: none;
+          .ref-header-inner-fluid {
+            padding: 0 16px;
           }
           .ref-logo-title {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
           }
-          .ref-logo-tag {
+          .ref-brand-logo-img {
+            width: 32px;
+            height: 32px;
+          }
+          .ref-logo-sub {
+            font-size: 0.52rem;
+          }
+          .ref-icon-btn {
             display: none;
+          }
+          .ref-add-listing-btn span {
+            display: none;
+          }
+          .ref-add-listing-btn {
+            padding: 8px;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            justify-content: center;
           }
         }
       `}</style>
