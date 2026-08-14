@@ -1,40 +1,47 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import { formatCurrency } from '../utils/formatters';
+import { Layers, Map as MapIcon, ExternalLink } from 'lucide-react';
 
 export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', selectedPropertyId }) => {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
+  const tileLayerRef = useRef(null);
   const markersRef = useRef([]);
+  const [mapType, setMapType] = useState('roadmap'); // 'roadmap' | 'satellite'
 
+  // Initialize Map
   useEffect(() => {
     if (!mapContainerRef.current) return;
 
-    // Initialize Map if not already created
     if (!mapInstanceRef.current) {
       const map = L.map(mapContainerRef.current, {
-        center: [49.5883, 34.5514], // Center of Poltava
+        center: [49.5883, 34.5514], // Poltava center
         zoom: 13,
         zoomControl: true,
         scrollWheelZoom: false
       });
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      // Google Maps Roadmap tiles
+      const googleRoadmapUrl = 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}';
+      const tileLayer = L.tileLayer(googleRoadmapUrl, {
+        maxZoom: 20,
+        attribution: '&copy; Google Maps'
       }).addTo(map);
 
+      tileLayerRef.current = tileLayer;
       mapInstanceRef.current = map;
     }
 
     const map = mapInstanceRef.current;
 
-    // Clear old markers
+    // Clear previous markers
     markersRef.current.forEach(m => map.removeLayer(m));
     markersRef.current = [];
 
     const bounds = [];
 
-    // Add custom HTML price markers for each property
+    // Add Google-styled price badge markers
     properties.forEach((prop) => {
       if (!prop.lat || !prop.lng) return;
 
@@ -47,32 +54,38 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
       const customIcon = L.divIcon({
         className: 'custom-map-price-marker',
         html: `
-          <div class="map-price-badge ${isSelected ? 'selected' : ''} ${prop.type === 'house' ? 'house-badge' : ''}">
-            <span>${priceText}</span>
+          <div class="google-map-price-badge ${isSelected ? 'selected' : ''} ${prop.type === 'house' ? 'house-badge' : ''}">
+            <span class="price-val">${priceText}</span>
           </div>
         `,
-        iconSize: [80, 30],
-        iconAnchor: [40, 15]
+        iconSize: [84, 32],
+        iconAnchor: [42, 16]
       });
 
       const marker = L.marker([prop.lat, prop.lng], { icon: customIcon }).addTo(map);
 
-      // Popup with mini property preview
+      const googleMapsDirectUrl = `https://www.google.com/maps/search/?api=1&query=${prop.lat},${prop.lng}`;
+
       const popupHtml = `
-        <div style="font-family: 'Plus Jakarta Sans', sans-serif; width: 220px; padding: 2px;">
-          <img src="${prop.images[0]}" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px; margin-bottom: 6px;" />
-          <div style="font-weight: 800; font-size: 1.1rem; color: #1e3a8a; margin-bottom: 2px;">
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; width: 230px; padding: 4px;">
+          <img src="${prop.images[0]}" style="width: 100%; height: 115px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" />
+          <div style="font-weight: 900; font-size: 1.15rem; color: #1e3a8a; margin-bottom: 2px;">
             ${currency === 'USD' ? formatCurrency(prop.priceUSD, 'USD') : formatCurrency(prop.priceUAH, 'UAH')}
           </div>
-          <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a; margin-bottom: 4px; line-height: 1.2;">
+          <div style="font-size: 0.85rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; line-height: 1.25;">
             ${prop.title}
           </div>
-          <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 8px;">
-            ${prop.address}
+          <div style="font-size: 0.76rem; color: #64748b; margin-bottom: 10px;">
+            📍 ${prop.address}
           </div>
-          <button id="map-prop-btn-${prop.id}" style="width: 100%; padding: 6px; background: #1e3a8a; color: white; border: none; border-radius: 4px; font-weight: 700; font-size: 0.8rem; cursor: pointer;">
-            Відкрити об'єкт →
-          </button>
+          <div style="display: flex; gap: 6px;">
+            <button id="map-prop-btn-${prop.id}" style="flex: 1; padding: 7px 10px; background: #1e3a8a; color: white; border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer;">
+              Деталі →
+            </button>
+            <a href="${googleMapsDirectUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; padding: 7px 10px; background: #f1f5f9; color: #1e293b; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none;" title="Відкрити в Google Maps">
+              Google
+            </a>
+          </div>
         </div>
       `;
 
@@ -95,8 +108,47 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
 
   }, [properties, currency, selectedPropertyId]);
 
+  // Switch between Google Roadmap & Google Satellite
+  const toggleMapLayer = (type) => {
+    if (!mapInstanceRef.current || !tileLayerRef.current) return;
+    setMapType(type);
+
+    mapInstanceRef.current.removeLayer(tileLayerRef.current);
+
+    const tileUrl = type === 'satellite'
+      ? 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}' // Google Hybrid / Satellite
+      : 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}'; // Google Roadmap
+
+    const newLayer = L.tileLayer(tileUrl, {
+      maxZoom: 20,
+      attribution: '&copy; Google Maps'
+    }).addTo(mapInstanceRef.current);
+
+    tileLayerRef.current = newLayer;
+  };
+
   return (
     <div className="property-map-container-wrapper">
+      {/* Google Maps Layer Switcher */}
+      <div className="google-map-layer-controls">
+        <button
+          type="button"
+          className={`gmc-btn ${mapType === 'roadmap' ? 'active' : ''}`}
+          onClick={() => toggleMapLayer('roadmap')}
+        >
+          <MapIcon size={14} />
+          <span>Google Карта</span>
+        </button>
+        <button
+          type="button"
+          className={`gmc-btn ${mapType === 'satellite' ? 'active' : ''}`}
+          onClick={() => toggleMapLayer('satellite')}
+        >
+          <Layers size={14} />
+          <span>Супутник</span>
+        </button>
+      </div>
+
       <div ref={mapContainerRef} className="property-leaflet-map" />
 
       <style>{`
@@ -117,32 +169,70 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           min-height: 480px;
         }
 
+        .google-map-layer-controls {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          z-index: 1000;
+          display: flex;
+          background: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          overflow: hidden;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .gmc-btn {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 8px 12px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #475569;
+          background: #ffffff;
+          transition: var(--transition);
+        }
+
+        .gmc-btn:hover {
+          background: #f1f5f9;
+          color: var(--c-dark);
+        }
+
+        .gmc-btn.active {
+          background: var(--c-primary);
+          color: #ffffff;
+        }
+
         .custom-map-price-marker {
           background: transparent;
           border: none;
         }
 
-        .map-price-badge {
+        .google-map-price-badge {
           background: #1e3a8a;
           color: #ffffff;
           font-weight: 800;
-          font-size: 0.78rem;
+          font-size: 0.8rem;
           padding: 5px 10px;
           border-radius: 20px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
           text-align: center;
           white-space: nowrap;
           border: 2px solid #ffffff;
           transition: transform 0.15s ease, background-color 0.15s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
-        .map-price-badge:hover, .map-price-badge.selected {
+        .google-map-price-badge:hover, .google-map-price-badge.selected {
           background: #ef4444;
           transform: scale(1.12);
           z-index: 1000;
         }
 
-        .map-price-badge.house-badge {
+        .google-map-price-badge.house-badge {
           background: #059669;
         }
       `}</style>
