@@ -13,7 +13,9 @@ export const HomePage = ({
   onSelectProperty,
   onBookViewing,
   onSelectService,
-  onOpenConsultModal
+  onOpenConsultModal,
+  onOpenMap,
+  initialViewMode = 'split'
 }) => {
   return (
     <div className="home-page-wrapper">
@@ -30,6 +32,7 @@ export const HomePage = ({
         filters={filters}
         onSelectProperty={onSelectProperty}
         onBookViewing={onBookViewing}
+        initialViewMode={initialViewMode}
       />
 
       {/* 3. Agency Services */}

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   LayoutGrid, 
   Map as MapIcon, 
@@ -15,12 +15,19 @@ export const PropertyCatalog = ({
   properties, 
   filters, 
   onSelectProperty, 
-  onBookViewing 
+  onBookViewing,
+  initialViewMode = 'split'
 }) => {
-  const [viewMode, setViewMode] = useState('split'); // 'grid' | 'split' | 'map'
+  const [viewMode, setViewMode] = useState(initialViewMode); // 'grid' | 'split' | 'map'
   const [sortBy, setSortBy] = useState('default');
   const [currency, setCurrency] = useState(filters?.currency || 'USD');
   const [quickFilter, setQuickFilter] = useState('all');
+
+  useEffect(() => {
+    if (initialViewMode) {
+      setViewMode(initialViewMode);
+    }
+  }, [initialViewMode]);
 
   // Filter and Sort Logic
   const filteredProperties = useMemo(() => {
@@ -134,7 +141,7 @@ export const PropertyCatalog = ({
                 type="button"
                 className={`vmt-btn ${viewMode === 'map' ? 'active' : ''}`}
                 onClick={() => setViewMode('map')}
-                title="Тільки Карта Полтави"
+                title="Тільки Карта Google"
               >
                 <MapIcon size={16} />
               </button>
@@ -297,7 +304,7 @@ export const PropertyCatalog = ({
 
         .cct-btn.active {
           background: #ffffff;
-          color: var(--c-primary);
+          color: #b91c1c;
           box-shadow: var(--shadow-sm);
         }
 
@@ -340,7 +347,7 @@ export const PropertyCatalog = ({
 
         .vmt-btn.active {
           background: #ffffff;
-          color: var(--c-primary);
+          color: #b91c1c;
           box-shadow: var(--shadow-sm);
         }
 
@@ -367,14 +374,14 @@ export const PropertyCatalog = ({
         }
 
         .qfc-btn:hover {
-          border-color: var(--c-primary);
-          color: var(--c-primary);
+          border-color: #b91c1c;
+          color: #b91c1c;
         }
 
         .qfc-btn.active {
-          background: var(--c-primary);
+          background: #b91c1c;
           color: #ffffff;
-          border-color: var(--c-primary);
+          border-color: #b91c1c;
         }
 
         .qfc-btn.qfc-eoselya {
@@ -421,7 +428,7 @@ export const PropertyCatalog = ({
         }
 
         .catalog-layout-container.mode-map .full-map {
-          height: 700px;
+          height: 720px;
         }
 
         .catalog-empty-state {
@@ -449,9 +456,6 @@ export const PropertyCatalog = ({
         @media (max-width: 640px) {
           .catalog-title {
             font-size: 1.25rem;
-          }
-          .view-mode-toggle {
-            display: none;
           }
           .catalog-layout-container.mode-grid .full-grid {
             grid-template-columns: 1fr;

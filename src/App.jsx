@@ -23,6 +23,7 @@ export function App() {
   const [properties, setProperties] = useState(PROPERTIES_DATA);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
+  const [catalogViewMode, setCatalogViewMode] = useState('split');
   const [filters, setFilters] = useState({
     type: 'apartment',
     transaction: 'buy',
@@ -38,9 +39,26 @@ export function App() {
 
   const handleSearch = (newFilters) => {
     setFilters(newFilters);
-    // If not already on home or catalog, navigate to catalog
     if (!currentPath.includes('/catalog') && currentPath !== '#/') {
       navigate('#/catalog');
+    }
+  };
+
+  const handleOpenMap = () => {
+    setCatalogViewMode('map');
+    if (currentPath === '#/') {
+      const el = document.getElementById('catalog');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('#/catalog');
+      }
+    } else {
+      navigate('#/catalog');
+      setTimeout(() => {
+        const el = document.getElementById('catalog');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
   };
 
@@ -73,6 +91,7 @@ export function App() {
           onSelectProperty={handleSelectProperty}
           onBookViewing={handleBookViewing}
           onOpenConsultModal={handleOpenConsultModal}
+          initialViewMode={catalogViewMode}
         />
       );
     }
@@ -120,6 +139,8 @@ export function App() {
         onBookViewing={handleBookViewing}
         onSelectService={handleSelectService}
         onOpenConsultModal={handleOpenConsultModal}
+        onOpenMap={handleOpenMap}
+        initialViewMode={catalogViewMode}
       />
     );
   };
@@ -128,8 +149,8 @@ export function App() {
     <div className="app-container">
       {/* Site Header */}
       <Header
+        onOpenMap={handleOpenMap}
         onOpenSellModal={() => setIsSellModalOpen(true)}
-        onOpenSearchModal={() => navigate('#/catalog')}
       />
 
       {/* Main Routed Page */}

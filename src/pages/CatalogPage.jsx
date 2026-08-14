@@ -1,7 +1,6 @@
 import React from 'react';
 import { PropertyCatalog } from '../components/PropertyCatalog';
 import { HeroSearch } from '../components/HeroSearch';
-import { Building2 } from 'lucide-react';
 
 export const CatalogPage = ({
   properties,
@@ -9,7 +8,8 @@ export const CatalogPage = ({
   onSearch,
   onSelectProperty,
   onBookViewing,
-  onOpenConsultModal
+  onOpenConsultModal,
+  initialViewMode = 'split'
 }) => {
   return (
     <div className="catalog-page-wrapper">
@@ -36,6 +36,7 @@ export const CatalogPage = ({
         filters={filters}
         onSelectProperty={onSelectProperty}
         onBookViewing={onBookViewing}
+        initialViewMode={initialViewMode}
       />
 
       <style>{`

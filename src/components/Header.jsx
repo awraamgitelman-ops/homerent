@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Building, 
-  PlusCircle, 
-  Menu, 
   X, 
+  Menu, 
+  ChevronRight, 
   ChevronDown, 
-  Search,
+  MapPin, 
+  Phone,
   ShieldCheck,
-  Calculator,
-  Briefcase
+  Building2
 } from 'lucide-react';
 
-export const Header = ({ onOpenSellModal, onOpenSearchModal }) => {
+export const Header = ({ onOpenMap, onOpenSellModal }) => {
   const { currentPath, navigate } = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
 
-  // Close mobile drawer on route change
+  // Close sidebar on navigation change
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    setIsSidebarOpen(false);
   }, [currentPath]);
 
   const handleViberClick = (e) => {
@@ -43,461 +38,453 @@ export const Header = ({ onOpenSellModal, onOpenSearchModal }) => {
     }
   };
 
+  const handlePickPropertyClick = (e) => {
+    if (e) e.preventDefault();
+    setIsSidebarOpen(false);
+    if (onOpenMap) {
+      onOpenMap();
+    } else {
+      navigate('#/catalog');
+    }
+  };
+
   return (
-    <header className="site-header">
-      {/* Top Contact Bar */}
-      <div className="header-top">
-        <div className="container header-top-inner">
-          <div className="ht-left">
-            <a href="tel:+380988612938" className="ht-phone">
-              <Phone size={14} className="text-primary" />
-              <span>+380 (98) 861-29-38</span>
-            </a>
-
-            <div className="ht-messengers">
-              <a
-                href="https://t.me/rudmonolit"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ht-msg-btn msg-tg"
-                title="Написати у Telegram"
-              >
-                <span>Telegram</span>
-              </a>
-
-              <a
-                href="https://viber.click/380988612938"
-                onClick={handleViberClick}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ht-msg-btn msg-vb"
-                title="Написати у Viber"
-              >
-                <span>Viber</span>
-              </a>
-
-              <a
-                href="https://wa.me/380988612938"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ht-msg-btn msg-wa"
-                title="Написати у WhatsApp"
-              >
-                <span>WhatsApp</span>
-              </a>
+    <>
+      <header className="ref-site-header">
+        <div className="container ref-header-inner">
+          {/* 1. Left: Brand Logo (Exact screenshot styling) */}
+          <div className="ref-logo" onClick={() => navigate('#/')}>
+            <div className="ref-logo-mark">
+              <svg width="38" height="38" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 2L42 38H2L22 2Z" stroke="#b91c1c" strokeWidth="4" strokeLinejoin="round" />
+                <path d="M22 14L32 32H12L22 14Z" fill="#b91c1c" />
+              </svg>
+            </div>
+            <div className="ref-logo-text">
+              <span className="ref-logo-title">НОВЕКС</span>
+              <span className="ref-logo-sub">ІНВЕСТ ПОЛТАВА</span>
+              <span className="ref-logo-tag">АКТИВИ • РІСТ • КАПІТАЛ</span>
             </div>
           </div>
 
-          <div className="ht-right">
-            <div className="ht-item">
-              <MapPin size={13} className="text-primary" />
-              <span>м. Полтава, вул. Європейська, 2 (оф. 202)</span>
-            </div>
-            <div className="ht-item">
-              <Clock size={13} className="text-primary" />
-              <span>Пн–Нд: 09:00 — 20:00</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation Bar */}
-      <div className="header-main">
-        <div className="container header-main-inner">
-          {/* Brand Logo */}
-          <div className="brand-logo" onClick={() => navigate('#/')}>
-            <div className="logo-icon">
-              <Building size={24} />
-            </div>
-            <div className="logo-text-block">
-              <span className="brand-title">НОВЕКС ІНВЕСТ</span>
-              <span className="brand-sub">Агентство нерухомості • Полтава</span>
-            </div>
-          </div>
-
-          {/* Desktop Navigation Links */}
-          <nav className="desktop-nav">
+          {/* 2. Center: Navigation Links */}
+          <nav className="ref-desktop-nav">
             <button 
-              onClick={() => navigate('#/catalog')} 
-              className={`nav-link ${currentPath.includes('/catalog') ? 'active' : ''}`}
+              type="button"
+              className="ref-nav-link text-highlight"
+              onClick={handlePickPropertyClick}
             >
-              Каталог об'єктів
+              Підібрати нерухомість
             </button>
-
-            {/* Dropdown: Послуги */}
-            <div className="nav-dropdown-wrapper">
-              <button 
-                onClick={() => navigate('#/services')} 
-                className={`nav-link has-arrow ${currentPath.includes('/services') ? 'active' : ''}`}
-              >
-                <span>Послуги</span>
-                <ChevronDown size={14} />
-              </button>
-              <div className="nav-dropdown-menu">
-                <button onClick={() => navigate('#/services')} className="dropdown-item">Всі послуги агентства</button>
-                <button onClick={() => navigate('#/services/buy')} className="dropdown-item">Купівля та підбір житла</button>
-                <button onClick={() => navigate('#/services/sell')} className="dropdown-item">Продаж нерухомості з гарантією</button>
-                <button onClick={() => navigate('#/services/rent')} className="dropdown-item">Довгострокова оренда та управління</button>
-                <button onClick={() => navigate('#/services/legal')} className="dropdown-item">Юридична перевірка угод (ДРРП)</button>
-                <button onClick={() => navigate('#/services/valuation')} className="dropdown-item">Експертна оцінка майна</button>
-              </div>
-            </div>
-
             <button 
-              onClick={() => navigate('#/calculator')} 
-              className={`nav-link ${currentPath.includes('/calculator') ? 'active' : ''}`}
+              type="button"
+              className={`ref-nav-link ${currentPath.includes('/services') ? 'active' : ''}`}
+              onClick={() => navigate('#/services')}
+            >
+              Послуги
+            </button>
+            <button 
+              type="button"
+              className={`ref-nav-link ${currentPath.includes('/calculator') ? 'active' : ''}`}
+              onClick={() => navigate('#/calculator')}
             >
               Іпотека (єОселя)
             </button>
-
-            {/* Dropdown: Про компанію */}
-            <div className="nav-dropdown-wrapper">
-              <button 
-                onClick={() => navigate('#/about')} 
-                className={`nav-link has-arrow ${currentPath.includes('/about') || currentPath.includes('/requisites') ? 'active' : ''}`}
-              >
-                <span>Про компанію</span>
-                <ChevronDown size={14} />
-              </button>
-              <div className="nav-dropdown-menu">
-                <button onClick={() => navigate('#/about')} className="dropdown-item">Про ТОВ «НОВЕКС ІНВЕСТ»</button>
-                <button onClick={() => navigate('#/requisites')} className="dropdown-item">Реєстраційні дані (ЄДРПОУ 43980756)</button>
-              </div>
-            </div>
-
             <button 
-              onClick={() => navigate('#/contacts')} 
-              className={`nav-link ${currentPath.includes('/contacts') ? 'active' : ''}`}
+              type="button"
+              className={`ref-nav-link ${currentPath.includes('/about') ? 'active' : ''}`}
+              onClick={() => navigate('#/about')}
+            >
+              Відгуки
+            </button>
+            <button 
+              type="button"
+              className={`ref-nav-link ${currentPath.includes('/contacts') ? 'active' : ''}`}
+              onClick={() => navigate('#/contacts')}
             >
               Контакти
             </button>
           </nav>
 
-          {/* Desktop Actions */}
-          <div className="header-actions">
-            <button 
-              onClick={onOpenSellModal}
-              className="btn btn-accent btn-sm header-sell-btn"
-            >
-              <PlusCircle size={16} />
-              <span>Подати оголошення</span>
-            </button>
+          {/* 3. Right: Phone, Messengers & Hamburger */}
+          <div className="ref-header-right">
+            <a href="tel:+380988612938" className="ref-phone-link">
+              +380 (98) 861-29-38
+            </a>
 
-            {/* Mobile Hamburger Toggle */}
+            <div className="ref-messengers-group">
+              {/* Viber Round Button */}
+              <a
+                href="https://viber.click/380988612938"
+                onClick={handleViberClick}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ref-circle-msg ref-vb"
+                title="Viber"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+                  <path d="M19.5 3.5C17.3 1.3 14.3 0 11.2 0 5 0 0 5 0 11.2c0 2.2.6 4.3 1.8 6.1L.1 23.4c-.1.4.2.8.6.7l6.3-1.6c1.7 1 3.7 1.5 5.7 1.5 6.2 0 11.2-5 11.2-11.2 0-3.1-1.2-6.1-3.4-8.3zM12 20.3c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.5-1.6-3.3-1.6-5.1 0-5.1 4.2-9.3 9.3-9.3 2.5 0 4.8 1 6.6 2.7 1.8 1.8 2.7 4.1 2.7 6.6 0 5.1-4.2 9.3-9.3 9.3zm5.1-6.9c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4z"/>
+                </svg>
+              </a>
+
+              {/* Telegram Round Button */}
+              <a
+                href="https://t.me/rudmonolit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ref-circle-msg ref-tg"
+                title="Telegram"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+                  <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.29c-.15.66-.54.82-1.09.51l-3.02-2.22-1.46 1.41c-.16.16-.3.3-.61.3l.22-3.08 5.6-5.06c.24-.22-.05-.34-.38-.13l-6.92 4.36-2.99-.93c-.65-.2-.66-.65.14-.96l11.68-4.5c.54-.2 1.01.12.87.91z"/>
+                </svg>
+              </a>
+            </div>
+
+            {/* Hamburger Button (Sidebar Toggle) */}
             <button 
-              className="mobile-menu-toggle"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Меню"
+              type="button"
+              className="ref-hamburger-btn"
+              onClick={() => setIsSidebarOpen(true)}
+              aria-label="Відкрити бічне меню"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <Menu size={26} />
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Drawer Overlay */}
-      {isMobileMenuOpen && (
-        <div className="mobile-drawer-overlay animate-fade" onClick={() => setIsMobileMenuOpen(false)}>
-          <div className="mobile-drawer animate-slide" onClick={(e) => e.stopPropagation()}>
-            <div className="md-header">
-              <div className="brand-logo" onClick={() => { navigate('#/'); setIsMobileMenuOpen(false); }}>
-                <div className="logo-icon"><Building size={20} /></div>
-                <div className="logo-text-block">
-                  <span className="brand-title">НОВЕКС ІНВЕСТ</span>
-                  <span className="brand-sub">Полтава</span>
+      {/* 4. Sliding Sidebar Drawer (Exact Replica of Screenshot 2) */}
+      {isSidebarOpen && (
+        <div className="ref-sidebar-backdrop animate-fade" onClick={() => setIsSidebarOpen(false)}>
+          <aside className="ref-sidebar-panel animate-slide" onClick={(e) => e.stopPropagation()}>
+            {/* Sidebar Header */}
+            <div className="ref-sidebar-header">
+              <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
+                <div className="ref-logo-mark">
+                  <svg width="34" height="34" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L42 38H2L22 2Z" stroke="#b91c1c" strokeWidth="4" strokeLinejoin="round" />
+                    <path d="M22 14L32 32H12L22 14Z" fill="#b91c1c" />
+                  </svg>
+                </div>
+                <div className="ref-logo-text">
+                  <span className="ref-logo-title">НОВЕКС</span>
+                  <span className="ref-logo-sub">ІНВЕСТ</span>
                 </div>
               </div>
-              <button className="md-close-btn" onClick={() => setIsMobileMenuOpen(false)}>
-                <X size={20} />
+
+              <button 
+                type="button" 
+                className="ref-sidebar-close-btn"
+                onClick={() => setIsSidebarOpen(false)}
+                aria-label="Закрити"
+              >
+                <X size={24} />
               </button>
             </div>
 
-            <div className="md-content">
-              {/* Action Buttons in Drawer */}
-              <button 
-                onClick={() => { onOpenSellModal(); setIsMobileMenuOpen(false); }} 
-                className="btn btn-accent btn-block mb-4"
-              >
-                <PlusCircle size={18} />
-                <span>Подати оголошення (Продати/Здати)</span>
-              </button>
-
-              <nav className="md-nav-list">
-                <button onClick={() => navigate('#/catalog')} className="md-nav-item">
-                  Каталог нерухомості Полтави
+            {/* Sidebar Navigation Items */}
+            <div className="ref-sidebar-body">
+              <nav className="ref-sidebar-nav">
+                {/* 1. Pick Property (Opens Map) */}
+                <button 
+                  type="button"
+                  className="ref-sb-item text-bold-link"
+                  onClick={handlePickPropertyClick}
+                >
+                  <span>Підібрати нерухомість (Карта Полтави)</span>
                 </button>
 
-                {/* Accordion: Послуги */}
-                <div className="md-accordion">
-                  <button className="md-accordion-btn" onClick={() => setServicesOpen(!servicesOpen)}>
-                    <span>Послуги агентства</span>
-                    <ChevronDown size={16} className={`chevron ${servicesOpen ? 'rotate' : ''}`} />
+                {/* 2. Blog / News */}
+                <button 
+                  type="button"
+                  className="ref-sb-item text-accent-link"
+                  onClick={() => { navigate('#/catalog'); setIsSidebarOpen(false); }}
+                >
+                  <span>Каталог об'єктів 2026</span>
+                </button>
+
+                {/* 3. Reviews */}
+                <button 
+                  type="button"
+                  className="ref-sb-item"
+                  onClick={() => { navigate('#/about'); setIsSidebarOpen(false); }}
+                >
+                  <span>Відгуки клієнтів</span>
+                </button>
+
+                {/* 4. Services with Accordion */}
+                <div className="ref-sb-dropdown-group">
+                  <button 
+                    type="button"
+                    className="ref-sb-item has-expand"
+                    onClick={() => setServicesOpen(!servicesOpen)}
+                  >
+                    <span>Послуги</span>
+                    <ChevronRight size={18} className={`chevron-icon ${servicesOpen ? 'rotate' : ''}`} />
                   </button>
                   {servicesOpen && (
-                    <div className="md-accordion-content">
-                      <button onClick={() => navigate('#/services')} className="md-sub-item">Всі послуги</button>
-                      <button onClick={() => navigate('#/services/buy')} className="md-sub-item">Купівля та підбір квартир</button>
-                      <button onClick={() => navigate('#/services/sell')} className="md-sub-item">Продаж вашої нерухомості</button>
-                      <button onClick={() => navigate('#/services/rent')} className="md-sub-item">Оренда та управління</button>
-                      <button onClick={() => navigate('#/services/legal')} className="md-sub-item">Юридичний супровід</button>
+                    <div className="ref-sb-sublist">
+                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Всі послуги</button>
+                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Купівля та підбір житла</button>
+                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Продаж нерухомості з гарантією</button>
+                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Оренда та довірче управління</button>
+                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Юридична перевірка угод (ДРРП)</button>
+                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Експертна оцінка майна</button>
                     </div>
                   )}
                 </div>
 
-                <button onClick={() => navigate('#/calculator')} className="md-nav-item">
-                  Іпотечний калькулятор (єОселя)
+                {/* 5. About Company */}
+                <button 
+                  type="button"
+                  className="ref-sb-item"
+                  onClick={() => { navigate('#/about'); setIsSidebarOpen(false); }}
+                >
+                  <span>Про компанію</span>
                 </button>
 
-                {/* Accordion: Про нас */}
-                <div className="md-accordion">
-                  <button className="md-accordion-btn" onClick={() => setAboutOpen(!aboutOpen)}>
-                    <span>Про компанію</span>
-                    <ChevronDown size={16} className={`chevron ${aboutOpen ? 'rotate' : ''}`} />
-                  </button>
-                  {aboutOpen && (
-                    <div className="md-accordion-content">
-                      <button onClick={() => navigate('#/about')} className="md-sub-item">Про ТОВ «НОВЕКС ІНВЕСТ»</button>
-                      <button onClick={() => navigate('#/requisites')} className="md-sub-item">Реєстраційні дані (ЄДРПОУ 43980756)</button>
-                    </div>
-                  )}
-                </div>
+                {/* 6. Team & Partners */}
+                <button 
+                  type="button"
+                  className="ref-sb-item"
+                  onClick={() => { navigate('#/about'); setIsSidebarOpen(false); }}
+                >
+                  <span>Співробітники / партнери</span>
+                </button>
 
-                <button onClick={() => navigate('#/contacts')} className="md-nav-item">
-                  Контакти та офіс
+                {/* 7. Mortgage єОселя */}
+                <button 
+                  type="button"
+                  className="ref-sb-item"
+                  onClick={() => { navigate('#/calculator'); setIsSidebarOpen(false); }}
+                >
+                  <span>Іпотечний калькулятор (єОселя 3%/7%)</span>
+                </button>
+
+                {/* 8. Vacancies */}
+                <button 
+                  type="button"
+                  className="ref-sb-item"
+                  onClick={() => { onOpenSellModal(); setIsSidebarOpen(false); }}
+                >
+                  <span>Вакансії та співпраця</span>
+                </button>
+
+                {/* 9. Official Registration */}
+                <button 
+                  type="button"
+                  className="ref-sb-item"
+                  onClick={() => { navigate('#/requisites'); setIsSidebarOpen(false); }}
+                >
+                  <span>Реєстраційні дані (ЄДРПОУ 43980756)</span>
+                </button>
+
+                {/* 10. Contacts */}
+                <button 
+                  type="button"
+                  className="ref-sb-item"
+                  onClick={() => { navigate('#/contacts'); setIsSidebarOpen(false); }}
+                >
+                  <span>Контакти</span>
                 </button>
               </nav>
 
-              {/* Direct Contacts in Drawer */}
-              <div className="md-contacts-box">
-                <a href="tel:+380988612938" className="md-phone-link">
-                  <Phone size={16} className="text-primary" />
-                  <span>+380 (98) 861-29-38</span>
+              {/* Sidebar Bottom Contacts Section */}
+              <div className="ref-sidebar-footer">
+                <a href="tel:+380988612938" className="ref-sb-phone">
+                  +380 (98) 861-29-38
                 </a>
-                <div className="md-messengers-row">
-                  <a href="https://t.me/rudmonolit" target="_blank" rel="noopener noreferrer" className="md-msg-item md-tg">
-                    Telegram
+
+                <div className="ref-sb-messengers">
+                  <a
+                    href="https://viber.click/380988612938"
+                    onClick={handleViberClick}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ref-circle-msg ref-vb"
+                    title="Viber"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+                      <path d="M19.5 3.5C17.3 1.3 14.3 0 11.2 0 5 0 0 5 0 11.2c0 2.2.6 4.3 1.8 6.1L.1 23.4c-.1.4.2.8.6.7l6.3-1.6c1.7 1 3.7 1.5 5.7 1.5 6.2 0 11.2-5 11.2-11.2 0-3.1-1.2-6.1-3.4-8.3zM12 20.3c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.5-1.6-3.3-1.6-5.1 0-5.1 4.2-9.3 9.3-9.3 2.5 0 4.8 1 6.6 2.7 1.8 1.8 2.7 4.1 2.7 6.6 0 5.1-4.2 9.3-9.3 9.3zm5.1-6.9c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4z"/>
+                    </svg>
                   </a>
-                  <a href="https://viber.click/380988612938" onClick={handleViberClick} target="_blank" rel="noopener noreferrer" className="md-msg-item md-vb">
-                    Viber
-                  </a>
-                  <a href="https://wa.me/380988612938" target="_blank" rel="noopener noreferrer" className="md-msg-item md-wa">
-                    WhatsApp
+
+                  <a
+                    href="https://t.me/rudmonolit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ref-circle-msg ref-tg"
+                    title="Telegram"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+                      <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.29c-.15.66-.54.82-1.09.51l-3.02-2.22-1.46 1.41c-.16.16-.3.3-.61.3l.22-3.08 5.6-5.06c.24-.22-.05-.34-.38-.13l-6.92 4.36-2.99-.93c-.65-.2-.66-.65.14-.96l11.68-4.5c.54-.2 1.01.12.87.91z"/>
+                    </svg>
                   </a>
                 </div>
-                <div className="md-address">
-                  <MapPin size={14} className="text-primary" />
-                  <span>м. Полтава, вул. Європейська, буд. 2 (офіс 202)</span>
+
+                <div className="ref-sb-address">
+                  <strong>Адреса офісу:</strong> м. Полтава, вул. Європейська, 2 (офіс 202)
                 </div>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       )}
 
-      {/* Scoped Styles for Header */}
+      {/* Scoped CSS styling for Header and Sidebar */}
       <style>{`
-        .site-header {
+        .ref-site-header {
+          background: #ffffff;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
           position: sticky;
           top: 0;
           z-index: 1000;
-          background: #ffffff;
-          box-shadow: var(--shadow-sm);
+          height: 76px;
         }
 
-        /* Top Bar */
-        .header-top {
-          background: #f1f5f9;
-          border-bottom: 1px solid #e2e8f0;
-          font-size: 0.8rem;
-          color: #475569;
-        }
-
-        .header-top-inner {
+        .ref-header-inner {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 38px;
+          height: 100%;
         }
 
-        .ht-left, .ht-right {
+        /* Logo */
+        .ref-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          user-select: none;
+        }
+
+        .ref-logo-mark {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .ref-logo-text {
+          display: flex;
+          flex-direction: column;
+          line-height: 1;
+        }
+
+        .ref-logo-title {
+          font-size: 1.25rem;
+          font-weight: 900;
+          color: #b91c1c;
+          letter-spacing: 0.5px;
+        }
+
+        .ref-logo-sub {
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: #1e293b;
+          margin-top: 2px;
+          letter-spacing: 0.5px;
+        }
+
+        .ref-logo-tag {
+          font-size: 0.58rem;
+          font-weight: 700;
+          color: #64748b;
+          margin-top: 2px;
+          letter-spacing: 0.5px;
+        }
+
+        /* Nav links */
+        .ref-desktop-nav {
+          display: flex;
+          align-items: center;
+          gap: 22px;
+        }
+
+        .ref-nav-link {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #334155;
+          padding: 8px 4px;
+          transition: var(--transition);
+          position: relative;
+        }
+
+        .ref-nav-link:hover, .ref-nav-link.active {
+          color: #b91c1c;
+        }
+
+        .ref-nav-link.text-highlight {
+          font-weight: 700;
+          color: #1e293b;
+        }
+
+        .ref-nav-link.text-highlight:hover {
+          color: #b91c1c;
+        }
+
+        /* Header Right */
+        .ref-header-right {
           display: flex;
           align-items: center;
           gap: 16px;
         }
 
-        .ht-phone {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-weight: 700;
-          color: var(--c-primary);
+        .ref-phone-link {
+          font-size: 1.05rem;
+          font-weight: 800;
+          color: #dc2626;
           white-space: nowrap;
         }
 
-        .ht-messengers {
-          display: flex;
-          align-items: center;
-          gap: 6px;
+        .ref-phone-link:hover {
+          color: #b91c1c;
         }
 
-        .ht-msg-btn {
-          padding: 2px 8px;
-          border-radius: 4px;
-          font-size: 0.72rem;
-          font-weight: 700;
-          color: #ffffff;
-          transition: var(--transition);
-        }
-
-        .msg-tg { background: #29b6f6; }
-        .msg-vb { background: #7360f2; }
-        .msg-wa { background: #25d366; }
-
-        .ht-msg-btn:hover {
-          opacity: 0.85;
-          transform: translateY(-1px);
-        }
-
-        .ht-item {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-        }
-
-        /* Main Header */
-        .header-main-inner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: 72px;
-        }
-
-        .brand-logo {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          cursor: pointer;
-          user-select: none;
-        }
-
-        .logo-icon {
-          width: 44px;
-          height: 44px;
-          background: linear-gradient(135deg, var(--c-primary) 0%, #1e40af 100%);
-          color: #ffffff;
-          border-radius: var(--radius-md);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);
-        }
-
-        .brand-title {
-          display: block;
-          font-size: 1.25rem;
-          font-weight: 900;
-          color: var(--c-slate);
-          letter-spacing: -0.5px;
-          line-height: 1.1;
-        }
-
-        .brand-sub {
-          display: block;
-          font-size: 0.72rem;
-          font-weight: 600;
-          color: var(--c-muted);
-          margin-top: 2px;
-        }
-
-        /* Desktop Nav */
-        .desktop-nav {
+        .ref-messengers-group {
           display: flex;
           align-items: center;
           gap: 8px;
         }
 
-        .nav-link {
-          padding: 8px 14px;
-          font-size: 0.92rem;
-          font-weight: 600;
-          color: #334155;
-          border-radius: var(--radius-sm);
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-        }
-
-        .nav-link:hover, .nav-link.active {
-          color: var(--c-primary);
-          background: var(--c-primary-light);
-        }
-
-        /* Dropdowns with Hover Bridge */
-        .nav-dropdown-wrapper {
-          position: relative;
-          padding-top: 4px;
-          padding-bottom: 4px;
-        }
-
-        .nav-dropdown-menu {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          min-width: 260px;
-          background: #ffffff;
-          border-radius: var(--radius-md);
-          box-shadow: var(--shadow-xl);
-          border: 1px solid var(--c-border);
-          padding: 8px 0;
-          display: none;
-          z-index: 1000;
-          animation: fadeIn 0.15s ease;
-        }
-
-        .nav-dropdown-menu::before {
-          content: '';
-          position: absolute;
-          top: -12px;
-          left: 0;
-          right: 0;
-          height: 12px;
-          background: transparent;
-        }
-
-        .nav-dropdown-wrapper:hover .nav-dropdown-menu {
-          display: block;
-        }
-
-        .dropdown-item {
-          width: 100%;
-          text-align: left;
-          padding: 10px 18px;
-          font-size: 0.88rem;
-          font-weight: 600;
-          color: #334155;
-          display: block;
-        }
-
-        .dropdown-item:hover {
-          background: var(--c-primary-light);
-          color: var(--c-primary);
-          padding-left: 22px;
-        }
-
-        .header-actions {
+        .ref-circle-msg {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
           display: flex;
           align-items: center;
-          gap: 12px;
+          justify-content: center;
+          transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .mobile-menu-toggle {
-          display: none;
+        .ref-circle-msg:hover {
+          transform: scale(1.1);
+          opacity: 0.9;
+        }
+
+        .ref-vb {
+          background: #7360f2;
+        }
+
+        .ref-tg {
+          background: #29b6f6;
+        }
+
+        .ref-hamburger-btn {
+          color: #1e293b;
           padding: 6px;
-          color: var(--c-dark);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
         }
 
-        /* Mobile Drawer */
-        .mobile-drawer-overlay {
+        .ref-hamburger-btn:hover {
+          color: #b91c1c;
+        }
+
+        /* Sidebar Backdrop */
+        .ref-sidebar-backdrop {
           position: fixed;
           inset: 0;
           background: rgba(15, 23, 42, 0.6);
@@ -507,175 +494,166 @@ export const Header = ({ onOpenSellModal, onOpenSearchModal }) => {
           justify-content: flex-end;
         }
 
-        .mobile-drawer {
-          background: #ffffff;
-          width: 88%;
+        /* Sidebar Panel (Screenshot 2 exact styling) */
+        .ref-sidebar-panel {
+          width: 100%;
           max-width: 380px;
           height: 100%;
+          background: #ffffff;
+          box-shadow: -10px 0 35px rgba(0, 0, 0, 0.2);
           display: flex;
           flex-direction: column;
-          box-shadow: var(--shadow-xl);
         }
 
-        .md-header {
+        .ref-sidebar-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 16px 20px;
-          border-bottom: 1px solid var(--c-border);
+          padding: 20px 24px;
+          border-bottom: 1px solid #f1f5f9;
         }
 
-        .md-close-btn {
-          width: 36px;
-          height: 36px;
+        .ref-sidebar-close-btn {
+          width: 38px;
+          height: 38px;
           border-radius: 50%;
-          background: #f1f5f9;
+          background: #f8fafc;
           display: flex;
           align-items: center;
           justify-content: center;
           color: #64748b;
         }
 
-        .md-content {
-          padding: 20px;
+        .ref-sidebar-close-btn:hover {
+          background: #e2e8f0;
+          color: #0f172a;
+        }
+
+        .ref-sidebar-body {
+          padding: 24px;
           overflow-y: auto;
           flex: 1;
-        }
-
-        .md-nav-list {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          justify-content: space-between;
         }
 
-        .md-nav-item {
-          width: 100%;
+        .ref-sidebar-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        .ref-sb-item {
           text-align: left;
-          padding: 12px 14px;
-          font-size: 1rem;
+          font-size: 1.05rem;
+          font-weight: 500;
+          color: #475569;
+          padding: 4px 0;
+          transition: color 0.2s;
+        }
+
+        .ref-sb-item:hover {
+          color: #b91c1c;
+        }
+
+        .ref-sb-item.text-bold-link {
           font-weight: 700;
-          color: var(--c-slate);
-          border-radius: var(--radius-sm);
+          color: #1e293b;
         }
 
-        .md-nav-item:hover {
-          background: var(--c-primary-light);
-          color: var(--c-primary);
+        .ref-sb-item.text-bold-link:hover {
+          color: #b91c1c;
         }
 
-        .md-accordion {
-          border-bottom: 1px solid #f1f5f9;
+        .ref-sb-item.text-accent-link {
+          color: #b91c1c;
+          font-weight: 600;
         }
 
-        .md-accordion-btn {
-          width: 100%;
+        .ref-sb-item.has-expand {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 12px 14px;
-          font-size: 1rem;
-          font-weight: 700;
-          color: var(--c-slate);
+          width: 100%;
         }
 
-        .md-accordion-btn .chevron {
+        .chevron-icon {
           transition: transform 0.2s;
+          color: #94a3b8;
         }
 
-        .md-accordion-btn .chevron.rotate {
-          transform: rotate(180deg);
+        .chevron-icon.rotate {
+          transform: rotate(90deg);
         }
 
-        .md-accordion-content {
-          padding: 4px 0 8px 14px;
+        .ref-sb-sublist {
+          padding-left: 14px;
           display: flex;
           flex-direction: column;
-          gap: 2px;
+          gap: 10px;
+          margin-top: 8px;
+          margin-bottom: 8px;
         }
 
-        .md-sub-item {
-          width: 100%;
+        .ref-sb-sublist button {
           text-align: left;
-          padding: 8px 12px;
-          font-size: 0.9rem;
-          font-weight: 600;
-          color: #475569;
-        }
-
-        .md-contacts-box {
-          margin-top: 24px;
-          padding-top: 18px;
-          border-top: 1px solid var(--c-border);
-        }
-
-        .md-phone-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-weight: 800;
-          font-size: 1.05rem;
-          color: var(--c-primary);
-          margin-bottom: 12px;
-        }
-
-        .md-messengers-row {
-          display: flex;
-          gap: 8px;
-          margin-bottom: 12px;
-        }
-
-        .md-msg-item {
-          padding: 6px 12px;
-          border-radius: var(--radius-sm);
-          font-size: 0.8rem;
-          font-weight: 700;
-          color: #ffffff;
-        }
-
-        .md-tg { background: #29b6f6; }
-        .md-vb { background: #7360f2; }
-        .md-wa { background: #25d366; }
-
-        .md-address {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 0.78rem;
+          font-size: 0.92rem;
           color: #64748b;
         }
 
-        /* Responsive Breakpoints */
+        .ref-sb-sublist button:hover {
+          color: #b91c1c;
+        }
+
+        /* Sidebar Footer */
+        .ref-sidebar-footer {
+          margin-top: 30px;
+          padding-top: 24px;
+          border-top: 1px solid #f1f5f9;
+        }
+
+        .ref-sb-phone {
+          display: block;
+          font-size: 1.25rem;
+          font-weight: 800;
+          color: #dc2626;
+          margin-bottom: 14px;
+        }
+
+        .ref-sb-messengers {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 16px;
+        }
+
+        .ref-sb-address {
+          font-size: 0.85rem;
+          color: #64748b;
+          line-height: 1.45;
+        }
+
         @media (max-width: 1024px) {
-          .desktop-nav {
-            display: none;
-          }
-          .mobile-menu-toggle {
-            display: block;
-          }
-          .ht-right {
+          .ref-desktop-nav {
             display: none;
           }
         }
 
         @media (max-width: 640px) {
-          .header-main-inner {
-            height: 60px;
+          .ref-site-header {
+            height: 64px;
           }
-          .logo-icon {
-            width: 36px;
-            height: 36px;
-          }
-          .brand-title {
-            font-size: 1.05rem;
-          }
-          .brand-sub {
+          .ref-phone-link {
             display: none;
           }
-          .header-sell-btn {
+          .ref-logo-title {
+            font-size: 1.1rem;
+          }
+          .ref-logo-tag {
             display: none;
           }
         }
       `}</style>
-    </header>
+    </>
   );
 };
