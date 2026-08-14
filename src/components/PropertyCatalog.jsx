@@ -6,7 +6,8 @@ import {
   ArrowUpDown, 
   Filter, 
   Building,
-  Sparkles
+  Sparkles,
+  RotateCcw
 } from 'lucide-react';
 import { PropertyCard } from './PropertyCard';
 import { PropertyMap } from './PropertyMap';
@@ -20,8 +21,10 @@ export const PropertyCatalog = ({
 }) => {
   const [viewMode, setViewMode] = useState(initialViewMode); // 'grid' | 'split' | 'map'
   const [sortBy, setSortBy] = useState('default');
-  const [currency, setCurrency] = useState(filters?.currency || 'USD');
+  const [currency, setCurrency] = useState(filters?.currency || 'UAH');
   const [quickFilter, setQuickFilter] = useState('all');
+  const [priceMin, setPriceMin] = useState(filters?.priceMin || '');
+  const [priceMax, setPriceMax] = useState(filters?.priceMax || '');
 
   useEffect(() => {
     if (initialViewMode) {
@@ -43,9 +46,12 @@ export const PropertyCatalog = ({
         if (filters.rooms === '4+' && p.rooms < 4) return false;
         if (filters.rooms !== '4+' && filters.rooms !== 'studio' && String(p.rooms) !== filters.rooms) return false;
       }
-      // Price Range Filter
-      if (filters?.priceMin && (currency === 'USD' ? p.priceUSD : p.priceUAH) < filters.priceMin) return false;
-      if (filters?.priceMax && (currency === 'USD' ? p.priceUSD : p.priceUAH) > filters.priceMax) return false;
+      
+      // Price Range Filter (Dynamic in UAH or USD)
+      const currentPrice = currency === 'USD' ? p.priceUSD : p.priceUAH;
+      if (priceMin && currentPrice < Number(priceMin)) return false;
+      if (priceMax && currentPrice > Number(priceMax)) return false;
+      
       // Area Range Filter
       if (filters?.areaMin && p.area < filters.areaMin) return false;
       if (filters?.areaMax && p.area > filters.areaMax) return false;
@@ -58,6 +64,7 @@ export const PropertyCatalog = ({
       if (quickFilter === '3' && p.rooms !== 3) return false;
       if (quickFilter === 'house' && p.type !== 'house') return false;
       if (quickFilter === 'rent' && p.transaction !== 'rent') return false;
+      if (quickFilter === 'buy' && p.transaction !== 'buy') return false;
       if (quickFilter === 'eoselya' && !p.badges.some(b => b.includes('єОселя'))) return false;
 
       return true;
@@ -68,7 +75,7 @@ export const PropertyCatalog = ({
       if (sortBy === 'area-desc') return b.area - a.area;
       return 0;
     });
-  }, [properties, filters, sortBy, currency, quickFilter]);
+  }, [properties, filters, sortBy, currency, quickFilter, priceMin, priceMax]);
 
   return (
     <section className="catalog-section" id="catalog">
@@ -85,21 +92,51 @@ export const PropertyCatalog = ({
           </div>
 
           <div className="chb-right">
+            {/* Price Filter Box */}
+            <div className="catalog-price-filter-box">
+              <span className="cpf-label">Ціна:</span>
+              <input
+                type="number"
+                placeholder="від"
+                value={priceMin}
+                onChange={(e) => setPriceMin(e.target.value)}
+                className="cpf-input"
+              />
+              <span className="cpf-dash">—</span>
+              <input
+                type="number"
+                placeholder="до"
+                value={priceMax}
+                onChange={(e) => setPriceMax(e.target.value)}
+                className="cpf-input"
+              />
+              {(priceMin || priceMax) && (
+                <button
+                  type="button"
+                  className="cpf-clear"
+                  onClick={() => { setPriceMin(''); setPriceMax(''); }}
+                  title="Очистити ціну"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
             {/* Currency Switch */}
             <div className="catalog-curr-toggle">
-              <button 
-                type="button" 
-                className={`cct-btn ${currency === 'USD' ? 'active' : ''}`}
-                onClick={() => setCurrency('USD')}
-              >
-                USD ($)
-              </button>
               <button 
                 type="button" 
                 className={`cct-btn ${currency === 'UAH' ? 'active' : ''}`}
                 onClick={() => setCurrency('UAH')}
               >
                 UAH (грн)
+              </button>
+              <button 
+                type="button" 
+                className={`cct-btn ${currency === 'USD' ? 'active' : ''}`}
+                onClick={() => setCurrency('USD')}
+              >
+                USD ($)
               </button>
             </div>
 
@@ -160,6 +197,20 @@ export const PropertyCatalog = ({
           </button>
           <button 
             type="button" 
+            className={`qfc-btn ${quickFilter === 'rent' ? 'active' : ''}`}
+            onClick={() => setQuickFilter('rent')}
+          >
+            Оренда
+          </button>
+          <button 
+            type="button" 
+            className={`qfc-btn ${quickFilter === 'buy' ? 'active' : ''}`}
+            onClick={() => setQuickFilter('buy')}
+          >
+            Купівля
+          </button>
+          <button 
+            type="button" 
             className={`qfc-btn ${quickFilter === '1' ? 'active' : ''}`}
             onClick={() => setQuickFilter('1')}
           >
@@ -181,20 +232,6 @@ export const PropertyCatalog = ({
           </button>
           <button 
             type="button" 
-            className={`qfc-btn ${quickFilter === 'house' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('house')}
-          >
-            Будинки та котеджі
-          </button>
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === 'rent' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('rent')}
-          >
-            Оренда
-          </button>
-          <button 
-            type="button" 
             className={`qfc-btn qfc-eoselya ${quickFilter === 'eoselya' ? 'active' : ''}`}
             onClick={() => setQuickFilter('eoselya')}
           >
@@ -208,7 +245,13 @@ export const PropertyCatalog = ({
           <div className="catalog-empty-state">
             <Building size={48} className="text-muted mb-3" />
             <h3>За вашим запитом об'єктів не знайдено</h3>
-            <p>Спробуйте розширити діапазон цін або обрати інший район Полтави.</p>
+            <p>Спробуйте розширити діапазон цін або скинути фільтри.</p>
+            <button 
+              onClick={() => { setPriceMin(''); setPriceMax(''); setQuickFilter('all'); }} 
+              className="btn btn-sm btn-primary mt-3"
+            >
+              Скинути фільтри цін
+            </button>
           </div>
         ) : (
           <div className={`catalog-layout-container mode-${viewMode}`}>
@@ -283,8 +326,54 @@ export const PropertyCatalog = ({
         .chb-right {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
           flex-wrap: wrap;
+        }
+
+        /* Price Filter Inputs in Catalog Bar */
+        .catalog-price-filter-box {
+          display: flex;
+          align-items: center;
+          background: #ffffff;
+          border: 1px solid var(--c-border);
+          border-radius: var(--radius-sm);
+          padding: 3px 8px;
+          gap: 4px;
+        }
+
+        .cpf-label {
+          font-size: 0.76rem;
+          font-weight: 700;
+          color: #64748b;
+        }
+
+        .cpf-input {
+          width: 70px;
+          padding: 4px 4px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          border: none;
+          background: #f8fafc;
+          border-radius: 4px;
+          outline: none;
+          color: #0f172a;
+        }
+
+        .cpf-dash {
+          color: #94a3b8;
+          font-size: 0.8rem;
+        }
+
+        .cpf-clear {
+          background: transparent;
+          color: #94a3b8;
+          font-size: 0.75rem;
+          padding: 2px 4px;
+          cursor: pointer;
+        }
+
+        .cpf-clear:hover {
+          color: #ef4444;
         }
 
         .catalog-curr-toggle {

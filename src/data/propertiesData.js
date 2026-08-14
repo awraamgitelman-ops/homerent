@@ -781,44 +781,6 @@ export const PROPERTIES_DATA = [
     }
   },
   {
-    "id": "pol-103",
-    "title": "Сучасний 2-поверховий котедж у Яківцях з терасою та садом",
-    "type": "house",
-    "transaction": "buy",
-    "priceUSD": 115000,
-    "priceUAH": 4770000,
-    "pricePerM2": 766,
-    "district": "yakivtsi",
-    "districtName": "Яківці",
-    "address": "м. Полтава, вул. Спартака",
-    "lat": 49.6210,
-    "lng": 34.5510,
-    "rooms": 4,
-    "area": 150,
-    "livingArea": 90,
-    "kitchenArea": 25,
-    "floor": 2,
-    "totalFloors": 2,
-    "yearBuilt": 2022,
-    "buildingType": "Керамоблок + утеплення мінватою 100мм",
-    "heating": "Індивідуальне електро (котел + камін з водяним контуром)",
-    "condition": "Чистове оздоблення (під фарбування/шпалери)",
-    "badges": ["Ділянка 8 соток", "Гараж", "Новий будинок"],
-    "isExclusive": true,
-    "isVerified": true,
-    "description": "Енергоефективний будинок в екологічно чистому престижному передмісті Полтави.",
-    "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1000&q=80"
-    ],
-    "features": ["Свердловина 45м", "Септик переливний", "Тепла підлога", "Тераса", "Гараж на 2 авто"],
-    "agent": {
-      "name": "Омельяненко Владислав",
-      "phone": "+380988612938",
-      "role": "Провідний експерт з нерухомості"
-    }
-  },
-  {
     "id": "pol-107",
     "title": "3-кімнатна квартира в новобудові на Садах-2 (ЖК «Садовий»)",
     "type": "apartment",

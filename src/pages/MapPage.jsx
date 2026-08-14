@@ -11,7 +11,8 @@ import {
   Layers,
   Calendar,
   Eye,
-  ArrowUpDown
+  ArrowUpDown,
+  DollarSign
 } from 'lucide-react';
 import { POLTAVA_DISTRICTS, PROPERTY_TYPES, TRANSACTION_TYPES, ROOM_OPTIONS } from '../data/poltavaDistricts';
 import { formatCurrency, formatPricePerM2 } from '../utils/formatters';
@@ -26,8 +27,9 @@ export const MapPage = ({
   const [transaction, setTransaction] = useState('all');
   const [district, setDistrict] = useState('all');
   const [rooms, setRooms] = useState('all');
+  const [priceMin, setPriceMin] = useState('');
   const [priceMax, setPriceMax] = useState('');
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('UAH'); // Default UAH for local rentals
   const [sortBy, setSortBy] = useState('default');
   const [isEoselyaOnly, setIsEoselyaOnly] = useState(false);
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
@@ -43,7 +45,11 @@ export const MapPage = ({
         if (rooms === '4+' && p.rooms < 4) return false;
         if (rooms !== '4+' && rooms !== 'studio' && String(p.rooms) !== rooms) return false;
       }
-      if (priceMax && (currency === 'USD' ? p.priceUSD : p.priceUAH) > Number(priceMax)) return false;
+      
+      const propPrice = currency === 'USD' ? p.priceUSD : p.priceUAH;
+      if (priceMin && propPrice < Number(priceMin)) return false;
+      if (priceMax && propPrice > Number(priceMax)) return false;
+
       if (isEoselyaOnly && !p.badges.some(b => b.includes('єОселя'))) return false;
       return true;
     }).sort((a, b) => {
@@ -52,13 +58,14 @@ export const MapPage = ({
       if (sortBy === 'area-desc') return b.area - a.area;
       return 0;
     });
-  }, [properties, selectedType, transaction, district, rooms, priceMax, currency, isEoselyaOnly, sortBy]);
+  }, [properties, selectedType, transaction, district, rooms, priceMin, priceMax, currency, isEoselyaOnly, sortBy]);
 
   const handleReset = () => {
     setSelectedType('all');
     setTransaction('all');
     setDistrict('all');
     setRooms('all');
+    setPriceMin('');
     setPriceMax('');
     setIsEoselyaOnly(false);
     setSelectedPropertyId(null);
@@ -68,9 +75,14 @@ export const MapPage = ({
     setSelectedPropertyId(prop.id);
   };
 
+  const handleSetPriceRange = (min, max) => {
+    setPriceMin(min);
+    setPriceMax(max);
+  };
+
   return (
     <div className="map-page-wrapper">
-      {/* 1. Top Compact Filter Bar */}
+      {/* 1. Top Compact Filter Bar with Full Price Range */}
       <div className="map-page-filter-bar">
         <div className="container map-filter-inner">
           <div className="mf-group">
@@ -116,22 +128,31 @@ export const MapPage = ({
               ))}
             </select>
 
-            {/* Price Max input */}
-            <div className="mf-price-box">
+            {/* Price Filter Box: Ціна від - до + Валюта */}
+            <div className="mf-price-container">
+              <span className="mf-price-label">Ціна:</span>
               <input 
                 type="number"
-                placeholder="Ціна до"
+                placeholder="від"
+                value={priceMin}
+                onChange={(e) => setPriceMin(e.target.value)}
+                className="mf-price-input"
+              />
+              <span className="mf-price-dash">—</span>
+              <input 
+                type="number"
+                placeholder="до"
                 value={priceMax}
                 onChange={(e) => setPriceMax(e.target.value)}
-                className="mf-input"
+                className="mf-price-input"
               />
               <button 
                 type="button" 
                 className="mf-curr-btn"
                 onClick={() => setCurrency(currency === 'USD' ? 'UAH' : 'USD')}
-                title="Перемкнути валюту"
+                title="Перемкнути валюту ($ / грн)"
               >
-                {currency === 'USD' ? '$' : 'грн'}
+                {currency === 'USD' ? '$ USD' : 'грн UAH'}
               </button>
             </div>
 
@@ -145,9 +166,10 @@ export const MapPage = ({
               <span>єОселя 3%/7%</span>
             </label>
 
-            {(selectedType !== 'all' || transaction !== 'all' || district !== 'all' || rooms !== 'all' || priceMax || isEoselyaOnly) && (
-              <button type="button" onClick={handleReset} className="mf-reset-btn" title="Скинути фільтри">
+            {(selectedType !== 'all' || transaction !== 'all' || district !== 'all' || rooms !== 'all' || priceMin || priceMax || isEoselyaOnly) && (
+              <button type="button" onClick={handleReset} className="mf-reset-btn" title="Скинути всі фільтри">
                 <RotateCcw size={14} />
+                <span>Скинути</span>
               </button>
             )}
           </div>
@@ -171,6 +193,81 @@ export const MapPage = ({
               <span>Карта</span>
             </button>
           </div>
+        </div>
+
+        {/* Quick Price Range Chips for Fast Selection */}
+        <div className="container mf-quick-prices-row">
+          <span className="mf-qp-title">Швидкий підбір за ціною:</span>
+          {currency === 'UAH' ? (
+            <>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${!priceMin && priceMax === '15000' ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('', '15000')}
+              >
+                до 15 000 грн
+              </button>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${priceMin === '15000' && priceMax === '20000' ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('15000', '20000')}
+              >
+                15 000 — 20 000 грн
+              </button>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${priceMin === '20000' && priceMax === '30000' ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('20000', '30000')}
+              >
+                20 000 — 30 000 грн
+              </button>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${priceMin === '30000' && !priceMax ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('30000', '')}
+              >
+                від 30 000 грн
+              </button>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${priceMin === '1000000' ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('1000000', '')}
+              >
+                Продаж (від 1 млн грн)
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${!priceMin && priceMax === '350' ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('', '350')}
+              >
+                до $ 350
+              </button>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${priceMin === '350' && priceMax === '500' ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('350', '500')}
+              >
+                $ 350 — $ 500
+              </button>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${priceMin === '500' && priceMax === '1000' ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('500', '1000')}
+              >
+                $ 500 — $ 1 000
+              </button>
+              <button 
+                type="button" 
+                className={`mf-qp-chip ${priceMin === '30000' ? 'active' : ''}`}
+                onClick={() => handleSetPriceRange('30000', '')}
+              >
+                Купівля (від $ 30 тис.)
+              </button>
+            </>
+          )}
         </div>
       </div>
 
@@ -203,9 +300,9 @@ export const MapPage = ({
             {filteredProperties.length === 0 ? (
               <div className="mls-empty">
                 <Building2 size={36} className="text-muted mb-2" />
-                <p>Не знайдено об'єктів за обраними параметрами</p>
+                <p>Не знайдено об'єктів за обраною ціною або параметрами</p>
                 <button onClick={handleReset} className="btn btn-sm btn-outline mt-2">
-                  Скинути фільтри
+                  Скинути фільтри цін
                 </button>
               </div>
             ) : (
@@ -309,7 +406,7 @@ export const MapPage = ({
           border-bottom: 1px solid var(--c-border);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
           z-index: 10;
-          padding: 8px 0;
+          padding: 8px 0 6px;
         }
 
         .map-filter-inner {
@@ -344,31 +441,93 @@ export const MapPage = ({
           background: #ffffff;
         }
 
-        .mf-price-box {
+        /* Price Filter Range Box */
+        .mf-price-container {
           display: flex;
           align-items: center;
-          background: #f1f5f9;
-          border: 1px solid var(--c-border);
+          background: #f8fafc;
+          border: 1.5px solid #cbd5e1;
           border-radius: var(--radius-sm);
           overflow: hidden;
+          padding-left: 8px;
         }
 
-        .mf-input {
-          width: 85px;
-          padding: 6px 8px;
+        .mf-price-label {
+          font-size: 0.76rem;
+          font-weight: 700;
+          color: #475569;
+          margin-right: 4px;
+        }
+
+        .mf-price-input {
+          width: 75px;
+          padding: 6px 6px;
           font-size: 0.82rem;
           font-weight: 700;
           border: none;
           background: transparent;
           outline: none;
+          color: #0f172a;
+        }
+
+        .mf-price-dash {
+          color: #94a3b8;
+          font-weight: 700;
         }
 
         .mf-curr-btn {
-          padding: 6px 8px;
-          font-size: 0.75rem;
+          padding: 6px 10px;
+          font-size: 0.76rem;
           font-weight: 800;
           color: #ffffff;
           background: #b91c1c;
+          transition: background-color 0.2s;
+        }
+
+        .mf-curr-btn:hover {
+          background: #991b1b;
+        }
+
+        /* Quick Price Range Chips Row */
+        .mf-quick-prices-row {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          overflow-x: auto;
+          padding-top: 6px;
+          padding-bottom: 2px;
+        }
+
+        .mf-qp-title {
+          font-size: 0.74rem;
+          color: #64748b;
+          font-weight: 700;
+          white-space: nowrap;
+          margin-right: 2px;
+        }
+
+        .mf-qp-chip {
+          padding: 3px 9px;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #475569;
+          background: #f1f5f9;
+          border: 1px solid #e2e8f0;
+          border-radius: var(--radius-full);
+          white-space: nowrap;
+          transition: all 0.15s;
+        }
+
+        .mf-qp-chip:hover {
+          border-color: #b91c1c;
+          color: #b91c1c;
+          background: #ffffff;
+        }
+
+        .mf-qp-chip.active {
+          background: #b91c1c;
+          color: #ffffff;
+          border-color: #b91c1c;
         }
 
         .mf-eoselya-label {
@@ -389,17 +548,20 @@ export const MapPage = ({
         }
 
         .mf-reset-btn {
-          padding: 7px;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          padding: 6px 10px;
           background: #e2e8f0;
           border-radius: var(--radius-sm);
-          color: #64748b;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          font-size: 0.76rem;
+          font-weight: 700;
+          color: #475569;
         }
 
         .mf-reset-btn:hover {
           color: var(--c-red);
+          background: #cbd5e1;
         }
 
         .mobile-view-tabs {
@@ -410,7 +572,7 @@ export const MapPage = ({
         .map-page-body-split {
           flex: 1;
           display: flex;
-          height: calc(100% - 49px);
+          height: calc(100% - 78px);
           overflow: hidden;
         }
 
