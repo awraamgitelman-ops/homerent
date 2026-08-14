@@ -15,9 +15,9 @@ import {
 } from 'lucide-react';
 import { POLTAVA_DISTRICTS, PROPERTY_TYPES, TRANSACTION_TYPES, ROOM_OPTIONS } from '../data/poltavaDistricts';
 
-export const HeroSearch = ({ onSearch, totalCount = 8, onOpenConsultModal }) => {
-  const [selectedType, setSelectedType] = useState('apartment');
-  const [transaction, setTransaction] = useState('buy');
+export const HeroSearch = ({ onSearch, totalCount = 20, onOpenConsultModal }) => {
+  const [selectedType, setSelectedType] = useState('all');
+  const [transaction, setTransaction] = useState('all');
   const [district, setDistrict] = useState('all');
   const [rooms, setRooms] = useState('all');
   const [priceMin, setPriceMin] = useState('');
@@ -29,8 +29,8 @@ export const HeroSearch = ({ onSearch, totalCount = 8, onOpenConsultModal }) => 
   const [showAdvanced, setShowAdvanced] = useState(false);
 
   const handleReset = () => {
-    setSelectedType('apartment');
-    setTransaction('buy');
+    setSelectedType('all');
+    setTransaction('all');
     setDistrict('all');
     setRooms('all');
     setPriceMin('');
@@ -39,8 +39,8 @@ export const HeroSearch = ({ onSearch, totalCount = 8, onOpenConsultModal }) => 
     setAreaMax('');
     setIsEoselyaOnly(false);
     onSearch({
-      type: 'apartment',
-      transaction: 'buy',
+      type: 'all',
+      transaction: 'all',
       district: 'all',
       rooms: 'all',
       priceMin: '',

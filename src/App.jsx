@@ -26,8 +26,8 @@ export function App() {
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
   const [catalogViewMode, setCatalogViewMode] = useState('split');
   const [filters, setFilters] = useState({
-    type: 'apartment',
-    transaction: 'buy',
+    type: 'all',
+    transaction: 'all',
     district: 'all',
     rooms: 'all',
     priceMin: '',
