@@ -4,15 +4,18 @@ import {
   Map as MapIcon, 
   Columns, 
   ArrowUpDown, 
-  Filter, 
   Building,
-  Sparkles,
   RotateCcw,
   Key,
-  Home
+  Home,
+  Building2,
+  Trees,
+  Briefcase,
+  MapPin
 } from 'lucide-react';
 import { PropertyCard } from './PropertyCard';
 import { PropertyMap } from './PropertyMap';
+import { POLTAVA_DISTRICTS } from '../data/poltavaDistricts';
 
 export const PropertyCatalog = ({ 
   properties, 
@@ -23,9 +26,11 @@ export const PropertyCatalog = ({
 }) => {
   const [viewMode, setViewMode] = useState(initialViewMode); // 'grid' | 'split' | 'map'
   const [activeTransaction, setActiveTransaction] = useState(filters?.transaction && filters.transaction !== 'all' ? filters.transaction : 'rent'); // 'rent' | 'buy'
+  const [selectedCategory, setSelectedCategory] = useState(filters?.type && filters.type !== 'all' ? filters.type : 'apartment'); // 'apartment' | 'house' | 'commercial'
+  const [subFilter, setSubFilter] = useState('all'); // Sub-filter within the category
+  const [selectedDistrict, setSelectedDistrict] = useState(filters?.district || 'all');
   const [sortBy, setSortBy] = useState('default');
   const [currency, setCurrency] = useState(activeTransaction === 'rent' ? 'UAH' : 'USD');
-  const [quickFilter, setQuickFilter] = useState('all');
   const [priceMin, setPriceMin] = useState(filters?.priceMin || '');
   const [priceMax, setPriceMax] = useState(filters?.priceMax || '');
 
@@ -35,47 +40,96 @@ export const PropertyCatalog = ({
     }
   }, [initialViewMode]);
 
+  // Switch between Rent & Buy
   const handleSwitchTab = (tab) => {
     setActiveTransaction(tab);
     setCurrency(tab === 'rent' ? 'UAH' : 'USD');
-    setQuickFilter('all');
+    setSubFilter('all');
     setPriceMin('');
     setPriceMax('');
   };
 
-  // Filter and Sort Logic - STRICT SEPARATION
+  // Switch category (Apartments / Houses / Commercial)
+  const handleSelectCategory = (cat) => {
+    setSelectedCategory(cat);
+    setSubFilter('all');
+  };
+
+  // Reset all filters
+  const handleResetFilters = () => {
+    setSubFilter('all');
+    setSelectedDistrict('all');
+    setPriceMin('');
+    setPriceMax('');
+    setSortBy('default');
+  };
+
+  // Dynamic live counts for current transaction
+  const currentTransProps = useMemo(() => {
+    return properties.filter(p => p.transaction === activeTransaction);
+  }, [properties, activeTransaction]);
+
+  const aptCount = useMemo(() => {
+    return currentTransProps.filter(p => p.type === 'apartment').length;
+  }, [currentTransProps]);
+
+  const houseCount = useMemo(() => {
+    return currentTransProps.filter(p => p.type === 'house').length;
+  }, [currentTransProps]);
+
+  const commCount = useMemo(() => {
+    return currentTransProps.filter(p => p.type === 'commercial').length;
+  }, [currentTransProps]);
+
+  const rentTotal = properties.filter(p => p.transaction === 'rent').length;
+  const buyTotal = properties.filter(p => p.transaction === 'buy').length;
+
+  // Strict Filter & Sort Logic
   const filteredProperties = useMemo(() => {
     return properties.filter((p) => {
-      // 1. Strict Transaction Filter (rent vs buy)
+      // 1. Strict Transaction (rent vs buy)
       if (p.transaction !== activeTransaction) return false;
 
-      // 2. Type Filter
-      if (filters?.type && filters.type !== 'all' && p.type !== filters.type) return false;
-      
+      // 2. Strict Concrete Category (No "all objects" mode)
+      if (p.type !== selectedCategory) return false;
+
       // 3. District Filter
-      if (filters?.district && filters.district !== 'all' && p.district !== filters.district) return false;
-      
-      // 4. Rooms Filter
-      if (filters?.rooms && filters.rooms !== 'all') {
-        if (filters.rooms === '4+' && p.rooms < 4) return false;
-        if (filters.rooms !== '4+' && filters.rooms !== 'studio' && String(p.rooms) !== filters.rooms) return false;
-      }
-      
-      // 5. Price Range Filter
+      if (selectedDistrict !== 'all' && p.district !== selectedDistrict) return false;
+
+      // 4. Price Range Filter
       const currentPrice = currency === 'USD' ? p.priceUSD : p.priceUAH;
       if (priceMin && currentPrice < Number(priceMin)) return false;
       if (priceMax && currentPrice > Number(priceMax)) return false;
-      
-      // 6. Area Range Filter
-      if (filters?.areaMin && p.area < filters.areaMin) return false;
-      if (filters?.areaMax && p.area > filters.areaMax) return false;
 
-      // 7. Quick Filter Chips
-      if (quickFilter === '1' && p.rooms !== 1) return false;
-      if (quickFilter === '2' && p.rooms !== 2) return false;
-      if (quickFilter === '3' && p.rooms !== 3) return false;
-      if (quickFilter === 'house' && p.type !== 'house') return false;
-      if (quickFilter === 'commercial' && p.type !== 'commercial') return false;
+      // 5. Tailored Category-Specific Sub-filters
+      if (selectedCategory === 'apartment') {
+        if (subFilter === '1' && p.rooms !== 1) return false;
+        if (subFilter === '2' && p.rooms !== 2) return false;
+        if (subFilter === '3' && p.rooms !== 3) return false;
+        if (subFilter === '4+' && p.rooms < 4) return false;
+        if (subFilter === 'newbuild' && !p.badges.some(b => b.includes('Новобудова')) && !p.description.toLowerCase().includes('новобудов')) return false;
+        if (subFilter === 'renovated' && !p.badges.some(b => b.includes('Євроремонт')) && !p.description.toLowerCase().includes('євроремонт') && !p.description.toLowerCase().includes('ремонт')) return false;
+        if (subFilter === 'autonomous' && !p.badges.some(b => b.includes('Автономне')) && !p.description.toLowerCase().includes('автономн') && !p.description.toLowerCase().includes('індивідуальн')) return false;
+      }
+
+      if (selectedCategory === 'house') {
+        if (subFilter === 'under100' && p.area >= 100) return false;
+        if (subFilter === '100-200' && (p.area < 100 || p.area > 200)) return false;
+        if (subFilter === '200+' && p.area <= 200) return false;
+        if (subFilter === 'cottage' && !p.title.toLowerCase().includes('котедж') && !p.title.toLowerCase().includes('таунхаус') && !p.description.toLowerCase().includes('котедж') && !p.description.toLowerCase().includes('таунхаус')) return false;
+        if (subFilter === 'renovated' && !p.badges.some(b => b.includes('Євроремонт')) && !p.description.toLowerCase().includes('євроремонт') && !p.description.toLowerCase().includes('ремонт')) return false;
+        if (subFilter === 'autonomous' && !p.badges.some(b => b.includes('Автономне')) && !p.description.toLowerCase().includes('автономн') && !p.description.toLowerCase().includes('котел')) return false;
+      }
+
+      if (selectedCategory === 'commercial') {
+        const text = (p.title + ' ' + p.description).toLowerCase();
+        if (subFilter === 'office' && !text.includes('офіс') && !text.includes('кабінет')) return false;
+        if (subFilter === 'retail' && !text.includes('торгов') && !text.includes('магазин') && !text.includes('салон') && !text.includes('кафе')) return false;
+        if (subFilter === 'warehouse' && !text.includes('склад') && !text.includes('виробництв') && !text.includes('бокс') && !text.includes('ангар')) return false;
+        if (subFilter === 'facade' && !text.includes('фасад') && !text.includes('червона лінія') && !text.includes('центр')) return false;
+        if (subFilter === 'under100' && p.area >= 100) return false;
+        if (subFilter === '100+' && p.area < 100) return false;
+      }
 
       return true;
     }).sort((a, b) => {
@@ -85,15 +139,21 @@ export const PropertyCatalog = ({
       if (sortBy === 'area-desc') return b.area - a.area;
       return 0;
     });
-  }, [properties, activeTransaction, filters, sortBy, currency, quickFilter, priceMin, priceMax]);
+  }, [properties, activeTransaction, selectedCategory, selectedDistrict, subFilter, sortBy, currency, priceMin, priceMax]);
 
-  const rentTotal = properties.filter(p => p.transaction === 'rent').length;
-  const buyTotal = properties.filter(p => p.transaction === 'buy').length;
+  // Section title formatter
+  const getSectionTitle = () => {
+    const action = activeTransaction === 'rent' ? 'Оренда' : 'Продаж';
+    if (selectedCategory === 'apartment') return `${action} квартир у Полтаві`;
+    if (selectedCategory === 'house') return `${action} будинків та котеджів у Полтаві`;
+    if (selectedCategory === 'commercial') return `${action} комерційної нерухомості у Полтаві`;
+    return `${action} нерухомості у Полтаві`;
+  };
 
   return (
     <section className="catalog-section" id="catalog">
       <div className="container">
-        {/* Main Mode Tabs: Оренда vs Купівля */}
+        {/* 1. Main Mode Switcher: Оренда vs Купівля */}
         <div className="catalog-main-tabs">
           <button 
             type="button" 
@@ -116,18 +176,64 @@ export const PropertyCatalog = ({
           </button>
         </div>
 
-        {/* Catalog Control Header */}
+        {/* 2. Concrete Category Selector (Квартири, Будинки, Комерція) */}
+        <div className="catalog-category-selector">
+          <button
+            type="button"
+            className={`cat-tab-btn ${selectedCategory === 'apartment' ? 'active' : ''}`}
+            onClick={() => handleSelectCategory('apartment')}
+          >
+            <Building2 size={18} />
+            <span>Квартири</span>
+            <span className="cat-badge">{aptCount}</span>
+          </button>
+
+          <button
+            type="button"
+            className={`cat-tab-btn ${selectedCategory === 'house' ? 'active' : ''}`}
+            onClick={() => handleSelectCategory('house')}
+          >
+            <Home size={18} />
+            <span>Будинки та котеджі</span>
+            <span className="cat-badge">{houseCount}</span>
+          </button>
+
+          <button
+            type="button"
+            className={`cat-tab-btn ${selectedCategory === 'commercial' ? 'active' : ''}`}
+            onClick={() => handleSelectCategory('commercial')}
+          >
+            <Briefcase size={18} />
+            <span>Комерційна нерухомість</span>
+            <span className="cat-badge">{commCount}</span>
+          </button>
+        </div>
+
+        {/* 3. Catalog Control Header & Fast Filter Options */}
         <div className="catalog-header-bar">
           <div className="chb-left">
-            <h2 className="catalog-title">
-              {activeTransaction === 'rent' ? 'Оренда квартир та приміщень' : 'Продаж квартир та будинків'} у Полтаві
-            </h2>
+            <h2 className="catalog-title">{getSectionTitle()}</h2>
             <span className="catalog-count-badge">
               Знайдено {filteredProperties.length} об'єктів
             </span>
           </div>
 
           <div className="chb-right">
+            {/* District Selector */}
+            <div className="catalog-district-box">
+              <MapPin size={14} className="text-muted" />
+              <select
+                value={selectedDistrict}
+                onChange={(e) => setSelectedDistrict(e.target.value)}
+                className="catalog-district-select"
+              >
+                <option value="all">Всі райони Полтави</option>
+                {POLTAVA_DISTRICTS.map(d => (
+                  <option key={d.id} value={d.id}>{d.name}</option>
+                ))}
+              </select>
+            </div>
+
             {/* Price Filter Box */}
             <div className="catalog-price-filter-box">
               <span className="cpf-label">Ціна:</span>
@@ -185,8 +291,8 @@ export const PropertyCatalog = ({
                 className="catalog-sort-select"
               >
                 <option value="default">Сортування: За замовчуванням</option>
-                <option value="price-asc">Ціна: від дешевих до дорогих</option>
-                <option value="price-desc">Ціна: від дорогих до дешевих</option>
+                <option value="price-asc">Ціна: від дешевих</option>
+                <option value="price-desc">Ціна: від дорогих</option>
                 <option value="area-desc">Площа: від більшої</option>
                 <option value="area-asc">Площа: від меншої</option>
               </select>
@@ -222,60 +328,202 @@ export const PropertyCatalog = ({
           </div>
         </div>
 
-        {/* Quick Filter Chips for Active Mode */}
-        <div className="quick-filter-chips">
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === 'all' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('all')}
-          >
-            Всі {activeTransaction === 'rent' ? 'об\'єкти оренди' : 'об\'єкти продажу'}
-          </button>
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === '1' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('1')}
-          >
-            1-кімнатні
-          </button>
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === '2' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('2')}
-          >
-            2-кімнатні
-          </button>
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === '3' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('3')}
-          >
-            3-кімнатні
-          </button>
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === 'house' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('house')}
-          >
-            Будинки та котеджі
-          </button>
-          <button 
-            type="button" 
-            className={`qfc-btn ${quickFilter === 'commercial' ? 'active' : ''}`}
-            onClick={() => setQuickFilter('commercial')}
-          >
-            Комерція
-          </button>
+        {/* 4. Tailored Sub-Filter Chips for the Selected Category */}
+        <div className="category-subfilters-bar">
+          {/* APARTMENT SUB-FILTERS */}
+          {selectedCategory === 'apartment' && (
+            <div className="subfilters-chips-scroll">
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setSubFilter('all')}
+              >
+                Всі квартири
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === '1' ? 'active' : ''}`}
+                onClick={() => setSubFilter('1')}
+              >
+                1-кімнатні
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === '2' ? 'active' : ''}`}
+                onClick={() => setSubFilter('2')}
+              >
+                2-кімнатні
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === '3' ? 'active' : ''}`}
+                onClick={() => setSubFilter('3')}
+              >
+                3-кімнатні
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === '4+' ? 'active' : ''}`}
+                onClick={() => setSubFilter('4+')}
+              >
+                4+ кімнатні
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'newbuild' ? 'active' : ''}`}
+                onClick={() => setSubFilter('newbuild')}
+              >
+                Новобудови
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'renovated' ? 'active' : ''}`}
+                onClick={() => setSubFilter('renovated')}
+              >
+                З євроремонтом
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'autonomous' ? 'active' : ''}`}
+                onClick={() => setSubFilter('autonomous')}
+              >
+                Автономне опалення
+              </button>
+            </div>
+          )}
+
+          {/* HOUSE SUB-FILTERS */}
+          {selectedCategory === 'house' && (
+            <div className="subfilters-chips-scroll">
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setSubFilter('all')}
+              >
+                Всі будинки
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'under100' ? 'active' : ''}`}
+                onClick={() => setSubFilter('under100')}
+              >
+                До 100 м²
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === '100-200' ? 'active' : ''}`}
+                onClick={() => setSubFilter('100-200')}
+              >
+                100 — 200 м²
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === '200+' ? 'active' : ''}`}
+                onClick={() => setSubFilter('200+')}
+              >
+                200+ м²
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'cottage' ? 'active' : ''}`}
+                onClick={() => setSubFilter('cottage')}
+              >
+                Котеджі / Таунхауси
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'renovated' ? 'active' : ''}`}
+                onClick={() => setSubFilter('renovated')}
+              >
+                З євроремонтом
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'autonomous' ? 'active' : ''}`}
+                onClick={() => setSubFilter('autonomous')}
+              >
+                Автономне опалення
+              </button>
+            </div>
+          )}
+
+          {/* COMMERCIAL SUB-FILTERS */}
+          {selectedCategory === 'commercial' && (
+            <div className="subfilters-chips-scroll">
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setSubFilter('all')}
+              >
+                Вся комерція
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'office' ? 'active' : ''}`}
+                onClick={() => setSubFilter('office')}
+              >
+                Офісні приміщення
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'retail' ? 'active' : ''}`}
+                onClick={() => setSubFilter('retail')}
+              >
+                Торгові площі / Магазини
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'warehouse' ? 'active' : ''}`}
+                onClick={() => setSubFilter('warehouse')}
+              >
+                Склади та виробництво
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'facade' ? 'active' : ''}`}
+                onClick={() => setSubFilter('facade')}
+              >
+                Фасадні приміщення
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === 'under100' ? 'active' : ''}`}
+                onClick={() => setSubFilter('under100')}
+              >
+                До 100 м²
+              </button>
+              <button
+                type="button"
+                className={`sfc-btn ${subFilter === '100+' ? 'active' : ''}`}
+                onClick={() => setSubFilter('100+')}
+              >
+                100+ м²
+              </button>
+            </div>
+          )}
+
+          {/* Reset Filters Chip */}
+          {(subFilter !== 'all' || selectedDistrict !== 'all' || priceMin || priceMax || sortBy !== 'default') && (
+            <button
+              type="button"
+              className="sfc-reset-btn"
+              onClick={handleResetFilters}
+              title="Скинути фільтри"
+            >
+              <RotateCcw size={13} />
+              <span>Скинути фільтри</span>
+            </button>
+          )}
         </div>
 
-        {/* Main Display Layout */}
+        {/* 5. Main Display Layout (Cards / Split Map) */}
         {filteredProperties.length === 0 ? (
           <div className="catalog-empty-state">
             <Building size={48} className="text-muted mb-3" />
-            <h3>За вашим запитом об'єктів не знайдено</h3>
-            <p>Спробуйте змінити фільтри або очистити діапазон цін.</p>
+            <h3>За вашими критеріями об'єктів не знайдено</h3>
+            <p>Спробуйте обрати інший підфільтр або очистити діапазон цін.</p>
             <button 
-              onClick={() => { setPriceMin(''); setPriceMax(''); setQuickFilter('all'); }} 
+              onClick={handleResetFilters} 
               className="btn btn-sm btn-primary mt-3"
             >
               Скинути фільтри
@@ -319,11 +567,11 @@ export const PropertyCatalog = ({
           background: #f8fafc;
         }
 
-        /* Large Primary Tabs */
+        /* 1. Large Primary Tabs (Rent vs Buy) */
         .catalog-main-tabs {
           display: flex;
           gap: 12px;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
 
         .cmt-tab {
@@ -371,13 +619,66 @@ export const PropertyCatalog = ({
           background: rgba(255, 255, 255, 0.25);
         }
 
+        /* 2. Concrete Category Selector (Apartments, Houses, Commercial) */
+        .catalog-category-selector {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 24px;
+          overflow-x: auto;
+          padding-bottom: 4px;
+        }
+
+        .cat-tab-btn {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 18px;
+          font-size: 0.92rem;
+          font-weight: 800;
+          color: #334155;
+          background: #ffffff;
+          border: 1.5px solid #cbd5e1;
+          border-radius: 30px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+
+        .cat-tab-btn:hover {
+          border-color: #0f172a;
+          color: #0f172a;
+          background: #f8fafc;
+        }
+
+        .cat-tab-btn.active {
+          background: #0f172a;
+          color: #ffffff;
+          border-color: #0f172a;
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+        }
+
+        .cat-badge {
+          background: #f1f5f9;
+          color: #475569;
+          font-size: 0.76rem;
+          font-weight: 800;
+          padding: 2px 7px;
+          border-radius: 10px;
+        }
+
+        .cat-tab-btn.active .cat-badge {
+          background: rgba(255, 255, 255, 0.2);
+          color: #ffffff;
+        }
+
+        /* 3. Catalog Header Bar */
         .catalog-header-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
           flex-wrap: wrap;
           gap: 16px;
-          margin-bottom: 20px;
+          margin-bottom: 16px;
           padding-bottom: 16px;
           border-bottom: 1px solid var(--c-border);
         }
@@ -386,16 +687,17 @@ export const PropertyCatalog = ({
           display: flex;
           align-items: baseline;
           gap: 12px;
+          flex-wrap: wrap;
         }
 
         .catalog-title {
-          font-size: 1.45rem;
+          font-size: 1.35rem;
           font-weight: 900;
           color: var(--c-slate);
         }
 
         .catalog-count-badge {
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 700;
           color: var(--c-muted);
           background: #e2e8f0;
@@ -408,6 +710,27 @@ export const PropertyCatalog = ({
           align-items: center;
           gap: 10px;
           flex-wrap: wrap;
+        }
+
+        /* District Dropdown in Bar */
+        .catalog-district-box {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          background: #ffffff;
+          border: 1px solid var(--c-border);
+          border-radius: var(--radius-sm);
+          padding: 4px 10px;
+        }
+
+        .catalog-district-select {
+          border: none;
+          background: transparent;
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: var(--c-slate);
+          outline: none;
+          cursor: pointer;
         }
 
         /* Price Filter Inputs in Catalog Bar */
@@ -490,7 +813,7 @@ export const PropertyCatalog = ({
         .catalog-sort-select {
           border: none;
           background: transparent;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 600;
           color: var(--c-slate);
           outline: none;
@@ -520,17 +843,25 @@ export const PropertyCatalog = ({
           box-shadow: var(--shadow-sm);
         }
 
-        /* Quick Filter Chips */
-        .quick-filter-chips {
+        /* 4. Sub-Filter Chips Bar */
+        .category-subfilters-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          margin-bottom: 24px;
+          flex-wrap: wrap;
+        }
+
+        .subfilters-chips-scroll {
           display: flex;
           align-items: center;
           gap: 8px;
           overflow-x: auto;
-          padding-bottom: 12px;
-          margin-bottom: 24px;
+          padding-bottom: 6px;
         }
 
-        .qfc-btn {
+        .sfc-btn {
           padding: 6px 14px;
           font-size: 0.82rem;
           font-weight: 700;
@@ -540,20 +871,42 @@ export const PropertyCatalog = ({
           border-radius: var(--radius-full);
           white-space: nowrap;
           transition: var(--transition);
+          cursor: pointer;
         }
 
-        .qfc-btn:hover {
-          border-color: #1e293b;
-          color: #1e293b;
+        .sfc-btn:hover {
+          border-color: #334155;
+          color: #0f172a;
         }
 
-        .qfc-btn.active {
-          background: #1e293b;
+        .sfc-btn.active {
+          background: #2563eb;
           color: #ffffff;
-          border-color: #1e293b;
+          border-color: #2563eb;
+          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
         }
 
-        /* Layout Grid and Split Modes */
+        .sfc-reset-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          padding: 6px 12px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #b91c1c;
+          background: #fee2e2;
+          border: 1px solid #fca5a5;
+          border-radius: var(--radius-full);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+
+        .sfc-reset-btn:hover {
+          background: #fecaca;
+        }
+
+        /* 5. Layout Grid and Split Modes */
         .catalog-layout-container.mode-grid .full-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -578,12 +931,18 @@ export const PropertyCatalog = ({
 
         .split-map {
           position: sticky;
-          top: 90px;
+          top: 80px;
           height: 850px;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
         }
 
-        .catalog-layout-container.mode-map .full-map {
-          height: 720px;
+        .full-map {
+          height: 750px;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
         }
 
         .catalog-empty-state {
@@ -599,24 +958,24 @@ export const PropertyCatalog = ({
             grid-template-columns: 1fr;
           }
           .split-map {
-            position: relative;
-            top: 0;
-            height: 400px;
-          }
-          .split-cards {
-            max-height: none;
+            display: none;
           }
         }
 
-        @media (max-width: 640px) {
-          .catalog-main-tabs {
+        @media (max-width: 768px) {
+          .catalog-header-bar {
             flex-direction: column;
+            align-items: flex-start;
           }
-          .catalog-title {
-            font-size: 1.25rem;
+          .chb-right {
+            width: 100%;
+            justify-content: flex-start;
           }
-          .catalog-layout-container.mode-grid .full-grid {
-            grid-template-columns: 1fr;
+          .catalog-price-filter-box {
+            width: 100%;
+          }
+          .cpf-input {
+            flex: 1;
           }
         }
       `}</style>
