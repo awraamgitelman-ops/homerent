@@ -128,7 +128,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
       });
 
       const marker = L.marker([prop.lat, prop.lng], { icon: customIcon }).addTo(map);
-
+      const googleMapsDirectUrl = `https://www.google.com/maps/search/?api=1&query=${prop.lat},${prop.lng}`;
       const fallbackImg = prop.type === 'house' 
         ? 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=400&q=80'
         : prop.type === 'commercial'
