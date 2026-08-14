@@ -58,7 +58,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               />
               <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
             </div>
-            <span className="ref-logo-sub">АГЕНТСТВО НЕРУХОМОСТІ</span>
+            <div className="ref-logo-sub" aria-label="АГЕНТСТВО НЕРУХОМОСТІ">
+              {'АГЕНТСТВО НЕРУХОМОСТІ'.split('').map((char, index) => (
+                <span key={index} className="sub-char">{char === ' ' ? '\u00A0\u00A0' : char}</span>
+              ))}
+            </div>
           </div>
 
           {/* 2. Center: Navigation Links */}
@@ -156,7 +160,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                   />
                   <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
                 </div>
-                <span className="ref-logo-sub">АГЕНТСТВО НЕРУХОМОСТІ</span>
+                <div className="ref-logo-sub" aria-label="АГЕНТСТВО НЕРУХОМОСТІ">
+                  {'АГЕНТСТВО НЕРУХОМОСТІ'.split('').map((char, index) => (
+                    <span key={index} className="sub-char">{char === ' ' ? '\u00A0\u00A0' : char}</span>
+                  ))}
+                </div>
               </div>
 
               <button 
@@ -327,11 +335,11 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           height: 100%;
         }
 
-        /* Logo (Exact balanced lockup) */
+        /* Logo (Exact width-aligned lockup) */
         .ref-logo {
-          display: flex;
+          display: inline-flex;
           flex-direction: column;
-          align-items: flex-start;
+          align-items: stretch;
           cursor: pointer;
           user-select: none;
         }
@@ -339,34 +347,40 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-logo-top {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
         }
 
         .ref-brand-logo-img {
-          width: 38px;
-          height: 38px;
+          width: 46px;
+          height: 46px;
           object-fit: contain;
           flex-shrink: 0;
         }
 
         .ref-logo-title {
-          font-size: 1.7rem;
+          font-size: 2.15rem;
           font-weight: 900;
           color: #1e3a8a;
           letter-spacing: -0.2px;
           line-height: 1;
+          white-space: nowrap;
         }
 
         .ref-logo-sub {
-          font-size: 0.65rem;
-          font-weight: 800;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 0.72rem;
+          font-weight: 900;
           color: #0f172a;
-          letter-spacing: 2.8px;
           text-transform: uppercase;
           line-height: 1;
-          margin-top: 4px;
-          padding-left: 1px;
-          white-space: nowrap;
+          margin-top: 3px;
+        }
+
+        .sub-char {
+          display: inline-block;
         }
 
         /* Nav links */
