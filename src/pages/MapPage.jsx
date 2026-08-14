@@ -1,20 +1,20 @@
 import React, { useState, useMemo } from 'react';
 import { PropertyMap } from '../components/PropertyMap';
-import { PropertyCard } from '../components/PropertyCard';
 import { 
   Building2, 
   Search, 
-  SlidersHorizontal, 
   MapPin, 
   ChevronDown, 
-  DollarSign, 
   RotateCcw,
   List,
   Sparkles,
-  Layers
+  Layers,
+  Calendar,
+  Eye,
+  ArrowUpDown
 } from 'lucide-react';
 import { POLTAVA_DISTRICTS, PROPERTY_TYPES, TRANSACTION_TYPES, ROOM_OPTIONS } from '../data/poltavaDistricts';
-import { formatCurrency } from '../utils/formatters';
+import { formatCurrency, formatPricePerM2 } from '../utils/formatters';
 
 export const MapPage = ({
   properties,
@@ -28,9 +28,10 @@ export const MapPage = ({
   const [rooms, setRooms] = useState('all');
   const [priceMax, setPriceMax] = useState('');
   const [currency, setCurrency] = useState('USD');
+  const [sortBy, setSortBy] = useState('default');
   const [isEoselyaOnly, setIsEoselyaOnly] = useState(false);
-  const [isListDrawerOpen, setIsListDrawerOpen] = useState(false);
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
+  const [mobileTab, setMobileTab] = useState('map'); // 'map' | 'list' for small screens
 
   // Filter properties
   const filteredProperties = useMemo(() => {
@@ -45,8 +46,13 @@ export const MapPage = ({
       if (priceMax && (currency === 'USD' ? p.priceUSD : p.priceUAH) > Number(priceMax)) return false;
       if (isEoselyaOnly && !p.badges.some(b => b.includes('єОселя'))) return false;
       return true;
+    }).sort((a, b) => {
+      if (sortBy === 'price-asc') return (currency === 'USD' ? a.priceUSD - b.priceUSD : a.priceUAH - b.priceUAH);
+      if (sortBy === 'price-desc') return (currency === 'USD' ? b.priceUSD - a.priceUSD : b.priceUAH - a.priceUAH);
+      if (sortBy === 'area-desc') return b.area - a.area;
+      return 0;
     });
-  }, [properties, selectedType, transaction, district, rooms, priceMax, currency, isEoselyaOnly]);
+  }, [properties, selectedType, transaction, district, rooms, priceMax, currency, isEoselyaOnly, sortBy]);
 
   const handleReset = () => {
     setSelectedType('all');
@@ -55,19 +61,18 @@ export const MapPage = ({
     setRooms('all');
     setPriceMax('');
     setIsEoselyaOnly(false);
+    setSelectedPropertyId(null);
   };
 
-  const handleMarkerSelect = (prop) => {
+  const handleCardClick = (prop) => {
     setSelectedPropertyId(prop.id);
-    onSelectProperty(prop);
   };
 
   return (
     <div className="map-page-wrapper">
-      {/* 1. Top Compact Control Filter Bar */}
+      {/* 1. Top Compact Filter Bar */}
       <div className="map-page-filter-bar">
         <div className="container map-filter-inner">
-          {/* Quick Filters */}
           <div className="mf-group">
             <select 
               value={selectedType} 
@@ -124,6 +129,7 @@ export const MapPage = ({
                 type="button" 
                 className="mf-curr-btn"
                 onClick={() => setCurrency(currency === 'USD' ? 'UAH' : 'USD')}
+                title="Перемкнути валюту"
               >
                 {currency === 'USD' ? '$' : 'грн'}
               </button>
@@ -146,84 +152,164 @@ export const MapPage = ({
             )}
           </div>
 
-          {/* Right Action: Counter & Toggle Sidebar List */}
-          <div className="mf-right-actions">
-            <span className="mf-count-badge">
-              На карті: <strong>{filteredProperties.length}</strong> об'єктів
-            </span>
-
+          {/* Mobile Switcher between Map and List */}
+          <div className="mobile-view-tabs">
             <button 
-              type="button"
-              className={`btn btn-sm ${isListDrawerOpen ? 'btn-primary' : 'btn-outline'}`}
-              onClick={() => setIsListDrawerOpen(!isListDrawerOpen)}
+              type="button" 
+              className={`mvt-btn ${mobileTab === 'list' ? 'active' : ''}`}
+              onClick={() => setMobileTab('list')}
             >
-              <List size={16} />
-              <span>{isListDrawerOpen ? 'Сховати список' : 'Список об\'єктів'}</span>
+              <List size={15} />
+              <span>Список ({filteredProperties.length})</span>
+            </button>
+            <button 
+              type="button" 
+              className={`mvt-btn ${mobileTab === 'map' ? 'active' : ''}`}
+              onClick={() => setMobileTab('map')}
+            >
+              <MapPin size={15} />
+              <span>Карта</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* 2. Full-Screen Map Container with Collapsible Cards Sidebar */}
-      <div className="map-page-body-container">
-        {/* The Google Map View */}
-        <div className="map-full-viewport">
+      {/* 2. Permanent Split Layout: LEFT = List of Objects | RIGHT = Google Map */}
+      <div className="map-page-body-split">
+        {/* LEFT COLUMN: Always Visible Objects List */}
+        <aside className={`map-left-sidebar ${mobileTab === 'map' ? 'hide-on-mobile' : ''}`}>
+          <div className="mls-header">
+            <div className="mls-title-row">
+              <h3>Об'єкти у Полтаві</h3>
+              <span className="mls-counter">{filteredProperties.length}</span>
+            </div>
+            
+            <div className="mls-sort-row">
+              <ArrowUpDown size={13} className="text-muted" />
+              <select 
+                value={sortBy} 
+                onChange={(e) => setSortBy(e.target.value)}
+                className="mls-sort-select"
+              >
+                <option value="default">За замовчуванням</option>
+                <option value="price-asc">Ціна: від дешевих</option>
+                <option value="price-desc">Ціна: від дорогих</option>
+                <option value="area-desc">Площа: від більшої</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="mls-scrollable-list">
+            {filteredProperties.length === 0 ? (
+              <div className="mls-empty">
+                <Building2 size={36} className="text-muted mb-2" />
+                <p>Не знайдено об'єктів за обраними параметрами</p>
+                <button onClick={handleReset} className="btn btn-sm btn-outline mt-2">
+                  Скинути фільтри
+                </button>
+              </div>
+            ) : (
+              filteredProperties.map((prop) => {
+                const isSelected = selectedPropertyId === prop.id;
+                const displayPrice = currency === 'USD' 
+                  ? formatCurrency(prop.priceUSD, 'USD') 
+                  : formatCurrency(prop.priceUAH, 'UAH');
+
+                return (
+                  <div
+                    key={prop.id}
+                    className={`mls-card ${isSelected ? 'selected' : ''}`}
+                    onClick={() => handleCardClick(prop)}
+                  >
+                    <div className="mls-card-img-box">
+                      <img src={prop.images[0]} alt={prop.title} className="mls-card-img" loading="lazy" />
+                      <span className="mls-card-tag">
+                        {prop.transaction === 'buy' ? 'Продаж' : prop.transaction === 'rent' ? 'Оренда' : 'Подобово'}
+                      </span>
+                    </div>
+
+                    <div className="mls-card-info">
+                      <div className="mls-card-price-row">
+                        <span className="mls-card-price">{displayPrice}</span>
+                        {prop.pricePerM2 > 0 && (
+                          <span className="mls-card-m2">{formatPricePerM2(prop.pricePerM2, currency)}</span>
+                        )}
+                      </div>
+
+                      <h4 className="mls-card-title" title={prop.title}>{prop.title}</h4>
+                      
+                      <div className="mls-card-loc">
+                        <MapPin size={12} className="text-primary flex-shrink-0" />
+                        <span>{prop.districtName}, {prop.address}</span>
+                      </div>
+
+                      <div className="mls-card-metrics">
+                        {prop.rooms > 0 && <span>{prop.rooms} кімн.</span>}
+                        <span>{prop.area} м²</span>
+                        {prop.floor > 0 && <span>{prop.floor}/{prop.totalFloors} пов.</span>}
+                      </div>
+
+                      <div className="mls-card-actions">
+                        <button
+                          type="button"
+                          className="btn btn-primary btn-sm mls-book-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onBookViewing(prop);
+                          }}
+                        >
+                          <Calendar size={13} />
+                          <span>Записатись</span>
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-outline btn-sm mls-details-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectProperty(prop);
+                          }}
+                          title="Повний опис"
+                        >
+                          <Eye size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </aside>
+
+        {/* RIGHT COLUMN: Full Google Map Viewport */}
+        <div className={`map-right-viewport ${mobileTab === 'list' ? 'hide-on-mobile' : ''}`}>
           <PropertyMap
             properties={filteredProperties}
             currency={currency}
-            onSelectProperty={handleMarkerSelect}
+            onSelectProperty={onSelectProperty}
             selectedPropertyId={selectedPropertyId}
           />
         </div>
-
-        {/* Side Panel with Property Cards */}
-        {isListDrawerOpen && (
-          <div className="map-side-cards-panel animate-slide">
-            <div className="mscp-header">
-              <h3>Об'єкти у Полтаві ({filteredProperties.length})</h3>
-              <button onClick={() => setIsListDrawerOpen(false)} className="mscp-close-btn">
-                ✕
-              </button>
-            </div>
-            <div className="mscp-list">
-              {filteredProperties.map((prop) => (
-                <div 
-                  key={prop.id}
-                  className={`mscp-card-item ${selectedPropertyId === prop.id ? 'active' : ''}`}
-                  onClick={() => handleMarkerSelect(prop)}
-                >
-                  <img src={prop.images[0]} alt="" className="mscp-img" />
-                  <div className="mscp-meta">
-                    <span className="mscp-price">
-                      {currency === 'USD' ? formatCurrency(prop.priceUSD, 'USD') : formatCurrency(prop.priceUAH, 'UAH')}
-                    </span>
-                    <span className="mscp-title">{prop.title}</span>
-                    <span className="mscp-address">📍 {prop.districtName}, {prop.address}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Scoped Styles for MapPage */}
+      {/* Scoped Styles for MapPage Split Layout */}
       <style>{`
         .map-page-wrapper {
           display: flex;
           flex-direction: column;
           height: calc(100vh - 76px);
-          min-height: 600px;
+          min-height: 550px;
           background: #f8fafc;
           overflow: hidden;
         }
 
+        /* Top Filter Bar */
         .map-page-filter-bar {
           background: #ffffff;
           border-bottom: 1px solid var(--c-border);
-          box-shadow: var(--shadow-sm);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
           z-index: 10;
-          padding: 10px 0;
+          padding: 8px 0;
         }
 
         .map-filter-inner {
@@ -231,7 +317,7 @@ export const MapPage = ({
           align-items: center;
           justify-content: space-between;
           flex-wrap: wrap;
-          gap: 12px;
+          gap: 10px;
         }
 
         .mf-group {
@@ -242,7 +328,7 @@ export const MapPage = ({
         }
 
         .mf-select {
-          padding: 8px 12px;
+          padding: 7px 10px;
           font-size: 0.82rem;
           font-weight: 700;
           color: #1e293b;
@@ -254,7 +340,7 @@ export const MapPage = ({
         }
 
         .mf-select:focus {
-          border-color: var(--c-primary);
+          border-color: #b91c1c;
           background: #ffffff;
         }
 
@@ -268,8 +354,8 @@ export const MapPage = ({
         }
 
         .mf-input {
-          width: 90px;
-          padding: 7px 8px;
+          width: 85px;
+          padding: 6px 8px;
           font-size: 0.82rem;
           font-weight: 700;
           border: none;
@@ -279,7 +365,7 @@ export const MapPage = ({
 
         .mf-curr-btn {
           padding: 6px 8px;
-          font-size: 0.76rem;
+          font-size: 0.75rem;
           font-weight: 800;
           color: #ffffff;
           background: #b91c1c;
@@ -289,11 +375,11 @@ export const MapPage = ({
           display: inline-flex;
           align-items: center;
           gap: 5px;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           font-weight: 700;
           color: #16a34a;
           background: #dcfce7;
-          padding: 6px 10px;
+          padding: 6px 9px;
           border-radius: var(--radius-sm);
           cursor: pointer;
         }
@@ -303,7 +389,7 @@ export const MapPage = ({
         }
 
         .mf-reset-btn {
-          padding: 8px;
+          padding: 7px;
           background: #e2e8f0;
           border-radius: var(--radius-sm);
           color: #64748b;
@@ -316,148 +402,274 @@ export const MapPage = ({
           color: var(--c-red);
         }
 
-        .mf-right-actions {
-          display: flex;
-          align-items: center;
-          gap: 12px;
+        .mobile-view-tabs {
+          display: none;
         }
 
-        .mf-count-badge {
-          font-size: 0.85rem;
-          color: #475569;
-        }
-
-        .mf-count-badge strong {
-          color: #b91c1c;
-          font-size: 1rem;
-        }
-
-        /* Body & Map Viewport */
-        .map-page-body-container {
+        /* Split Body Layout */
+        .map-page-body-split {
           flex: 1;
           display: flex;
-          position: relative;
-          height: 100%;
+          height: calc(100% - 49px);
+          overflow: hidden;
         }
 
-        .map-full-viewport {
-          flex: 1;
+        /* Left Sidebar: Permanent List */
+        .map-left-sidebar {
+          width: 420px;
           height: 100%;
-          width: 100%;
-        }
-
-        .map-full-viewport .property-map-container-wrapper {
-          border-radius: 0;
-          border: none;
-          height: 100%;
-          min-height: 100%;
-        }
-
-        /* Sliding Side Cards Panel */
-        .map-side-cards-panel {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          width: 360px;
           background: #ffffff;
-          box-shadow: -8px 0 25px rgba(0, 0, 0, 0.15);
-          z-index: 500;
+          border-right: 1px solid var(--c-border);
           display: flex;
           flex-direction: column;
-          border-left: 1px solid var(--c-border);
+          flex-shrink: 0;
+          z-index: 5;
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.04);
         }
 
-        .mscp-header {
+        .mls-header {
+          padding: 12px 16px;
+          background: #f8fafc;
+          border-bottom: 1px solid var(--c-border);
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 14px 18px;
-          border-bottom: 1px solid var(--c-border);
-          background: #f8fafc;
         }
 
-        .mscp-header h3 {
-          font-size: 1rem;
+        .mls-title-row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .mls-title-row h3 {
+          font-size: 0.95rem;
           font-weight: 800;
           color: var(--c-slate);
         }
 
-        .mscp-close-btn {
-          font-size: 1.1rem;
-          color: #64748b;
-          padding: 4px;
+        .mls-counter {
+          background: #b91c1c;
+          color: #ffffff;
+          font-size: 0.72rem;
+          font-weight: 800;
+          padding: 1px 7px;
+          border-radius: 12px;
         }
 
-        .mscp-list {
+        .mls-sort-row {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        .mls-sort-select {
+          border: none;
+          background: transparent;
+          font-size: 0.76rem;
+          font-weight: 600;
+          color: #475569;
+          outline: none;
+          cursor: pointer;
+        }
+
+        .mls-scrollable-list {
           flex: 1;
           overflow-y: auto;
           padding: 12px;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
         }
 
-        .mscp-card-item {
+        /* Property Card in Left Sidebar */
+        .mls-card {
           display: flex;
-          gap: 10px;
-          padding: 8px;
-          border-radius: var(--radius-sm);
-          border: 1px solid var(--c-border);
+          gap: 12px;
+          padding: 10px;
           background: #ffffff;
+          border: 1px solid var(--c-border);
+          border-radius: var(--radius-md);
           cursor: pointer;
           transition: var(--transition);
         }
 
-        .mscp-card-item:hover, .mscp-card-item.active {
+        .mls-card:hover, .mls-card.selected {
           border-color: #b91c1c;
-          background: #fef2f2;
-          transform: translateX(-3px);
+          box-shadow: 0 4px 12px rgba(185, 28, 28, 0.12);
+          transform: translateY(-2px);
         }
 
-        .mscp-img {
-          width: 80px;
-          height: 65px;
-          object-fit: cover;
-          border-radius: 6px;
+        .mls-card.selected {
+          background: #fff5f5;
+        }
+
+        .mls-card-img-box {
+          position: relative;
+          width: 110px;
+          height: 95px;
+          border-radius: var(--radius-sm);
+          overflow: hidden;
           flex-shrink: 0;
+          background: #e2e8f0;
         }
 
-        .mscp-meta {
+        .mls-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .mls-card-tag {
+          position: absolute;
+          bottom: 4px;
+          left: 4px;
+          background: rgba(15, 23, 42, 0.85);
+          color: #ffffff;
+          font-size: 0.65rem;
+          font-weight: 800;
+          padding: 2px 6px;
+          border-radius: 4px;
+        }
+
+        .mls-card-info {
+          flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          line-height: 1.25;
+          min-width: 0;
         }
 
-        .mscp-price {
-          font-size: 0.95rem;
+        .mls-card-price-row {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          margin-bottom: 2px;
+        }
+
+        .mls-card-price {
+          font-size: 1.1rem;
           font-weight: 900;
           color: #b91c1c;
+          line-height: 1.1;
         }
 
-        .mscp-title {
-          font-size: 0.8rem;
+        .mls-card-m2 {
+          font-size: 0.72rem;
+          color: #64748b;
+          font-weight: 600;
+        }
+
+        .mls-card-title {
+          font-size: 0.82rem;
           font-weight: 700;
           color: var(--c-slate);
-          margin: 2px 0;
+          margin-bottom: 3px;
+          line-height: 1.25;
           display: -webkit-box;
           -webkit-line-clamp: 1;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
 
-        .mscp-address {
+        .mls-card-loc {
+          display: flex;
+          align-items: center;
+          gap: 4px;
           font-size: 0.72rem;
           color: #64748b;
+          margin-bottom: 6px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
-        @media (max-width: 768px) {
+        .mls-card-metrics {
+          display: flex;
+          gap: 8px;
+          font-size: 0.7rem;
+          color: #475569;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+
+        .mls-card-actions {
+          display: flex;
+          gap: 6px;
+          margin-top: auto;
+        }
+
+        .mls-book-btn {
+          flex: 1;
+          font-size: 0.74rem;
+          padding: 5px 8px;
+          background: #b91c1c;
+        }
+
+        .mls-book-btn:hover {
+          background: #991b1b;
+        }
+
+        .mls-details-btn {
+          padding: 5px 8px;
+        }
+
+        .mls-empty {
+          text-align: center;
+          padding: 40px 10px;
+          color: #64748b;
+          font-size: 0.88rem;
+        }
+
+        /* Right Viewport */
+        .map-right-viewport {
+          flex: 1;
+          height: 100%;
+          position: relative;
+        }
+
+        .map-right-viewport .property-map-container-wrapper {
+          border-radius: 0;
+          border: none;
+          height: 100%;
+          min-height: 100%;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
           .map-page-wrapper {
-            height: calc(100vh - 64px - 68px); /* clear mobile header and bottom bar */
+            height: calc(100vh - 64px - 68px);
           }
-          .map-side-cards-panel {
+
+          .mobile-view-tabs {
+            display: flex;
+            background: #e2e8f0;
+            padding: 2px;
+            border-radius: var(--radius-sm);
+          }
+
+          .mvt-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: #475569;
+            border-radius: 4px;
+          }
+
+          .mvt-btn.active {
+            background: #ffffff;
+            color: #b91c1c;
+            box-shadow: var(--shadow-sm);
+          }
+
+          .map-left-sidebar {
             width: 100%;
+          }
+
+          .hide-on-mobile {
+            display: none !important;
           }
         }
       `}</style>

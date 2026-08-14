@@ -145,8 +145,8 @@ export const PROPERTIES_DATA = [
     isVerified: true,
     description: 'Здається вперше після ремонту. Елітний тихий центр, вікна у затишний двір Корпусного парку. Високі стелі 3.2м, сигналізація, оптоволоконний інтернет (працює при блекаутах), посудомийна машина, смарт-ТБ, ортопедичний матрац. Закритий двір з паркомісцем.',
     images: [
-      'https://images.unsplash.com/photo-1502005229762-ee1b2da97c0f?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1000&q=80',
       'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80'
     ],
     features: ['Оптоволоконний інтернет', 'Посудомийна машина', 'Паркомісце у дворі', 'Автономне опалення', 'Працює без світла'],

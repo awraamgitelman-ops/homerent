@@ -7,7 +7,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const tileLayerRef = useRef(null);
-  const markersRef = useRef([]);
+  const markersRef = useRef({});
   const [mapType, setMapType] = useState('roadmap'); // 'roadmap' | 'satellite'
 
   // Initialize Map
@@ -19,7 +19,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         center: [49.5883, 34.5514], // Poltava center
         zoom: 13,
         zoomControl: true,
-        scrollWheelZoom: false
+        scrollWheelZoom: true
       });
 
       // Google Maps Roadmap tiles
@@ -36,8 +36,8 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     const map = mapInstanceRef.current;
 
     // Clear previous markers
-    markersRef.current.forEach(m => map.removeLayer(m));
-    markersRef.current = [];
+    Object.values(markersRef.current).forEach(m => map.removeLayer(m));
+    markersRef.current = {};
 
     const bounds = [];
 
@@ -45,21 +45,41 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
     properties.forEach((prop) => {
       if (!prop.lat || !prop.lng) return;
 
-      const priceText = currency === 'USD' 
-        ? `$ ${(prop.priceUSD / 1000).toFixed(0)} тис.` 
-        : `${(prop.priceUAH / 1000).toFixed(0)} тис. грн`;
+      // Smart Price Text on Pin
+      let priceText = '';
+      if (currency === 'USD') {
+        if (prop.priceUSD >= 10000) {
+          priceText = `$ ${(prop.priceUSD / 1000).toFixed(0)} тис.`;
+        } else if (prop.transaction === 'daily') {
+          priceText = `$ ${prop.priceUSD}/доб.`;
+        } else if (prop.transaction === 'rent') {
+          priceText = `$ ${prop.priceUSD}/міс`;
+        } else {
+          priceText = `$ ${prop.priceUSD}`;
+        }
+      } else {
+        if (prop.priceUAH >= 100000) {
+          priceText = `${(prop.priceUAH / 1000).toFixed(0)} тис. грн`;
+        } else if (prop.transaction === 'daily') {
+          priceText = `${prop.priceUAH} грн/доб.`;
+        } else if (prop.transaction === 'rent') {
+          priceText = `${prop.priceUAH.toLocaleString('uk-UA')} грн/міс`;
+        } else {
+          priceText = `${prop.priceUAH} грн`;
+        }
+      }
 
       const isSelected = selectedPropertyId === prop.id;
 
       const customIcon = L.divIcon({
         className: 'custom-map-price-marker',
         html: `
-          <div class="google-map-price-badge ${isSelected ? 'selected' : ''} ${prop.type === 'house' ? 'house-badge' : ''}">
+          <div class="google-map-price-badge ${isSelected ? 'selected' : ''} ${prop.type === 'house' ? 'house-badge' : ''} ${prop.transaction === 'rent' ? 'rent-badge' : ''}">
             <span class="price-val">${priceText}</span>
           </div>
         `,
-        iconSize: [84, 32],
-        iconAnchor: [42, 16]
+        iconSize: [92, 34],
+        iconAnchor: [46, 17]
       });
 
       const marker = L.marker([prop.lat, prop.lng], { icon: customIcon }).addTo(map);
@@ -98,15 +118,25 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
       });
 
-      markersRef.current.push(marker);
+      markersRef.current[prop.id] = marker;
       bounds.push([prop.lat, prop.lng]);
     });
 
-    if (bounds.length > 0) {
+    if (bounds.length > 0 && !selectedPropertyId) {
       map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
     }
 
   }, [properties, currency, selectedPropertyId]);
+
+  // Pan to selected marker if selectedPropertyId changes
+  useEffect(() => {
+    if (!selectedPropertyId || !mapInstanceRef.current) return;
+    const targetMarker = markersRef.current[selectedPropertyId];
+    if (targetMarker) {
+      mapInstanceRef.current.setView(targetMarker.getLatLng(), 15, { animate: true });
+      targetMarker.openPopup();
+    }
+  }, [selectedPropertyId]);
 
   // Switch between Google Roadmap & Google Satellite
   const toggleMapLayer = (type) => {
@@ -200,7 +230,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
 
         .gmc-btn.active {
-          background: var(--c-primary);
+          background: #b91c1c;
           color: #ffffff;
         }
 
@@ -214,9 +244,9 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           color: #ffffff;
           font-weight: 800;
           font-size: 0.8rem;
-          padding: 5px 10px;
+          padding: 6px 10px;
           border-radius: 20px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.32);
           text-align: center;
           white-space: nowrap;
           border: 2px solid #ffffff;
@@ -227,13 +257,18 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
 
         .google-map-price-badge:hover, .google-map-price-badge.selected {
-          background: #ef4444;
-          transform: scale(1.12);
+          background: #dc2626;
+          transform: scale(1.14);
           z-index: 1000;
+          box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
         }
 
         .google-map-price-badge.house-badge {
           background: #059669;
+        }
+
+        .google-map-price-badge.rent-badge {
+          background: #7c3aed;
         }
       `}</style>
     </div>
