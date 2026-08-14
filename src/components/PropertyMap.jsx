@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
+import 'leaflet.markercluster';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { formatCurrency } from '../utils/formatters';
 import { Layers, Map as MapIcon, Compass } from 'lucide-react';
 
@@ -9,6 +12,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
   const tileLayerRef = useRef(null);
   const maskLayerRef = useRef(null);
   const radiusBorderRef = useRef(null);
+  const clusterGroupRef = useRef(null);
   const markersRef = useRef({});
   const [mapType, setMapType] = useState('roadmap'); // 'roadmap' | 'satellite'
 
@@ -59,41 +63,88 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         [90, 180],
         [90, -180]
       ];
-      const inner30kmRing = createCirclePoints(poltavaCenter[0], poltavaCenter[1], 30000); // 30,000 meters = 30 km
 
-      const maskPolygon = L.polygon([worldOuterCoords, inner30kmRing], {
+      const poltava30kmHole = createCirclePoints(49.5883, 34.5514, 30000);
+
+      // Donut polygon
+      const mask = L.polygon([worldOuterCoords, poltava30kmHole], {
+        color: 'transparent',
         fillColor: '#1e293b',
         fillOpacity: 0.55,
-        stroke: false,
-        weight: 0,
         interactive: false
       }).addTo(map);
 
-      // 30 km red dashed border
-      const circleBorder = L.circle(poltavaCenter, {
+      // 30 km boundary line
+      const radiusCircle = L.circle(poltavaCenter, {
         radius: 30000,
         color: '#dc2626',
         weight: 2,
+        opacity: 0.85,
+        fill: false,
         dashArray: '6, 8',
-        fillColor: 'transparent',
         interactive: false
       }).addTo(map);
 
-      tileLayerRef.current = tileLayer;
-      maskLayerRef.current = maskPolygon;
-      radiusBorderRef.current = circleBorder;
       mapInstanceRef.current = map;
+      tileLayerRef.current = tileLayer;
+      maskLayerRef.current = mask;
+      radiusBorderRef.current = radiusCircle;
     }
 
+    return () => {
+      // Map cleanup if needed
+    };
+  }, []);
+
+  // Update Markers with Smooth High-Performance Clustering
+  useEffect(() => {
+    if (!mapInstanceRef.current) return;
     const map = mapInstanceRef.current;
 
-    // Clear previous markers
-    Object.values(markersRef.current).forEach(m => map.removeLayer(m));
+    // Remove previous cluster group
+    if (clusterGroupRef.current) {
+      map.removeLayer(clusterGroupRef.current);
+    }
     markersRef.current = {};
+
+    // Create a new high-performance cluster group
+    const clusterGroup = L.markerClusterGroup({
+      maxClusterRadius: (zoom) => (zoom <= 11 ? 80 : zoom <= 13 ? 55 : zoom <= 14 ? 40 : 25),
+      spiderfyOnMaxZoom: true,
+      showCoverageOnHover: false,
+      zoomToBoundsOnClick: true,
+      disableClusteringAtZoom: 16, // At zoom 16+ (street level), unpack all into individual price tags
+      animateAddingMarkers: false,
+      chunkedLoading: true, // Smooth loading for 1,000+ items without UI stutter
+      iconCreateFunction: function (cluster) {
+        const count = cluster.getChildCount();
+        let size = 42;
+        let lvlClass = 'cluster-lvl-1';
+
+        if (count >= 100) {
+          size = 54;
+          lvlClass = 'cluster-lvl-3';
+        } else if (count >= 20) {
+          size = 48;
+          lvlClass = 'cluster-lvl-2';
+        }
+
+        return L.divIcon({
+          html: `
+            <div class="custom-map-cluster-bubble ${lvlClass}">
+              <span class="cmc-count">${count}</span>
+            </div>
+          `,
+          className: 'custom-cluster-wrapper',
+          iconSize: [size, size],
+          iconAnchor: [size / 2, size / 2]
+        });
+      }
+    });
 
     const bounds = [];
 
-    // Add Google-styled price badge markers
+    // Add Google-styled price badge markers to cluster group
     properties.forEach((prop) => {
       if (!prop.lat || !prop.lng) return;
 
@@ -127,7 +178,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         iconAnchor: [0, 0]
       });
 
-      const marker = L.marker([prop.lat, prop.lng], { icon: customIcon }).addTo(map);
+      const marker = L.marker([prop.lat, prop.lng], { icon: customIcon });
       const googleMapsDirectUrl = `https://www.google.com/maps/search/?api=1&query=${prop.lat},${prop.lng}`;
       const fallbackImg = prop.type === 'house' 
         ? 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=400&q=80'
@@ -167,23 +218,28 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
       });
 
+      clusterGroup.addLayer(marker);
       markersRef.current[prop.id] = marker;
       bounds.push([prop.lat, prop.lng]);
     });
+
+    map.addLayer(clusterGroup);
+    clusterGroupRef.current = clusterGroup;
 
     if (bounds.length > 0 && !selectedPropertyId) {
       map.fitBounds(bounds, { padding: [40, 40], maxZoom: 13 });
     }
 
-  }, [properties, currency, selectedPropertyId]);
+  }, [properties, currency]);
 
-  // Pan to selected marker if selectedPropertyId changes
+  // Pan to selected marker (auto-zooms through clusters if marker is clustered)
   useEffect(() => {
-    if (!selectedPropertyId || !mapInstanceRef.current) return;
+    if (!selectedPropertyId || !mapInstanceRef.current || !clusterGroupRef.current) return;
     const targetMarker = markersRef.current[selectedPropertyId];
     if (targetMarker) {
-      mapInstanceRef.current.setView(targetMarker.getLatLng(), 15, { animate: true });
-      targetMarker.openPopup();
+      clusterGroupRef.current.zoomToShowLayer(targetMarker, () => {
+        targetMarker.openPopup();
+      });
     }
   }, [selectedPropertyId]);
 
@@ -222,7 +278,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         <span>Зона обслуговування: <strong>Полтава + 30 км</strong></span>
       </div>
 
-      {/* Google Maps Layer Switcher */}
+      {/* Layer Switcher (Google Roadmap / Satellite) */}
       <div className="google-map-layer-controls">
         <button
           type="button"
@@ -230,7 +286,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           onClick={() => toggleMapLayer('roadmap')}
         >
           <MapIcon size={14} />
-          <span>Google Карта</span>
+          <span>Карта</span>
         </button>
         <button
           type="button"
@@ -242,31 +298,30 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         </button>
       </div>
 
-      <div ref={mapContainerRef} className="property-leaflet-map" />
+      {/* Leaflet Map Canvas */}
+      <div ref={mapContainerRef} className="leaflet-map-canvas" />
 
+      {/* Scoped Styles for Clean UI & High-Performance Clusters */}
       <style>{`
         .property-map-container-wrapper {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 480px;
+        }
+
+        .leaflet-map-canvas {
           width: 100%;
           height: 100%;
           min-height: 480px;
           border-radius: var(--radius-lg);
-          overflow: hidden;
-          box-shadow: var(--shadow-md);
-          border: 1px solid var(--c-border);
-          position: relative;
+          background: #e2e8f0;
         }
 
-        .property-leaflet-map {
-          width: 100%;
-          height: 100%;
-          min-height: 480px;
-        }
-
-        /* 30 km Radius Badge */
         .map-radius-indicator-pill {
           position: absolute;
-          bottom: 14px;
-          left: 14px;
+          top: 12px;
+          left: 12px;
           z-index: 1000;
           display: flex;
           align-items: center;
@@ -329,7 +384,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           height: 0 !important;
         }
 
-        /* Price Badge styling */
+        /* Individual Price Badge styling */
         .google-map-price-badge {
           display: inline-flex;
           align-items: center;
@@ -364,6 +419,56 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           transform: translate(-50%, -50%) scale(1.14);
           z-index: 1000;
           box-shadow: 0 6px 20px rgba(220, 38, 38, 0.55);
+        }
+
+        /* Modern High-Performance Cluster Bubbles */
+        .custom-cluster-wrapper {
+          background: transparent !important;
+          border: none !important;
+        }
+
+        .custom-map-cluster-bubble {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          color: #ffffff;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-weight: 900;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+          border: 3px solid #ffffff;
+          cursor: pointer;
+          transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        }
+
+        .custom-map-cluster-bubble:hover {
+          transform: scale(1.15);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Level 1: < 20 objects (Deep Indigo) */
+        .custom-map-cluster-bubble.cluster-lvl-1 {
+          background: linear-gradient(135deg, #2563eb, #1e3a8a);
+          font-size: 0.88rem;
+        }
+
+        /* Level 2: 20-99 objects (Vibrant Purple) */
+        .custom-map-cluster-bubble.cluster-lvl-2 {
+          background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+          font-size: 0.95rem;
+        }
+
+        /* Level 3: 100+ objects (Bold Crimson) */
+        .custom-map-cluster-bubble.cluster-lvl-3 {
+          background: linear-gradient(135deg, #ef4444, #b91c1c);
+          font-size: 1.05rem;
+        }
+
+        .cmc-count {
+          line-height: 1;
+          letter-spacing: -0.3px;
         }
       `}</style>
     </div>
