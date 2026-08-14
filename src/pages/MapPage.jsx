@@ -27,7 +27,7 @@ export const MapPage = ({
 }) => {
   // Strict separation: 'rent' | 'buy' (no mixed all-in-one)
   const [transaction, setTransaction] = useState('rent');
-  const [selectedType, setSelectedType] = useState('all');
+  const [selectedType, setSelectedType] = useState('apartment');
   const [district, setDistrict] = useState('all');
   const [rooms, setRooms] = useState('all');
   const [priceMin, setPriceMin] = useState('');
@@ -54,8 +54,8 @@ export const MapPage = ({
       // 1. Strict Transaction separation
       if (p.transaction !== transaction) return false;
 
-      // 2. Type Filter
-      if (selectedType !== 'all' && p.type !== selectedType) return false;
+      // 2. Concrete Type Filter (No 'all types')
+      if (p.type !== selectedType) return false;
 
       // 3. District Filter
       if (district !== 'all' && p.district !== district) return false;
@@ -88,7 +88,7 @@ export const MapPage = ({
   const buyCount = properties.filter(p => p.transaction === 'buy').length;
 
   const handleReset = () => {
-    setSelectedType('all');
+    setSelectedType('apartment');
     setDistrict('all');
     setRooms('all');
     setPriceMin('');
@@ -136,6 +136,18 @@ export const MapPage = ({
 
           {/* Sub Filters Row */}
           <div className="mf-group">
+            {/* Concrete Type Selector - Without "All Types" */}
+            <select 
+              value={selectedType} 
+              onChange={(e) => setSelectedType(e.target.value)}
+              className="mf-select mf-type-select"
+            >
+              <option value="apartment">🏢 Квартири</option>
+              <option value="house">🏡 Будинки та котеджі</option>
+              <option value="commercial">🏬 Комерційні приміщення</option>
+              {transaction === 'buy' && <option value="land">🌲 Земельні ділянки</option>}
+            </select>
+
             {/* District */}
             <select 
               value={district} 
