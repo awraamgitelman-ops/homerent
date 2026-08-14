@@ -77,7 +77,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
       // 30 km boundary line
       const radiusCircle = L.circle(poltavaCenter, {
         radius: 30000,
-        color: '#2563eb',
+        color: '#f59e0b',
         weight: 2,
         opacity: 0.85,
         fill: false,
@@ -200,7 +200,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
             📍 ${prop.address}
           </div>
           <div style="display: flex; gap: 6px;">
-            <button id="map-prop-btn-${prop.id}" style="flex: 1; padding: 7px 10px; background: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer;">
+            <button id="map-prop-btn-${prop.id}" style="flex: 1; padding: 7px 10px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);">
               Деталі →
             </button>
             <a href="${googleMapsDirectUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; padding: 7px 10px; background: #f1f5f9; color: #1e293b; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none;" title="Відкрити в Google Maps">
@@ -378,7 +378,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
 
         .gmc-btn.active {
-          background: #2563eb;
+          background: #d97706;
           color: #ffffff;
         }
 
@@ -421,10 +421,10 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         }
 
         .google-map-price-badge:hover {
-          background: #2563eb !important;
+          background: #d97706 !important;
           transform: translate(-50%, -50%) scale(1.12);
           z-index: 1000;
-          box-shadow: 0 6px 20px rgba(37, 99, 235, 0.55);
+          box-shadow: 0 6px 20px rgba(217, 119, 6, 0.55);
         }
 
         /* Modern High-Performance Cluster & Single Bubbles */
@@ -472,9 +472,9 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           font-size: 0.95rem;
         }
 
-        /* Level 3: 100+ objects (Royal Navy Blue) */
+        /* Level 3: 100+ objects (Amber Gold) */
         .custom-map-cluster-bubble.cluster-lvl-3 {
-          background: linear-gradient(135deg, #1d4ed8, #172554);
+          background: linear-gradient(135deg, #f59e0b, #d97706);
           font-size: 1.05rem;
         }
 

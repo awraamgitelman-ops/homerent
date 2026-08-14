@@ -321,12 +321,13 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
         }
 
         .hl-accent {
-          background: #2563eb;
+          background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
           color: #ffffff;
           padding: 2px 14px;
           border-radius: var(--radius-sm);
           display: inline-block;
           margin-right: 8px;
+          box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
         }
 
         .hero-subheadline {
@@ -384,16 +385,16 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
         }
 
         .hs-tab-btn.tab-invest {
-          background: #1e40af;
+          background: #d97706;
           color: #ffffff;
         }
 
         .hs-tab-btn.tab-invest:hover {
-          background: #1e3a8a;
+          background: #b45309;
         }
 
         .hs-tab-btn.tab-invest.active {
-          background: #2563eb;
+          background: #f59e0b;
           color: #ffffff;
         }
 
@@ -582,16 +583,21 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
         }
 
         .hero-cta-btn {
-          background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+          background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
           color: #ffffff;
           padding: 14px 28px;
           font-size: 1rem;
-          box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+          font-weight: 800;
+          border-radius: 12px;
+          box-shadow: 0 8px 24px rgba(245, 158, 11, 0.45);
+          border: none;
+          transition: all 0.2s ease;
         }
 
         .hero-cta-btn:hover {
-          background: #1e40af;
+          background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
           transform: translateY(-2px);
+          box-shadow: 0 12px 30px rgba(245, 158, 11, 0.55);
         }
 
         /* Responsive */
