@@ -13,23 +13,11 @@ export const CatalogPage = ({
 }) => {
   return (
     <div className="catalog-page-wrapper">
-      <div className="catalog-page-hero">
-        <div className="container">
-          <span className="badge badge-blue mb-2">Актуальна база об'єктів 2026</span>
-          <h1 className="cph-title">Нерухомість у Полтаві: Купівля та Оренда</h1>
-          <p className="cph-subtitle">
-            Перевірені квартири, будинки, земельні ділянки та комерційні площі у всіх районах Полтави (Центр, Левада, Поділ, Алмазний, Сади тощо).
-          </p>
-        </div>
-      </div>
-
-      <div className="container mt-4">
-        <HeroSearch
-          onSearch={onSearch}
-          totalCount={properties.length}
-          onOpenConsultModal={onOpenConsultModal}
-        />
-      </div>
+      <HeroSearch
+        onSearch={onSearch}
+        totalCount={properties.length}
+        onOpenConsultModal={onOpenConsultModal}
+      />
 
       <PropertyCatalog
         properties={properties}

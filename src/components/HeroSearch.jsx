@@ -70,11 +70,6 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
       
       <div className="container hero-content">
         {/* Main Headline */}
-        <div className="hero-badge-pill">
-          <span className="hbp-tag">НОВЕКС ІНВЕСТ</span>
-          <span>Перевірені об'єкти нерухомості у Полтаві</span>
-        </div>
-
         <h1 className="hero-headline">
           <span className="hl-accent">ЗНАЙДИ</span> Свою нерухомість у ПОЛТАВІ
         </h1>
@@ -268,7 +263,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
           position: relative;
           background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a8a 100%);
           color: #ffffff;
-          padding: 60px 0 70px;
+          padding: 48px 0 56px;
           overflow: hidden;
         }
 
@@ -287,36 +282,13 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
           text-align: center;
         }
 
-        .hero-badge-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: rgba(255, 255, 255, 0.12);
-          backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: var(--radius-full);
-          padding: 6px 16px;
-          font-size: 0.82rem;
-          color: #e2e8f0;
-          margin-bottom: 20px;
-        }
-
-        .hbp-tag {
-          background: var(--c-accent);
-          color: #ffffff;
-          font-weight: 800;
-          font-size: 0.72rem;
-          padding: 2px 8px;
-          border-radius: 12px;
-          text-transform: uppercase;
-        }
-
         .hero-headline {
           font-size: 2.75rem;
           font-weight: 900;
           color: #ffffff;
           letter-spacing: -0.5px;
-          margin-bottom: 12px;
+          margin-top: 0;
+          margin-bottom: 14px;
           line-height: 1.15;
         }
 
@@ -334,7 +306,7 @@ export const HeroSearch = ({ onSearch, totalCount = 89, onOpenConsultModal }) =>
           font-size: 1.05rem;
           color: #cbd5e1;
           max-width: 760px;
-          margin: 0 auto 36px;
+          margin: 0 auto 28px;
           line-height: 1.5;
         }
 
