@@ -102,7 +102,7 @@ export const ContactsPage = () => {
               <div className="ci-details">
                 <h4>Прямий телефон</h4>
                 <a href="tel:+380988612938" className="ci-phone-link">+380 (98) 861-29-38</a>
-                <p className="ci-subnote">Прийом дзвінків: щодня з 09:00 до 20:00</p>
+                <p className="ci-subnote">Прийом дзвінків: Пн–Пт з 10:00 до 18:00</p>
               </div>
             </div>
 
@@ -110,7 +110,7 @@ export const ContactsPage = () => {
               <div className="ci-icon"><Clock size={22} /></div>
               <div className="ci-details">
                 <h4>Графік роботи</h4>
-                <p>Понеділок — Неділя: 09:00 — 20:00 (без перерви та вихідних)</p>
+                <p>Понеділок — П'ятниця: 10:00 — 18:00 (Сб, Нд — вихідні)</p>
               </div>
             </div>
           </div>

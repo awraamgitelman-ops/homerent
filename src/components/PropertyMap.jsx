@@ -86,28 +86,6 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
         interactive: false
       }).addTo(map);
 
-      // Prominent Office Pin Marker at вул. Соборності, 22
-      const officeIcon = L.divIcon({
-        className: 'custom-office-marker',
-        html: `
-          <div style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); color: #ffffff; border: 2px solid #f59e0b; border-radius: 20px; padding: 4px 12px; font-weight: 800; font-size: 11px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 6px 18px rgba(0,0,0,0.35); white-space: nowrap; cursor: pointer; transform: translate(-50%, -50%);">
-            <span style="color: #fbbf24;">🏢</span>
-            <span>Офіс «ФАВОРИТ ГРУП»</span>
-          </div>
-        `,
-        iconSize: [0, 0],
-        iconAnchor: [0, 0]
-      });
-
-      const officeMarker = L.marker(officeCoords, { icon: officeIcon, zIndexOffset: 2000 }).addTo(map);
-      officeMarker.bindPopup(`
-        <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 8px 6px; text-align: center; width: 220px;">
-          <div style="font-weight: 900; font-size: 1.05rem; color: #1e3a8a; margin-bottom: 4px;">Головний офіс «ФАВОРИТ ГРУП»</div>
-          <div style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 4px;">📍 м. Полтава, вул. Соборності, 22</div>
-          <div style="font-size: 0.78rem; color: #64748b;">Пн–Нд: 09:00 — 20:00 (без вихідних)</div>
-        </div>
-      `, { autoPan: true, autoPanPadding: [50, 50] });
-
       mapInstanceRef.current = map;
       tileLayerRef.current = tileLayer;
       maskLayerRef.current = mask;

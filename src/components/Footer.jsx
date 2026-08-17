@@ -183,7 +183,7 @@ export const Footer = ({ onOpenConsultModal }) => {
               </div>
               <div className="nx-mc-row">
                 <Clock size={15} className="text-primary" />
-                <span>Пн–Нд: 09:00 — 20:00 (без вихідних)</span>
+                <span>Пн–Пт: 10:00 — 18:00 (Сб, Нд — вихідні)</span>
               </div>
               <div className="nx-mc-row">
                 <Mail size={15} className="text-primary" />
