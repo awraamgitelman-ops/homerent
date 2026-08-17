@@ -179,7 +179,7 @@ export const Footer = ({ onOpenConsultModal }) => {
             <div className="nx-meta-contacts">
               <div className="nx-mc-row">
                 <MapPin size={15} className="text-primary" />
-                <span>м. Полтава, вул. Європейська, 2, оф. 202</span>
+                <span>м. Полтава, вул. Соборності, 22</span>
               </div>
               <div className="nx-mc-row">
                 <Clock size={15} className="text-primary" />
@@ -202,7 +202,7 @@ export const Footer = ({ onOpenConsultModal }) => {
           </div>
 
           <div className="nx-bb-right">
-            <span className="nx-office-subtle">Офіс приймає клієнтів: Полтава, вул. Європейська, 2</span>
+            <span className="nx-office-subtle">Офіс приймає клієнтів: Полтава, вул. Соборності, 22</span>
           </div>
         </div>
       </div>

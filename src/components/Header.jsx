@@ -331,7 +331,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 </div>
 
                 <div className="ref-sb-address">
-                  <strong>Адреса офісу:</strong> м. Полтава, вул. Європейська, 2 (офіс 202)
+                  <strong>Адреса офісу:</strong> м. Полтава, вул. Соборності, 22
                 </div>
               </div>
             </div>

@@ -153,7 +153,7 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Юридична адреса:</span>
-                  <span className="av2-d-val">м. Полтава, вул. Європейська, буд. 2, оф. 202</span>
+                  <span className="av2-d-val">м. Полтава, вул. Соборності, 22</span>
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Контактний телефон:</span>
