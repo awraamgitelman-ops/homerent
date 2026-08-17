@@ -208,7 +208,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                   className="ref-sb-item text-bold-link"
                   onClick={() => { navigate('#/map?type=buy'); setIsSidebarOpen(false); }}
                 >
-                  <span>Продаж (Карта Полтави)</span>
+                  <span>Продаж</span>
                 </button>
 
                 {/* 2. Map - Rent */}
@@ -217,7 +217,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                   className="ref-sb-item text-bold-link"
                   onClick={() => { navigate('#/map?type=rent'); setIsSidebarOpen(false); }}
                 >
-                  <span>Оренда (Карта Полтави)</span>
+                  <span>Оренда</span>
                 </button>
 
                 {/* 3. Catalog */}
@@ -226,7 +226,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                   className="ref-sb-item text-accent-link"
                   onClick={() => { navigate('#/catalog'); setIsSidebarOpen(false); }}
                 >
-                  <span>Каталог об'єктів 2026</span>
+                  <span>Каталог об'єктів</span>
                 </button>
 
                 {/* Services with Accordion */}
@@ -284,7 +284,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                   className="ref-sb-item"
                   onClick={() => { navigate('#/requisites'); setIsSidebarOpen(false); }}
                 >
-                  <span>Реєстраційні дані (ЄДРПОУ 43980756)</span>
+                  <span>Реєстраційні дані</span>
                 </button>
 
                 {/* 10. Contacts */}
