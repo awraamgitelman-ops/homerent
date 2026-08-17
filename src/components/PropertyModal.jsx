@@ -132,6 +132,12 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
                       alt="" 
                       className="pm-thumb-img" 
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        if (e.currentTarget.parentElement) {
+                          e.currentTarget.parentElement.style.display = 'none';
+                        }
+                      }}
                     />
                   </div>
                 ))}

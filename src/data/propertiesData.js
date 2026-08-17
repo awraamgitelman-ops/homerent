@@ -41,8 +41,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-uyutnaya-ulitsa__340105737xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-uyutnaya-ulitsa__340105738xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-uyutnaya-ulitsa__340105739xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-uyutnaya-ulitsa__340105741xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-uyutnaya-ulitsa__340105660xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-uyutnaya-ulitsa__340105741xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -160,8 +159,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-vladimira-kozaka-ulitsa__339754081xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-vladimira-kozaka-ulitsa__339754392xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-vladimira-kozaka-ulitsa__339754390xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-vladimira-kozaka-ulitsa__339754391xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-vladimira-kozaka-ulitsa__339754071xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-vladimira-kozaka-ulitsa__339754391xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -277,8 +275,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__339187891xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__339187892xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__339187893xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__339187894xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__339187884xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-almaznyy-mazepy-ivana-ulitsa__339187894xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -333,8 +330,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-hmelnitskogo-bogdana-bulvar__338326536xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-hmelnitskogo-bogdana-bulvar__338326540xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-hmelnitskogo-bogdana-bulvar__338326542xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-hmelnitskogo-bogdana-bulvar__338326544xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-hmelnitskogo-bogdana-bulvar__338326532xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-hmelnitskogo-bogdana-bulvar__338326544xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -386,8 +382,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-stretenskaya-komsomolskaya-ulitsa__338182758xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-stretenskaya-komsomolskaya-ulitsa__338182759xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-stretenskaya-komsomolskaya-ulitsa__338182760xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-stretenskaya-komsomolskaya-ulitsa__338182761xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-stretenskaya-komsomolskaya-ulitsa__338182854xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-tsentr-stretenskaya-komsomolskaya-ulitsa__338182761xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -443,8 +438,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-bojenka-gennadiya-bilichenko-ulitsa__338073535xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-bojenka-gennadiya-bilichenko-ulitsa__338073537xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-bojenka-gennadiya-bilichenko-ulitsa__338073540xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-bojenka-gennadiya-bilichenko-ulitsa__338073541xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-bojenka-gennadiya-bilichenko-ulitsa__338059876xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-bojenka-gennadiya-bilichenko-ulitsa__338073541xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -565,8 +559,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-gojulivskiy-ulitsa__340214842xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-gojulivskiy-ulitsa__340214843xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-gojulivskiy-ulitsa__340214835xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-gojulivskiy-ulitsa__340214845xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-gojulivskiy-ulitsa__340214836xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-kievskiy-gojulivskiy-ulitsa__340214845xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -621,8 +614,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-perspektivnaya-ulitsa__339541362xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-perspektivnaya-ulitsa__339541364xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-perspektivnaya-ulitsa__339541365xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-perspektivnaya-ulitsa__339541366xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-perspektivnaya-ulitsa__339541358xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-perspektivnaya-ulitsa__339541366xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -680,8 +672,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-institut-svyazi-zayachiy-pereulok__339373757xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-institut-svyazi-zayachiy-pereulok__339600721xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-institut-svyazi-zayachiy-pereulok__339373760xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-institut-svyazi-zayachiy-pereulok__339373759xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-institut-svyazi-zayachiy-pereulok__339373697xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-institut-svyazi-zayachiy-pereulok__339373759xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -850,8 +841,7 @@ export const PROPERTIES_DATA = [
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-levada-churaivny-ulitsa__339243389xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-levada-churaivny-ulitsa__339243390xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-levada-churaivny-ulitsa__339243464xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-levada-churaivny-ulitsa__339243389xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-levada-churaivny-ulitsa__339243464xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -905,8 +895,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-shuhevicha-romana-pereulok__338616832xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-shuhevicha-romana-pereulok__338616831xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-shuhevicha-romana-pereulok__338616835xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-shuhevicha-romana-pereulok__338616834xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-shuhevicha-romana-pereulok__337337925xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-shuhevicha-romana-pereulok__338616834xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1018,8 +1007,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-komnata-poltava-almaznyy-gnata-hotkevicha-pereulok__340271990xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-komnata-poltava-almaznyy-gnata-hotkevicha-pereulok__340271991xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-komnata-poltava-almaznyy-gnata-hotkevicha-pereulok__340451455xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-komnata-poltava-almaznyy-gnata-hotkevicha-pereulok__340451454xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-komnata-poltava-almaznyy-gnata-hotkevicha-pereulok__340271988xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-komnata-poltava-almaznyy-gnata-hotkevicha-pereulok__340451454xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1071,8 +1059,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-dikanka-poltavskaya-ulitsa__340483826xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-dikanka-poltavskaya-ulitsa__340483838xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-dikanka-poltavskaya-ulitsa__340483852xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-dikanka-poltavskaya-ulitsa__340483869xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-dikanka-poltavskaya-ulitsa__340483704xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-dikanka-poltavskaya-ulitsa__340483869xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1121,8 +1108,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483568xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483572xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483589xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483604xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483522xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483604xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1170,8 +1156,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483553xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483571xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483580xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483603xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483522xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-kremenchug-vadima-pugacheva-moskovskaya-ulitsa__340483603xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1218,8 +1203,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-zemlya-kommercheskogo-naznacheniya-poltava__340483476xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-zemlya-kommercheskogo-naznacheniya-poltava__340483470xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-zemlya-kommercheskogo-naznacheniya-poltava__340483484xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-zemlya-kommercheskogo-naznacheniya-poltava__340483500xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-zemlya-kommercheskogo-naznacheniya-poltava__340483476xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-zemlya-kommercheskogo-naznacheniya-poltava__340483500xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1264,8 +1248,7 @@ export const PROPERTIES_DATA = [
     "description": "Пропонується Здається спеціальне приміщення на Ярослава Мудрого 22, площа 13.2 кв.м • ID 34659733. Локація у затишному районі Центр. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-svetlogorskoe__333663524xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-svetlogorskoe__333663530xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-svetlogorskoe__333663524xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-svetlogorskoe__333663530xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1315,8 +1298,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava__340255714xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava__340255722xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava__340255740xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava__340255744xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava__340255748xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava__340255744xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1431,8 +1413,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-nebesnoy-sotni-ulitsa__340146463xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-nebesnoy-sotni-ulitsa__340146465xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-nebesnoy-sotni-ulitsa__340146464xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-nebesnoy-sotni-ulitsa__340146466xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-nebesnoy-sotni-ulitsa__340146442xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-tsentr-nebesnoy-sotni-ulitsa__340146466xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1480,8 +1461,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-stadion-vorskla-skovorody-ulitsa__340026370xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-stadion-vorskla-skovorody-ulitsa__340026369xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-stadion-vorskla-skovorody-ulitsa__340026371xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-stadion-vorskla-skovorody-ulitsa__340026372xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-stadion-vorskla-skovorody-ulitsa__340026370xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-stadion-vorskla-skovorody-ulitsa__340026372xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1531,8 +1511,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-zagorodnaya-ulitsa__333609334xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-zagorodnaya-ulitsa__333609462xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-zagorodnaya-ulitsa__333609477xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-zagorodnaya-ulitsa__333609496xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-zagorodnaya-ulitsa__333609250xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-zagorodnaya-ulitsa__333609496xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1585,8 +1564,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333609867xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333609891xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333609983xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333610033xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333609605xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333610033xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1635,8 +1613,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava-chernovola-vyacheslava-ulitsa__339854905xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava-chernovola-vyacheslava-ulitsa__339854911xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava-chernovola-vyacheslava-ulitsa__339854916xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava-chernovola-vyacheslava-ulitsa__339854920xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava-chernovola-vyacheslava-ulitsa__339854895xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-spetsialnoe-pomeschenie-poltava-chernovola-vyacheslava-ulitsa__339854920xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1688,8 +1665,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-1100-letiya-poltavy-ulitsa__333625294xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-1100-letiya-poltavy-ulitsa__333625306xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-1100-letiya-poltavy-ulitsa__333625322xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-1100-letiya-poltavy-ulitsa__333625333xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-1100-letiya-poltavy-ulitsa__333625227xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-1100-letiya-poltavy-ulitsa__333625333xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1743,8 +1719,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-pushkina-ulitsa__333624078xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-pushkina-ulitsa__333624098xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-pushkina-ulitsa__333624121xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-pushkina-ulitsa__333624142xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-pushkina-ulitsa__333623965xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-pushkina-ulitsa__333624142xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1792,8 +1767,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava__339697790xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava__339697806xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava__339697813xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava__339697830xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava__339697790xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava__339697830xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1845,8 +1819,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__339541187xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__339541204xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__339541215xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__339541221xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__339541145xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-shevchenkovskiy-oktyabrskiy-oleksandra-oksanchenka-stepnogo-fronta-ulitsa__339541221xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1898,8 +1871,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-oktyabrskaya-ulitsa__333627637xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-oktyabrskaya-ulitsa__333627642xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-oktyabrskaya-ulitsa__333627645xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-oktyabrskaya-ulitsa__333627656xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-oktyabrskaya-ulitsa__333627608xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-oktyabrskaya-ulitsa__333627656xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -1947,8 +1919,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-gennadiya-bilichenko-petrovskogo-ulitsa__339149661xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-gennadiya-bilichenko-petrovskogo-ulitsa__339149728xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-gennadiya-bilichenko-petrovskogo-ulitsa__339149667xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-gennadiya-bilichenko-petrovskogo-ulitsa__339149724xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-gennadiya-bilichenko-petrovskogo-ulitsa__339149661xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kommercheskoe-pomeschenie-poltava-gennadiya-bilichenko-petrovskogo-ulitsa__339149724xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -2252,8 +2223,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-pravyy-podol-davydovskogo-pereulok__338433964xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-pravyy-podol-davydovskogo-pereulok__338433965xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-pravyy-podol-davydovskogo-pereulok__338433966xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-pravyy-podol-davydovskogo-pereulok__338433968xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-pravyy-podol-davydovskogo-pereulok__338433957xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-pravyy-podol-davydovskogo-pereulok__338433968xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -2365,8 +2335,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-nestora-gorodovenka-chaykovskogo-pereulok__336465151xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-nestora-gorodovenka-chaykovskogo-pereulok__336465242xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-nestora-gorodovenka-chaykovskogo-pereulok__336454816xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-nestora-gorodovenka-chaykovskogo-pereulok__336463931xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-furmanova-nestora-gorodovenka-chaykovskogo-pereulok__336465188xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-furmanova-nestora-gorodovenka-chaykovskogo-pereulok__336463931xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -2616,8 +2585,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__340329103xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__340329104xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__340329105xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__340329106xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__340329093xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-sady-1-geroev-ukrainy-geroev-stalingrada-ulitsa__340329106xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -2791,8 +2759,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-dalnie-yakovtsy-vyborgskiy-pereulok__340125279xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-dalnie-yakovtsy-vyborgskiy-pereulok__340125280xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-dalnie-yakovtsy-vyborgskiy-pereulok__340125281xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-dalnie-yakovtsy-vyborgskiy-pereulok__340125282xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-dom-poltava-dalnie-yakovtsy-vyborgskiy-pereulok__340125255xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-dalnie-yakovtsy-vyborgskiy-pereulok__340125282xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -2960,8 +2927,7 @@ export const PROPERTIES_DATA = [
     "images": [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-progressivnaya-ulitsa__340304952xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-progressivnaya-ulitsa__340304953xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-progressivnaya-ulitsa__340304950xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-dom-poltava-progressivnaya-ulitsa__340304952xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-progressivnaya-ulitsa__340304950xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3014,8 +2980,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-medovaya-ulitsa__340250076xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-medovaya-ulitsa__340250078xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-medovaya-ulitsa__340255675xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-medovaya-ulitsa__340176936xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-dom-poltava-voronina-medovaya-ulitsa__340250331xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-voronina-medovaya-ulitsa__340176936xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3065,8 +3030,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-podolskiy-ayvovyy-ulitsa__339794945xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-podolskiy-ayvovyy-ulitsa__339794967xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-podolskiy-ayvovyy-ulitsa__339794946xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-podolskiy-ayvovyy-ulitsa__339794944xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-dom-poltava-podolskiy-ayvovyy-ulitsa__339794942xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-dom-poltava-podolskiy-ayvovyy-ulitsa__339794944xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3185,8 +3149,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-shevchenkovskiy-oktyabrskiy-jeleznaya-ulitsa__340135121xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-shevchenkovskiy-oktyabrskiy-jeleznaya-ulitsa__340135122xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-shevchenkovskiy-oktyabrskiy-jeleznaya-ulitsa__340135123xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-shevchenkovskiy-oktyabrskiy-jeleznaya-ulitsa__340135124xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-chast-doma-poltava-shevchenkovskiy-oktyabrskiy-jeleznaya-ulitsa__340134996xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-chast-doma-poltava-shevchenkovskiy-oktyabrskiy-jeleznaya-ulitsa__340135124xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3302,8 +3265,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737333xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737337xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737329xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737340xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737331xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737340xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3358,8 +3320,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-kievskiy-velikiy-pereulok__339687318xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-kievskiy-velikiy-pereulok__339687317xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-kievskiy-velikiy-pereulok__339687323xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-kievskiy-velikiy-pereulok__339687322xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-ofisnye-pomescheniya-poltava-kievskiy-velikiy-pereulok__339687315xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-ofisnye-pomescheniya-poltava-kievskiy-velikiy-pereulok__339687322xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3540,8 +3501,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-shevchenko-ulitsa__340171175xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-shevchenko-ulitsa__340171180xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-shevchenko-ulitsa__340171177xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-shevchenko-ulitsa__340171174xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-tsentr-shevchenko-ulitsa__340171182xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-shevchenko-ulitsa__340171174xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3657,8 +3617,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-chernovola-vyacheslava-ulitsa__340114539xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-chernovola-vyacheslava-ulitsa__340114540xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-chernovola-vyacheslava-ulitsa__340114541xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-chernovola-vyacheslava-ulitsa__340114542xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-tsentr-chernovola-vyacheslava-ulitsa__340114533xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-chernovola-vyacheslava-ulitsa__340114542xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3710,8 +3669,7 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386753xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386754xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386755xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386756xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386751xl.jpg"
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386756xl.jpg"
     ],
     "features": [
       "Лічильники",
