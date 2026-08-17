@@ -94,13 +94,6 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               </button>
               <button 
                 type="button"
-                className={`ref-nav-link ${currentPath.includes('/about') ? 'active' : ''}`}
-                onClick={() => navigate('#/about')}
-              >
-                Відгуки
-              </button>
-              <button 
-                type="button"
                 className={`ref-nav-link ${currentPath.includes('/contacts') ? 'active' : ''}`}
                 onClick={() => navigate('#/contacts')}
               >
@@ -234,16 +227,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                   <span>Каталог об'єктів 2026</span>
                 </button>
 
-                {/* 3. Reviews */}
-                <button 
-                  type="button"
-                  className="ref-sb-item"
-                  onClick={() => { navigate('#/about'); setIsSidebarOpen(false); }}
-                >
-                  <span>Відгуки клієнтів</span>
-                </button>
-
-                {/* 4. Services with Accordion */}
+                {/* Services with Accordion */}
                 <div className="ref-sb-dropdown-group">
                   <button 
                     type="button"
