@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   X, 
   MapPin, 
@@ -9,12 +9,14 @@ import {
   Maximize2, 
   Building2, 
   Flame, 
-  Sparkles,
-  ShieldCheck,
-  Send,
-  UserCheck,
-  Share2,
-  Check
+  Sparkles, 
+  ShieldCheck, 
+  Send, 
+  UserCheck, 
+  Share2, 
+  Check,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { formatCurrency, formatPricePerM2, formatPhoneInput, validatePhone, validateName } from '../utils/formatters';
 import { sendTelegramLeadNotification } from '../utils/telegram';
@@ -23,6 +25,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
   if (!property) return null;
 
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('+380');
   const [preferredDate, setPreferredDate] = useState('');
@@ -30,6 +33,22 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+
+  // Keyboard navigation for Lightbox
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!isLightboxOpen) return;
+      if (e.key === 'Escape') setIsLightboxOpen(false);
+      if (e.key === 'ArrowRight' && property.images && property.images.length > 1) {
+        setActivePhotoIdx((prev) => (prev + 1) % property.images.length);
+      }
+      if (e.key === 'ArrowLeft' && property.images && property.images.length > 1) {
+        setActivePhotoIdx((prev) => (prev - 1 + property.images.length) % property.images.length);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, property.images]);
 
   const handlePhoneChange = (e) => {
     setPhone(formatPhoneInput(e.target.value));
@@ -144,7 +163,11 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
           {/* Photo Gallery Grid */}
           <div className="pm-gallery-section">
-            <div className="pm-main-photo-box">
+            <div 
+              className="pm-main-photo-box" 
+              onClick={() => setIsLightboxOpen(true)}
+              title="Натисніть для перегляду фото на весь екран"
+            >
               <img 
                 src={property.images[activePhotoIdx] || property.images[0]} 
                 alt={property.title} 
@@ -157,6 +180,10 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
                   }
                 }}
               />
+              <div className="pm-photo-zoom-hint">
+                <Maximize2 size={15} />
+                <span>На весь екран</span>
+              </div>
             </div>
 
             {property.images.length > 1 && (
@@ -334,6 +361,74 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Lightbox Modal */}
+      {isLightboxOpen && (
+        <div className="pm-lightbox-overlay animate-fade" onClick={() => setIsLightboxOpen(false)}>
+          <div className="pm-lightbox-header" onClick={(e) => e.stopPropagation()}>
+            <div className="pm-lb-counter">
+              <span>{activePhotoIdx + 1}</span> / <span>{property.images.length}</span>
+            </div>
+            <div className="pm-lb-title">{property.title}</div>
+            <button 
+              type="button" 
+              className="pm-lb-close-btn" 
+              onClick={() => setIsLightboxOpen(false)}
+              aria-label="Закрити перегляд"
+            >
+              <X size={22} />
+            </button>
+          </div>
+
+          <div className="pm-lightbox-body" onClick={(e) => e.stopPropagation()}>
+            {property.images.length > 1 && (
+              <button 
+                type="button" 
+                className="pm-lb-nav prev"
+                onClick={() => setActivePhotoIdx((prev) => (prev - 1 + property.images.length) % property.images.length)}
+                aria-label="Попереднє фото"
+              >
+                <ChevronLeft size={32} />
+              </button>
+            )}
+
+            <div className="pm-lb-img-container" onClick={() => setIsLightboxOpen(false)}>
+              <img 
+                src={property.images[activePhotoIdx] || property.images[0]} 
+                alt={property.title} 
+                className="pm-lb-active-img"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+
+            {property.images.length > 1 && (
+              <button 
+                type="button" 
+                className="pm-lb-nav next"
+                onClick={() => setActivePhotoIdx((prev) => (prev + 1) % property.images.length)}
+                aria-label="Наступне фото"
+              >
+                <ChevronRight size={32} />
+              </button>
+            )}
+          </div>
+
+          {/* Bottom Thumbnails Strip in Lightbox */}
+          {property.images.length > 1 && (
+            <div className="pm-lightbox-thumbs-bar" onClick={(e) => e.stopPropagation()}>
+              {property.images.map((img, idx) => (
+                <div 
+                  key={idx}
+                  className={`pm-lb-thumb ${idx === activePhotoIdx ? 'active' : ''}`}
+                  onClick={() => setActivePhotoIdx(idx)}
+                >
+                  <img src={img} alt="" />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Scoped Styles for PropertyModal */}
       <style>{`
@@ -515,9 +610,195 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           border-radius: var(--radius-md);
           overflow: hidden;
           background: #0f172a;
+          position: relative;
+          cursor: zoom-in;
+        }
+
+        .pm-photo-zoom-hint {
+          position: absolute;
+          bottom: 14px;
+          right: 14px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(15, 23, 42, 0.75);
+          backdrop-filter: blur(8px);
+          color: #ffffff;
+          font-size: 0.8rem;
+          font-weight: 700;
+          padding: 6px 14px;
+          border-radius: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.2s ease;
+          pointer-events: none;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .pm-main-photo-box:hover .pm-photo-zoom-hint {
+          background: rgba(37, 99, 235, 0.9);
+          border-color: #60a5fa;
+          transform: translateY(-2px);
         }
 
         .pm-main-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .pm-main-photo-box:hover .pm-main-img {
+          transform: scale(1.02);
+        }
+
+        /* Lightbox Fullscreen Styles */
+        .pm-lightbox-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(10, 15, 29, 0.96);
+          backdrop-filter: blur(12px);
+          z-index: 100000;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 16px 24px 24px;
+          box-sizing: border-box;
+          user-select: none;
+        }
+
+        .pm-lightbox-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          color: #ffffff;
+          padding: 0 8px 12px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          flex-shrink: 0;
+        }
+
+        .pm-lb-counter {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #94a3b8;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 4px 12px;
+          border-radius: 20px;
+        }
+
+        .pm-lb-counter span:first-child {
+          color: #ffffff;
+        }
+
+        .pm-lb-title {
+          font-size: 1rem;
+          font-weight: 700;
+          color: #f1f5f9;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 65vw;
+        }
+
+        .pm-lb-close-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .pm-lb-close-btn:hover {
+          background: rgba(239, 68, 68, 0.9);
+          border-color: #ef4444;
+          transform: scale(1.05);
+        }
+
+        .pm-lightbox-body {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
+          flex: 1;
+          min-height: 0;
+          padding: 12px 0;
+          gap: 16px;
+        }
+
+        .pm-lb-nav {
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+          z-index: 10;
+        }
+
+        .pm-lb-nav:hover {
+          background: #2563eb;
+          border-color: #60a5fa;
+          transform: scale(1.08);
+        }
+
+        .pm-lb-img-container {
+          flex: 1;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+
+        .pm-lb-active-img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+          border-radius: 8px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .pm-lightbox-thumbs-bar {
+          display: flex;
+          gap: 8px;
+          justify-content: center;
+          overflow-x: auto;
+          padding-top: 12px;
+          flex-shrink: 0;
+        }
+
+        .pm-lb-thumb {
+          width: 68px;
+          height: 48px;
+          border-radius: 6px;
+          overflow: hidden;
+          cursor: pointer;
+          border: 2px solid transparent;
+          opacity: 0.5;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+        }
+
+        .pm-lb-thumb:hover,
+        .pm-lb-thumb.active {
+          opacity: 1;
+          border-color: #3b82f6;
+          transform: translateY(-2px);
+        }
+
+        .pm-lb-thumb img {
           width: 100%;
           height: 100%;
           object-fit: cover;
