@@ -12,7 +12,6 @@ import {
   Plus,
   Heart,
   User,
-  Sparkles,
   Search
 } from 'lucide-react';
 
@@ -106,7 +105,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
               onClick={() => (onOpenSearchModal ? onOpenSearchModal() : onOpenSellModal ? onOpenSellModal() : navigate('/contacts'))}
               title="Безкоштовна допомога в пошуку та підборі нерухомості"
             >
-              <Sparkles size={15} />
+              <Search size={15} strokeWidth={2.2} />
               <span>Підібрати нерухомість</span>
             </button>
 

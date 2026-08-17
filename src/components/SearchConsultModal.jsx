@@ -7,7 +7,6 @@ import {
   ShieldCheck, 
   Building2, 
   MapPin,
-  Sparkles,
   PhoneCall,
   Key,
   Home
@@ -122,10 +121,6 @@ export const SearchConsultModal = ({ onClose }) => {
         ) : (
           <form onSubmit={handleSubmit} className="sc-form">
             <div className="sc-header">
-              <span className="badge badge-blue mb-2">
-                <Sparkles size={13} className="mr-1" />
-                Безкоштовний підбір нерухомості
-              </span>
               <h2 className="sc-title">
                 {dealType === 'buy' ? 'Підібрати нерухомість для купівлі' : 'Підібрати житло або комерцію в оренду'}
               </h2>

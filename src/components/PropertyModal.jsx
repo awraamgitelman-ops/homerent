@@ -9,7 +9,6 @@ import {
   Maximize2, 
   Building2, 
   Flame, 
-  Sparkles, 
   ShieldCheck, 
   Send, 
   UserCheck, 

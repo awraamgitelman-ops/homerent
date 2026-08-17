@@ -7,7 +7,6 @@ import {
   ShieldCheck, 
   Building2, 
   MapPin,
-  Sparkles,
   PhoneCall
 } from 'lucide-react';
 import { POLTAVA_DISTRICTS } from '../data/poltavaDistricts';
@@ -117,7 +116,6 @@ export const SellModal = ({ onClose }) => {
         ) : (
           <form onSubmit={handleSubmit} className="sell-form">
             <div className="sell-header">
-              <span className="badge badge-gold mb-2">Для власників нерухомості у Полтаві</span>
               <h2 className="sell-title">
                 {dealType === 'sell' ? 'Подати заявку на продаж нерухомості' : 'Подати заявку на здачу в оренду'}
               </h2>

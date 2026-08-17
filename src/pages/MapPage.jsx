@@ -8,7 +8,6 @@ import {
   ChevronDown, 
   RotateCcw,
   List,
-  Sparkles,
   Layers,
   Calendar,
   Eye,

@@ -7,7 +7,6 @@ export const CalculatorPage = ({ onOpenConsultModal }) => {
       <div className="calc-page-hero">
         <div className="calc-page-hero-overlay"></div>
         <div className="container text-center calc-page-hero-content">
-          <span className="badge badge-blue mb-2">Фінансовий калькулятор</span>
           <h1 className="cph-title">Розрахунок іпотеки «єОселя» (3% / 7%) та окупності оренди</h1>
           <p className="cph-subtitle">
             Швидкий розрахунок щомісячних платежів, першого внеску та інвестиційної дохідності нерухомості у Полтаві.
@@ -30,9 +29,9 @@ export const CalculatorPage = ({ onOpenConsultModal }) => {
         .calc-page-hero-overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%);
-          backdrop-filter: blur(1.5px);
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.12) 0%, rgba(15, 23, 42, 0.35) 100%);
           pointer-events: none;
+          z-index: 1;
         }
 
         .calc-page-hero-content {

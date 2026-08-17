@@ -66,7 +66,6 @@ export const RoadmapSection = () => {
     <section className="roadmap-section">
       <div className="container">
         <div className="roadmap-header text-center">
-          <span className="badge badge-gold mb-2">Прозорість та надійність</span>
           <h2 className="roadmap-title">8 етапів безпечної купівлі нерухомості</h2>
           <p className="roadmap-subtitle">
             Як проходить процес придбання або продажу житла з агентством «НОВЕКС ІНВЕСТ» у Полтаві.

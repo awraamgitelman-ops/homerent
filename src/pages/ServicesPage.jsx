@@ -9,7 +9,6 @@ export const ServicesPage = ({ onSelectService, onOpenConsultModal }) => {
       <div className="services-hero">
         <div className="services-hero-overlay"></div>
         <div className="container services-hero-content">
-          <span className="badge badge-blue mb-2">Професійні послуги у Полтаві</span>
           <h1 className="sh-title">Послуги Агентства Нерухомості «ФАВОРИТ ГРУП»</h1>
           <p className="sh-subtitle">
             Повний комплекс рієлторських, юридичних та оціночних послуг для фізичних та юридичних осіб у місті Полтава та області.

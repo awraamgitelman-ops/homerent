@@ -13,8 +13,7 @@ import {
   PhoneCall, 
   FileCheck2, 
   Check, 
-  Copy,
-  Sparkles
+  Copy
 } from 'lucide-react';
 
 export const Footer = ({ onOpenConsultModal }) => {

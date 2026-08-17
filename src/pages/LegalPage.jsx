@@ -7,7 +7,6 @@ export const LegalPage = () => {
       <div className="legal-hero">
         <div className="legal-hero-overlay"></div>
         <div className="container legal-hero-content">
-          <div className="badge badge-green mb-2">Офіційно зареєстроване українське підприємство</div>
           <h1 className="lh-title">Реєстраційні дані та реквізити ТОВ «НОВЕКС ІНВЕСТ»</h1>
           <p className="lh-subtitle">
             Повна публічна інформація з Єдиного державного реєстру юридичних осіб (ЄДРПОУ 43980756) для перевірки на Work.ua, державних реєстрах та банках.

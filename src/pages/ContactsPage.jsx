@@ -73,7 +73,6 @@ export const ContactsPage = () => {
       <div className="contacts-hero">
         <div className="contacts-hero-overlay"></div>
         <div className="container contacts-hero-content">
-          <span className="badge badge-blue mb-2">Зв'яжіться з нами</span>
           <h1 className="ch-title">Контакти агентства «ФАВОРИТ ГРУП» у Полтаві</h1>
           <p className="ch-subtitle">
             Завітайте до нашого офісу або зателефонуйте для отримання вичерпної консультації з будь-яких питань нерухомості.

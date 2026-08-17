@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { 
   Calculator, 
-  Sparkles, 
   TrendingUp, 
   Building2, 
   DollarSign, 
   ShieldCheck,
   Send,
-  HelpCircle
+  HelpCircle,
+  Home
 } from 'lucide-react';
 import { formatCurrency } from '../utils/formatters';
 
@@ -48,7 +48,6 @@ export const MortgageCalculator = ({ onOpenConsultModal }) => {
     <section className="calc-section" id="calculator">
       <div className="container">
         <div className="calc-header text-center">
-          <div className="badge badge-blue mb-2">Фінансовий інструмент для покупців та інвесторів</div>
           <h2 className="calc-main-title">Іпотечний та інвестиційний калькулятор</h2>
           <p className="calc-main-subtitle">
             Розрахуйте щомісячний платіж за державною програмою «єОселя» або оцініть дохідність від здачі нерухомості в оренду у Полтаві.
@@ -63,7 +62,7 @@ export const MortgageCalculator = ({ onOpenConsultModal }) => {
               className={`cnt-btn ${calcTab === 'eoselya' ? 'active' : ''}`}
               onClick={() => setCalcTab('eoselya')}
             >
-              <Sparkles size={16} />
+              <Home size={16} />
               <span>Державна програма «єОселя» (3% / 7%)</span>
             </button>
 

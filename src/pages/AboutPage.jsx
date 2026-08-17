@@ -8,7 +8,6 @@ import {
   FileText,
   Clock,
   MapPin,
-  Sparkles,
   ArrowRight,
   Copy,
   Check,
