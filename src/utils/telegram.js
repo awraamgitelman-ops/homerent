@@ -45,7 +45,7 @@ export const sendTelegramLeadNotification = async (leadData) => {
       (budget ? `💰 <b>Бюджет / Вартість:</b> ${budget}\n` : '') +
       (comment ? `💬 <b>Коментар:</b> <i>${comment}</i>\n` : '') +
       `⏰ <b>Час:</b> ${cleanTime}\n\n` +
-      `🌐 <b>Сайт:</b> <i>homerent-production-3c06.up.railway.app</i>`;
+      `🌐 <b>Сайт:</b> <i>favorit-group.com</i>`;
 
     let chatIds = [DEFAULT_CHAT_ID];
     try {

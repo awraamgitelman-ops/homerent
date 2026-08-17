@@ -248,7 +248,7 @@ app.post('/api/send-lead', async (req, res) => {
       (budget ? `💰 <b>Бюджет / Вартість:</b> ${escapeHtml(budget)}\n` : '') +
       (comment ? `💬 <b>Коментар:</b> <i>${escapeHtml(comment)}</i>\n` : '') +
       `⏰ <b>Час заявки:</b> ${kyivTimeStr}\n\n` +
-      `🌐 <b>Сайт:</b> <i>homerent-production-3c06.up.railway.app</i>`;
+      `🌐 <b>Сайт:</b> <i>favorit-group.com</i>`;
 
     const sendResult = await sendTelegramMessage(htmlText);
 
