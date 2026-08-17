@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { PropertyMap } from '../components/PropertyMap';
 import { 
@@ -15,10 +15,19 @@ import {
   ArrowUpDown,
   DollarSign,
   Key,
-  Home
+  Home,
+  Briefcase,
+  Check
 } from 'lucide-react';
 import { POLTAVA_DISTRICTS, ROOM_OPTIONS } from '../data/poltavaDistricts';
 import { formatCurrency, formatPricePerM2 } from '../utils/formatters';
+
+const PROPERTY_TYPE_OPTIONS = [
+  { id: 'apartment', label: 'Квартири', icon: Building2, desc: '1, 2, 3+ кімнатні' },
+  { id: 'house', label: 'Будинки та котеджі', icon: Home, desc: 'Котеджі, таунхауси' },
+  { id: 'commercial', label: 'Комерційні приміщення', icon: Briefcase, desc: 'Офіси, магазини, склади' },
+  { id: 'land', label: 'Земельні ділянки', icon: MapPin, desc: 'Ділянки під забудову', buyOnly: true }
+];
 
 export const MapPage = ({
   properties,
@@ -32,6 +41,9 @@ export const MapPage = ({
   const isInitialBuy = currentPath.toLowerCase().includes('buy') || currentPath.toLowerCase().includes('prodazha') || currentPath.toLowerCase().includes('sale');
   const [transaction, setTransaction] = useState(isInitialBuy ? 'buy' : 'rent');
   const [selectedType, setSelectedType] = useState('apartment');
+  const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
+  const typeDropdownRef = useRef(null);
+
   const [district, setDistrict] = useState('all');
   const [rooms, setRooms] = useState('all');
   const [priceMin, setPriceMin] = useState('');
@@ -40,6 +52,17 @@ export const MapPage = ({
   const [sortBy, setSortBy] = useState('default');
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
   const [mobileTab, setMobileTab] = useState('map'); // 'map' | 'list' for small screens
+
+  // Close type dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (typeDropdownRef.current && !typeDropdownRef.current.contains(event.target)) {
+        setIsTypeDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Synchronize when currentPath hash changes
   useEffect(() => {
@@ -149,17 +172,56 @@ export const MapPage = ({
 
           {/* Sub Filters Row */}
           <div className="mf-group">
-            {/* Concrete Type Selector - Without "All Types" */}
-            <select 
-              value={selectedType} 
-              onChange={(e) => setSelectedType(e.target.value)}
-              className="mf-select mf-type-select"
-            >
-              <option value="apartment">🏢 Квартири</option>
-              <option value="house">🏡 Будинки та котеджі</option>
-              <option value="commercial">🏬 Комерційні приміщення</option>
-              {transaction === 'buy' && <option value="land">🌲 Земельні ділянки</option>}
-            </select>
+            {/* Custom Pretty Property Type Dropdown (No Emojis, Sleek SVG Icons) */}
+            <div className="custom-type-select-wrapper" ref={typeDropdownRef}>
+              <button
+                type="button"
+                className={`custom-type-trigger-btn ${isTypeDropdownOpen ? 'active' : ''}`}
+                onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
+                aria-expanded={isTypeDropdownOpen}
+              >
+                {(() => {
+                  const curr = PROPERTY_TYPE_OPTIONS.find(t => t.id === selectedType) || PROPERTY_TYPE_OPTIONS[0];
+                  const IconComponent = curr.icon;
+                  return (
+                    <>
+                      <IconComponent size={16} className="type-icon-lead text-primary" />
+                      <span className="type-trigger-label">{curr.label}</span>
+                      <ChevronDown size={14} className={`type-chevron ${isTypeDropdownOpen ? 'rotate' : ''}`} />
+                    </>
+                  );
+                })()}
+              </button>
+
+              {isTypeDropdownOpen && (
+                <div className="custom-type-dropdown-menu animate-fade-down">
+                  {PROPERTY_TYPE_OPTIONS.filter(t => !t.buyOnly || transaction === 'buy').map((item) => {
+                    const isSelected = selectedType === item.id;
+                    const ItemIcon = item.icon;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        className={`custom-type-option-item ${isSelected ? 'selected' : ''}`}
+                        onClick={() => {
+                          setSelectedType(item.id);
+                          setIsTypeDropdownOpen(false);
+                        }}
+                      >
+                        <div className={`option-icon-box ${isSelected ? 'selected' : ''}`}>
+                          <ItemIcon size={16} />
+                        </div>
+                        <div className="option-text-box">
+                          <span className="option-title">{item.label}</span>
+                          <span className="option-desc">{item.desc}</span>
+                        </div>
+                        {isSelected && <Check size={16} className="option-check-icon text-primary" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
 
             {/* District */}
             <select 
@@ -564,12 +626,145 @@ export const MapPage = ({
           flex-wrap: wrap;
         }
 
+        /* Custom Type Dropdown */
+        .custom-type-select-wrapper {
+          position: relative;
+        }
+
+        .custom-type-trigger-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 7px 12px;
+          background: #ffffff;
+          border: 1px solid var(--c-border);
+          border-radius: var(--radius-sm);
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: #1e293b;
+          cursor: pointer;
+          transition: all 0.15s ease;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        .custom-type-trigger-btn:hover,
+        .custom-type-trigger-btn.active {
+          border-color: #2563eb;
+          background: #f8fafc;
+          box-shadow: 0 2px 6px rgba(37, 99, 235, 0.12);
+        }
+
+        .type-icon-lead {
+          flex-shrink: 0;
+        }
+
+        .type-trigger-label {
+          white-space: nowrap;
+        }
+
+        .type-chevron {
+          color: #64748b;
+          transition: transform 0.2s ease;
+          margin-left: 2px;
+        }
+
+        .type-chevron.rotate {
+          transform: rotate(180deg);
+        }
+
+        .custom-type-dropdown-menu {
+          position: absolute;
+          top: calc(100% + 6px);
+          left: 0;
+          min-width: 260px;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.15), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+          padding: 6px;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .custom-type-option-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 8px 12px;
+          border-radius: 8px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          transition: all 0.15s ease;
+          text-align: left;
+          width: 100%;
+        }
+
+        .custom-type-option-item:hover {
+          background: #f8fafc;
+        }
+
+        .custom-type-option-item.selected {
+          background: #eff6ff;
+        }
+
+        .option-icon-box {
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          background: #f1f5f9;
+          color: #475569;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: all 0.15s ease;
+        }
+
+        .custom-type-option-item:hover .option-icon-box {
+          background: #e2e8f0;
+          color: var(--c-primary);
+        }
+
+        .option-icon-box.selected {
+          background: var(--c-primary);
+          color: #ffffff;
+        }
+
+        .option-text-box {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .option-title {
+          font-size: 0.84rem;
+          font-weight: 700;
+          color: #0f172a;
+          line-height: 1.25;
+        }
+
+        .option-desc {
+          font-size: 0.72rem;
+          color: #64748b;
+          font-weight: 500;
+          margin-top: 1px;
+        }
+
+        .option-check-icon {
+          margin-left: auto;
+          flex-shrink: 0;
+        }
+
         .mf-select {
           padding: 7px 10px;
           font-size: 0.82rem;
           font-weight: 700;
           color: #1e293b;
-          background: #f1f5f9;
+          background: #ffffff;
           border: 1px solid var(--c-border);
           border-radius: var(--radius-sm);
           outline: none;
