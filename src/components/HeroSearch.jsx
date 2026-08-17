@@ -338,8 +338,8 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
           color: #ffffff;
           letter-spacing: -0.5px;
           margin-top: 0;
-          margin-bottom: 14px;
-          line-height: 1.15;
+          margin-bottom: 22px;
+          line-height: 1.2;
         }
 
         .hl-accent {
@@ -347,7 +347,7 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
           color: #ffffff;
           padding: 6px 18px 8px;
           border-radius: 10px;
-          display: inline-inline-flex;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
           margin-right: 12px;
@@ -358,11 +358,11 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
         }
 
         .hero-subheadline {
-          font-size: 1.05rem;
+          font-size: 1.1rem;
           color: #cbd5e1;
           max-width: 760px;
-          margin: 0 auto 28px;
-          line-height: 1.5;
+          margin: 22px auto 32px;
+          line-height: 1.6;
         }
 
         /* Search Card */
@@ -644,8 +644,8 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
             font-size: 1.65rem;
           }
           .hero-subheadline {
-            font-size: 0.88rem;
-            margin-bottom: 20px;
+            font-size: 0.92rem;
+            margin: 16px auto 22px;
           }
           .hs-tabs-row {
             padding: 4px;
