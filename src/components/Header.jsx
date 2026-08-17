@@ -44,7 +44,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
   const handlePickPropertyClick = (e) => {
     if (e) e.preventDefault();
     setIsSidebarOpen(false);
-    navigate('#/map');
+    navigate('/map');
   };
 
   return (
@@ -54,7 +54,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           {/* Left Block: Logo + Navigation Links */}
           <div className="ref-header-left-group">
             {/* 1. Brand Logo: Favorit Group */}
-            <div className="ref-logo" onClick={() => navigate('#/')} title="Агентство нерухомості ФАВОРИТ ГРУП">
+            <div className="ref-logo" onClick={() => navigate('/')} title="Агентство нерухомості ФАВОРИТ ГРУП">
               <img 
                 src="/logo-full.png" 
                 alt="ФАВОРИТ ГРУП" 
@@ -67,28 +67,28 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               <button 
                 type="button"
                 className={`ref-nav-link ${currentPath.includes('/map') && (currentPath.includes('buy') || currentPath.includes('prodazha')) ? 'active' : ''}`}
-                onClick={() => navigate('#/map?type=buy')}
+                onClick={() => navigate('/map?type=buy')}
               >
                 Продаж
               </button>
               <button 
                 type="button"
                 className={`ref-nav-link ${currentPath.includes('/map') && (currentPath.includes('rent') || (!currentPath.includes('buy') && !currentPath.includes('prodazha'))) ? 'active' : ''}`}
-                onClick={() => navigate('#/map?type=rent')}
+                onClick={() => navigate('/map?type=rent')}
               >
                 Оренда
               </button>
               <button 
                 type="button"
                 className={`ref-nav-link ${currentPath.includes('/services') ? 'active' : ''}`}
-                onClick={() => navigate('#/services')}
+                onClick={() => navigate('/services')}
               >
                 Послуги
               </button>
               <button 
                 type="button"
                 className={`ref-nav-link ${currentPath.includes('/contacts') ? 'active' : ''}`}
-                onClick={() => navigate('#/contacts')}
+                onClick={() => navigate('/contacts')}
               >
                 Контакти
               </button>
@@ -101,7 +101,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             <button 
               type="button"
               className="ref-add-listing-btn"
-              onClick={() => (onOpenSellModal ? onOpenSellModal() : navigate('#/contacts'))}
+              onClick={() => (onOpenSellModal ? onOpenSellModal() : navigate('/contacts'))}
             >
               <Plus size={16} strokeWidth={2.5} />
               <span>Додати оголошення</span>
@@ -159,7 +159,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           <aside className="ref-sidebar-panel animate-slide" onClick={(e) => e.stopPropagation()}>
             {/* Sidebar Header */}
             <div className="ref-sidebar-header">
-              <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
+              <div className="ref-logo" onClick={() => { navigate('/'); setIsSidebarOpen(false); }}>
                 <img 
                   src="/logo-full.png" 
                   alt="ФАВОРИТ ГРУП" 
@@ -184,7 +184,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 <button 
                   type="button"
                   className="ref-sb-item text-bold-link"
-                  onClick={() => { navigate('#/map?type=buy'); setIsSidebarOpen(false); }}
+                  onClick={() => { navigate('/map?type=buy'); setIsSidebarOpen(false); }}
                 >
                   <span>Продаж</span>
                 </button>
@@ -193,7 +193,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 <button 
                   type="button"
                   className="ref-sb-item text-bold-link"
-                  onClick={() => { navigate('#/map?type=rent'); setIsSidebarOpen(false); }}
+                  onClick={() => { navigate('/map?type=rent'); setIsSidebarOpen(false); }}
                 >
                   <span>Оренда</span>
                 </button>
@@ -202,7 +202,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 <button 
                   type="button"
                   className="ref-sb-item text-accent-link"
-                  onClick={() => { navigate('#/catalog'); setIsSidebarOpen(false); }}
+                  onClick={() => { navigate('/catalog'); setIsSidebarOpen(false); }}
                 >
                   <span>Каталог об'єктів</span>
                 </button>
@@ -219,12 +219,12 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                   </button>
                   {servicesOpen && (
                     <div className="ref-sb-sublist">
-                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Всі послуги</button>
-                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Купівля та підбір житла</button>
-                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Продаж нерухомості з гарантією</button>
-                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Оренда та довірче управління</button>
-                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Юридична перевірка угод (ДРРП)</button>
-                      <button onClick={() => { navigate('#/services'); setIsSidebarOpen(false); }}>Експертна оцінка майна</button>
+                      <button onClick={() => { navigate('/services'); setIsSidebarOpen(false); }}>Всі послуги</button>
+                      <button onClick={() => { navigate('/services'); setIsSidebarOpen(false); }}>Купівля та підбір житла</button>
+                      <button onClick={() => { navigate('/services'); setIsSidebarOpen(false); }}>Продаж нерухомості з гарантією</button>
+                      <button onClick={() => { navigate('/services'); setIsSidebarOpen(false); }}>Оренда та довірче управління</button>
+                      <button onClick={() => { navigate('/services'); setIsSidebarOpen(false); }}>Юридична перевірка угод (ДРРП)</button>
+                      <button onClick={() => { navigate('/services'); setIsSidebarOpen(false); }}>Експертна оцінка майна</button>
                     </div>
                   )}
                 </div>
@@ -233,7 +233,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 <button 
                   type="button"
                   className="ref-sb-item"
-                  onClick={() => { navigate('#/about'); setIsSidebarOpen(false); }}
+                  onClick={() => { navigate('/about'); setIsSidebarOpen(false); }}
                 >
                   <span>Про компанію</span>
                 </button>
@@ -242,7 +242,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 <button 
                   type="button"
                   className="ref-sb-item"
-                  onClick={() => { navigate('#/about'); setIsSidebarOpen(false); }}
+                  onClick={() => { navigate('/about'); setIsSidebarOpen(false); }}
                 >
                   <span>Співробітники / партнери</span>
                 </button>
@@ -260,7 +260,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 <button 
                   type="button"
                   className="ref-sb-item"
-                  onClick={() => { navigate('#/requisites'); setIsSidebarOpen(false); }}
+                  onClick={() => { navigate('/requisites'); setIsSidebarOpen(false); }}
                 >
                   <span>Реєстраційні дані</span>
                 </button>
@@ -269,7 +269,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
                 <button 
                   type="button"
                   className="ref-sb-item"
-                  onClick={() => { navigate('#/contacts'); setIsSidebarOpen(false); }}
+                  onClick={() => { navigate('/contacts'); setIsSidebarOpen(false); }}
                 >
                   <span>Контакти</span>
                 </button>

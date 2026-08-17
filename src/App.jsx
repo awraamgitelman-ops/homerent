@@ -39,13 +39,13 @@ export function App() {
 
   const handleSearch = (newFilters) => {
     setFilters(newFilters);
-    if (!currentPath.includes('/catalog') && currentPath !== '#/') {
-      navigate('#/catalog');
+    if (!currentPath.includes('/catalog') && currentPath !== '/') {
+      navigate('/catalog');
     }
   };
 
   const handleOpenMap = () => {
-    navigate('#/map');
+    navigate('/map');
   };
 
   const handleSelectProperty = (property) => {
@@ -66,10 +66,10 @@ export function App() {
 
   // Route Renderer
   const renderCurrentPage = () => {
-    const clean = currentPath.toLowerCase();
+    const clean = currentPath.toLowerCase().replace(/^#/, '');
 
-    // Dedicated Map Page (Separate Tab with its own URL #/map)
-    if (clean.startsWith('#/map')) {
+    // Dedicated Map Page (Separate Tab with its own URL /map)
+    if (clean.startsWith('/map')) {
       return (
         <MapPage
           properties={properties}
@@ -80,7 +80,7 @@ export function App() {
       );
     }
 
-    if (clean.startsWith('#/catalog')) {
+    if (clean.startsWith('/catalog')) {
       return (
         <CatalogPage
           properties={properties}
@@ -94,7 +94,7 @@ export function App() {
       );
     }
 
-    if (clean.startsWith('#/services')) {
+    if (clean.startsWith('/services')) {
       return (
         <ServicesPage
           onSelectService={handleSelectService}
@@ -103,7 +103,7 @@ export function App() {
       );
     }
 
-    if (clean.startsWith('#/calculator')) {
+    if (clean.startsWith('/calculator')) {
       return (
         <ServicesPage
           onSelectService={handleSelectService}
@@ -112,7 +112,7 @@ export function App() {
       );
     }
 
-    if (clean.startsWith('#/about')) {
+    if (clean.startsWith('/about')) {
       return (
         <AboutPage
           onOpenConsultModal={handleOpenConsultModal}
@@ -120,15 +120,15 @@ export function App() {
       );
     }
 
-    if (clean.startsWith('#/contacts')) {
+    if (clean.startsWith('/contacts')) {
       return <ContactsPage />;
     }
 
-    if (clean.startsWith('#/requisites') || clean.startsWith('#/legal')) {
+    if (clean.startsWith('/requisites') || clean.startsWith('/legal')) {
       return <AboutPage onOpenConsultModal={handleOpenConsultModal} />;
     }
 
-    // Default: HomePage (Map and Catalog remain on Home as well)
+    // Default: HomePage
     return (
       <HomePage
         properties={properties}
@@ -144,7 +144,7 @@ export function App() {
     );
   };
 
-  const isMapRoute = currentPath.toLowerCase().startsWith('#/map');
+  const isMapRoute = currentPath.toLowerCase().replace(/^#/, '').startsWith('/map');
 
   return (
     <div className="app-container">

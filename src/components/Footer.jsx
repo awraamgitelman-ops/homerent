@@ -84,12 +84,12 @@ export const Footer = ({ onOpenConsultModal }) => {
           <div className="nx-footer-col">
             <h4 className="nx-col-title">Каталог та пошук</h4>
             <ul className="nx-col-nav">
-              <li><button onClick={() => navigate('#/catalog')}>Оренда квартир</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Купівля квартир у Полтаві</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Будинки та котеджі</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Комерційна нерухомість</button></li>
-              <li><button onClick={() => navigate('#/map')}>Інтерактивна карта об'єктів</button></li>
-              <li><button onClick={() => navigate('#/services')}>Всі послуги агентства</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Оренда квартир</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Купівля квартир у Полтаві</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Будинки та котеджі</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Комерційна нерухомість</button></li>
+              <li><button onClick={() => navigate('/map')}>Інтерактивна карта об'єктів</button></li>
+              <li><button onClick={() => navigate('/services')}>Всі послуги агентства</button></li>
             </ul>
           </div>
 
@@ -97,12 +97,12 @@ export const Footer = ({ onOpenConsultModal }) => {
           <div className="nx-footer-col">
             <h4 className="nx-col-title">Популярні райони</h4>
             <ul className="nx-col-nav">
-              <li><button onClick={() => navigate('#/catalog')}>Центр та Корпусний сад</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Левада та Поділ</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Алмазний та Сади</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Огнівка та Мотель</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Половки та Браїлки</button></li>
-              <li><button onClick={() => navigate('#/catalog')}>Інститут зв'язку та Юрівка</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Центр та Корпусний сад</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Левада та Поділ</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Алмазний та Сади</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Огнівка та Мотель</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Половки та Браїлки</button></li>
+              <li><button onClick={() => navigate('/catalog')}>Інститут зв'язку та Юрівка</button></li>
             </ul>
           </div>
 
@@ -150,7 +150,7 @@ export const Footer = ({ onOpenConsultModal }) => {
             </div>
 
             <div className="nx-doc-links">
-              <button onClick={() => navigate('#/about')} className="nx-doc-btn">
+              <button onClick={() => navigate('/about')} className="nx-doc-btn">
                 <FileCheck2 size={14} />
                 <span>Про компанію та команду</span>
               </button>
@@ -159,7 +159,7 @@ export const Footer = ({ onOpenConsultModal }) => {
 
           {/* Brand Identity & Location Column (RIGHT SIDE) */}
           <div className="nx-footer-col nx-brand-block">
-            <div className="nx-brand-header" onClick={() => navigate('#/')} title="ФАВОРИТ ГРУП">
+            <div className="nx-brand-header" onClick={() => navigate('/')} title="ФАВОРИТ ГРУП">
               <img 
                 src="/logo-footer-white.png" 
                 alt="ФАВОРИТ ГРУП" 

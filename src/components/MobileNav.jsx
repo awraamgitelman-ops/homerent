@@ -15,8 +15,8 @@ export const MobileNav = ({ onOpenSellModal }) => {
     <nav className="mobile-fixed-bottom-bar" aria-label="Мобільне меню швидкого доступу">
       <button 
         type="button"
-        className={`mfb-item ${currentPath === '#/' ? 'active' : ''}`}
-        onClick={() => navigate('#/')}
+        className={`mfb-item ${(currentPath === '/' || currentPath === '#/') ? 'active' : ''}`}
+        onClick={() => navigate('/')}
       >
         <Home size={19} />
         <span>Головна</span>
@@ -25,7 +25,7 @@ export const MobileNav = ({ onOpenSellModal }) => {
       <button 
         type="button"
         className={`mfb-item ${currentPath.includes('/catalog') ? 'active' : ''}`}
-        onClick={() => navigate('#/catalog')}
+        onClick={() => navigate('/catalog')}
       >
         <Building2 size={19} />
         <span>Каталог</span>
@@ -45,7 +45,7 @@ export const MobileNav = ({ onOpenSellModal }) => {
       <button 
         type="button"
         className={`mfb-item ${currentPath.includes('/map') ? 'active' : ''}`}
-        onClick={() => navigate('#/map')}
+        onClick={() => navigate('/map')}
       >
         <MapPin size={19} />
         <span>Карта</span>

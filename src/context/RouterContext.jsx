@@ -3,29 +3,45 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const RouterContext = createContext();
 
 export const RouterProvider = ({ children }) => {
-  const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
+  // Normalize current browser path (convert any old hash URLs to clean paths)
+  const getInitialPath = () => {
+    if (typeof window !== 'undefined') {
+      if (window.location.hash && window.location.hash.startsWith('#/')) {
+        const cleanFromHash = window.location.hash.replace(/^#/, '');
+        try {
+          window.history.replaceState(null, '', cleanFromHash || '/');
+        } catch (e) {}
+        return cleanFromHash || '/';
+      }
+      return window.location.pathname || '/';
+    }
+    return '/';
+  };
+
+  const [currentPath, setCurrentPath] = useState(getInitialPath);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash || '#/';
-      setCurrentPath(hash);
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname || '/');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const navigate = (path) => {
-    let cleanPath = path;
-    if (!cleanPath.startsWith('#/')) {
-      if (cleanPath.startsWith('/')) {
-        cleanPath = '#' + cleanPath;
-      } else {
-        cleanPath = '#/' + cleanPath;
-      }
+    let cleanPath = String(path || '/').replace(/^#/, '');
+    if (!cleanPath.startsWith('/')) {
+      cleanPath = '/' + cleanPath;
     }
-    window.location.hash = cleanPath;
+
+    try {
+      if (window.location.pathname !== cleanPath) {
+        window.history.pushState(null, '', cleanPath);
+      }
+    } catch (e) {}
+
     setCurrentPath(cleanPath);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
