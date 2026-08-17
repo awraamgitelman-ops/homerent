@@ -94,20 +94,31 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
   return (
     <div className="modal-backdrop animate-fade" onClick={onClose}>
       <div className="property-modal-window animate-slide" onClick={(e) => e.stopPropagation()}>
-        {/* Modal Close & Share Controls */}
-        <div className="pm-top-controls">
-          <button 
-            type="button" 
-            className={`pm-top-share-btn ${copiedLink ? 'copied' : ''}`}
-            onClick={handleShare}
-            title={copiedLink ? 'Посилання скопійовано!' : "Поділитися об'єктом"}
-          >
-            {copiedLink ? <Check size={16} className="text-green" /> : <Share2 size={16} />}
-            <span>{copiedLink ? 'Скопійовано!' : 'Поділитися'}</span>
-          </button>
-          <button className="pm-close-btn" onClick={onClose} aria-label="Закрити">
-            <X size={20} />
-          </button>
+        {/* Top Header Bar: Badges on Left, Actions on Right */}
+        <div className="pm-top-bar">
+          <div className="pm-top-badges">
+            {property.badges?.filter(b => {
+              const lower = b.toLowerCase();
+              return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд');
+            }).map((b, i) => (
+              <span key={i} className="badge badge-green">{b}</span>
+            ))}
+          </div>
+
+          <div className="pm-top-actions">
+            <button 
+              type="button" 
+              className={`pm-share-btn ${copiedLink ? 'copied' : ''}`}
+              onClick={handleShare}
+              title={copiedLink ? 'Посилання скопійовано!' : "Поділитися об'єктом"}
+            >
+              {copiedLink ? <Check size={15} className="text-green" /> : <Share2 size={15} />}
+              <span>{copiedLink ? 'Скопійовано!' : 'Поділитися'}</span>
+            </button>
+            <button className="pm-close-btn" onClick={onClose} aria-label="Закрити">
+              <X size={20} />
+            </button>
+          </div>
         </div>
 
         {/* Modal Content Scrollable Area */}
@@ -115,14 +126,6 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           {/* Header Title & Price */}
           <div className="pm-header">
             <div className="pm-header-left">
-              <div className="pm-badges-row">
-                {property.badges?.filter(b => {
-                  const lower = b.toLowerCase();
-                  return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд');
-                }).map((b, i) => (
-                  <span key={i} className="badge badge-green">{b}</span>
-                ))}
-              </div>
               <h2 className="pm-title">{property.title}</h2>
               <div className="pm-address">
                 <MapPin size={16} className="text-primary" />
@@ -347,17 +350,34 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           overflow: hidden;
         }
 
-        .pm-top-controls {
-          position: absolute;
-          top: 16px;
-          right: 16px;
+        .pm-top-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 28px 12px;
+          background: #ffffff;
+          border-bottom: 1px solid #f1f5f9;
+          gap: 16px;
+          flex-shrink: 0;
+          z-index: 10;
+        }
+
+        .pm-top-badges {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .pm-top-actions {
           display: flex;
           align-items: center;
           gap: 10px;
-          z-index: 15;
+          margin-left: auto;
+          flex-shrink: 0;
         }
 
-        .pm-top-share-btn {
+        .pm-share-btn {
           display: inline-flex;
           align-items: center;
           gap: 6px;
@@ -373,14 +393,14 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        .pm-top-share-btn:hover {
-          background: #f1f5f9;
-          border-color: #94a3b8;
-          color: #0f172a;
+        .pm-share-btn:hover {
+          background: #eff6ff;
+          border-color: var(--c-primary);
+          color: var(--c-primary);
           transform: translateY(-1px);
         }
 
-        .pm-top-share-btn.copied {
+        .pm-share-btn.copied {
           background: #f0fdf4;
           border-color: #86efac;
           color: #166534;
@@ -406,7 +426,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         }
 
         .pm-scrollable-content {
-          padding: 28px;
+          padding: 20px 28px 28px;
           overflow-y: auto;
           flex: 1;
         }
@@ -668,14 +688,22 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         }
 
         @media (max-width: 768px) {
+          .pm-top-bar {
+            padding: 12px 16px 10px;
+          }
+          .pm-scrollable-content {
+            padding: 16px;
+          }
           .pm-details-layout {
             grid-template-columns: 1fr;
           }
           .pm-header {
             flex-direction: column;
+            gap: 12px;
           }
           .pm-header-right {
             text-align: left;
+            align-items: flex-start;
           }
           .pm-main-photo-box {
             height: 240px;
