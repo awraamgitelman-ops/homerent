@@ -5,6 +5,7 @@ import { Footer } from './components/Footer';
 import { MobileNav } from './components/MobileNav';
 import { PropertyModal } from './components/PropertyModal';
 import { SellModal } from './components/SellModal';
+import { SearchConsultModal } from './components/SearchConsultModal';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -24,6 +25,7 @@ export function App() {
   const [properties, setProperties] = useState(PROPERTIES_DATA);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [catalogViewMode, setCatalogViewMode] = useState('split');
   const [filters, setFilters] = useState({
     type: 'all',
@@ -101,7 +103,7 @@ export function App() {
   };
 
   const handleOpenConsultModal = () => {
-    setIsSellModalOpen(true);
+    setIsSearchModalOpen(true);
   };
 
   // Route Renderer
@@ -192,6 +194,7 @@ export function App() {
       <Header
         onOpenMap={handleOpenMap}
         onOpenSellModal={() => setIsSellModalOpen(true)}
+        onOpenSearchModal={() => setIsSearchModalOpen(true)}
       />
 
       {/* Main Routed Page */}
@@ -220,6 +223,13 @@ export function App() {
       {isSellModalOpen && (
         <SellModal
           onClose={() => setIsSellModalOpen(false)}
+        />
+      )}
+
+      {/* Personalized Property Search & Consultation Modal */}
+      {isSearchModalOpen && (
+        <SearchConsultModal
+          onClose={() => setIsSearchModalOpen(false)}
         />
       )}
     </div>

@@ -11,10 +11,12 @@ import {
   Building2,
   Plus,
   Heart,
-  User
+  User,
+  Sparkles,
+  Search
 } from 'lucide-react';
 
-export const Header = ({ onOpenMap, onOpenSellModal }) => {
+export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
   const { currentPath, navigate } = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -97,11 +99,23 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
 
           {/* Right Block: Action Buttons, Phone, Messengers & Hamburger */}
           <div className="ref-header-right">
-            {/* + Додати оголошення Button */}
+            {/* 1. Підібрати нерухомість Button (Для покупців та орендарів) */}
+            <button 
+              type="button"
+              className="ref-search-consult-btn"
+              onClick={() => (onOpenSearchModal ? onOpenSearchModal() : onOpenSellModal ? onOpenSellModal() : navigate('/contacts'))}
+              title="Безкоштовна допомога в пошуку та підборі нерухомості"
+            >
+              <Sparkles size={15} />
+              <span>Підібрати нерухомість</span>
+            </button>
+
+            {/* 2. + Додати оголошення Button (Для власників) */}
             <button 
               type="button"
               className="ref-add-listing-btn"
               onClick={() => (onOpenSellModal ? onOpenSellModal() : navigate('/contacts'))}
+              title="Подати оголошення про продаж або оренду"
             >
               <Plus size={16} strokeWidth={2.5} />
               <span>Додати оголошення</span>
@@ -397,7 +411,31 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         .ref-header-right {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
+        }
+
+        .ref-search-consult-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          border: 1.5px solid #2563eb;
+          background: #2563eb;
+          color: #ffffff;
+          border-radius: 9999px;
+          font-weight: 700;
+          font-size: 0.88rem;
+          padding: 8px 18px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.22);
+        }
+
+        .ref-search-consult-btn:hover {
+          background: #1d4ed8;
+          border-color: #1d4ed8;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
         }
 
         .ref-add-listing-btn {
@@ -679,6 +717,21 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           }
         }
 
+        @media (max-width: 768px) {
+          .ref-search-consult-btn span,
+          .ref-add-listing-btn span {
+            display: none;
+          }
+          .ref-search-consult-btn,
+          .ref-add-listing-btn {
+            padding: 8px;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            justify-content: center;
+          }
+        }
+
         @media (max-width: 640px) {
           .ref-site-header {
             height: 86px;
@@ -692,16 +745,6 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           }
           .ref-icon-btn {
             display: none;
-          }
-          .ref-add-listing-btn span {
-            display: none;
-          }
-          .ref-add-listing-btn {
-            padding: 8px;
-            border-radius: 50%;
-            width: 38px;
-            height: 38px;
-            justify-content: center;
           }
         }
       `}</style>
