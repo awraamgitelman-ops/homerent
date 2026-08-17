@@ -124,18 +124,8 @@ export const MapPage = ({
       {/* 1. Top Control Bar: Mode Toggle + Clean Filters (Positioned solidly on top of map) */}
       <div className="map-page-filter-bar">
         <div className="map-filter-inner-fluid">
-          {/* Strict Mode Switcher: Оренда vs Купівля */}
+          {/* Strict Mode Switcher: Купівля (Продаж) vs Оренда */}
           <div className="map-mode-toggle-group">
-            <button
-              type="button"
-              className={`mmt-btn ${transaction === 'rent' ? 'active rent' : ''}`}
-              onClick={() => handleSwitchTransaction('rent')}
-            >
-              <Key size={15} />
-              <span>Оренда нерухомості</span>
-              <span className="mmt-badge">{rentCount}</span>
-            </button>
-
             <button
               type="button"
               className={`mmt-btn ${transaction === 'buy' ? 'active buy' : ''}`}
@@ -144,6 +134,16 @@ export const MapPage = ({
               <Home size={15} />
               <span>Купівля (Продаж)</span>
               <span className="mmt-badge">{buyCount}</span>
+            </button>
+
+            <button
+              type="button"
+              className={`mmt-btn ${transaction === 'rent' ? 'active rent' : ''}`}
+              onClick={() => handleSwitchTransaction('rent')}
+            >
+              <Key size={15} />
+              <span>Оренда нерухомості</span>
+              <span className="mmt-badge">{rentCount}</span>
             </button>
           </div>
 

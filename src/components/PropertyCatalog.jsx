@@ -226,18 +226,8 @@ export const PropertyCatalog = ({
   return (
     <section className="catalog-section" id="catalog">
       <div className="container">
-        {/* 1. Main Mode Switcher: Оренда vs Купівля */}
+        {/* 1. Main Mode Switcher: Купівля vs Оренда */}
         <div className="catalog-main-tabs">
-          <button 
-            type="button" 
-            className={`cmt-tab ${activeTransaction === 'rent' ? 'active rent' : ''}`}
-            onClick={() => handleSwitchTab('rent')}
-          >
-            <Key size={18} />
-            <span>Оренда нерухомості</span>
-            <span className="cmt-count">{rentTotal}</span>
-          </button>
-
           <button 
             type="button" 
             className={`cmt-tab ${activeTransaction === 'buy' ? 'active buy' : ''}`}
@@ -246,6 +236,16 @@ export const PropertyCatalog = ({
             <Home size={18} />
             <span>Купівля (Продаж)</span>
             <span className="cmt-count">{buyTotal}</span>
+          </button>
+
+          <button 
+            type="button" 
+            className={`cmt-tab ${activeTransaction === 'rent' ? 'active rent' : ''}`}
+            onClick={() => handleSwitchTab('rent')}
+          >
+            <Key size={18} />
+            <span>Оренда нерухомості</span>
+            <span className="cmt-count">{rentTotal}</span>
           </button>
         </div>
 
