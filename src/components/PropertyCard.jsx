@@ -52,7 +52,7 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
 
         {/* Badges Overlay */}
         <div className="pc-badges-row">
-          {property.badges?.map((badge, idx) => (
+          {property.badges?.filter(b => !b.toLowerCase().includes('перевір')).map((badge, idx) => (
             <span 
               key={idx} 
               className={`pc-badge ${badge.includes('Торг') ? 'badge-bargain' : ''}`}

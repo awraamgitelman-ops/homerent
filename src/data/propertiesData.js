@@ -82,8 +82,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -266,8 +265,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -320,8 +318,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -665,8 +662,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -723,8 +719,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -847,8 +842,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -896,8 +890,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -952,8 +945,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1013,8 +1005,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1068,8 +1059,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -1120,8 +1110,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1171,8 +1160,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1221,8 +1209,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -1270,8 +1257,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1317,8 +1303,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1369,8 +1354,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -1430,8 +1414,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -1488,8 +1471,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1538,8 +1520,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1589,8 +1570,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1644,8 +1624,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1695,8 +1674,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1751,8 +1729,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -1806,8 +1783,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -1910,8 +1886,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -1963,8 +1938,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -2012,8 +1986,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Оренда",
-      "Перевірено"
+      "Оренда"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -2683,8 +2656,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -2746,8 +2718,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -2807,8 +2778,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -2861,8 +2831,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -2983,8 +2952,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -3031,8 +2999,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -3088,8 +3055,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -3139,8 +3105,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -3200,8 +3165,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -3261,8 +3225,7 @@ export const PROPERTIES_DATA = [
     "heating": "Централізоване",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -3322,8 +3285,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,
@@ -3379,8 +3341,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": true,
     "isVerified": true,
@@ -3438,8 +3399,7 @@ export const PROPERTIES_DATA = [
     "heating": "Індивідуальне газове",
     "condition": "Житловий стан",
     "badges": [
-      "Продаж",
-      "Перевірено"
+      "Продаж"
     ],
     "isExclusive": false,
     "isVerified": true,

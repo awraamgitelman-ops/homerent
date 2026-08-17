@@ -82,7 +82,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           <div className="pm-header">
             <div className="pm-header-left">
               <div className="pm-badges-row">
-                {property.badges?.map((b, i) => (
+                {property.badges?.filter(b => !b.toLowerCase().includes('перевір')).map((b, i) => (
                   <span key={i} className="badge badge-green">{b}</span>
                 ))}
               </div>
