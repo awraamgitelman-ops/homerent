@@ -311,18 +311,18 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
       <style>{`
         .hero-search-section {
           position: relative;
-          background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a8a 100%);
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.82) 100%),
+                      url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg/1920px-Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg') center 40%/cover no-repeat;
           color: #ffffff;
-          padding: 48px 0 56px;
+          padding: 56px 0 64px;
           overflow: hidden;
         }
 
         .hero-bg-overlay {
           position: absolute;
           inset: 0;
-          background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-          background-size: 24px 24px;
-          opacity: 0.6;
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%);
+          backdrop-filter: blur(1.5px);
           pointer-events: none;
         }
 
