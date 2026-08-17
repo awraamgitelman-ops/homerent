@@ -77,10 +77,9 @@ export const SellModal = ({ onClose }) => {
 
         {isSuccess ? (
           <div className="sell-success-box animate-fade">
-            <CheckCircle2 size={48} className="text-green mx-auto mb-3" />
             <h3 className="text-xl font-bold mb-2">Дякуємо! Заявку прийнято</h3>
             <p className="text-muted mb-4">
-              Експерт агентства «НОВЕКС ІНВЕСТ» зателефонує вам протягом 15 хвилин для узгодження деталей, безкоштовної оцінки ринкової вартості та організації зйомки.
+              Експерт агентства «ФАВОРИТ ГРУП» зателефонує вам протягом 15 хвилин для узгодження деталей, безкоштовної оцінки ринкової вартості та організації зйомки.
             </p>
             <button onClick={onClose} className="btn btn-primary">
               Зрозуміло

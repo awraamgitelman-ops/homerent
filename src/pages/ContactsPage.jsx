@@ -124,7 +124,6 @@ export const ContactsPage = () => {
 
               {isSuccess ? (
                 <div className="cf-success-box animate-fade">
-                  <CheckCircle2 size={42} className="text-green mx-auto mb-2" />
                   <h4>Повідомлення надіслано!</h4>
                   <p className="text-muted text-sm">Дякуємо за звернення. Менеджер агентства відповість вам протягом кількох хвилин.</p>
                 </div>

@@ -222,7 +222,6 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
                 {isSuccess ? (
                   <div className="booking-success-box animate-fade">
-                    <CheckCircle2 size={42} className="text-green mx-auto mb-2" />
                     <h4>Заявку успішно прийнято!</h4>
                     <p>Наш експерт зателефонує вам протягом 10 хвилин для узгодження зручного часу перегляду.</p>
                   </div>

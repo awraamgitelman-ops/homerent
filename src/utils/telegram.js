@@ -1,6 +1,8 @@
 // Telegram Bot Notification Dispatcher for Favorit Group Real Estate Leads
-const PRIMARY_BOT_TOKEN = '8855934222:AAE7urD82jvaYIf8cJddxnesQwuKVRyw4lY';
-const FALLBACK_BOT_TOKEN = '8986924734:AAE5TIbbb7BFEgWfyaHFov2aoKDA52UIBo8';
+const BOT_TOKENS = [
+  '8986924734:AAE5TIbbb7BFEgWfyaHFov2aoKDA52UIBo8',
+  '8855934222:AAE7urD82jvaYIf8cJddxnesQwuKVRyw4lY'
+];
 const DEFAULT_CHAT_ID = '8298199477';
 
 export const sendTelegramLeadNotification = async (leadData) => {
@@ -24,9 +26,7 @@ export const sendTelegramLeadNotification = async (leadData) => {
 
   console.log('[Telegram] Dispatching lead:', leadData);
 
-  const tokensToTry = [PRIMARY_BOT_TOKEN, FALLBACK_BOT_TOKEN];
-
-  for (const botToken of tokensToTry) {
+  for (const botToken of BOT_TOKENS) {
     if (!botToken) continue;
 
     try {
@@ -44,15 +44,15 @@ export const sendTelegramLeadNotification = async (leadData) => {
         }
       } catch (e) {}
 
-      // 2. Poll getUpdates to discover any newly joined chats or users who pressed /start
+      // 2. Poll getUpdates to discover any newly joined group chats, channels, or admin chats
       try {
-        const updatesRes = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates`);
+        const updatesRes = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates?offset=-20&limit=50`);
         if (updatesRes.ok) {
           const updatesData = await updatesRes.json();
           if (updatesData.ok && Array.isArray(updatesData.result)) {
             for (const update of updatesData.result) {
-              const msg = update.message || update.channel_post || update.edited_message;
-              const myMember = update.my_chat_member;
+              const msg = update.message || update.channel_post || update.edited_message || update.edited_channel_post;
+              const myMember = update.my_chat_member || update.chat_member;
               const chat = (msg && msg.chat) || (myMember && myMember.chat);
               if (chat && chat.id) {
                 const idStr = String(chat.id);
@@ -90,7 +90,7 @@ export const sendTelegramLeadNotification = async (leadData) => {
       }
 
       if (successCount > 0) {
-        console.log(`[Telegram] Notification successfully delivered to ${successCount} chat(s) via bot.`);
+        console.log(`[Telegram] Notification successfully delivered to ${successCount} chat(s) via bot token ${botToken.substring(0, 10)}...`);
         return true;
       }
     } catch (botErr) {
@@ -98,6 +98,5 @@ export const sendTelegramLeadNotification = async (leadData) => {
     }
   }
 
-  // Gracefully resolve so user UI always shows confirmation
   return true;
 };
