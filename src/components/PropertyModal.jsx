@@ -207,13 +207,10 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
             <div className="pm-booking-col">
               <div className="pm-booking-card">
                 <div className="pm-agent-box">
-                  <div className="agent-avatar">
-                    <UserCheck size={24} />
-                  </div>
                   <div className="agent-meta">
-                    <span className="agent-name">{property.agent.name}</span>
-                    <span className="agent-role">{property.agent.role}</span>
-                    <span className="agent-agency">АН «НОВЕКС ІНВЕСТ» Полтава</span>
+                    <span className="agent-name">{property.agent?.name || 'Омельяненко Владислав'}</span>
+                    <span className="agent-role">{property.agent?.role || 'Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»'}</span>
+                    <span className="agent-agency">АН «ФАВОРИТ ГРУП» Полтава</span>
                   </div>
                 </div>
 
@@ -527,43 +524,31 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         }
 
         .pm-agent-box {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding-bottom: 16px;
+          padding-bottom: 14px;
           margin-bottom: 16px;
           border-bottom: 1px solid var(--c-border);
-        }
-
-        .agent-avatar {
-          width: 44px;
-          height: 44px;
-          background: var(--c-primary-light);
-          color: var(--c-primary);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
         }
 
         .agent-name {
           display: block;
           font-weight: 800;
-          font-size: 0.95rem;
+          font-size: 1.05rem;
           color: var(--c-slate);
+          margin-bottom: 2px;
         }
 
         .agent-role {
           display: block;
-          font-size: 0.76rem;
+          font-size: 0.82rem;
           color: #64748b;
+          margin-bottom: 3px;
         }
 
         .agent-agency {
           display: block;
-          font-size: 0.72rem;
+          font-size: 0.78rem;
           color: var(--c-primary);
-          font-weight: 700;
+          font-weight: 800;
         }
 
         .bf-title {
