@@ -107,28 +107,6 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
               <span>Додати оголошення</span>
             </button>
 
-            {/* Favorites Button */}
-            <button 
-              type="button"
-              className="ref-icon-btn"
-              title="Збережені об'єкти"
-              onClick={() => navigate('#/catalog')}
-              aria-label="Улюблені"
-            >
-              <Heart size={19} />
-            </button>
-
-            {/* User Profile Button */}
-            <button 
-              type="button"
-              className="ref-icon-btn"
-              title="Особистий кабінет / Консультація"
-              onClick={() => (onOpenSellModal ? onOpenSellModal() : navigate('#/contacts'))}
-              aria-label="Кабінет"
-            >
-              <User size={19} />
-            </button>
-
             {/* Phone link */}
             <a href="tel:+380988612938" className="ref-phone-link">
               +380 (98) 861-29-38
