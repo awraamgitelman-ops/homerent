@@ -345,7 +345,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           position: sticky;
           top: 0;
           z-index: 1000;
-          height: 94px;
+          height: 104px;
           width: 100%;
         }
 
@@ -365,7 +365,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           gap: 36px;
         }
 
-        /* Logo: Favorit Group Full Graphic (Enlarged) */
+        /* Logo: Favorit Group Full Graphic (Further Enlarged) */
         .ref-logo {
           display: inline-flex;
           align-items: center;
@@ -376,8 +376,8 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-brand-full-logo-img {
-          height: 74px;
-          max-height: 78px;
+          height: 90px;
+          max-height: 94px;
           width: auto;
           object-fit: contain;
           flex-shrink: 0;
@@ -701,14 +701,14 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
 
         @media (max-width: 640px) {
           .ref-site-header {
-            height: 78px;
+            height: 86px;
           }
           .ref-header-inner-fluid {
             padding: 0 16px;
           }
           .ref-brand-full-logo-img {
-            height: 56px;
-            max-height: 60px;
+            height: 68px;
+            max-height: 72px;
           }
           .ref-icon-btn {
             display: none;
