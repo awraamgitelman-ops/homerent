@@ -33,37 +33,12 @@ export const AboutPage = ({ onOpenConsultModal }) => {
       {/* 1. Modern Premium Hero Header */}
       <section className="av2-hero">
         <div className="container">
-          <div className="av2-hero-badge">
-            <Sparkles size={14} className="text-primary" />
-            <span>Професійне агентство нерухомості</span>
-          </div>
-          
           <h1 className="av2-hero-title">
-            ТОВ «НОВЕКС ІНВЕСТ»
+            АН «ФАВОРИТ ГРУП»
           </h1>
           <p className="av2-hero-tagline">
             Новий стандарт безпеки, прозорості та комфорту у сфері нерухомості міста Полтава.
           </p>
-
-          {/* Quick Metrics Bar */}
-          <div className="av2-metrics-grid">
-            <div className="av2-metric-card">
-              <span className="av2-metric-num">1 198+</span>
-              <span className="av2-metric-label">Перевірених об'єктів у Полтаві</span>
-            </div>
-            <div className="av2-metric-card">
-              <span className="av2-metric-num">100%</span>
-              <span className="av2-metric-label">Юридична чистота кожної угоди</span>
-            </div>
-            <div className="av2-metric-card">
-              <span className="av2-metric-num">0 грн</span>
-              <span className="av2-metric-label">Прихованих платежів та комісій</span>
-            </div>
-            <div className="av2-metric-card">
-              <span className="av2-metric-num">№ 1</span>
-              <span className="av2-metric-label">Супровід від перегляду до ключів</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -77,7 +52,7 @@ export const AboutPage = ({ onOpenConsultModal }) => {
             </div>
             
             <p className="av2-lead-text">
-              <strong>ТОВ «НОВЕКС ІНВЕСТ»</strong> (код ЄДРПОУ <strong>43980756</strong>) — це офіційно зареєстроване українське підприємство з ліцензованою діяльністю у сфері операцій з нерухомістю (основний КВЕД 68.31). Ми відмовилися від застарілих рієлторських методів на користь повної правової прозорості, фіксованих умов та індивідуального супроводу.
+              <strong>Агентство нерухомості «ФАВОРИТ ГРУП»</strong> — це команда досвідчених фахівців, яка встановлює сучасні стандарти безпеки, прозорості та комфорту у сфері нерухомості міста Полтави. Ми відмовилися від застарілих рієлторських методів на користь повної правової відкритості, фіксованих чесних умов та індивідуального супроводу кожного клієнта.
             </p>
           </div>
 
@@ -279,49 +254,12 @@ export const AboutPage = ({ onOpenConsultModal }) => {
           color: #cbd5e1;
           max-width: 720px;
           line-height: 1.6;
-          margin-bottom: 40px;
-        }
-
-        /* Metrics Grid */
-        .av2-metrics-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 16px;
-        }
-
-        .av2-metric-card {
-          background: rgba(255, 255, 255, 0.06);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 14px;
-          padding: 20px 18px;
-          text-align: center;
-          transition: transform 0.2s ease, background 0.2s ease;
-        }
-
-        .av2-metric-card:hover {
-          background: rgba(255, 255, 255, 0.1);
-          transform: translateY(-2px);
-        }
-
-        .av2-metric-num {
-          display: block;
-          font-size: 1.85rem;
-          font-weight: 900;
-          color: #60a5fa;
-          margin-bottom: 4px;
-        }
-
-        .av2-metric-label {
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: #94a3b8;
-          line-height: 1.4;
+          margin-bottom: 0;
         }
 
         /* Content Section */
         .av2-content-section {
-          padding-top: 50px;
+          padding-top: 40px;
         }
 
         .av2-narrative-box {
