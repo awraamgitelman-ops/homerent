@@ -159,16 +159,13 @@ export const Footer = ({ onOpenConsultModal }) => {
 
           {/* Brand Identity & Location Column (RIGHT SIDE) */}
           <div className="nx-footer-col nx-brand-block">
-            <div className="nx-brand-header" onClick={() => navigate('#/')}>
+            <div className="nx-brand-header" onClick={() => navigate('#/')} title="ФАВОРИТ ГРУП">
               <img 
-                src="/logo-squircle-200.png" 
+                src="/logo-footer-white.png" 
                 alt="ФАВОРИТ ГРУП" 
                 className="nx-brand-logo-img" 
               />
-              <div>
-                <span className="nx-brand-title">ФАВОРИТ ГРУП</span>
-                <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
-              </div>
+              <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
             </div>
 
             <p className="nx-brand-text">
@@ -332,34 +329,35 @@ export const Footer = ({ onOpenConsultModal }) => {
 
         .nx-brand-header {
           display: flex;
-          align-items: center;
-          gap: 12px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
           cursor: pointer;
           margin-bottom: 14px;
         }
 
         .nx-brand-logo-img {
-          width: 44px;
-          height: 44px;
-          border-radius: 10px;
-          object-fit: cover;
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+          height: 48px;
+          max-height: 52px;
+          width: auto;
+          object-fit: contain;
+          border-radius: 0;
+          box-shadow: none;
           flex-shrink: 0;
+          display: block;
+          transition: transform 0.2s ease;
         }
 
-        .nx-brand-title {
-          display: block;
-          font-size: 1.25rem;
-          font-weight: 900;
-          color: #ffffff;
-          letter-spacing: -0.3px;
+        .nx-brand-header:hover .nx-brand-logo-img {
+          transform: scale(1.03);
         }
 
         .nx-brand-subtitle {
           display: block;
-          font-size: 0.72rem;
+          font-size: 0.76rem;
           color: #94a3b8;
           font-weight: 600;
+          letter-spacing: 0.2px;
         }
 
         .nx-brand-text {
