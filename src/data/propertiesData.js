@@ -1,6 +1,4 @@
 // Automatically re-parsed real estate dataset from DOM.RIA Poltava
-// Replaced Korolenka 30 apartment with fresh listing
-// Exact prices and full photo galleries preserved
 export const PROPERTIES_DATA = [
   {
     "id": "dom-34638262",
@@ -3438,7 +3436,6 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737337xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737329xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737340xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737341xl.jpg",
       "https://cdn.riastatic.com/photos/dom/photo/prodaja-kommercheskoe-pomeschenie-poltava-kievskiy-velikiy-pereulok__339737331xl.jpg"
     ],
     "features": [
