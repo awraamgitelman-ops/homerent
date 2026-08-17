@@ -291,9 +291,18 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
 
               {/* Sidebar Bottom Contacts Section */}
               <div className="ref-sidebar-footer">
-                <a href="tel:+380988612938" className="ref-sb-phone">
-                  +380 (98) 861-29-38
-                </a>
+                <div className="ref-sb-hotline-label">Гаряча лінія:</div>
+                <div className="ref-sb-phones-stack">
+                  <a href="tel:+380988612938" className="ref-sb-phone">
+                    <span>Київстар:</span> +380 (98) 861-29-38
+                  </a>
+                  <a href="tel:+380508612938" className="ref-sb-phone">
+                    <span>Vodafone:</span> +380 (50) 861-29-38
+                  </a>
+                </div>
+                <div className="ref-sb-schedule-note">
+                  Графік: щоденно 10:00 — 18:00 (без вихідних)
+                </div>
 
                 <div className="ref-sb-messengers">
                   <a
@@ -310,7 +319,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
                   </a>
 
                   <a
-                    href="https://t.me/rudmonolit"
+                    href="https://t.me/novexinvest"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ref-circle-msg ref-tg"
@@ -682,11 +691,50 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
           border-top: 1px solid #f1f5f9;
         }
 
+        .ref-sb-hotline-label {
+          font-size: 0.78rem;
+          font-weight: 800;
+          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.4px;
+          margin-bottom: 8px;
+        }
+
+        .ref-sb-phones-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          margin-bottom: 8px;
+        }
+
         .ref-sb-phone {
-          display: block;
-          font-size: 1.25rem;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 1.05rem;
           font-weight: 800;
           color: #1e3a8a;
+          transition: color 0.15s ease;
+        }
+
+        .ref-sb-phone span {
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #64748b;
+          background: #e2e8f0;
+          padding: 2px 6px;
+          border-radius: 4px;
+          text-transform: uppercase;
+        }
+
+        .ref-sb-phone:hover {
+          color: #2563eb;
+        }
+
+        .ref-sb-schedule-note {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #16a34a;
           margin-bottom: 14px;
         }
 

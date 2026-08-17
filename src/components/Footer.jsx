@@ -61,13 +61,22 @@ export const Footer = ({ onOpenConsultModal }) => {
             </p>
           </div>
           <div className="nx-pfc-right">
-            <a href="tel:+380988612938" className="nx-pfc-phone-btn">
-              <PhoneCall size={18} />
-              <div className="nx-ppb-text">
-                <span className="nx-ppb-label">Гаряча лінія агенції</span>
-                <span className="nx-ppb-num">+380 (98) 861-29-38</span>
-              </div>
-            </a>
+            <div className="nx-pfc-phone-stack">
+              <a href="tel:+380988612938" className="nx-pfc-phone-btn">
+                <PhoneCall size={16} />
+                <div className="nx-ppb-text">
+                  <span className="nx-ppb-label">Гаряча лінія (Київстар)</span>
+                  <span className="nx-ppb-num">+380 (98) 861-29-38</span>
+                </div>
+              </a>
+              <a href="tel:+380508612938" className="nx-pfc-phone-btn">
+                <PhoneCall size={16} />
+                <div className="nx-ppb-text">
+                  <span className="nx-ppb-label">Гаряча лінія (Vodafone)</span>
+                  <span className="nx-ppb-num">+380 (50) 861-29-38</span>
+                </div>
+              </a>
+            </div>
             <button 
               onClick={onOpenConsultModal} 
               className="btn btn-primary nx-pfc-action-btn"
@@ -183,7 +192,11 @@ export const Footer = ({ onOpenConsultModal }) => {
               </div>
               <div className="nx-mc-row">
                 <Clock size={15} className="text-primary" />
-                <span>Пн–Пт: 10:00 — 18:00 (Сб, Нд — вихідні)</span>
+                <span>Щоденно: 10:00 — 18:00 (без вихідних)</span>
+              </div>
+              <div className="nx-mc-row">
+                <Phone size={15} className="text-primary" />
+                <span>+380 (98) 861-29-38 • +380 (50) 861-29-38</span>
               </div>
               <div className="nx-mc-row">
                 <Mail size={15} className="text-primary" />
@@ -265,14 +278,20 @@ export const Footer = ({ onOpenConsultModal }) => {
           flex-shrink: 0;
         }
 
+        .nx-pfc-phone-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
         .nx-pfc-phone-btn {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
           background: rgba(255, 255, 255, 0.08);
           border: 1px solid rgba(255, 255, 255, 0.18);
-          border-radius: 12px;
-          padding: 10px 18px;
+          border-radius: 10px;
+          padding: 8px 14px;
           color: #ffffff;
           transition: all 0.2s ease;
         }

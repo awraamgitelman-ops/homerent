@@ -101,9 +101,18 @@ export const ContactsPage = () => {
             <div className="ci-card">
               <div className="ci-icon"><Phone size={22} /></div>
               <div className="ci-details">
-                <h4>Прямий телефон</h4>
-                <a href="tel:+380988612938" className="ci-phone-link">+380 (98) 861-29-38</a>
-                <p className="ci-subnote">Прийом дзвінків: Пн–Пт з 10:00 до 18:00</p>
+                <h4>Гаряча лінія</h4>
+                <div className="ci-phones-group">
+                  <a href="tel:+380988612938" className="ci-phone-link">
+                    <span className="ci-phone-tag">Київстар</span>
+                    <span>+380 (98) 861-29-38</span>
+                  </a>
+                  <a href="tel:+380508612938" className="ci-phone-link">
+                    <span className="ci-phone-tag">Vodafone</span>
+                    <span>+380 (50) 861-29-38</span>
+                  </a>
+                </div>
+                <p className="ci-subnote">Прийом дзвінків: Щоденно з 10:00 до 18:00 (без вихідних)</p>
               </div>
             </div>
 
@@ -111,7 +120,7 @@ export const ContactsPage = () => {
               <div className="ci-icon"><Clock size={22} /></div>
               <div className="ci-details">
                 <h4>Графік роботи</h4>
-                <p>Понеділок — П'ятниця: 10:00 — 18:00 (Сб, Нд — вихідні)</p>
+                <p>Щоденно з 10:00 до 18:00 (без вихідних)</p>
               </div>
             </div>
           </div>
@@ -295,13 +304,32 @@ export const ContactsPage = () => {
           margin: 0;
         }
 
+        .ci-phones-group {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          margin-bottom: 6px;
+        }
+
         .ci-phone-link {
-          display: inline-block;
-          font-size: 1.25rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 1.15rem;
           font-weight: 900;
           color: var(--c-primary);
-          margin-bottom: 4px;
           transition: color 0.2s ease;
+        }
+
+        .ci-phone-tag {
+          font-size: 0.7rem;
+          font-weight: 700;
+          color: #475569;
+          background: #e2e8f0;
+          padding: 2px 7px;
+          border-radius: 4px;
+          text-transform: uppercase;
+          letter-spacing: 0.3px;
         }
 
         .ci-phone-link:hover {
