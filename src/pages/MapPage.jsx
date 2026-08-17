@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useRouter } from '../context/RouterContext';
 import { PropertyMap } from '../components/PropertyMap';
 import { 
   Building2, 
@@ -25,17 +26,35 @@ export const MapPage = ({
   onBookViewing,
   onOpenConsultModal
 }) => {
+  const { currentPath } = useRouter();
+
   // Strict separation: 'rent' | 'buy' (no mixed all-in-one)
-  const [transaction, setTransaction] = useState('rent');
+  const isInitialBuy = currentPath.toLowerCase().includes('buy') || currentPath.toLowerCase().includes('prodazha') || currentPath.toLowerCase().includes('sale');
+  const [transaction, setTransaction] = useState(isInitialBuy ? 'buy' : 'rent');
   const [selectedType, setSelectedType] = useState('apartment');
   const [district, setDistrict] = useState('all');
   const [rooms, setRooms] = useState('all');
   const [priceMin, setPriceMin] = useState('');
   const [priceMax, setPriceMax] = useState('');
-  const [currency, setCurrency] = useState('UAH'); // UAH for rent, USD for buy
+  const [currency, setCurrency] = useState(isInitialBuy ? 'USD' : 'UAH'); // UAH for rent, USD for buy
   const [sortBy, setSortBy] = useState('default');
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
   const [mobileTab, setMobileTab] = useState('map'); // 'map' | 'list' for small screens
+
+  // Synchronize when currentPath hash changes
+  useEffect(() => {
+    const isBuy = currentPath.toLowerCase().includes('buy') || currentPath.toLowerCase().includes('prodazha') || currentPath.toLowerCase().includes('sale');
+    const isRent = currentPath.toLowerCase().includes('rent') || currentPath.toLowerCase().includes('arenda');
+    if (isBuy) {
+      setTransaction('buy');
+      setCurrency('USD');
+      setSelectedPropertyId(null);
+    } else if (isRent) {
+      setTransaction('rent');
+      setCurrency('UAH');
+      setSelectedPropertyId(null);
+    }
+  }, [currentPath]);
 
   // Switch between Rent & Buy strictly
   const handleSwitchTransaction = (type) => {

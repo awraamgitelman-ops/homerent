@@ -66,24 +66,17 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             <nav className="ref-desktop-nav">
               <button 
                 type="button"
-                className={`ref-nav-link ${currentPath.includes('/catalog') ? 'active' : ''}`}
-                onClick={() => navigate('#/catalog')}
+                className={`ref-nav-link ${currentPath.includes('/map') && (currentPath.includes('buy') || currentPath.includes('prodazha')) ? 'active' : ''}`}
+                onClick={() => navigate('#/map?type=buy')}
               >
                 Продаж
               </button>
               <button 
                 type="button"
-                className={`ref-nav-link ${currentPath.includes('/catalog') ? 'active' : ''}`}
-                onClick={() => navigate('#/catalog')}
+                className={`ref-nav-link ${currentPath.includes('/map') && (currentPath.includes('rent') || (!currentPath.includes('buy') && !currentPath.includes('prodazha'))) ? 'active' : ''}`}
+                onClick={() => navigate('#/map?type=rent')}
               >
                 Оренда
-              </button>
-              <button 
-                type="button"
-                className={`ref-nav-link ${currentPath.includes('/map') ? 'active' : ''}`}
-                onClick={handlePickPropertyClick}
-              >
-                Новобудови
               </button>
               <button 
                 type="button"
@@ -209,16 +202,25 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             {/* Sidebar Navigation Items */}
             <div className="ref-sidebar-body">
               <nav className="ref-sidebar-nav">
-                {/* 1. Pick Property (Opens Map) */}
+                {/* 1. Map - Buy */}
                 <button 
                   type="button"
                   className="ref-sb-item text-bold-link"
-                  onClick={handlePickPropertyClick}
+                  onClick={() => { navigate('#/map?type=buy'); setIsSidebarOpen(false); }}
                 >
-                  <span>Підібрати нерухомість (Карта Полтави)</span>
+                  <span>Продаж (Карта Полтави)</span>
                 </button>
 
-                {/* 2. Blog / News */}
+                {/* 2. Map - Rent */}
+                <button 
+                  type="button"
+                  className="ref-sb-item text-bold-link"
+                  onClick={() => { navigate('#/map?type=rent'); setIsSidebarOpen(false); }}
+                >
+                  <span>Оренда (Карта Полтави)</span>
+                </button>
+
+                {/* 3. Catalog */}
                 <button 
                   type="button"
                   className="ref-sb-item text-accent-link"
