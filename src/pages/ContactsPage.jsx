@@ -73,25 +73,25 @@ export const ContactsPage = () => {
       <div className="contacts-hero">
         <div className="container text-center">
           <span className="badge badge-blue mb-2">Зв'яжіться з нами</span>
-          <h1 className="ch-title">Контакти агентства «НОВЕКС ІНВЕСТ» у Полтаві</h1>
+          <h1 className="ch-title">Контакти агентства «ФАВОРИТ ГРУП» у Полтаві</h1>
           <p className="ch-subtitle">
             Завітайте до нашого офісу або зателефонуйте для отримання вичерпної консультації з будь-яких питань нерухомості.
           </p>
         </div>
       </div>
 
-      <div className="container py-5">
+      <div className="container contacts-main-container">
         <div className="contacts-grid">
           {/* Col 1: Contact Cards */}
           <div className="contacts-info-col">
-            <h2>Офіс та канали зв'язку</h2>
-            <p className="text-muted mb-4">
-              Ми завжди на зв'язку у месенджерах та готові зустріти вас у центрі Полтави за попереднім записом або у робочий час.
+            <h2 className="contacts-section-title">Офіс та канали зв'язку</h2>
+            <p className="contacts-section-desc">
+              Ми завжди на зв'язку та готові зустріти вас у центрі Полтави за попереднім записом або у робочий час.
             </p>
 
             <div className="ci-card">
               <div className="ci-icon"><MapPin size={22} /></div>
-              <div>
+              <div className="ci-details">
                 <h4>Адреса офісу</h4>
                 <p>36014, Україна, Полтавська обл., м. Полтава, вул. Європейська, буд. 2, офіс 202</p>
               </div>
@@ -99,33 +99,18 @@ export const ContactsPage = () => {
 
             <div className="ci-card">
               <div className="ci-icon"><Phone size={22} /></div>
-              <div>
+              <div className="ci-details">
                 <h4>Прямий телефон</h4>
                 <a href="tel:+380988612938" className="ci-phone-link">+380 (98) 861-29-38</a>
-                <span className="d-block text-muted text-xs mt-1">Прийом дзвінків: щодня з 09:00 до 20:00</span>
+                <p className="ci-subnote">Прийом дзвінків: щодня з 09:00 до 20:00</p>
               </div>
             </div>
 
             <div className="ci-card">
               <div className="ci-icon"><Clock size={22} /></div>
-              <div>
+              <div className="ci-details">
                 <h4>Графік роботи</h4>
                 <p>Понеділок — Неділя: 09:00 — 20:00 (без перерви та вихідних)</p>
-              </div>
-            </div>
-
-            <div className="ci-messengers-box mt-3">
-              <h4>Швидкий зв'язок у месенджерах:</h4>
-              <div className="ci-msg-buttons">
-                <a href="https://t.me/rudmonolit" target="_blank" rel="noopener noreferrer" className="btn btn-msg btn-tg">
-                  Telegram
-                </a>
-                <a href="https://viber.click/380988612938" onClick={handleViberClick} target="_blank" rel="noopener noreferrer" className="btn btn-msg btn-vb">
-                  Viber
-                </a>
-                <a href="https://wa.me/380988612938" target="_blank" rel="noopener noreferrer" className="btn btn-msg btn-wa">
-                  WhatsApp
-                </a>
               </div>
             </div>
           </div>
@@ -144,7 +129,7 @@ export const ContactsPage = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
-                  <div className="form-group">
+                  <div className="form-group mb-3">
                     <label className="form-label">Ваше ім'я *</label>
                     <input 
                       type="text" 
@@ -156,7 +141,7 @@ export const ContactsPage = () => {
                     {errors.name && <div className="form-error">{errors.name}</div>}
                   </div>
 
-                  <div className="form-group">
+                  <div className="form-group mb-3">
                     <label className="form-label">Телефон *</label>
                     <input 
                       type="tel" 
@@ -168,10 +153,10 @@ export const ContactsPage = () => {
                     {errors.phone && <div className="form-error">{errors.phone}</div>}
                   </div>
 
-                  <div className="form-group">
+                  <div className="form-group mb-4">
                     <label className="form-label">Повідомлення або питання</label>
                     <textarea 
-                      rows="3"
+                      rows="4"
                       placeholder="Мене цікавить підбір 2-кімнатної квартири на Леваді..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
@@ -182,7 +167,7 @@ export const ContactsPage = () => {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block py-3"
                   >
                     <Send size={16} />
                     <span>{isSubmitting ? 'Відправка...' : 'Надіслати запит'}</span>
@@ -198,44 +183,72 @@ export const ContactsPage = () => {
         .contacts-hero {
           background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
           color: #ffffff;
-          padding: 45px 0;
+          padding: 56px 0;
         }
 
         .ch-title {
           font-size: 2.2rem;
           font-weight: 900;
           color: #ffffff;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
+          line-height: 1.2;
         }
 
         .ch-subtitle {
-          font-size: 0.95rem;
+          font-size: 1rem;
           color: #cbd5e1;
           max-width: 720px;
           margin: 0 auto;
+          line-height: 1.5;
+        }
+
+        .contacts-main-container {
+          padding-top: 48px;
+          padding-bottom: 64px;
         }
 
         .contacts-grid {
           display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 40px;
+          grid-template-columns: 1.15fr 1fr;
+          gap: 48px;
+          align-items: flex-start;
+        }
+
+        .contacts-section-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: var(--c-slate);
+          margin-bottom: 8px;
+        }
+
+        .contacts-section-desc {
+          font-size: 0.95rem;
+          color: #64748b;
+          margin-bottom: 24px;
+          line-height: 1.5;
         }
 
         .ci-card {
           display: flex;
           align-items: flex-start;
-          gap: 16px;
+          gap: 18px;
           background: #f8fafc;
           border: 1px solid var(--c-border);
-          border-radius: var(--radius-md);
-          padding: 18px;
-          margin-bottom: 14px;
+          border-radius: 14px;
+          padding: 20px 24px;
+          margin-bottom: 18px;
+          transition: all 0.2s ease;
+        }
+
+        .ci-card:hover {
+          border-color: #cbd5e1;
+          box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
         }
 
         .ci-icon {
-          width: 44px;
-          height: 44px;
-          border-radius: var(--radius-sm);
+          width: 48px;
+          height: 48px;
+          border-radius: 12px;
           background: var(--c-primary-light);
           color: var(--c-primary);
           display: flex;
@@ -244,60 +257,71 @@ export const ContactsPage = () => {
           flex-shrink: 0;
         }
 
+        .ci-details {
+          flex: 1;
+        }
+
         .ci-card h4 {
-          font-size: 0.95rem;
-          margin-bottom: 4px;
+          font-size: 1rem;
+          font-weight: 800;
+          margin-bottom: 6px;
           color: var(--c-slate);
         }
 
         .ci-card p {
-          font-size: 0.85rem;
+          font-size: 0.92rem;
           color: #64748b;
-          line-height: 1.45;
+          line-height: 1.5;
+          margin: 0;
         }
 
         .ci-phone-link {
-          font-size: 1.15rem;
-          font-weight: 800;
+          display: inline-block;
+          font-size: 1.25rem;
+          font-weight: 900;
           color: var(--c-primary);
+          margin-bottom: 4px;
+          transition: color 0.2s ease;
         }
 
-        .ci-msg-buttons {
-          display: flex;
-          gap: 10px;
-          margin-top: 10px;
+        .ci-phone-link:hover {
+          color: #1e40af;
         }
 
-        .btn-msg {
-          flex: 1;
-          color: #ffffff;
-          font-weight: 700;
-          font-size: 0.85rem;
-          padding: 10px;
-          border-radius: var(--radius-sm);
-          text-align: center;
+        .ci-subnote {
+          font-size: 0.82rem;
+          color: #94a3b8;
+          margin: 0;
         }
-
-        .btn-tg { background: #29b6f6; }
-        .btn-vb { background: #7360f2; }
-        .btn-wa { background: #25d366; }
 
         .cf-form-card {
           background: #ffffff;
           border: 1px solid var(--c-border);
-          border-radius: var(--radius-lg);
-          padding: 28px;
-          box-shadow: var(--shadow-md);
+          border-radius: 18px;
+          padding: 32px;
+          box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+        }
+
+        .cf-form-card h3 {
+          font-size: 1.35rem;
+          font-weight: 800;
+          color: var(--c-slate);
+          margin-bottom: 6px;
         }
 
         .cf-success-box {
           text-align: center;
-          padding: 24px;
+          padding: 32px 20px;
         }
 
-        @media (max-width: 860px) {
+        @media (max-width: 900px) {
           .contacts-grid {
             grid-template-columns: 1fr;
+            gap: 36px;
+          }
+          .contacts-main-container {
+            padding-top: 36px;
+            padding-bottom: 48px;
           }
         }
       `}</style>
