@@ -469,7 +469,7 @@ export const MapPage = ({
         .map-page-wrapper {
           display: flex;
           flex-direction: column;
-          height: calc(100vh - 86px);
+          height: calc(100vh - 94px);
           min-height: 550px;
           background: #f8fafc;
           overflow: hidden;

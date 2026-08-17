@@ -361,7 +361,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           position: sticky;
           top: 0;
           z-index: 1000;
-          height: 86px;
+          height: 94px;
           width: 100%;
         }
 
@@ -381,7 +381,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           gap: 36px;
         }
 
-        /* Logo: Favorit Group Full Graphic */
+        /* Logo: Favorit Group Full Graphic (Enlarged) */
         .ref-logo {
           display: inline-flex;
           align-items: center;
@@ -392,8 +392,8 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-brand-full-logo-img {
-          height: 48px;
-          max-height: 52px;
+          height: 64px;
+          max-height: 68px;
           width: auto;
           object-fit: contain;
           flex-shrink: 0;
@@ -402,7 +402,7 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         }
 
         .ref-logo:hover .ref-brand-full-logo-img {
-          transform: scale(1.02);
+          transform: scale(1.03);
         }
 
         /* Nav links (Adjacent to Logo) */
@@ -717,13 +717,13 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
 
         @media (max-width: 640px) {
           .ref-site-header {
-            height: 68px;
+            height: 74px;
           }
           .ref-header-inner-fluid {
             padding: 0 16px;
           }
           .ref-brand-full-logo-img {
-            height: 38px;
+            height: 48px;
           }
           .ref-icon-btn {
             display: none;
