@@ -33,6 +33,13 @@ export const SellModal = ({ onClose }) => {
     setPhone(formatPhoneInput(e.target.value));
   };
 
+  const handleDealTypeChange = (type) => {
+    setDealType(type);
+    if (type === 'rent' && propCategory === 'land') {
+      setPropCategory('apartment');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = {};
@@ -49,14 +56,24 @@ export const SellModal = ({ onClose }) => {
     setErrors({});
     setIsSubmitting(true);
 
+    const categoryTitle = propCategory === 'apartment' ? 'Квартира'
+      : propCategory === 'house' ? 'Будинок / Котедж'
+      : propCategory === 'commercial' ? 'Комерція'
+      : propCategory === 'land' ? 'Земельна ділянка'
+      : 'Кімната / Подобово';
+
+    const priceLabelFormatted = targetPrice 
+      ? (dealType === 'sell' ? `$ ${targetPrice}` : `${targetPrice} грн/місяць`) 
+      : 'Потрібна консультація експерта';
+
     try {
       await sendTelegramLeadNotification({
         name,
         phone,
         type: dealType === 'sell' ? 'Заявка на продаж нерухомості від власника' : 'Заявка на здачу в оренду від власника',
-        propertyTitle: `Власник: ${propCategory === 'apartment' ? 'Квартира' : propCategory === 'house' ? 'Будинок' : 'Комерція'}, ${rooms} кімн., ${area ? area + ' м²' : ''}`,
+        propertyTitle: `Власник: ${categoryTitle}, ${rooms}, ${area ? area + ' м²' : ''}`,
         district: POLTAVA_DISTRICTS.find(d => d.id === district)?.name || district,
-        budget: targetPrice ? `$ ${targetPrice}` : 'Потрібна оцінка експерта',
+        budget: priceLabelFormatted,
         comment: comment || 'Без коментаря'
       });
 
@@ -67,6 +84,18 @@ export const SellModal = ({ onClose }) => {
       setIsSubmitting(false);
     }
   };
+
+  const categories = dealType === 'sell' ? [
+    { id: 'apartment', label: 'Квартира' },
+    { id: 'house', label: 'Будинок / Котедж' },
+    { id: 'commercial', label: 'Комерція' },
+    { id: 'land', label: 'Ділянка' }
+  ] : [
+    { id: 'apartment', label: 'Квартира' },
+    { id: 'house', label: 'Будинок / Котедж' },
+    { id: 'commercial', label: 'Комерція' },
+    { id: 'room', label: 'Кімната / Подобово' }
+  ];
 
   return (
     <div className="modal-backdrop animate-fade" onClick={onClose}>
@@ -79,7 +108,7 @@ export const SellModal = ({ onClose }) => {
           <div className="sell-success-box animate-fade">
             <h3 className="text-xl font-bold mb-2">Дякуємо! Заявку прийнято</h3>
             <p className="text-muted mb-4">
-              Експерт агентства «ФАВОРИТ ГРУП» зателефонує вам протягом 15 хвилин для узгодження деталей, безкоштовної оцінки ринкової вартості та організації зйомки.
+              Експерт агентства «ФАВОРИТ ГРУП» зателефонує вам протягом 15 хвилин для узгодження деталей, безкоштовної оцінки вартості та організації співпраці.
             </p>
             <button onClick={onClose} className="btn btn-primary">
               Зрозуміло
@@ -89,9 +118,13 @@ export const SellModal = ({ onClose }) => {
           <form onSubmit={handleSubmit} className="sell-form">
             <div className="sell-header">
               <span className="badge badge-gold mb-2">Для власників нерухомості у Полтаві</span>
-              <h2 className="sell-title">Подати заявку на продаж або оренду</h2>
+              <h2 className="sell-title">
+                {dealType === 'sell' ? 'Подати заявку на продаж нерухомості' : 'Подати заявку на здачу в оренду'}
+              </h2>
               <p className="sell-subtitle">
-                Продамо вашу нерухомість за максимальною ринковою ціною з повною юридичною безпекою.
+                {dealType === 'sell'
+                  ? 'Продамо вашу нерухомість за максимальною ринковою ціною з повною юридичною безпекою.'
+                  : 'Здамо вашу нерухомість перевіреним та платоспроможним орендарям із щомісячним контролем.'}
               </p>
             </div>
 
@@ -100,14 +133,14 @@ export const SellModal = ({ onClose }) => {
               <button
                 type="button"
                 className={`deal-btn ${dealType === 'sell' ? 'active' : ''}`}
-                onClick={() => setDealType('sell')}
+                onClick={() => handleDealTypeChange('sell')}
               >
                 Хочу продати
               </button>
               <button
                 type="button"
                 className={`deal-btn ${dealType === 'rent' ? 'active' : ''}`}
-                onClick={() => setDealType('rent')}
+                onClick={() => handleDealTypeChange('rent')}
               >
                 Хочу здати в оренду
               </button>
@@ -117,34 +150,16 @@ export const SellModal = ({ onClose }) => {
             <div className="form-group">
               <label className="form-label">Тип об'єкта</label>
               <div className="cat-pill-row">
-                <button
-                  type="button"
-                  className={`cat-pill ${propCategory === 'apartment' ? 'active' : ''}`}
-                  onClick={() => setPropCategory('apartment')}
-                >
-                  Квартира
-                </button>
-                <button
-                  type="button"
-                  className={`cat-pill ${propCategory === 'house' ? 'active' : ''}`}
-                  onClick={() => setPropCategory('house')}
-                >
-                  Будинок / Котедж
-                </button>
-                <button
-                  type="button"
-                  className={`cat-pill ${propCategory === 'commercial' ? 'active' : ''}`}
-                  onClick={() => setPropCategory('commercial')}
-                >
-                  Комерція
-                </button>
-                <button
-                  type="button"
-                  className={`cat-pill ${propCategory === 'land' ? 'active' : ''}`}
-                  onClick={() => setPropCategory('land')}
-                >
-                  Ділянка
-                </button>
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    className={`cat-pill ${propCategory === cat.id ? 'active' : ''}`}
+                    onClick={() => setPropCategory(cat.id)}
+                  >
+                    {cat.label}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -164,18 +179,43 @@ export const SellModal = ({ onClose }) => {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Кількість кімнат</label>
-                <select 
-                  value={rooms} 
-                  onChange={(e) => setRooms(e.target.value)}
-                  className="form-select"
-                >
-                  <option value="1">1-кімнатна</option>
-                  <option value="2">2-кімнатна</option>
-                  <option value="3">3-кімнатна</option>
-                  <option value="4+">4+ кімнат</option>
-                  <option value="studio">Студія / Вільне планування</option>
-                </select>
+                <label className="form-label">
+                  {propCategory === 'commercial' ? 'Призначення' : propCategory === 'land' ? 'Призначення ділянки' : 'Кількість кімнат'}
+                </label>
+                {propCategory === 'commercial' ? (
+                  <select 
+                    value={rooms} 
+                    onChange={(e) => setRooms(e.target.value)}
+                    className="form-select"
+                  >
+                    <option value="Офіс / Кабінет">Офіс / Кабінет</option>
+                    <option value="Торгова площа / Магазин">Торгова площа / Магазин</option>
+                    <option value="Склад / Виробництво">Склад / Виробництво</option>
+                    <option value="Вільне призначення">Вільне призначення</option>
+                  </select>
+                ) : propCategory === 'land' ? (
+                  <select 
+                    value={rooms} 
+                    onChange={(e) => setRooms(e.target.value)}
+                    className="form-select"
+                  >
+                    <option value="Під житлову забудову (ЖБ)">Під житлову забудову (ЖБ)</option>
+                    <option value="Комерційне використання">Комерційне використання</option>
+                    <option value="Сільгосп / Садівництво">Сільгосп / Садівництво</option>
+                  </select>
+                ) : (
+                  <select 
+                    value={rooms} 
+                    onChange={(e) => setRooms(e.target.value)}
+                    className="form-select"
+                  >
+                    <option value="1">1-кімнатна</option>
+                    <option value="2">2-кімнатна</option>
+                    <option value="3">3-кімнатна</option>
+                    <option value="4+">4+ кімнат</option>
+                    <option value="Студія / Вільне планування">Студія / Вільне планування</option>
+                  </select>
+                )}
               </div>
             </div>
 
@@ -192,10 +232,12 @@ export const SellModal = ({ onClose }) => {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Бажана ціна ($)</label>
+                <label className="form-label">
+                  {dealType === 'sell' ? 'Бажана ціна продажу ($)' : 'Щомісячна орендна плата (грн/міс)'}
+                </label>
                 <input 
                   type="number" 
-                  placeholder="напр. 45000" 
+                  placeholder={dealType === 'sell' ? 'напр. 45000' : 'напр. 15000'} 
                   value={targetPrice}
                   onChange={(e) => setTargetPrice(e.target.value)}
                   className="form-input"
@@ -231,10 +273,14 @@ export const SellModal = ({ onClose }) => {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Додаткові побажання або стан ремонту</label>
+              <label className="form-label">
+                {dealType === 'sell' ? 'Особливості або стан ремонту' : 'Умови оренди та комплектація'}
+              </label>
               <textarea 
                 rows="2"
-                placeholder="Вкажіть особливості (новий котел, закритий двір, терміновий продаж тощо)..."
+                placeholder={dealType === 'sell' 
+                  ? 'Вкажіть особливості (стан ремонту, автономне опалення, поверх, терміновий продаж тощо)...' 
+                  : 'Вкажіть комплектацію (наявність меблів, техніки, чи дозволені тварини, бажаний термін)...'}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 className="form-textarea"
@@ -247,7 +293,13 @@ export const SellModal = ({ onClose }) => {
               className="btn btn-accent btn-block btn-lg"
             >
               <Send size={18} />
-              <span>{isSubmitting ? 'Відправка...' : 'Отримати безкоштовну оцінку та консультацію'}</span>
+              <span>
+                {isSubmitting 
+                  ? 'Відправка...' 
+                  : dealType === 'sell' 
+                    ? 'Отримати безкоштовну оцінку та консультацію' 
+                    : 'Подати заявку на здачу в оренду'}
+              </span>
             </button>
 
             <div className="sell-guarantee-note">
