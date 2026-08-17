@@ -238,13 +238,10 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
           <div style="font-size: 0.76rem; color: #64748b; margin-bottom: 10px;">
             📍 ${prop.address}
           </div>
-          <div style="display: flex; gap: 6px;">
-            <button id="map-prop-btn-${prop.id}" style="flex: 1; padding: 7px 10px; background: #1e3a8a; color: white; border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer;">
+          <div>
+            <button id="map-prop-btn-${prop.id}" style="width: 100%; padding: 8px 12px; background: #1e3a8a; color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 0.85rem; cursor: pointer; transition: background 0.2s;">
               Деталі →
             </button>
-            <a href="${googleMapsDirectUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; padding: 7px 10px; background: #f1f5f9; color: #1e293b; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none;" title="Відкрити в Google Maps">
-              Google
-            </a>
           </div>
         </div>
       `;
