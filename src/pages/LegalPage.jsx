@@ -6,7 +6,7 @@ export const LegalPage = () => {
     <div className="legal-page-wrapper">
       <div className="legal-hero">
         <div className="legal-hero-overlay"></div>
-        <div className="container text-center legal-hero-content">
+        <div className="container legal-hero-content">
           <div className="badge badge-green mb-2">Офіційно зареєстроване українське підприємство</div>
           <h1 className="lh-title">Реєстраційні дані та реквізити ТОВ «НОВЕКС ІНВЕСТ»</h1>
           <p className="lh-subtitle">
@@ -167,20 +167,27 @@ export const LegalPage = () => {
         .legal-hero-content {
           position: relative;
           z-index: 2;
+          text-align: left;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
 
         .lh-title {
           font-size: 2.2rem;
           font-weight: 900;
           color: #ffffff;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
+          text-align: left;
         }
 
         .lh-subtitle {
-          font-size: 0.95rem;
+          font-size: 1rem;
           color: #cbd5e1;
-          max-width: 760px;
-          margin: 0 auto;
+          max-width: 820px;
+          margin: 0;
+          text-align: left;
+          line-height: 1.55;
         }
 
         .legal-grid {

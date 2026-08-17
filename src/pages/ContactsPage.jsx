@@ -72,7 +72,7 @@ export const ContactsPage = () => {
     <div className="contacts-page-wrapper">
       <div className="contacts-hero">
         <div className="contacts-hero-overlay"></div>
-        <div className="container text-center contacts-hero-content">
+        <div className="container contacts-hero-content">
           <span className="badge badge-blue mb-2">Зв'яжіться з нами</span>
           <h1 className="ch-title">Контакти агентства «ФАВОРИТ ГРУП» у Полтаві</h1>
           <p className="ch-subtitle">
@@ -142,7 +142,7 @@ export const ContactsPage = () => {
                   </div>
 
                   <div className="form-group mb-3">
-                    <label className="form-label">Телефон *</label>
+                    <label className="form-label">Номер телефону *</label>
                     <input 
                       type="tel" 
                       placeholder="+380 (98) 000-00-00"
@@ -153,11 +153,11 @@ export const ContactsPage = () => {
                     {errors.phone && <div className="form-error">{errors.phone}</div>}
                   </div>
 
-                  <div className="form-group mb-4">
-                    <label className="form-label">Повідомлення або питання</label>
+                  <div className="form-group mb-3">
+                    <label className="form-label">Ваше питання або коментар</label>
                     <textarea 
-                      rows="4"
-                      placeholder="Мене цікавить підбір 2-кімнатної квартири на Леваді..."
+                      rows="3"
+                      placeholder="Доброго дня! Мене цікавить купівля 2-кімнатної квартири..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       className="form-textarea"
@@ -167,10 +167,10 @@ export const ContactsPage = () => {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="btn btn-primary btn-block py-3"
+                    className="btn btn-primary btn-block btn-lg"
                   >
-                    <Send size={16} />
-                    <span>{isSubmitting ? 'Відправка...' : 'Надіслати запит'}</span>
+                    <Send size={18} />
+                    <span>{isSubmitting ? 'Відправка...' : 'Надіслати повідомлення'}</span>
                   </button>
                 </form>
               )}
@@ -200,6 +200,10 @@ export const ContactsPage = () => {
         .contacts-hero-content {
           position: relative;
           z-index: 2;
+          text-align: left;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
 
         .ch-title {
