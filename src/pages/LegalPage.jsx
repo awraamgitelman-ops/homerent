@@ -5,7 +5,8 @@ export const LegalPage = () => {
   return (
     <div className="legal-page-wrapper">
       <div className="legal-hero">
-        <div className="container text-center">
+        <div className="legal-hero-overlay"></div>
+        <div className="container text-center legal-hero-content">
           <div className="badge badge-green mb-2">Офіційно зареєстроване українське підприємство</div>
           <h1 className="lh-title">Реєстраційні дані та реквізити ТОВ «НОВЕКС ІНВЕСТ»</h1>
           <p className="lh-subtitle">
@@ -147,9 +148,25 @@ export const LegalPage = () => {
 
       <style>{`
         .legal-hero {
-          background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+          position: relative;
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.85) 100%),
+                      url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg/1920px-Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg') center 40%/cover no-repeat;
           color: #ffffff;
-          padding: 45px 0;
+          padding: 56px 0;
+          overflow: hidden;
+        }
+
+        .legal-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%);
+          backdrop-filter: blur(1.5px);
+          pointer-events: none;
+        }
+
+        .legal-hero-content {
+          position: relative;
+          z-index: 2;
         }
 
         .lh-title {

@@ -71,7 +71,8 @@ export const ContactsPage = () => {
   return (
     <div className="contacts-page-wrapper">
       <div className="contacts-hero">
-        <div className="container text-center">
+        <div className="contacts-hero-overlay"></div>
+        <div className="container text-center contacts-hero-content">
           <span className="badge badge-blue mb-2">Зв'яжіться з нами</span>
           <h1 className="ch-title">Контакти агентства «ФАВОРИТ ГРУП» у Полтаві</h1>
           <p className="ch-subtitle">
@@ -181,9 +182,25 @@ export const ContactsPage = () => {
 
       <style>{`
         .contacts-hero {
-          background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+          position: relative;
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.85) 100%),
+                      url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg/1920px-Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg') center 40%/cover no-repeat;
           color: #ffffff;
           padding: 56px 0;
+          overflow: hidden;
+        }
+
+        .contacts-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%);
+          backdrop-filter: blur(1.5px);
+          pointer-events: none;
+        }
+
+        .contacts-hero-content {
+          position: relative;
+          z-index: 2;
         }
 
         .ch-title {

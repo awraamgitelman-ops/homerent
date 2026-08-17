@@ -212,10 +212,11 @@ export const AboutPage = ({ onOpenConsultModal }) => {
 
         /* Hero Section */
         .av2-hero {
-          background: linear-gradient(135deg, #090d16 0%, #172554 50%, #1e1b4b 100%);
+          position: relative;
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.85) 100%),
+                      url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg/1920px-Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg') center 40%/cover no-repeat;
           color: #ffffff;
           padding: 64px 0 56px;
-          position: relative;
           overflow: hidden;
         }
 
@@ -223,7 +224,8 @@ export const AboutPage = ({ onOpenConsultModal }) => {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.18) 0%, transparent 60%);
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%);
+          backdrop-filter: blur(1.5px);
           pointer-events: none;
         }
 

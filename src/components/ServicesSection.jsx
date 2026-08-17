@@ -66,7 +66,7 @@ export const ServicesSection = ({ onSelectService, onOpenConsultModal }) => {
           <span className="badge badge-blue mb-2">Комплексні послуги у Полтаві</span>
           <h2 className="services-main-title">Повний спектр послуг з нерухомості</h2>
           <p className="services-main-subtitle">
-            Агентство нерухомості **ТОВ «НОВЕКС ІНВЕСТ»** забезпечує 100% юридичну безпеку та прозорість кожної операції на ринку нерухомості Полтави.
+            Агентство нерухомості <strong>«ФАВОРИТ ГРУП»</strong> забезпечує 100% юридичну безпеку та прозорість кожної операції на ринку нерухомості Полтави.
           </p>
         </div>
 
