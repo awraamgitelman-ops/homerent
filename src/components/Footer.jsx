@@ -51,13 +51,9 @@ export const Footer = ({ onOpenConsultModal }) => {
         {/* 1. Pre-Footer Action Banner */}
         <div className="nx-prefooter-card">
           <div className="nx-pfc-left">
-            <div className="nx-pfc-badge">
-              <Sparkles size={14} />
-              <span>Індивідуальний підбір нерухомості</span>
-            </div>
-            <h3 className="nx-pfc-title">Потрібна допомога у виборі чи продажу житла в Полтаві?</h3>
+            <h3 className="nx-pfc-title">Шукаєте нерухомість у Полтаві?</h3>
             <p className="nx-pfc-desc">
-              Залиште заявку на безкоштовну консультацію юриста або отримайте персональну добірку з 1 198+ об'єктів без комісійних націнок.
+              Залиште коротку заявку, і ми підготуємо для вас персональну добірку з найкращих та перевірених об'єктів під ваш бюджет і вимоги.
             </p>
           </div>
           <div className="nx-pfc-right">
@@ -81,7 +77,7 @@ export const Footer = ({ onOpenConsultModal }) => {
               onClick={onOpenConsultModal} 
               className="btn btn-primary nx-pfc-action-btn"
             >
-              <span>Замовити консультацію</span>
+              <span>Отримати персональну добірку</span>
               <ArrowUpRight size={16} />
             </button>
           </div>

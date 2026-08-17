@@ -203,7 +203,7 @@ export function App() {
       </main>
 
       {/* Site Footer (Hidden on full-screen map route for immersive view) */}
-      {!isMapRoute && <Footer />}
+      {!isMapRoute && <Footer onOpenConsultModal={handleOpenConsultModal} />}
 
       {/* Fixed Bottom Bar on Mobile */}
       <MobileNav
