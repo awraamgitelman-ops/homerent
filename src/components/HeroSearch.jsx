@@ -284,10 +284,6 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
 
           {/* Bottom Controls Row */}
           <div className="hs-bottom-row">
-            <div className="hs-bottom-left">
-              <span className="hs-verified-note">✓ Всі {matchingCount} об'єктів перевірені експертами агентства</span>
-            </div>
-
             <div className="hs-bottom-actions">
               <button 
                 type="button" 
@@ -308,16 +304,6 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
               </button>
             </div>
           </div>
-        </div>
-
-        {/* CTA Hero Button */}
-        <div className="hero-cta-center">
-          <button 
-            onClick={onOpenConsultModal}
-            className="btn btn-primary hero-cta-btn"
-          >
-            <span>Отримати індивідуальний підбір об'єктів від рієлтора</span>
-          </button>
         </div>
       </div>
 
@@ -359,11 +345,16 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
         .hl-accent {
           background: #2563eb;
           color: #ffffff;
-          padding: 2px 14px;
-          border-radius: var(--radius-sm);
-          display: inline-block;
-          margin-right: 8px;
-          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+          padding: 6px 18px 8px;
+          border-radius: 10px;
+          display: inline-inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 12px;
+          line-height: 1;
+          vertical-align: middle;
+          letter-spacing: 0.5px;
+          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
         }
 
         .hero-subheadline {
@@ -571,13 +562,12 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
 
         /* Bottom Row */
         .hs-bottom-row {
-          padding: 12px 20px;
+          padding: 14px 20px;
           background: #f8fafc;
           border-top: 1px solid #e2e8f0;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          flex-wrap: wrap;
+          justify-content: flex-end;
           gap: 12px;
         }
 
