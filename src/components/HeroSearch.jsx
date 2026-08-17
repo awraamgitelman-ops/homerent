@@ -345,12 +345,12 @@ export const HeroSearch = ({ onSearch, properties = [], totalCount = 1198, onOpe
         .hl-accent {
           background: #2563eb;
           color: #ffffff;
-          padding: 6px 18px 8px;
+          padding: 5px 15px 7px;
           border-radius: 10px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          margin-right: 12px;
+          margin-right: 6px;
           line-height: 1;
           vertical-align: middle;
           letter-spacing: 0.5px;
