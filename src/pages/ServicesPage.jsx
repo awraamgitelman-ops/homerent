@@ -8,7 +8,7 @@ export const ServicesPage = ({ onSelectService, onOpenConsultModal }) => {
     <div className="services-page-wrapper">
       <div className="services-hero">
         <div className="services-hero-overlay"></div>
-        <div className="container text-center services-hero-content">
+        <div className="container services-hero-content">
           <span className="badge badge-blue mb-2">Професійні послуги у Полтаві</span>
           <h1 className="sh-title">Послуги Агентства Нерухомості «ФАВОРИТ ГРУП»</h1>
           <p className="sh-subtitle">
@@ -45,21 +45,27 @@ export const ServicesPage = ({ onSelectService, onOpenConsultModal }) => {
         .services-hero-content {
           position: relative;
           z-index: 2;
+          text-align: left;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
 
         .sh-title {
           font-size: 2.2rem;
           font-weight: 900;
           color: #ffffff;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
+          text-align: left;
         }
 
         .sh-subtitle {
-          font-size: 0.98rem;
+          font-size: 1rem;
           color: #cbd5e1;
-          max-width: 720px;
-          margin: 0 auto;
-          line-height: 1.5;
+          max-width: 820px;
+          margin: 0;
+          text-align: left;
+          line-height: 1.55;
         }
 
         @media (max-width: 640px) {
