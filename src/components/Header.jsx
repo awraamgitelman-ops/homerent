@@ -372,12 +372,12 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           cursor: pointer;
           user-select: none;
           flex-shrink: 0;
-          padding: 2px 0;
+          padding: 0;
         }
 
         .ref-brand-full-logo-img {
-          height: 64px;
-          max-height: 68px;
+          height: 74px;
+          max-height: 78px;
           width: auto;
           object-fit: contain;
           flex-shrink: 0;
@@ -701,13 +701,14 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
 
         @media (max-width: 640px) {
           .ref-site-header {
-            height: 74px;
+            height: 78px;
           }
           .ref-header-inner-fluid {
             padding: 0 16px;
           }
           .ref-brand-full-logo-img {
-            height: 48px;
+            height: 56px;
+            max-height: 60px;
           }
           .ref-icon-btn {
             display: none;
