@@ -339,10 +339,15 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
-          gap: 20px;
+          gap: 24px;
           margin-bottom: 20px;
           padding-bottom: 18px;
           border-bottom: 1px solid var(--c-border);
+        }
+
+        .pm-header-left {
+          flex: 1;
+          min-width: 0;
         }
 
         .pm-badges-row {
@@ -356,6 +361,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           font-weight: 900;
           color: var(--c-slate);
           margin-bottom: 6px;
+          word-break: break-word;
         }
 
         .pm-address {
@@ -368,25 +374,37 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
         .pm-header-right {
           text-align: right;
+          flex-shrink: 0;
+          white-space: nowrap;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          min-width: max-content;
+          padding-top: 4px;
         }
 
         .pm-price-usd {
-          font-size: 1.8rem;
+          font-size: 1.85rem;
           font-weight: 900;
           color: var(--c-primary);
           line-height: 1.1;
+          white-space: nowrap;
+          letter-spacing: -0.5px;
         }
 
         .pm-price-uah {
           font-size: 1.05rem;
           font-weight: 700;
           color: #64748b;
-          margin-top: 2px;
+          margin-top: 4px;
+          white-space: nowrap;
         }
 
         .pm-price-m2 {
-          font-size: 0.8rem;
+          font-size: 0.82rem;
           color: #94a3b8;
+          margin-top: 2px;
+          white-space: nowrap;
         }
 
         /* Gallery */

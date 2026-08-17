@@ -301,12 +301,14 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           font-weight: 900;
           color: var(--c-primary);
           letter-spacing: -0.5px;
+          white-space: nowrap;
         }
 
         .pc-sub-price {
           font-size: 0.78rem;
           font-weight: 600;
           color: var(--c-muted);
+          white-space: nowrap;
         }
 
         .pc-title {

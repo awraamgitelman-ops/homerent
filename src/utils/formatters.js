@@ -1,7 +1,7 @@
 export const formatCurrency = (amount, currency = 'USD') => {
   if (amount === undefined || amount === null) return '0';
   if (currency === 'USD') {
-    return `$ ${amount.toLocaleString('uk-UA')}`;
+    return `$${amount.toLocaleString('uk-UA')}`;
   }
   return `${amount.toLocaleString('uk-UA')} грн`;
 };
@@ -9,7 +9,7 @@ export const formatCurrency = (amount, currency = 'USD') => {
 export const formatPricePerM2 = (amountUSD, currency = 'USD') => {
   if (!amountUSD) return '';
   if (currency === 'USD') {
-    return `$ ${amountUSD}/м²`;
+    return `$${amountUSD}/м²`;
   }
   const uah = Math.round(amountUSD * 41.5);
   return `${uah.toLocaleString('uk-UA')} грн/м²`;

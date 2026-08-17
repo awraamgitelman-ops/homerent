@@ -833,12 +833,14 @@ export const MapPage = ({
           font-weight: 900;
           color: #1e3a8a;
           line-height: 1.1;
+          white-space: nowrap;
         }
 
         .mls-card-m2 {
           font-size: 0.72rem;
           color: #64748b;
           font-weight: 600;
+          white-space: nowrap;
         }
 
         .mls-card-title {
