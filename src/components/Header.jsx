@@ -53,14 +53,13 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
         <div className="ref-header-inner-fluid">
           {/* Left Block: Logo + Navigation Links */}
           <div className="ref-header-left-group">
-            {/* 1. Brand Logo */}
-            <div className="ref-logo" onClick={() => navigate('#/')}>
+            {/* 1. Brand Logo: Favorit Group */}
+            <div className="ref-logo" onClick={() => navigate('#/')} title="Агентство нерухомості ФАВОРИТ ГРУП">
               <img 
-                src="/logo-transparent-filleted.png" 
-                alt="НОВА ОСЕЛЯ" 
-                className="ref-brand-logo-img" 
+                src="/logo-full.png" 
+                alt="ФАВОРИТ ГРУП" 
+                className="ref-brand-full-logo-img" 
               />
-              <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
             </div>
 
             {/* 2. Navigation Links (Adjacent to Logo) */}
@@ -198,11 +197,10 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
             <div className="ref-sidebar-header">
               <div className="ref-logo" onClick={() => { navigate('#/'); setIsSidebarOpen(false); }}>
                 <img 
-                  src="/logo-transparent-filleted.png" 
-                  alt="НОВА ОСЕЛЯ" 
-                  className="ref-brand-logo-img" 
+                  src="/logo-full.png" 
+                  alt="ФАВОРИТ ГРУП" 
+                  className="ref-brand-full-logo-img" 
                 />
-                <span className="ref-logo-title">НОВА ОСЕЛЯ</span>
               </div>
 
               <button 
@@ -383,30 +381,28 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           gap: 36px;
         }
 
-        /* Logo (Clean horizontal lockup) */
+        /* Logo: Favorit Group Full Graphic */
         .ref-logo {
           display: inline-flex;
           align-items: center;
-          gap: 12px;
           cursor: pointer;
           user-select: none;
           flex-shrink: 0;
+          padding: 2px 0;
         }
 
-        .ref-brand-logo-img {
-          width: 46px;
-          height: 46px;
+        .ref-brand-full-logo-img {
+          height: 48px;
+          max-height: 52px;
+          width: auto;
           object-fit: contain;
           flex-shrink: 0;
+          display: block;
+          transition: transform 0.2s ease;
         }
 
-        .ref-logo-title {
-          font-size: 2.15rem;
-          font-weight: 900;
-          color: #1e3a8a;
-          letter-spacing: -0.2px;
-          line-height: 1;
-          white-space: nowrap;
+        .ref-logo:hover .ref-brand-full-logo-img {
+          transform: scale(1.02);
         }
 
         /* Nav links (Adjacent to Logo) */
@@ -726,15 +722,8 @@ export const Header = ({ onOpenMap, onOpenSellModal }) => {
           .ref-header-inner-fluid {
             padding: 0 16px;
           }
-          .ref-logo-title {
-            font-size: 1.4rem;
-          }
-          .ref-brand-logo-img {
-            width: 32px;
-            height: 32px;
-          }
-          .ref-logo-sub {
-            font-size: 0.52rem;
+          .ref-brand-full-logo-img {
+            height: 38px;
           }
           .ref-icon-btn {
             display: none;

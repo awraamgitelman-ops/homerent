@@ -162,11 +162,11 @@ export const Footer = ({ onOpenConsultModal }) => {
             <div className="nx-brand-header" onClick={() => navigate('#/')}>
               <img 
                 src="/logo-squircle-200.png" 
-                alt="НОВА ОСЕЛЯ" 
+                alt="ФАВОРИТ ГРУП" 
                 className="nx-brand-logo-img" 
               />
               <div>
-                <span className="nx-brand-title">НОВА ОСЕЛЯ</span>
+                <span className="nx-brand-title">ФАВОРИТ ГРУП</span>
                 <span className="nx-brand-subtitle">Агентство нерухомості • Полтава</span>
               </div>
             </div>
