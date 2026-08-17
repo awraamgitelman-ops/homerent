@@ -1,5 +1,5 @@
 // Automatically re-parsed real estate dataset from DOM.RIA Poltava
-// Replaced specific sale apartments as requested
+// Replaced Korolenka 30 apartment with fresh listing
 // Exact prices and full photo galleries preserved
 export const PROPERTIES_DATA = [
   {
@@ -3812,63 +3812,6 @@ export const PROPERTIES_DATA = [
     }
   },
   {
-    "id": "dom-34636851",
-    "title": "Продаж 2к квартири 56.5 кв. м  на вул. Короленка 30 • ID 34636851",
-    "type": "apartment",
-    "transaction": "buy",
-    "priceUSD": 25000,
-    "priceUAH": 1122500,
-    "pricePerM2": 455,
-    "district": "center",
-    "districtName": "Центр",
-    "address": "м. Полтава, Полтава, 1 поверх",
-    "lat": 49.57941,
-    "lng": 34.55405,
-    "rooms": 5,
-    "area": 55.0,
-    "livingArea": 33.0,
-    "kitchenArea": 11.0,
-    "floor": 1,
-    "totalFloors": 11,
-    "yearBuilt": 2020,
-    "buildingType": "Утеплена цегла / Моноліт",
-    "heating": "Централізоване",
-    "condition": "Житловий стан",
-    "badges": [
-      "Продаж",
-      "єОселя 3%/7%"
-    ],
-    "isExclusive": true,
-    "isVerified": true,
-    "description": "Пропонується Продаж 2к квартири 56.5 кв. м  на вул. Короленка 30 • ID 34636851. Локація у затишному районі Центр. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
-    "images": [
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085579xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085571xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085572xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085573xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085574xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085575xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085576xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085577xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085578xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085581xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085580xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085582xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085579xl.jpg"
-    ],
-    "features": [
-      "Лічильники",
-      "Wi-Fi інтернет",
-      "Броньовані двері",
-      "Паркінг"
-    ],
-    "agent": {
-      "name": "Омельяненко Владислав",
-      "phone": "+380988612938",
-      "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
-    }
-  },
-  {
     "id": "dom-34655548",
     "title": "Продаж 1к квартири 33.3 кв. м  на вул. Полюсна • ID 34655548",
     "type": "apartment",
@@ -3913,6 +3856,68 @@ export const PROPERTIES_DATA = [
       "Wi-Fi інтернет",
       "Броньовані двері",
       "Паркінг"
+    ],
+    "agent": {
+      "name": "Омельяненко Владислав",
+      "phone": "+380988612938",
+      "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
+    }
+  },
+  {
+    "id": "dom-34612388",
+    "title": "Продаж 2к квартири 50.3 кв. м  на пров. Ламаний • ID 34612388",
+    "type": "apartment",
+    "transaction": "buy",
+    "priceUSD": 67500,
+    "priceUAH": 3030750,
+    "pricePerM2": 1350,
+    "district": "podil",
+    "districtName": "Поділ",
+    "address": "м. Полтава, Полтава, вторинне житло, ціна: 67 500 доларів ID34612388",
+    "lat": 49.583036,
+    "lng": 34.576495,
+    "rooms": 3,
+    "area": 50.0,
+    "livingArea": 30.0,
+    "kitchenArea": 10.0,
+    "floor": 5,
+    "totalFloors": 10,
+    "yearBuilt": 2022,
+    "buildingType": "Утеплена цегла / Моноліт",
+    "heating": "Індивідуальне газове",
+    "condition": "Євроремонт",
+    "badges": [
+      "Продаж",
+      "єОселя 3%/7%"
+    ],
+    "isExclusive": false,
+    "isVerified": true,
+    "description": "Пропонується Продаж 2к квартири 50.3 кв. м  на пров. Ламаний • ID 34612388. Локація у затишному районі Поділ. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
+    "images": [
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683662xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683665xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683666xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683674xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683669xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683671xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683656xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683663xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683667xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683673xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683670xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683661xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683668xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683659xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683672xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levyy-podol-lomanyy-pereulok__339683657xl.jpg"
+    ],
+    "features": [
+      "Лічильники",
+      "Wi-Fi інтернет",
+      "Броньовані двері",
+      "Кондиціонер",
+      "Паркінг",
+      "Балкон / Лоджія"
     ],
     "agent": {
       "name": "Омельяненко Владислав",
