@@ -12,7 +12,9 @@ import {
   Sparkles,
   ShieldCheck,
   Send,
-  UserCheck
+  UserCheck,
+  Share2,
+  Check
 } from 'lucide-react';
 import { formatCurrency, formatPricePerM2, formatPhoneInput, validatePhone, validateName } from '../utils/formatters';
 import { sendTelegramLeadNotification } from '../utils/telegram';
@@ -27,9 +29,30 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
 
   const handlePhoneChange = (e) => {
     setPhone(formatPhoneInput(e.target.value));
+  };
+
+  const handleShare = async (e) => {
+    if (e) e.stopPropagation();
+    const url = `${window.location.origin}/property/${property.id}`;
+    if (navigator.share && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      try {
+        await navigator.share({
+          title: property.title,
+          text: `${property.title} — АН «ФАВОРИТ ГРУП» Полтава`,
+          url: url,
+        });
+        return;
+      } catch (err) {}
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2500);
+    } catch (err) {}
   };
 
   const handleSubmit = async (e) => {
@@ -71,10 +94,21 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
   return (
     <div className="modal-backdrop animate-fade" onClick={onClose}>
       <div className="property-modal-window animate-slide" onClick={(e) => e.stopPropagation()}>
-        {/* Modal Close Button */}
-        <button className="pm-close-btn" onClick={onClose} aria-label="Закрити">
-          <X size={20} />
-        </button>
+        {/* Modal Close & Share Controls */}
+        <div className="pm-top-controls">
+          <button 
+            type="button" 
+            className={`pm-top-share-btn ${copiedLink ? 'copied' : ''}`}
+            onClick={handleShare}
+            title={copiedLink ? 'Посилання скопійовано!' : "Поділитися об'єктом"}
+          >
+            {copiedLink ? <Check size={16} className="text-green" /> : <Share2 size={16} />}
+            <span>{copiedLink ? 'Скопійовано!' : 'Поділитися'}</span>
+          </button>
+          <button className="pm-close-btn" onClick={onClose} aria-label="Закрити">
+            <X size={20} />
+          </button>
+        </div>
 
         {/* Modal Content Scrollable Area */}
         <div className="pm-scrollable-content">
@@ -82,7 +116,10 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           <div className="pm-header">
             <div className="pm-header-left">
               <div className="pm-badges-row">
-                {property.badges?.filter(b => !b.toLowerCase().includes('перевір')).map((b, i) => (
+                {property.badges?.filter(b => {
+                  const lower = b.toLowerCase();
+                  return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд');
+                }).map((b, i) => (
                   <span key={i} className="badge badge-green">{b}</span>
                 ))}
               </div>
@@ -194,11 +231,17 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
               <h3 className="section-subtitle mt-4">Опис об'єкта</h3>
               <p className="pm-description-text">{property.description}</p>
 
-              {property.features && property.features.length > 0 && (
+              {property.features && property.features.filter(f => {
+                const lower = f.toLowerCase();
+                return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд');
+              }).length > 0 && (
                 <>
                   <h3 className="section-subtitle mt-4">Переваги та зручності</h3>
                   <div className="pm-features-list">
-                    {property.features.map((f, i) => (
+                    {property.features.filter(f => {
+                      const lower = f.toLowerCase();
+                      return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд');
+                    }).map((f, i) => (
                       <div key={i} className="feature-pill">
                         <CheckCircle2 size={14} className="text-green" />
                         <span>{f}</span>
@@ -304,19 +347,57 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           overflow: hidden;
         }
 
-        .pm-close-btn {
+        .pm-top-controls {
           position: absolute;
           top: 16px;
           right: 16px;
-          width: 38px;
-          height: 38px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          z-index: 15;
+        }
+
+        .pm-top-share-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #f8fafc;
+          border: 1px solid #cbd5e1;
+          color: #334155;
+          font-size: 0.82rem;
+          font-weight: 700;
+          padding: 7px 14px;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .pm-top-share-btn:hover {
+          background: #f1f5f9;
+          border-color: #94a3b8;
+          color: #0f172a;
+          transform: translateY(-1px);
+        }
+
+        .pm-top-share-btn.copied {
+          background: #f0fdf4;
+          border-color: #86efac;
+          color: #166534;
+        }
+
+        .pm-close-btn {
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
           background: #f1f5f9;
+          border: 1px solid #e2e8f0;
           display: flex;
           align-items: center;
           justify-content: center;
           color: #64748b;
-          z-index: 10;
+          cursor: pointer;
+          transition: all 0.2s ease;
         }
 
         .pm-close-btn:hover {

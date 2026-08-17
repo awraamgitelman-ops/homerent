@@ -48,12 +48,52 @@ export function App() {
     navigate('/map');
   };
 
+  // Deep linking: Automatically open property modal if URL contains /property/:id or ?id=:id
+  React.useEffect(() => {
+    try {
+      const path = (window.location.pathname + window.location.search).toLowerCase();
+      let targetId = null;
+
+      if (path.includes('/property/')) {
+        targetId = path.split('/property/')[1]?.split('?')[0]?.split('/')[0];
+      } else if (path.includes('/realty/')) {
+        targetId = path.split('/realty/')[1]?.split('?')[0]?.split('/')[0];
+      } else if (window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        targetId = params.get('property') || params.get('id');
+      }
+
+      if (targetId) {
+        const matched = properties.find(p => String(p.id).toLowerCase() === String(targetId).toLowerCase());
+        if (matched) {
+          setSelectedProperty(matched);
+        }
+      }
+    } catch (e) {}
+  }, [properties, currentPath]);
+
   const handleSelectProperty = (property) => {
     setSelectedProperty(property);
+    if (property && property.id) {
+      try {
+        if (!window.location.pathname.includes(`/property/${property.id}`)) {
+          window.history.pushState(null, '', `/property/${property.id}`);
+        }
+      } catch (e) {}
+    }
+  };
+
+  const handleClosePropertyModal = () => {
+    setSelectedProperty(null);
+    try {
+      if (window.location.pathname.startsWith('/property/') || window.location.pathname.startsWith('/realty/')) {
+        window.history.pushState(null, '', '/catalog');
+      }
+    } catch (e) {}
   };
 
   const handleBookViewing = (property) => {
-    setSelectedProperty(property);
+    handleSelectProperty(property);
   };
 
   const handleSelectService = (serviceId) => {
@@ -171,7 +211,7 @@ export function App() {
       {selectedProperty && (
         <PropertyModal
           property={selectedProperty}
-          onClose={() => setSelectedProperty(null)}
+          onClose={handleClosePropertyModal}
           onBookingSuccess={() => {}}
         />
       )}

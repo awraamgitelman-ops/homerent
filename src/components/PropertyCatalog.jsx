@@ -159,7 +159,6 @@ export const PropertyCatalog = ({
         if (subFilter === '2' && p.rooms !== 2) return false;
         if (subFilter === '3' && p.rooms !== 3) return false;
         if (subFilter === '4+' && p.rooms < 4) return false;
-        if (subFilter === 'newbuild' && !p.badges.some(b => b.includes('Новобудова')) && !p.description.toLowerCase().includes('новобудов')) return false;
         if (subFilter === 'renovated' && !p.badges.some(b => b.includes('Євроремонт')) && !p.description.toLowerCase().includes('євроремонт') && !p.description.toLowerCase().includes('ремонт')) return false;
         if (subFilter === 'autonomous' && !p.badges.some(b => b.includes('Автономне')) && !p.description.toLowerCase().includes('автономн') && !p.description.toLowerCase().includes('індивідуальн')) return false;
       }
@@ -471,13 +470,6 @@ export const PropertyCatalog = ({
                 onClick={() => setSubFilter('4+')}
               >
                 4+ кімнатні
-              </button>
-              <button
-                type="button"
-                className={`sfc-btn ${subFilter === 'newbuild' ? 'active' : ''}`}
-                onClick={() => setSubFilter('newbuild')}
-              >
-                Новобудови
               </button>
               <button
                 type="button"

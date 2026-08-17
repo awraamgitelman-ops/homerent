@@ -9,12 +9,15 @@ import {
   Calendar, 
   ChevronLeft, 
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  Share2,
+  Check
 } from 'lucide-react';
 import { formatCurrency, formatPricePerM2, formatArea } from '../utils/formatters';
 
 export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'USD' }) => {
   const [activeImgIdx, setActiveImgIdx] = useState(0);
+  const [copied, setCopied] = useState(false);
 
   const nextImage = (e) => {
     e.stopPropagation();
@@ -24,6 +27,26 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
   const prevImage = (e) => {
     e.stopPropagation();
     setActiveImgIdx((prev) => (prev - 1 + property.images.length) % property.images.length);
+  };
+
+  const handleShare = async (e) => {
+    e.stopPropagation();
+    const url = `${window.location.origin}/property/${property.id}`;
+    if (navigator.share && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      try {
+        await navigator.share({
+          title: property.title,
+          text: `${property.title} — АН «ФАВОРИТ ГРУП» Полтава`,
+          url: url,
+        });
+        return;
+      } catch (err) {}
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {}
   };
 
   const displayPrice = currency === 'USD' 
@@ -50,7 +73,10 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
 
         {/* Badges Overlay */}
         <div className="pc-badges-row">
-          {property.badges?.filter(b => !b.toLowerCase().includes('перевір')).map((badge, idx) => (
+          {property.badges?.filter(b => {
+            const lower = b.toLowerCase();
+            return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд');
+          }).map((badge, idx) => (
             <span 
               key={idx} 
               className={`pc-badge ${badge.includes('Торг') ? 'badge-bargain' : ''}`}
@@ -137,7 +163,16 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
             }}
           >
             <Calendar size={14} />
-            <span>Записатись на перегляд</span>
+            <span>Записатись</span>
+          </button>
+
+          <button 
+            type="button"
+            className={`btn btn-outline btn-sm pc-share-btn ${copied ? 'copied' : ''}`}
+            onClick={handleShare}
+            title={copied ? 'Посилання скопійовано!' : "Поділитися об'єктом"}
+          >
+            {copied ? <Check size={14} className="text-green" /> : <Share2 size={14} />}
           </button>
           
           <button 
@@ -373,6 +408,30 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           flex: 1;
           font-size: 0.82rem;
           padding: 9px 12px;
+        }
+
+        .pc-share-btn {
+          width: 36px;
+          height: 36px;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #64748b;
+          border-color: #e2e8f0;
+          transition: all 0.15s ease;
+        }
+
+        .pc-share-btn:hover {
+          color: var(--c-primary);
+          border-color: var(--c-primary);
+          background: #eff6ff;
+        }
+
+        .pc-share-btn.copied {
+          background: #f0fdf4;
+          border-color: #86efac;
+          color: #166534;
         }
 
         .pc-more-btn {
