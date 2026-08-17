@@ -213,7 +213,7 @@ export const AboutPage = ({ onOpenConsultModal }) => {
         /* Hero Section */
         .av2-hero {
           position: relative;
-          background: linear-gradient(180deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.85) 100%),
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(15, 23, 42, 0.90) 100%),
                       url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg/1920px-Kruhla_Square_-_Poltava_-_Aerial_view_-_1.jpg') center 40%/cover no-repeat;
           color: #ffffff;
           padding: 64px 0 56px;
@@ -224,9 +224,14 @@ export const AboutPage = ({ onOpenConsultModal }) => {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%);
-          backdrop-filter: blur(1.5px);
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.12) 0%, rgba(15, 23, 42, 0.35) 100%);
           pointer-events: none;
+          z-index: 1;
+        }
+
+        .av2-hero .container {
+          position: relative;
+          z-index: 2;
         }
 
         .av2-hero-badge {
@@ -249,14 +254,16 @@ export const AboutPage = ({ onOpenConsultModal }) => {
           letter-spacing: -0.5px;
           color: #ffffff;
           margin-bottom: 14px;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
         }
 
         .av2-hero-tagline {
           font-size: 1.15rem;
-          color: #cbd5e1;
-          max-width: 720px;
+          color: #e2e8f0;
+          max-width: 760px;
           line-height: 1.6;
           margin-bottom: 0;
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
         }
 
         /* Content Section */

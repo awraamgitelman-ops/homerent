@@ -37,9 +37,9 @@ export const ServicesPage = ({ onSelectService, onOpenConsultModal }) => {
         .services-hero-overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%);
-          backdrop-filter: blur(1.5px);
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.12) 0%, rgba(15, 23, 42, 0.35) 100%);
           pointer-events: none;
+          z-index: 1;
         }
 
         .services-hero-content {
