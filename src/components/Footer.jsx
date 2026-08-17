@@ -197,8 +197,6 @@ export const Footer = ({ onOpenConsultModal }) => {
         <div className="nx-bottom-bar">
           <div className="nx-bb-left">
             <span>© {new Date().getFullYear()} ТОВ «НОВЕКС ІНВЕСТ». Всі права захищено.</span>
-            <span className="nx-bb-divider">/</span>
-            <span>Ліцензована діяльність у м. Полтава</span>
           </div>
 
           <div className="nx-bb-right">
