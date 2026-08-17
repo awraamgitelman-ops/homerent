@@ -1,5 +1,5 @@
 // Automatically re-parsed real estate dataset from DOM.RIA Poltava
-// Excluded Velikotirnivska 52/89 sale apartments and replaced with fresh listings
+// Replaced specific sale apartments as requested
 // Exact prices and full photo galleries preserved
 export const PROPERTIES_DATA = [
   {
@@ -517,59 +517,6 @@ export const PROPERTIES_DATA = [
       "Wi-Fi інтернет",
       "Броньовані двері",
       "Кондиціонер",
-      "Паркінг",
-      "Балкон / Лоджія",
-      "З меблями"
-    ],
-    "agent": {
-      "name": "Омельяненко Владислав",
-      "phone": "+380988612938",
-      "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
-    }
-  },
-  {
-    "id": "dom-34660805",
-    "title": "Довготривала оренда 1к квартири на вул. Володимира Івасюка • ID 34660805",
-    "type": "apartment",
-    "transaction": "rent",
-    "priceUSD": 245,
-    "priceUAH": 11000,
-    "pricePerM2": 4,
-    "district": "levada",
-    "districtName": "Левада",
-    "address": "м. Полтава, Полтаві в довгострокову оренду, ціна: 11 000 грн ID34660805",
-    "lat": 49.578865,
-    "lng": 34.583606,
-    "rooms": 1,
-    "area": 55.0,
-    "livingArea": 33.0,
-    "kitchenArea": 11.0,
-    "floor": 8,
-    "totalFloors": 14,
-    "yearBuilt": 2017,
-    "buildingType": "Утеплена цегла / Моноліт",
-    "heating": "Централізоване",
-    "condition": "Житловий стан",
-    "badges": [
-      "Оренда",
-      "Перевірено"
-    ],
-    "isExclusive": false,
-    "isVerified": true,
-    "description": "Пропонується Довготривала оренда 1к квартири на вул. Володимира Івасюка • ID 34660805. Локація у затишному районі Левада. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
-    "images": [
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__340471472xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__340471470xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__340471471xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__340471473xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__340471474xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__340471476xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__340471472xl.jpg"
-    ],
-    "features": [
-      "Лічильники",
-      "Wi-Fi інтернет",
-      "Броньовані двері",
       "Паркінг",
       "Балкон / Лоджія",
       "З меблями"
@@ -1757,56 +1704,6 @@ export const PROPERTIES_DATA = [
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333609983xl.jpg",
       "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333610033xl.jpg",
       "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-latysheva-pereulok__333609605xl.jpg"
-    ],
-    "features": [
-      "Лічильники",
-      "Wi-Fi інтернет",
-      "Броньовані двері",
-      "Паркінг"
-    ],
-    "agent": {
-      "name": "Омельяненко Владислав",
-      "phone": "+380988612938",
-      "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
-    }
-  },
-  {
-    "id": "dom-34628487",
-    "title": "Оренда офісного приміщення на вул. Володимира Івасюка 3, приміщень -, поверх - 1 • ID 34628487",
-    "type": "commercial",
-    "transaction": "rent",
-    "priceUSD": 124,
-    "priceUAH": 5580,
-    "pricePerM2": 1,
-    "district": "levada",
-    "districtName": "Левада",
-    "address": "м. Полтава, Полтаві, вулиця Володимира Івасюка (Головка) 3",
-    "lat": 49.570153,
-    "lng": 34.581261,
-    "rooms": 1,
-    "area": 93.0,
-    "livingArea": 55.8,
-    "kitchenArea": 18.6,
-    "floor": 2,
-    "totalFloors": 16,
-    "yearBuilt": 2022,
-    "buildingType": "Утеплена цегла / Моноліт",
-    "heating": "Централізоване",
-    "condition": "Житловий стан",
-    "badges": [
-      "Оренда",
-      "Перевірено"
-    ],
-    "isExclusive": false,
-    "isVerified": true,
-    "description": "Пропонується Оренда офісного приміщення на вул. Володимира Івасюка 3, приміщень -, поверх - 1 • ID 34628487. Локація у затишному районі Левада. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
-    "images": [
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-golovko-ulitsa__333609619xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-golovko-ulitsa__333609627xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-golovko-ulitsa__333609652xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-golovko-ulitsa__333609662xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-golovko-ulitsa__333609682xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/dolgosrochnaya-arenda-ofisnye-pomescheniya-poltava-golovko-ulitsa__333609619xl.jpg"
     ],
     "features": [
       "Лічильники",
@@ -3738,68 +3635,6 @@ export const PROPERTIES_DATA = [
     }
   },
   {
-    "id": "dom-34664593",
-    "title": "Продаж 3к квартири 62.6 кв. м  на вул. Андрієвського Віктора • ID 34664593",
-    "type": "apartment",
-    "transaction": "buy",
-    "priceUSD": 68000,
-    "priceUAH": 3053200,
-    "pricePerM2": 1236,
-    "district": "center",
-    "districtName": "Центр",
-    "address": "м. Полтава, Полтава, вторинне житло, ціна: 68 000 доларів ID34664593",
-    "lat": 49.551785,
-    "lng": 34.52213,
-    "rooms": 6,
-    "area": 55.0,
-    "livingArea": 33.0,
-    "kitchenArea": 11.0,
-    "floor": 5,
-    "totalFloors": 14,
-    "yearBuilt": 2015,
-    "buildingType": "Утеплена цегла / Моноліт",
-    "heating": "Індивідуальне газове",
-    "condition": "Євроремонт",
-    "badges": [
-      "Продаж",
-      "єОселя 3%/7%"
-    ],
-    "isExclusive": false,
-    "isVerified": true,
-    "description": "Пропонується Продаж 3к квартири 62.6 кв. м  на вул. Андрієвського Віктора • ID 34664593. Локація у затишному районі Центр. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
-    "images": [
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541798xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541794xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541802xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541795xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541796xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541797xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541799xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541800xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541801xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541803xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541805xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541806xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541804xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541807xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541813xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-andrievskogo-viktora-ulitsa__340541814xl.jpg"
-    ],
-    "features": [
-      "Лічильники",
-      "Wi-Fi інтернет",
-      "Броньовані двері",
-      "Кондиціонер",
-      "Паркінг",
-      "Балкон / Лоджія"
-    ],
-    "agent": {
-      "name": "Омельяненко Владислав",
-      "phone": "+380988612938",
-      "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
-    }
-  },
-  {
     "id": "dom-34642910",
     "title": "Продаж 2к квартири 56.5 кв. м  на вул. Шевченка • ID 34642910",
     "type": "apartment",
@@ -3850,67 +3685,6 @@ export const PROPERTIES_DATA = [
       "Лічильники",
       "Wi-Fi інтернет",
       "Броньовані двері",
-      "Паркінг",
-      "Балкон / Лоджія"
-    ],
-    "agent": {
-      "name": "Омельяненко Владислав",
-      "phone": "+380988612938",
-      "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
-    }
-  },
-  {
-    "id": "dom-34612175",
-    "title": "Продаж 1к квартири 63.7 кв. м  на вул. Володимира Івасюка • ID 34612175",
-    "type": "apartment",
-    "transaction": "buy",
-    "priceUSD": 80000,
-    "priceUAH": 3592000,
-    "pricePerM2": 1455,
-    "district": "levada",
-    "districtName": "Левада",
-    "address": "м. Полтава, Полтава, вторинне житло, ціна: 80 000 доларів ID34612175",
-    "lat": 49.57244,
-    "lng": 34.576209,
-    "rooms": 6,
-    "area": 55.0,
-    "livingArea": 33.0,
-    "kitchenArea": 11.0,
-    "floor": 6,
-    "totalFloors": 16,
-    "yearBuilt": 2020,
-    "buildingType": "Утеплена цегла / Моноліт",
-    "heating": "Індивідуальне газове",
-    "condition": "Євроремонт",
-    "badges": [
-      "Продаж",
-      "Новобудова"
-    ],
-    "isExclusive": false,
-    "isVerified": true,
-    "description": "Пропонується Продаж 1к квартири 63.7 кв. м  на вул. Володимира Івасюка • ID 34612175. Локація у затишному районі Левада. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
-    "images": [
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339678823xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339678945xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339678946xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339678947xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679018xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679019xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679020xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679116xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679117xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679118xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679171xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679172xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679173xl.jpg",
-      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339679174xl.jpg",
-      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-levada-vladimira-ivasyuka-golovko-ulitsa__339678823xl.jpg"
-    ],
-    "features": [
-      "Лічильники",
-      "Wi-Fi інтернет",
-      "Броньовані двері",
-      "Кондиціонер",
       "Паркінг",
       "Балкон / Лоджія"
     ],
@@ -4029,6 +3803,115 @@ export const PROPERTIES_DATA = [
       "Wi-Fi інтернет",
       "Броньовані двері",
       "Кондиціонер",
+      "Паркінг"
+    ],
+    "agent": {
+      "name": "Омельяненко Владислав",
+      "phone": "+380988612938",
+      "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
+    }
+  },
+  {
+    "id": "dom-34636851",
+    "title": "Продаж 2к квартири 56.5 кв. м  на вул. Короленка 30 • ID 34636851",
+    "type": "apartment",
+    "transaction": "buy",
+    "priceUSD": 25000,
+    "priceUAH": 1122500,
+    "pricePerM2": 455,
+    "district": "center",
+    "districtName": "Центр",
+    "address": "м. Полтава, Полтава, 1 поверх",
+    "lat": 49.57941,
+    "lng": 34.55405,
+    "rooms": 5,
+    "area": 55.0,
+    "livingArea": 33.0,
+    "kitchenArea": 11.0,
+    "floor": 1,
+    "totalFloors": 11,
+    "yearBuilt": 2020,
+    "buildingType": "Утеплена цегла / Моноліт",
+    "heating": "Централізоване",
+    "condition": "Житловий стан",
+    "badges": [
+      "Продаж",
+      "єОселя 3%/7%"
+    ],
+    "isExclusive": true,
+    "isVerified": true,
+    "description": "Пропонується Продаж 2к квартири 56.5 кв. м  на вул. Короленка 30 • ID 34636851. Локація у затишному районі Центр. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
+    "images": [
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085579xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085571xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085572xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085573xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085574xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085575xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085576xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085577xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085578xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085581xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085580xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085582xl.jpg",
+      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-tsentr-korolenko-ulitsa__340085579xl.jpg"
+    ],
+    "features": [
+      "Лічильники",
+      "Wi-Fi інтернет",
+      "Броньовані двері",
+      "Паркінг"
+    ],
+    "agent": {
+      "name": "Омельяненко Владислав",
+      "phone": "+380988612938",
+      "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
+    }
+  },
+  {
+    "id": "dom-34655548",
+    "title": "Продаж 1к квартири 33.3 кв. м  на вул. Полюсна • ID 34655548",
+    "type": "apartment",
+    "transaction": "buy",
+    "priceUSD": 30000,
+    "priceUAH": 1347000,
+    "pricePerM2": 545,
+    "district": "center",
+    "districtName": "Центр",
+    "address": "м. Полтава, Полтава, вторинне житло, ціна: 30 000 доларів ID34655548",
+    "lat": 49.553135,
+    "lng": 34.52387,
+    "rooms": 3,
+    "area": 55.0,
+    "livingArea": 33.0,
+    "kitchenArea": 11.0,
+    "floor": 5,
+    "totalFloors": 14,
+    "yearBuilt": 2023,
+    "buildingType": "Утеплена цегла / Моноліт",
+    "heating": "Індивідуальне газове",
+    "condition": "Житловий стан",
+    "badges": [
+      "Продаж",
+      "єОселя 3%/7%"
+    ],
+    "isExclusive": false,
+    "isVerified": true,
+    "description": "Пропонується Продаж 1к квартири 33.3 кв. м  на вул. Полюсна • ID 34655548. Локація у затишному районі Центр. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
+    "images": [
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386751xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386750xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386752xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386753xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386754xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386755xl.jpg",
+      "https://cdn.riastatic.com/photosnew/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386756xl.jpg",
+      "https://cdn.riastatic.com/photos/dom/photo/prodaja-kvartira-poltava-bojenka-polyusnaya-ulitsa__340386751xl.jpg"
+    ],
+    "features": [
+      "Лічильники",
+      "Wi-Fi інтернет",
+      "Броньовані двері",
       "Паркінг"
     ],
     "agent": {
