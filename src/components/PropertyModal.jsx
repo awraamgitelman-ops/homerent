@@ -232,66 +232,65 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
           {/* Photo Gallery Grid */}
           <div className="pm-gallery-section">
-            {isRented ? (
-              <div className="pm-main-photo-box pm-rented-modal-canvas">
-                <svg className="pm-rented-modal-diagonal-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <line x1="0" y1="100" x2="100" y2="0" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.2" />
-                </svg>
-                <div className="pm-rented-modal-center">
-                  <span className="pm-rented-modal-title">ЗДАНО</span>
-                  <span className="pm-rented-modal-subtitle">Об'єкт здано в оренду</span>
-                </div>
-              </div>
-            ) : (
-              <>
-                <div 
-                  className="pm-main-photo-box" 
-                  onClick={() => setIsLightboxOpen(true)}
-                  title="Натисніть для перегляду фото на весь екран"
-                >
-                  <img 
-                    src={property.images[activePhotoIdx] || property.images[0]} 
-                    alt={property.title} 
-                    className="pm-main-img" 
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      if (property.images && property.images.length > 0 && e.currentTarget.src !== property.images[0]) {
-                        e.currentTarget.src = property.images[0];
-                      }
-                    }}
-                  />
-                  <div className="pm-photo-zoom-hint">
-                    <Maximize2 size={15} />
-                    <span>На весь екран</span>
-                  </div>
-                </div>
+            <div 
+              className="pm-main-photo-box" 
+              onClick={() => setIsLightboxOpen(true)}
+              title="Натисніть для перегляду фото на весь екран"
+            >
+              <img 
+                src={property.images[activePhotoIdx] || property.images[0]} 
+                alt={property.title} 
+                className="pm-main-img" 
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  if (property.images && property.images.length > 0 && e.currentTarget.src !== property.images[0]) {
+                    e.currentTarget.src = property.images[0];
+                  }
+                }}
+              />
 
-                {property.images.length > 1 && (
-                  <div className="pm-thumbs-row">
-                    {property.images.map((img, idx) => (
-                      <div 
-                        key={idx} 
-                        className={`pm-thumb-item ${idx === activePhotoIdx ? 'active' : ''}`}
-                        onClick={() => setActivePhotoIdx(idx)}
-                      >
-                        <img 
-                          src={img} 
-                          alt="" 
-                          className="pm-thumb-img" 
-                          referrerPolicy="no-referrer"
-                          onError={(e) => {
-                            e.currentTarget.onerror = null;
-                            if (e.currentTarget.parentElement) {
-                              e.currentTarget.parentElement.style.display = 'none';
-                            }
-                          }}
-                        />
-                      </div>
-                    ))}
+              {/* Semi-transparent Rented Overlay with Diagonal Slash on Main Photo */}
+              {isRented && (
+                <div className="pm-rented-photo-overlay">
+                  <svg className="pm-rented-modal-diagonal-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <line x1="0" y1="100" x2="100" y2="0" stroke="rgba(255, 255, 255, 0.38)" strokeWidth="1.4" />
+                  </svg>
+                  <div className="pm-rented-modal-center">
+                    <span className="pm-rented-modal-title">ЗДАНО</span>
                   </div>
-                )}
-              </>
+                </div>
+              )}
+
+              <div className="pm-photo-zoom-hint">
+                <Maximize2 size={15} />
+                <span>На весь екран</span>
+              </div>
+            </div>
+
+            {property.images.length > 1 && (
+              <div className="pm-thumbs-row">
+                {property.images.map((img, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`pm-thumb-item ${idx === activePhotoIdx ? 'active' : ''}`}
+                    onClick={() => setActivePhotoIdx(idx)}
+                  >
+                    <img 
+                      src={img} 
+                      alt="" 
+                      className="pm-thumb-img" 
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        if (e.currentTarget.parentElement) {
+                          e.currentTarget.parentElement.style.display = 'none';
+                        }
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
             )}
           </div>
 
@@ -803,14 +802,16 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           margin-bottom: 24px;
         }
 
-        .pm-rented-modal-canvas {
-          background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
-          cursor: default !important;
+        .pm-rented-photo-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.58);
+          backdrop-filter: blur(1.5px);
           display: flex;
           align-items: center;
           justify-content: center;
-          position: relative;
-          overflow: hidden;
+          z-index: 2;
+          pointer-events: none;
         }
 
         .pm-rented-modal-diagonal-svg {
@@ -823,7 +824,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
         .pm-rented-modal-center {
           position: relative;
-          z-index: 2;
+          z-index: 3;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -833,21 +834,13 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         }
 
         .pm-rented-modal-title {
-          color: #f1f5f9;
-          font-size: 2.2rem;
+          color: #ffffff;
+          font-size: 2.5rem;
           font-weight: 900;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+          text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85), 0 0 6px rgba(0, 0, 0, 0.9);
           padding-left: 0.28em;
-        }
-
-        .pm-rented-modal-subtitle {
-          color: #94a3b8;
-          font-size: 0.95rem;
-          font-weight: 600;
-          margin-top: 8px;
-          letter-spacing: 0.04em;
         }
 
         .pm-main-photo-box {
