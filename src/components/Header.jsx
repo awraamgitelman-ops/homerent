@@ -260,16 +260,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
                   <span>Співробітники / партнери</span>
                 </button>
 
-                {/* 7. Vacancies */}
-                <button 
-                  type="button"
-                  className="ref-sb-item"
-                  onClick={() => { onOpenSellModal(); setIsSidebarOpen(false); }}
-                >
-                  <span>Вакансії та співпраця</span>
-                </button>
-
-                {/* 9. Official Registration */}
+                {/* 8. Official Registration */}
                 <button 
                   type="button"
                   className="ref-sb-item"
