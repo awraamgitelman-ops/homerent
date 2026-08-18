@@ -412,6 +412,11 @@ function formatLeadTelegramReport(leadData) {
     text += `🛠️ <b>Вимоги до стану:</b> ${escapeHtml(repairPref)}\n`;
   }
 
+  if (propertyId || sourceUrl) {
+    const targetUrl = sourceUrl || `https://favorit-group.com/property/${propertyId}`;
+    text += `🔗 <b>Посилання на об'єкт:</b> <a href="${targetUrl}">${targetUrl}</a>\n`;
+  }
+
   // Comments
   if (comment && comment.trim()) {
     text += `\n💬 <b>Коментар / Побажання:</b>\n<i>${escapeHtml(comment)}</i>\n`;

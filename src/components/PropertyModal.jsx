@@ -104,7 +104,6 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         floor: property.floor ? `${property.floor}/${property.totalFloors}` : undefined,
         budget: `${formatCurrency(property.priceUSD, 'USD')} (${formatCurrency(property.priceUAH, 'UAH')})`,
         preferredDate: preferredDate || 'Якнайшвидше',
-        comment: comment || undefined,
         sourceUrl: `https://favorit-group.com/property/${property.id}`
       });
 

@@ -158,6 +158,11 @@ export const sendTelegramLeadNotification = async (leadData) => {
       messageText += `🛠️ <b>Вимоги до стану:</b> ${escapeHtml(repairPref)}\n`;
     }
 
+    if (propertyId || leadData?.sourceUrl) {
+      const targetUrl = leadData?.sourceUrl || `https://favorit-group.com/property/${propertyId}`;
+      messageText += `🔗 <b>Посилання на об'єкт:</b> <a href="${targetUrl}">${targetUrl}</a>\n`;
+    }
+
     if (comment && comment.trim()) {
       messageText += `\n💬 <b>Коментар / Побажання:</b>\n<i>${escapeHtml(comment)}</i>\n`;
     }
