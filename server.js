@@ -440,13 +440,13 @@ function formatLeadTelegramReport(leadData) {
   return { text, replyMarkup };
 }
 
-// Helper: Poll updates to auto-discover groups where bot was added and handle commands
+// Helper: Poll updates to auto-discover channels, groups, and handle commands
 async function pollTelegramUpdates() {
   try {
     const res = await callTelegramApi('getUpdates', {
       offset: telegramConfig.lastUpdateId + 1,
       timeout: 0,
-      allowed_updates: ['message', 'my_chat_member', 'channel_post']
+      allowed_updates: ['message', 'edited_message', 'channel_post', 'edited_channel_post', 'my_chat_member', 'chat_member']
     });
 
     if (!res.ok || !Array.isArray(res.result)) {
@@ -460,64 +460,119 @@ async function pollTelegramUpdates() {
         telegramConfig.lastUpdateId = update.update_id;
       }
 
-      const msg = update.message || update.channel_post;
+      const post = update.channel_post || update.edited_channel_post;
+      const msg = update.message || update.edited_message;
       const myMember = update.my_chat_member;
-      const chat = (msg && msg.chat) || (myMember && myMember.chat);
+      const member = update.chat_member;
+      const chat = (post && post.chat) || (msg && msg.chat) || (myMember && myMember.chat) || (member && member.chat);
 
       if (chat && chat.id) {
         const chatIdStr = String(chat.id);
+        const chatTypeTitle = chat.type === 'channel' ? 'Канал' : chat.type === 'supergroup' || chat.type === 'group' ? 'Групу' : 'Приватний чат';
+        const chatName = chat.title || (chat.username ? `@${chat.username}` : (chat.first_name || 'Чат'));
+
         if (!telegramConfig.chatIds.includes(chatIdStr)) {
           telegramConfig.chatIds.push(chatIdStr);
           hasNewChats = true;
 
-          console.log(`[Telegram] New chat discovered! Title: "${chat.title || chat.username || 'Private'}" (ID: ${chatIdStr})`);
+          console.log(`[Telegram] New ${chat.type} discovered! "${chatName}" (ID: ${chatIdStr})`);
 
           // Send welcome activation notice
           callTelegramApi('sendMessage', {
             chat_id: chatIdStr,
             text: `✅ <b>Бот сповіщень АН «ФАВОРИТ ГРУП» активовано!</b>\n\n` +
-                  `Чат <code>${chatIdStr}</code> (<b>${chat.title || chat.username || 'Приватний чат'}</b>) успішно підключено до CRM-системи.\n\n` +
+                  `${chatTypeTitle} <code>${chatIdStr}</code> (<b>${chatName}</b>) успішно підключено до CRM сайту.\n\n` +
                   `Усі нові заявки на купівлю, оренду, продаж та перегляд об'єктів у Полтаві надходитимуть сюди автоматично.`,
             parse_mode: 'HTML'
           }).catch(() => {});
         }
 
         // Handle Interactive Bot Commands
-        if (msg && msg.text) {
-          const cmd = msg.text.trim().toLowerCase();
+        const activeText = (msg && msg.text) || (post && post.text);
+        if (activeText) {
+          const cmdText = activeText.trim();
+          const cmdLower = cmdText.toLowerCase();
 
-          if (cmd.startsWith('/start') || cmd.startsWith('/help')) {
+          if (cmdLower.startsWith('/start') || cmdLower.startsWith('/help')) {
             callTelegramApi('sendMessage', {
               chat_id: chatIdStr,
               text: `👋 <b>Вітаємо у боті сповіщень АН «ФАВОРИТ ГРУП»!</b>\n\n` +
-                    `📌 <b>Доступні команди:</b>\n` +
-                    `• /stats — Статистика заявок та активних чатів\n` +
+                    `📌 <b>Команди управління:</b>\n` +
+                    `• /stats — Статистика заявок та список підключених чатів\n` +
                     `• /status — Перевірка статусу сервера та бази даних\n` +
+                    `• /addchannel @юзернейм — Підключити канал або групу\n` +
                     `• /test — Надіслати тестове сповіщення\n\n` +
                     `🌐 <b>Сайт:</b> favorit-group.com`,
               parse_mode: 'HTML'
             }).catch(() => {});
-          } else if (cmd.startsWith('/stats')) {
+          } else if (cmdLower.startsWith('/addchannel') || cmdLower.startsWith('/addchat')) {
+            const parts = cmdText.split(/\s+/);
+            const targetChat = parts[1];
+            if (targetChat) {
+              try {
+                const getChatRes = await callTelegramApi('getChat', { chat_id: targetChat });
+                if (getChatRes.ok && getChatRes.result && getChatRes.result.id) {
+                  const targetIdStr = String(getChatRes.result.id);
+                  if (!telegramConfig.chatIds.includes(targetIdStr)) {
+                    telegramConfig.chatIds.push(targetIdStr);
+                    saveTelegramConfig();
+                  }
+
+                  // Test post to that channel
+                  await callTelegramApi('sendMessage', {
+                    chat_id: targetIdStr,
+                    text: `✅ <b>Канал/чат підключено!</b>\n\nСюди надходитимуть усі заявки з сайту АН «ФАВОРИТ ГРУП».`,
+                    parse_mode: 'HTML'
+                  });
+
+                  callTelegramApi('sendMessage', {
+                    chat_id: chatIdStr,
+                    text: `✅ Канал/чат <b>${getChatRes.result.title || targetChat}</b> (ID: <code>${targetIdStr}</code>) успішно додано! Тестове сповіщення надіслано.`,
+                    parse_mode: 'HTML'
+                  }).catch(() => {});
+                } else {
+                  callTelegramApi('sendMessage', {
+                    chat_id: chatIdStr,
+                    text: `❌ Не вдалося отримати доступ до <code>${targetChat}</code>.\nПереконайтеся, що бот доданий у канал як <b>Адміністратор</b> з правом публікації повідомлень.`,
+                    parse_mode: 'HTML'
+                  }).catch(() => {});
+                }
+              } catch (addErr) {
+                callTelegramApi('sendMessage', {
+                  chat_id: chatIdStr,
+                  text: `❌ Помилка підключення: ${addErr.message}`,
+                  parse_mode: 'HTML'
+                }).catch(() => {});
+              }
+            } else {
+              callTelegramApi('sendMessage', {
+                chat_id: chatIdStr,
+                text: `ℹ️ Вкажіть юзернейм або ID каналу, наприклад:\n<code>/addchannel @favorit_leads</code> або <code>/addchannel -1001234567890</code>\n\n(Переконайтеся, що бот доданий як адмін у канал).`,
+                parse_mode: 'HTML'
+              }).catch(() => {});
+            }
+          } else if (cmdLower.startsWith('/stats')) {
             callTelegramApi('sendMessage', {
               chat_id: chatIdStr,
               text: `📊 <b>СТАТИСТИКА БОТА АН «ФАВОРИТ ГРУП»</b>\n\n` +
                     `📥 Всього оброблено заявок: <b>${telegramConfig.leadsCount}</b>\n` +
-                    `👥 Підключено чатів/груп: <b>${telegramConfig.chatIds.length}</b>\n` +
+                    `👥 Підключено чатів/каналів: <b>${telegramConfig.chatIds.length}</b>\n` +
+                    `📡 Список ID: <code>${telegramConfig.chatIds.join(', ')}</code>\n` +
                     `🏢 Об'єктів у базі сайту: <b>1 198</b>\n` +
                     `🟢 Статус сервера: <b>Активний (Railway)</b>`,
               parse_mode: 'HTML'
             }).catch(() => {});
-          } else if (cmd.startsWith('/status')) {
+          } else if (cmdLower.startsWith('/status')) {
             callTelegramApi('sendMessage', {
               chat_id: chatIdStr,
               text: `🟢 <b>СЕРВЕР ТА БОТ ПРАЦЮЮТЬ ШТАТНО</b>\n\n` +
                     `🕒 Час сервера: <b>${new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' })}</b>\n` +
-                    `📡 Підключені чати: <code>${telegramConfig.chatIds.join(', ')}</code>\n` +
+                    `📡 Підключені канали/чати: <code>${telegramConfig.chatIds.join(', ')}</code>\n` +
                     `🛡️ Захист фото: <b>Активний (280px Binary Crop)</b>\n` +
                     `🌐 Домен: <b>https://favorit-group.com</b>`,
               parse_mode: 'HTML'
             }).catch(() => {});
-          } else if (cmd.startsWith('/test')) {
+          } else if (cmdLower.startsWith('/test')) {
             callTelegramApi('sendMessage', {
               chat_id: chatIdStr,
               text: `🔔 <b>ТЕСТОВЕ СПОВІЩЕННЯ</b>\n\nЗв'язок із сервером та CRM успішно встановлено!`,
@@ -536,8 +591,8 @@ async function pollTelegramUpdates() {
   }
 }
 
-// Poll Telegram updates periodically every 10 seconds
-setInterval(pollTelegramUpdates, 10000);
+// Poll Telegram updates periodically every 3 seconds
+setInterval(pollTelegramUpdates, 3000);
 pollTelegramUpdates();
 
 // ==========================================
