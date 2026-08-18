@@ -4,16 +4,10 @@ import App from './App';
 import { RouterProvider } from './context/RouterContext';
 import './index.css';
 
-// Media Shield: Disable context menu and drag-to-download on images
+// Media Shield: Prevent drag-to-download on media wrappers
 if (typeof document !== 'undefined') {
-  document.addEventListener('contextmenu', (e) => {
-    if (e.target && (e.target.tagName === 'IMG' || e.target.closest?.('.pc-img-wrap, .pm-main-img-box, .pm-lb-content, .mls-card-img-wrap'))) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-
   document.addEventListener('dragstart', (e) => {
-    if (e.target && (e.target.tagName === 'IMG' || e.target.closest?.('.pc-img-wrap, .pm-main-img-box, .pm-lb-content, .mls-card-img-wrap'))) {
+    if (e.target && (e.target.tagName === 'IMG' || e.target.closest?.('.pc-image-wrapper, .pm-main-img-box, .pm-lb-content, .mls-card-img-wrap, .pm-thumb-item'))) {
       e.preventDefault();
     }
   }, { passive: false });
