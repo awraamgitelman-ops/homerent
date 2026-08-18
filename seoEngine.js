@@ -27,7 +27,9 @@ export function generateSitemapXml() {
     { url: '/about', priority: '0.7', changefreq: 'monthly' },
     { url: '/contacts', priority: '0.7', changefreq: 'monthly' },
     { url: '/calculator', priority: '0.6', changefreq: 'monthly' },
-    { url: '/requisites', priority: '0.5', changefreq: 'monthly' }
+    { url: '/requisites', priority: '0.6', changefreq: 'monthly' },
+    { url: '/privacy', priority: '0.5', changefreq: 'monthly' },
+    { url: '/terms', priority: '0.5', changefreq: 'monthly' }
   ];
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -273,6 +275,27 @@ export function renderSeoPage(templateHtml, reqUrl = '/') {
     pageTitle = `Карта нерухомості Полтави | Пошук квартир та будинків на карті — ${BRAND_NAME}`;
     pageDesc = `Інтерактивна карта об'єктів нерухомості Полтави. Зручний пошук квартир для купівлі та оренди за районами та вулицями міста з точними координатами.`;
     canonicalUrl = `${SITE_URL}/map`;
+  }
+
+  // 7. REQUISITES PAGE (/requisites)
+  else if (pathname === '/requisites' || pathname === '/legal') {
+    pageTitle = `Реєстраційні дані ТОВ «НОВЕКС ІНВЕСТ» (ЄДРПОУ 43980756) | ${BRAND_NAME}`;
+    pageDesc = `Офіційні реєстраційні дані та реквізити ТОВ «НОВЕКС ІНВЕСТ» (ЄДРПОУ 43980756, комерційна назва АН «ФАВОРИТ ГРУП»). Юридична адреса: м. Полтава, вул. Соборності, 22.`;
+    canonicalUrl = `${SITE_URL}/requisites`;
+  }
+
+  // 8. PRIVACY POLICY PAGE (/privacy)
+  else if (pathname === '/privacy' || pathname === '/privacy-policy') {
+    pageTitle = `Політика конфіденційності та захисту персональних даних | ${BRAND_NAME}`;
+    pageDesc = `Політика конфіденційності та обробки персональних даних клієнтів ТОВ «НОВЕКС ІНВЕСТ» (АН «ФАВОРИТ ГРУП», ЄДРПОУ 43980756). Безпека та захист інформації.`;
+    canonicalUrl = `${SITE_URL}/privacy`;
+  }
+
+  // 9. PUBLIC OFFER PAGE (/terms)
+  else if (pathname === '/terms' || pathname === '/offer' || pathname === '/public-offer') {
+    pageTitle = `Договір публічної оферти про надання рієлторських послуг | ${BRAND_NAME}`;
+    pageDesc = `Публічна оферта та договір про надання інформаційно-консультаційних і рієлторських послуг ТОВ «НОВЕКС ІНВЕСТ» (АН «ФАВОРИТ ГРУП», ЄДРПОУ 43980756).`;
+    canonicalUrl = `${SITE_URL}/terms`;
   }
 
   // 7. DEFAULT / HOME PAGE (/)

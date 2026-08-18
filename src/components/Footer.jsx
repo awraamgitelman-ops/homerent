@@ -155,6 +155,10 @@ export const Footer = ({ onOpenConsultModal }) => {
                 <FileCheck2 size={14} />
                 <span>Про компанію та команду</span>
               </button>
+              <button onClick={() => navigate('/requisites')} className="nx-doc-btn">
+                <FileCheck2 size={14} />
+                <span>Реквізити ТОВ «НОВЕКС ІНВЕСТ»</span>
+              </button>
             </div>
           </div>
 
@@ -197,11 +201,15 @@ export const Footer = ({ onOpenConsultModal }) => {
         {/* 3. Bottom Certification Bar */}
         <div className="nx-bottom-bar">
           <div className="nx-bb-left">
-            <span>© {new Date().getFullYear()} Фаворит Груп — комерційна назва ТОВ «НОВЕКС ІНВЕСТ», ЄДРПОУ 43980756. Всі права захищено.</span>
+            <span>© {new Date().getFullYear()} ТОВ «НОВЕКС ІНВЕСТ» (АН «ФАВОРИТ ГРУП», ЄДРПОУ 43980756). Всі права захищено.</span>
           </div>
 
           <div className="nx-bb-right">
-            <span className="nx-office-subtle">Офіс приймає клієнтів: м. Полтава, вул. Соборності, 22</span>
+            <button onClick={() => navigate('/privacy')} className="nx-legal-footer-link">Політика конфіденційності</button>
+            <span className="nx-bb-divider">•</span>
+            <button onClick={() => navigate('/terms')} className="nx-legal-footer-link">Публічна оферта</button>
+            <span className="nx-bb-divider">•</span>
+            <button onClick={() => navigate('/requisites')} className="nx-legal-footer-link">Реквізити</button>
           </div>
         </div>
       </div>
@@ -524,20 +532,31 @@ export const Footer = ({ onOpenConsultModal }) => {
           gap: 16px;
         }
 
-        .nx-bb-left {
+        .nx-bb-right {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
           flex-wrap: wrap;
+        }
+
+        .nx-legal-footer-link {
+          background: none;
+          border: none;
+          padding: 0;
+          color: #94a3b8;
+          font-size: 0.78rem;
+          cursor: pointer;
+          transition: color 0.15s ease;
+        }
+
+        .nx-legal-footer-link:hover {
+          color: #ffffff;
+          text-decoration: underline;
         }
 
         .nx-bb-divider {
           color: #334155;
-        }
-
-        .nx-office-subtle {
-          font-size: 0.78rem;
-          color: #64748b;
+          font-size: 0.75rem;
         }
 
         @media (max-width: 1024px) {

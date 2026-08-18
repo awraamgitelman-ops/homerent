@@ -16,6 +16,8 @@ import { CalculatorPage } from './pages/CalculatorPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactsPage } from './pages/ContactsPage';
 import { LegalPage } from './pages/LegalPage';
+import { PrivacyPage } from './pages/PrivacyPage';
+import { OfferPage } from './pages/OfferPage';
 
 // Data
 import { PROPERTIES_DATA } from './data/propertiesData';
@@ -166,8 +168,16 @@ export function App() {
       return <ContactsPage />;
     }
 
+    if (clean.startsWith('/privacy')) {
+      return <PrivacyPage />;
+    }
+
+    if (clean.startsWith('/terms') || clean.startsWith('/offer') || clean.startsWith('/public-offer')) {
+      return <OfferPage />;
+    }
+
     if (clean.startsWith('/requisites') || clean.startsWith('/legal')) {
-      return <AboutPage onOpenConsultModal={handleOpenConsultModal} />;
+      return <LegalPage />;
     }
 
     // Default: HomePage
