@@ -3,6 +3,7 @@ import path from 'path';
 import https from 'https';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import sharp from 'sharp';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,9 +28,11 @@ app.use((req, res, next) => {
 });
 
 // ==========================================
-// ENCRYPTED MEDIA PROXY & URL SHIELD
+// ENCRYPTED MEDIA PROXY & PHYSICAL CROP SHIELD
 // ==========================================
 const _MEDIA_KEY = 'FavoritGroupPoltava2026MediaKey';
+const _imageCache = new Map();
+const MAX_CACHE_SIZE = 500;
 
 function decryptMediaUrl(token) {
   if (!token || typeof token !== 'string') return '';
@@ -47,9 +50,20 @@ function decryptMediaUrl(token) {
   return url;
 }
 
-app.get('/api/media/:token', (req, res) => {
+app.get('/api/media/:token', async (req, res) => {
+  const token = req.params.token;
+  
+  // 1. Serve from in-memory cache if available
+  if (_imageCache.has(token)) {
+    res.setHeader('Content-Type', 'image/jpeg');
+    res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Content-Disposition', 'inline');
+    return res.send(_imageCache.get(token));
+  }
+
   try {
-    const rawUrl = decryptMediaUrl(req.params.token);
+    const rawUrl = decryptMediaUrl(token);
     if (!rawUrl || !rawUrl.startsWith('http')) {
       return res.status(404).send('Not found');
     }
@@ -66,13 +80,50 @@ app.get('/api/media/:token', (req, res) => {
         return res.status(upstream.statusCode).send('Media unavailable');
       }
 
-      res.setHeader('Content-Type', upstream.headers['content-type'] || 'image/jpeg');
-      res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
-      res.setHeader('X-Content-Type-Options', 'nosniff');
-      res.setHeader('Content-Disposition', 'inline');
-      upstream.pipe(res);
+      const chunks = [];
+      upstream.on('data', chunk => chunks.push(chunk));
+      upstream.on('end', async () => {
+        try {
+          const rawBuffer = Buffer.concat(chunks);
+          const meta = await sharp(rawBuffer).metadata();
+          
+          // Physically remove top 200px watermark / status banner from image binary
+          const cropTop = Math.min(200, meta.height > 600 ? 200 : Math.floor(meta.height * 0.20));
+          const targetHeight = Math.max(100, meta.height - cropTop);
+          
+          const processedBuffer = await sharp(rawBuffer)
+            .extract({
+              left: 0,
+              top: cropTop,
+              width: meta.width,
+              height: targetHeight
+            })
+            .jpeg({ quality: 86, progressive: true })
+            .toBuffer();
+
+          // Store in LRU cache
+          if (_imageCache.size >= MAX_CACHE_SIZE) {
+            const firstKey = _imageCache.keys().next().value;
+            _imageCache.delete(firstKey);
+          }
+          _imageCache.set(token, processedBuffer);
+
+          res.setHeader('Content-Type', 'image/jpeg');
+          res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+          res.setHeader('X-Content-Type-Options', 'nosniff');
+          res.setHeader('Content-Disposition', 'inline');
+          return res.send(processedBuffer);
+        } catch (procErr) {
+          console.error('[Media Process] Sharp Error:', procErr.message);
+          // Fallback to raw buffer if image format is unusual
+          const rawBuffer = Buffer.concat(chunks);
+          res.setHeader('Content-Type', upstream.headers['content-type'] || 'image/jpeg');
+          res.setHeader('Cache-Control', 'public, max-age=86400, immutable');
+          return res.send(rawBuffer);
+        }
+      });
     }).on('error', (err) => {
-      console.error('[Media Proxy] Error:', err.message);
+      console.error('[Media Proxy] Upstream Error:', err.message);
       res.status(502).send('Upstream error');
     });
   } catch (err) {

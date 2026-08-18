@@ -20,6 +20,8 @@ function decryptMediaUrl(token) {
   return url;
 }
 
+import sharp from 'sharp'
+
 const mediaProxyPlugin = () => ({
   name: 'media-proxy-plugin',
   configureServer(server) {
@@ -35,9 +37,31 @@ const mediaProxyPlugin = () => ({
             }
           };
           https.get(rawUrl, options, (upstream) => {
-            res.setHeader('Content-Type', upstream.headers['content-type'] || 'image/jpeg');
-            res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
-            upstream.pipe(res);
+            const chunks = [];
+            upstream.on('data', chunk => chunks.push(chunk));
+            upstream.on('end', async () => {
+              try {
+                const rawBuffer = Buffer.concat(chunks);
+                const meta = await sharp(rawBuffer).metadata();
+                const cropTop = Math.min(200, meta.height > 600 ? 200 : Math.floor(meta.height * 0.20));
+                const processed = await sharp(rawBuffer)
+                  .extract({
+                    left: 0,
+                    top: cropTop,
+                    width: meta.width,
+                    height: Math.max(100, meta.height - cropTop)
+                  })
+                  .jpeg({ quality: 86 })
+                  .toBuffer();
+                
+                res.setHeader('Content-Type', 'image/jpeg');
+                res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+                res.end(processed);
+              } catch {
+                res.setHeader('Content-Type', upstream.headers['content-type'] || 'image/jpeg');
+                res.end(Buffer.concat(chunks));
+              }
+            });
           }).on('error', () => {
             res.statusCode = 502;
             res.end('Upstream error');

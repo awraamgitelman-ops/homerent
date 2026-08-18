@@ -643,13 +643,12 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: 50% 85%;
-          transform: scale(1.15) translateY(-5%);
+          object-position: center;
           transition: transform 0.3s ease;
         }
 
         .pm-main-photo-box:hover .pm-main-img {
-          transform: scale(1.2) translateY(-5%);
+          transform: scale(1.04);
         }
 
         /* Lightbox Fullscreen Styles */
@@ -766,9 +765,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         .pm-lb-active-img {
           max-width: 100%;
           max-height: 100%;
-          object-fit: cover;
-          object-position: 50% 85%;
-          transform: scale(1.15) translateY(-5%);
+          object-fit: contain;
           border-radius: 8px;
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
@@ -805,8 +802,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: 50% 85%;
-          transform: scale(1.15) translateY(-5%);
+          object-position: center;
         }
 
         .pm-thumbs-row {
@@ -837,8 +833,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: 50% 85%;
-          transform: scale(1.15) translateY(-5%);
+          object-position: center;
         }
 
         /* Details Layout */
