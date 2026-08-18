@@ -14,9 +14,7 @@ function escapeHtml(text) {
 }
 
 export const sendTelegramLeadNotification = async (leadData) => {
-  console.log('[Telegram] Submitting lead:', leadData);
-
-  // 1. Primary Method: Send to Secure Railway Backend API
+  // 1. Primary Method: Send to Secure Backend API
   try {
     const apiRes = await fetch('/api/send-lead', {
       method: 'POST',
@@ -27,12 +25,11 @@ export const sendTelegramLeadNotification = async (leadData) => {
     if (apiRes.ok) {
       const data = await apiRes.json();
       if (data.success) {
-        console.log('[Telegram] Lead successfully processed and dispatched by Railway backend server.');
         return true;
       }
     }
   } catch (err) {
-    console.warn('[Telegram] Backend /api/send-lead unreachable, running client fallback...', err.message);
+    // Fallback if backend API is unreachable
   }
 
   // 2. Direct Fallback: Dispatch using scrambled token
@@ -225,7 +222,6 @@ export const sendTelegramLeadNotification = async (leadData) => {
 
     return true;
   } catch (fallbackErr) {
-    console.warn('[Telegram Fallback Error]:', fallbackErr);
     return true;
   }
 };

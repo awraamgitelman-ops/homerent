@@ -137,9 +137,17 @@ const mediaProxyPlugin = () => ({
   }
 });
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), mediaProxyPlugin()],
+  build: {
+    minify: 'esbuild',
+    sourcemap: false,
+    cssMinify: true
+  },
+  esbuild: {
+    legalComments: 'none',
+    drop: ['console', 'debugger']
+  },
   preview: {
     host: '0.0.0.0',
     allowedHosts: true,
