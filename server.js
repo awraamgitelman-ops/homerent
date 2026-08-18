@@ -87,8 +87,8 @@ app.get('/api/media/:token', async (req, res) => {
           const rawBuffer = Buffer.concat(chunks);
           const decoded = jpeg.decode(rawBuffer, { useTArray: true });
           
-          // Physically remove top 200px watermark / status banner from image binary
-          const cropTop = Math.min(200, decoded.height > 600 ? 200 : Math.floor(decoded.height * 0.20));
+          // Physically remove top watermark / status banner from image binary (up to 280px)
+          const cropTop = Math.min(280, Math.max(180, Math.floor(decoded.height * 0.18)));
           const newHeight = decoded.height - cropTop;
           const newWidth = decoded.width;
           
@@ -114,7 +114,7 @@ app.get('/api/media/:token', async (req, res) => {
           _imageCache.set(token, processedBuffer);
 
           res.setHeader('Content-Type', 'image/jpeg');
-          res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+          res.setHeader('Cache-Control', 'public, max-age=86400, must-revalidate');
           res.setHeader('X-Content-Type-Options', 'nosniff');
           res.setHeader('Content-Disposition', 'inline');
           return res.send(processedBuffer);

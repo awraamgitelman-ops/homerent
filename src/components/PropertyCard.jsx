@@ -222,12 +222,13 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
+          object-position: 50% 85%;
+          transform: scale(1.12) translateY(-4%);
           transition: transform 0.3s ease;
         }
 
         .property-card:hover .pc-img {
-          transform: scale(1.05);
+          transform: scale(1.18) translateY(-4%);
         }
 
         .pc-badges-row {

@@ -43,7 +43,7 @@ const mediaProxyPlugin = () => ({
               try {
                 const rawBuffer = Buffer.concat(chunks);
                 const decoded = jpeg.decode(rawBuffer, { useTArray: true });
-                const cropTop = Math.min(200, decoded.height > 600 ? 200 : Math.floor(decoded.height * 0.20));
+                const cropTop = Math.min(280, Math.max(180, Math.floor(decoded.height * 0.18)));
                 const newHeight = decoded.height - cropTop;
                 const newWidth = decoded.width;
                 

@@ -225,7 +225,7 @@ export const PropertyMap = ({ properties, onSelectProperty, currency = 'USD', se
       const popupHtml = `
         <div style="font-family: 'Plus Jakarta Sans', sans-serif; width: 230px; padding: 4px;">
           <div style="width: 100%; height: 115px; overflow: hidden; border-radius: 8px; margin-bottom: 8px; position: relative;">
-            <img src="${prop.images[0]}" referrerpolicy="no-referrer" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+            <img src="${prop.images[0]}" referrerpolicy="no-referrer" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 85%; transform: scale(1.12) translateY(-4%);" />
           </div>
           <div style="font-weight: 900; font-size: 1.15rem; color: #1e3a8a; margin-bottom: 2px;">
             ${currency === 'USD' ? formatCurrency(prop.priceUSD, 'USD') : formatCurrency(prop.priceUAH, 'UAH')}

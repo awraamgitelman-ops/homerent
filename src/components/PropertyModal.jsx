@@ -643,12 +643,13 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
+          object-position: 50% 85%;
+          transform: scale(1.12) translateY(-4%);
           transition: transform 0.3s ease;
         }
 
         .pm-main-photo-box:hover .pm-main-img {
-          transform: scale(1.04);
+          transform: scale(1.16) translateY(-4%);
         }
 
         /* Lightbox Fullscreen Styles */

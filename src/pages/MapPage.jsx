@@ -1006,13 +1006,14 @@ export const MapPage = ({
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
+          object-position: 50% 85%;
+          transform: scale(1.12) translateY(-4%);
           transition: transform 0.3s ease;
         }
 
         .mls-card:hover .mls-card-img,
         .mls-card.selected .mls-card-img {
-          transform: scale(1.06);
+          transform: scale(1.18) translateY(-4%);
         }
 
         .mls-card-tag {
