@@ -91,13 +91,21 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
     try {
       await sendTelegramLeadNotification({
+        formType: 'viewing',
         name,
         phone,
-        type: `Запис на перегляд об'єкта (${property.id})`,
+        type: `Запис на перегляд (${property.transaction === 'rent' ? 'Оренда' : 'Купівля'})`,
+        propertyId: property.id,
         propertyTitle: property.title,
+        address: property.address,
         district: property.districtName,
-        budget: `${formatCurrency(property.priceUSD, 'USD')} / ${formatCurrency(property.priceUAH, 'UAH')}`,
-        comment: preferredDate ? `Бажана дата перегляду: ${preferredDate}` : 'Якнайшвидше'
+        rooms: property.rooms ? `${property.rooms} кімн.` : undefined,
+        area: property.area,
+        floor: property.floor ? `${property.floor}/${property.totalFloors}` : undefined,
+        budget: `${formatCurrency(property.priceUSD, 'USD')} (${formatCurrency(property.priceUAH, 'UAH')})`,
+        preferredDate: preferredDate || 'Якнайшвидше',
+        comment: comment || undefined,
+        sourceUrl: `https://favorit-group.com/property/${property.id}`
       });
 
       setIsSuccess(true);

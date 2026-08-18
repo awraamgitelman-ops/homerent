@@ -66,13 +66,18 @@ export const SellModal = ({ onClose }) => {
 
     try {
       await sendTelegramLeadNotification({
+        formType: 'sell',
         name,
         phone,
-        type: dealType === 'sell' ? 'Заявка на продаж нерухомості від власника' : 'Заявка на здачу в оренду від власника',
-        propertyTitle: `Власник: ${categoryTitle}, ${rooms}, ${area ? area + ' м²' : ''}`,
+        type: dealType === 'sell' ? 'Продаж нерухомості (Власник)' : 'Здача в оренду (Власник)',
+        dealType,
+        propCategory: categoryTitle,
         district: POLTAVA_DISTRICTS.find(d => d.id === district)?.name || district,
-        budget: priceLabelFormatted,
-        comment: comment || 'Без коментаря'
+        rooms: rooms || undefined,
+        area: area || undefined,
+        floor: floor && totalFloors ? `${floor}/${totalFloors}` : (floor || undefined),
+        targetPrice: priceLabelFormatted,
+        comment: comment || undefined
       });
 
       setIsSuccess(true);

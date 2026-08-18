@@ -55,10 +55,11 @@ export const ContactsPage = () => {
 
     try {
       await sendTelegramLeadNotification({
+        formType: 'contact',
         name,
         phone,
-        type: 'Питання / Консультація зі сторінки контактів',
-        comment: message || 'Без коментаря'
+        type: 'Питання / Звернення зі сторінки контактів',
+        comment: message || undefined
       });
       setIsSuccess(true);
     } catch (err) {

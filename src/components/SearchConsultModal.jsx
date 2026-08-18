@@ -104,13 +104,20 @@ export const SearchConsultModal = ({ onClose }) => {
 
     try {
       await sendTelegramLeadNotification({
+        formType: 'search',
         name,
         phone,
-        type: dealType === 'buy' ? 'Заявка на підбір нерухомості (Купівля)' : 'Заявка на підбір нерухомості (Оренда)',
-        propertyTitle: `Клієнт шукає: ${categoryTitle}, ${rooms === 'all' ? 'Будь-яка к-сть кімнат' : rooms + ' кімн.'}`,
+        type: dealType === 'buy' ? 'Підбір нерухомості (Купівля)' : 'Підбір нерухомості (Оренда)',
+        dealType,
+        propCategory: categoryTitle,
+        rooms: rooms === 'all' ? 'Будь-яка кількість' : `${rooms} кімн.`,
         district: districtName,
         budget: budgetFormatted,
-        comment: `${extraDetails ? extraDetails + '\n' : ''}${comment ? 'Коментар: ' + comment : 'Без додаткових коментарів'}`
+        residents: dealType === 'rent' ? residentsLabel : undefined,
+        children: dealType === 'rent' ? childrenLabel : undefined,
+        pets: dealType === 'rent' ? petsLabel : undefined,
+        repairPref: dealType === 'buy' ? repairLabel : undefined,
+        comment: comment || undefined
       });
 
       setIsSuccess(true);
