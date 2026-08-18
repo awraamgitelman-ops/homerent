@@ -46,17 +46,18 @@ export const Footer = ({ onOpenConsultModal }) => {
 
   return (
     <footer className="nx-footer">
-      <div className="container">
-        {/* 1. Pre-Footer Action Banner */}
-        <div className="nx-prefooter-card">
-          <div className="nx-pfc-left">
-            <h3 className="nx-pfc-title">Шукаєте нерухомість у Полтаві?</h3>
-            <p className="nx-pfc-desc">
+      {/* 1. Global Full-width Panoramic Poltava Pre-Footer Separator Strip */}
+      <div className="nx-prefooter-strip">
+        <div className="nx-pfs-overlay" />
+        <div className="container nx-pfs-container">
+          <div className="nx-pfs-left">
+            <h3 className="nx-pfs-title">Шукаєте нерухомість у Полтаві?</h3>
+            <p className="nx-pfs-desc">
               Залиште коротку заявку, і ми підготуємо для вас персональну добірку з найкращих та перевірених об'єктів під ваш бюджет і вимоги.
             </p>
           </div>
-          <div className="nx-pfc-right">
-            <a href="tel:+380987204050" className="nx-pfc-phone-btn">
+          <div className="nx-pfs-right">
+            <a href="tel:+380987204050" className="nx-pfs-phone-btn">
               <PhoneCall size={18} />
               <div className="nx-ppb-text">
                 <span className="nx-ppb-label">Гаряча лінія</span>
@@ -65,14 +66,16 @@ export const Footer = ({ onOpenConsultModal }) => {
             </a>
             <button 
               onClick={onOpenConsultModal} 
-              className="btn btn-primary nx-pfc-action-btn"
+              className="btn btn-accent nx-pfs-action-btn"
             >
               <span>Отримати персональну добірку</span>
               <ArrowUpRight size={16} />
             </button>
           </div>
         </div>
+      </div>
 
+      <div className="container">
         {/* 2. Main Footer Grid (Brand moved to the RIGHT) */}
         <div className="nx-footer-grid">
           {/* Navigation Hub */}
@@ -209,82 +212,85 @@ export const Footer = ({ onOpenConsultModal }) => {
         .nx-footer {
           background: #090d16;
           color: #94a3b8;
-          padding: 60px 0 30px;
+          padding: 0 0 32px;
           border-top: 1px solid #1e293b;
           position: relative;
         }
 
-        /* 1. Pre-Footer Action Banner */
-        .nx-prefooter-card {
-          background: linear-gradient(135deg, #172554 0%, #1e1b4b 100%);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 18px;
-          padding: 32px 36px;
+        /* 1. Global Full-width Panoramic Poltava Pre-Footer Separator Strip */
+        .nx-prefooter-strip {
+          position: relative;
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.74) 0%, rgba(15, 23, 42, 0.88) 100%),
+                      url('/images/poltava-prefooter.jpg') center 42%/cover no-repeat;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+          border-top: 1px solid #e2e8f0;
+          padding: 38px 0;
+          overflow: hidden;
+          margin-bottom: 52px;
+        }
+
+        .nx-pfs-overlay {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.14) 0%, rgba(15, 23, 42, 0.45) 100%);
+          backdrop-filter: blur(1.5px);
+          pointer-events: none;
+        }
+
+        .nx-pfs-container {
+          position: relative;
+          z-index: 2;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 32px;
-          margin-bottom: 56px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
         }
 
-        .nx-pfc-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          padding: 4px 12px;
-          border-radius: 20px;
-          font-size: 0.76rem;
-          font-weight: 700;
-          color: #93c5fd;
-          margin-bottom: 10px;
+        .nx-pfs-left {
+          flex: 1;
         }
 
-        .nx-pfc-title {
-          font-size: 1.45rem;
+        .nx-pfs-title {
+          font-size: 1.5rem;
           font-weight: 900;
           color: #ffffff;
           margin-bottom: 6px;
           letter-spacing: -0.3px;
         }
 
-        .nx-pfc-desc {
-          font-size: 0.9rem;
+        .nx-pfs-desc {
+          font-size: 0.92rem;
           color: #cbd5e1;
-          max-width: 600px;
-          line-height: 1.5;
+          max-width: 680px;
+          line-height: 1.55;
+          margin: 0;
         }
 
-        .nx-pfc-right {
+        .nx-pfs-right {
           display: flex;
           align-items: center;
           gap: 16px;
           flex-shrink: 0;
         }
 
-        .nx-pfc-phone-stack {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .nx-pfc-phone-btn {
+        .nx-pfs-phone-btn {
           display: flex;
           align-items: center;
           gap: 10px;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          border-radius: 10px;
-          padding: 8px 14px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.22);
+          backdrop-filter: blur(8px);
+          border-radius: 12px;
+          padding: 9px 16px;
           color: #ffffff;
           transition: all 0.2s ease;
         }
 
-        .nx-pfc-phone-btn:hover {
-          background: rgba(255, 255, 255, 0.15);
-          border-color: #60a5fa;
+        .nx-pfs-phone-btn:hover {
+          background: rgba(255, 255, 255, 0.18);
+          border-color: rgba(255, 255, 255, 0.4);
+          transform: translateY(-2px);
+          color: #ffffff;
         }
 
         .nx-ppb-text {
@@ -293,9 +299,10 @@ export const Footer = ({ onOpenConsultModal }) => {
         }
 
         .nx-ppb-label {
-          font-size: 0.7rem;
+          font-size: 0.68rem;
           color: #94a3b8;
           font-weight: 600;
+          text-transform: uppercase;
         }
 
         .nx-ppb-num {
@@ -304,21 +311,36 @@ export const Footer = ({ onOpenConsultModal }) => {
           color: #ffffff;
         }
 
-        .nx-pfc-action-btn {
+        .nx-pfs-action-btn {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 13px 22px;
+          padding: 12px 22px;
           font-size: 0.9rem;
           font-weight: 800;
           border-radius: 12px;
-          background: #2563eb;
-          border-color: #2563eb;
+          box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
           white-space: nowrap;
         }
 
-        .nx-pfc-action-btn:hover {
-          background: #1d4ed8;
+        @media (max-width: 900px) {
+          .nx-pfs-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+          }
+          .nx-pfs-right {
+            width: 100%;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+          }
+          .nx-pfs-phone-btn {
+            justify-content: center;
+          }
+          .nx-pfs-action-btn {
+            justify-content: center;
+          }
         }
 
         /* 2. Main Grid */
