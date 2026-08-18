@@ -1302,6 +1302,8 @@ export const PROPERTIES_DATA = [
  },
  {
   "id": "dom-34634231",
+   "status": "rented",
+   "isRented": true,
   "title": "Здається комерційне приміщення на вул. Сковороди, площа 23.6 кв.м • ID 34634231",
   "type": "commercial",
   "transaction": "rent",
@@ -1324,7 +1326,7 @@ export const PROPERTIES_DATA = [
   "heating": "Централізоване",
   "condition": "Житловий стан",
   "badges": [
-   "Оренда"
+   "ЗДАНО"
   ],
   "isExclusive": false,
   "isVerified": true,
