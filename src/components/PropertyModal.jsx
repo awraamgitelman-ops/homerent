@@ -360,11 +360,6 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
                       <Send size={16} />
                       <span>{isSubmitting ? 'Відправка...' : 'Підтвердити запис'}</span>
                     </button>
-
-                    <div className="bf-guarantee">
-                      <ShieldCheck size={14} className="text-green" />
-                      <span>Гарантія безпеки та конфіденційності даних</span>
-                    </div>
                   </form>
                 )}
               </div>
