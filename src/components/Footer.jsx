@@ -173,10 +173,6 @@ export const Footer = ({ onOpenConsultModal }) => {
               Агентство нерухомості в Полтаві. Повна юридична перевірка кожного об'єкта, прозорі договори та безпечний супровід угод.
             </p>
 
-            <div className="nx-legal-subtle">
-              <span>Фаворит Груп — комерційна назва ТОВ «НОВЕКС ІНВЕСТ», ЄДРПОУ 43980756. Агентство нерухомості в Полтаві.</span>
-            </div>
-
             <div className="nx-meta-contacts">
               <div className="nx-mc-row">
                 <MapPin size={15} className="text-primary" />
