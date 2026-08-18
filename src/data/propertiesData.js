@@ -2,6 +2,8 @@
 export const PROPERTIES_DATA = [
  {
   "id": "dom-34638262",
+   "status": "rented",
+   "isRented": true,
   "title": "Довготривала оренда 2к квартири на вул. Затишна 15 • ID 34638262",
   "type": "apartment",
   "transaction": "rent",
@@ -24,7 +26,7 @@ export const PROPERTIES_DATA = [
   "heating": "Централізоване",
   "condition": "Євроремонт",
   "badges": [
-   "Оренда",
+   "ЗДАНО",
    "Дизайнерський ремонт"
   ],
   "isExclusive": true,
