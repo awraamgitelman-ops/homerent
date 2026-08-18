@@ -201,7 +201,7 @@ export const Footer = ({ onOpenConsultModal }) => {
         {/* 3. Bottom Certification Bar */}
         <div className="nx-bottom-bar">
           <div className="nx-bb-left">
-            <span>© {new Date().getFullYear()} ТОВ «НОВЕКС ІНВЕСТ» (АН «ФАВОРИТ ГРУП», ЄДРПОУ 43980756). Всі права захищено.</span>
+            <span>© {new Date().getFullYear()} АН «ФАВОРИТ ГРУП» (ТОВ «НОВЕКС ІНВЕСТ», ЄДРПОУ 43980756). Всі права захищено.</span>
           </div>
 
           <div className="nx-bb-right">
