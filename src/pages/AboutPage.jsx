@@ -101,29 +101,17 @@ export const AboutPage = ({ onOpenConsultModal }) => {
           {/* 4. Company Identification & Official Details Card */}
           <div className="av2-legal-banner">
             <div className="av2-legal-left">
-              <div className="av2-legal-tag">Офіційні дані компанії</div>
+              <div className="av2-legal-tag">Про нас</div>
               <h3>ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ «НОВЕКС ІНВЕСТ»</h3>
               
               <div className="av2-edrpou-chip">
                 <span>Код ЄДРПОУ: <strong>43980756</strong></span>
-                <button 
-                  onClick={handleCopyEdrpou} 
-                  className="av2-copy-btn"
-                  title="Скопіювати код ЄДРПОУ"
-                >
-                  {copiedEdrpou ? <Check size={14} className="text-green" /> : <Copy size={14} />}
-                  <span>{copiedEdrpou ? 'Скопійовано!' : 'Копіювати'}</span>
-                </button>
               </div>
 
               <div className="av2-details-list">
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Керівник:</span>
                   <span className="av2-d-val">Омельяненко Владислав Юрійович</span>
-                </div>
-                <div className="av2-detail-row">
-                  <span className="av2-d-label">Основний вид діяльності:</span>
-                  <span className="av2-d-val">68.31 Агентства нерухомості</span>
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Юридична адреса:</span>
@@ -159,7 +147,7 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                     className="btn btn-primary btn-block av2-cta-btn"
                   >
                     <PhoneCall size={16} />
-                    <span>Зв'язатися з керівництвом</span>
+                    <span>Зв'язатися</span>
                   </button>
                 </div>
               </div>
