@@ -341,14 +341,6 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
             {/* Right Column: Booking Form */}
             <div className="pm-booking-col">
               <div className="pm-booking-card">
-                <div className="pm-agent-box">
-                  <div className="agent-meta">
-                    <span className="agent-name">{property.agent?.name || 'Омельяненко Владислав'}</span>
-                    <span className="agent-role">{property.agent?.role || 'Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»'}</span>
-                    <span className="agent-agency">АН «ФАВОРИТ ГРУП» Полтава</span>
-                  </div>
-                </div>
-
                 {isSuccess ? (
                   <div className="booking-success-box animate-fade">
                     <div className="bsb-icon-badge">
@@ -1061,34 +1053,6 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           border-radius: var(--radius-md);
           padding: 20px;
           box-shadow: var(--shadow-sm);
-        }
-
-        .pm-agent-box {
-          padding-bottom: 14px;
-          margin-bottom: 16px;
-          border-bottom: 1px solid var(--c-border);
-        }
-
-        .agent-name {
-          display: block;
-          font-weight: 800;
-          font-size: 1.05rem;
-          color: var(--c-slate);
-          margin-bottom: 2px;
-        }
-
-        .agent-role {
-          display: block;
-          font-size: 0.82rem;
-          color: #64748b;
-          margin-bottom: 3px;
-        }
-
-        .agent-agency {
-          display: block;
-          font-size: 0.78rem;
-          color: var(--c-primary);
-          font-weight: 800;
         }
 
         .bf-title {
