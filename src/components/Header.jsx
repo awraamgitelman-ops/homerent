@@ -291,14 +291,9 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
               {/* Sidebar Bottom Contacts Section */}
               <div className="ref-sidebar-footer">
                 <div className="ref-sb-hotline-label">Гаряча лінія:</div>
-                <div className="ref-sb-phones-stack">
-                  <a href="tel:+380988612938" className="ref-sb-phone">
-                    <span>Київстар:</span> +380 (98) 861-29-38
-                  </a>
-                  <a href="tel:+380508612938" className="ref-sb-phone">
-                    <span>Vodafone:</span> +380 (50) 861-29-38
-                  </a>
-                </div>
+                <a href="tel:+380988612938" className="ref-sb-phone">
+                  +380 (98) 861-29-38
+                </a>
                 <div className="ref-sb-schedule-note">
                   Графік: щоденно 10:00 — 18:00 (без вихідних)
                 </div>

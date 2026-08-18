@@ -56,22 +56,13 @@ export const Footer = ({ onOpenConsultModal }) => {
             </p>
           </div>
           <div className="nx-pfc-right">
-            <div className="nx-pfc-phone-stack">
-              <a href="tel:+380988612938" className="nx-pfc-phone-btn">
-                <PhoneCall size={16} />
-                <div className="nx-ppb-text">
-                  <span className="nx-ppb-label">Гаряча лінія (Київстар)</span>
-                  <span className="nx-ppb-num">+380 (98) 861-29-38</span>
-                </div>
-              </a>
-              <a href="tel:+380508612938" className="nx-pfc-phone-btn">
-                <PhoneCall size={16} />
-                <div className="nx-ppb-text">
-                  <span className="nx-ppb-label">Гаряча лінія (Vodafone)</span>
-                  <span className="nx-ppb-num">+380 (50) 861-29-38</span>
-                </div>
-              </a>
-            </div>
+            <a href="tel:+380988612938" className="nx-pfc-phone-btn">
+              <PhoneCall size={18} />
+              <div className="nx-ppb-text">
+                <span className="nx-ppb-label">Гаряча лінія</span>
+                <span className="nx-ppb-num">+380 (98) 861-29-38</span>
+              </div>
+            </a>
             <button 
               onClick={onOpenConsultModal} 
               className="btn btn-primary nx-pfc-action-btn"
@@ -191,7 +182,7 @@ export const Footer = ({ onOpenConsultModal }) => {
               </div>
               <div className="nx-mc-row">
                 <Phone size={15} className="text-primary" />
-                <span>+380 (98) 861-29-38 • +380 (50) 861-29-38</span>
+                <span>+380 (98) 861-29-38</span>
               </div>
               <div className="nx-mc-row">
                 <Mail size={15} className="text-primary" />

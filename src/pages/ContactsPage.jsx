@@ -101,16 +101,7 @@ export const ContactsPage = () => {
               <div className="ci-icon"><Phone size={22} /></div>
               <div className="ci-details">
                 <h4>Гаряча лінія</h4>
-                <div className="ci-phones-group">
-                  <a href="tel:+380988612938" className="ci-phone-link">
-                    <span className="ci-phone-tag">Київстар</span>
-                    <span>+380 (98) 861-29-38</span>
-                  </a>
-                  <a href="tel:+380508612938" className="ci-phone-link">
-                    <span className="ci-phone-tag">Vodafone</span>
-                    <span>+380 (50) 861-29-38</span>
-                  </a>
-                </div>
+                <a href="tel:+380988612938" className="ci-phone-link">+380 (98) 861-29-38</a>
                 <p className="ci-subnote">Прийом дзвінків: Щоденно з 10:00 до 18:00 (без вихідних)</p>
               </div>
             </div>
