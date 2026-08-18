@@ -4,7 +4,6 @@ import {
   Search, 
   Send, 
   CheckCircle2, 
-  ShieldCheck, 
   Building2, 
   MapPin,
   PhoneCall,
@@ -452,11 +451,6 @@ export const SearchConsultModal = ({ onClose }) => {
                 {isSubmitting ? 'Підбираємо варіанти...' : 'Підібрати варіанти нерухомості'}
               </span>
             </button>
-
-            <div className="sc-guarantee-note">
-              <ShieldCheck size={14} className="text-green" />
-              <span>Послуги надає АН «ФАВОРИТ ГРУП» • ТОВ «НОВЕКС ІНВЕСТ» (ЄДРПОУ 43980756)</span>
-            </div>
           </form>
         )}
       </div>
@@ -633,17 +627,6 @@ export const SearchConsultModal = ({ onClose }) => {
           align-items: center;
           justify-content: center;
           gap: 8px;
-        }
-
-        .sc-guarantee-note {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-          font-size: 0.76rem;
-          color: #64748b;
-          margin-top: 14px;
-          text-align: center;
         }
 
         .sc-success-box {

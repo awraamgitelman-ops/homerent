@@ -4,7 +4,6 @@ import {
   PlusCircle, 
   Send, 
   CheckCircle2, 
-  ShieldCheck, 
   Building2, 
   MapPin,
   PhoneCall
@@ -299,11 +298,6 @@ export const SellModal = ({ onClose }) => {
                     : 'Подати заявку на здачу в оренду'}
               </span>
             </button>
-
-            <div className="sell-guarantee-note">
-              <ShieldCheck size={14} className="text-green" />
-              <span>Офіційний договір із ТОВ «НОВЕКС ІНВЕСТ» (код ЄДРПОУ 43980756)</span>
-            </div>
           </form>
         )}
       </div>
@@ -390,16 +384,6 @@ export const SellModal = ({ onClose }) => {
 
         .form-textarea, textarea {
           resize: none !important;
-        }
-
-        .sell-guarantee-note {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-          font-size: 0.76rem;
-          color: #64748b;
-          margin-top: 12px;
         }
 
         .sell-success-box {
