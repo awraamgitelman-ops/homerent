@@ -1,144 +1,90 @@
-import React from 'react';
-import { ShieldCheck, FileText, CheckCircle2, Building2, UserCheck, Phone, Mail, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
+import { Copy, Check, Building2, ShieldCheck, FileCheck } from 'lucide-react';
 
 export const LegalPage = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <div className="legal-page-wrapper">
-      <div className="legal-hero">
-        <div className="legal-hero-overlay"></div>
-        <div className="container legal-hero-content">
-          <h1 className="lh-title">Реєстраційні дані та реквізити ТОВ «НОВЕКС ІНВЕСТ»</h1>
-          <p className="lh-subtitle">
-            Повна публічна інформація з Єдиного державного реєстру юридичних осіб (ЄДРПОУ 43980756) для перевірки на Work.ua, державних реєстрах та банках.
-          </p>
-        </div>
-      </div>
-
+    <div className="req-page-wrapper">
       <div className="container py-5">
-        <div className="legal-grid">
-          {/* Main Details Table Card */}
-          <div className="legal-card main-table-card">
-            <h2 className="card-title">
-              <FileText size={22} className="text-primary" />
-              <span>Загальні реєстраційні відомості</span>
-            </h2>
-
-            <div className="table-responsive">
-              <table className="legal-table">
-                <tbody>
-                  <tr>
-                    <td className="field-name">Повне найменування:</td>
-                    <td className="field-value">
-                      <strong>ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ "НОВЕКС ІНВЕСТ"</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Скорочене найменування:</td>
-                    <td className="field-value">ТОВ "НОВЕКС ІНВЕСТ"</td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Код ЄДРПОУ:</td>
-                    <td className="field-value">
-                      <span className="edrpou-tag">43980756</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Дата державної реєстрації:</td>
-                    <td className="field-value">12.02.2021</td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Керівник / Директор:</td>
-                    <td className="field-value">
-                      <strong>Омельяненко Владислав Юрійович</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Статус юридичної особи:</td>
-                    <td className="field-value">
-                      <span className="badge badge-green">
-                        <CheckCircle2 size={13} /> Зареєстровано, діє
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Юридична адреса:</td>
-                    <td className="field-value">
-                      36020, Україна, Полтавська обл., місто Полтава, вул. Соборності, 22
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Податковий статус:</td>
-                    <td className="field-value">Платник податку на прибуток на загальних підставах, без податкового боргу</td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Контактний телефон:</td>
-                    <td className="field-value">
-                      <a href="tel:+380987204050" className="text-primary font-bold">+380 (98) 720-40-50</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="field-name">Офіційний Email:</td>
-                    <td className="field-value">novexinvest.poltava@gmail.com</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <div className="req-main-card">
+          {/* Card Header */}
+          <div className="req-header">
+            <h1 className="req-title">Реєстраційні дані ТОВ "НОВЕКС ІНВЕСТ"</h1>
+            <p className="req-subtitle">
+              ФАВОРИТ ГРУП — комерційна назва ТОВ «НОВЕКС ІНВЕСТ» (код ЄДРПОУ 43980756). Компанія здійснює професійну рієлторську діяльність з купівлі, продажу та оренди нерухомості у м. Полтава.
+            </p>
           </div>
 
-          {/* KVEDs & Activities */}
-          <div className="legal-card kved-card">
-            <h2 className="card-title">
-              <Building2 size={22} className="text-primary" />
-              <span>Види економічної діяльності (КВЕД-2010)</span>
-            </h2>
+          <div className="req-divider"></div>
 
-            <div className="kved-list">
-              <div className="kved-item main-kved">
-                <span className="kved-code">68.31</span>
-                <div className="kved-info">
-                  <strong>Діяльність агентств нерухомості (Основний)</strong>
-                  <p>Посередництво в купівлі, продажу, оренді житлової та нежитлової нерухомості, експертна оцінка за винагороду.</p>
+          {/* Inner Details Card */}
+          <div className="req-inner-box">
+            <div className="req-box-title-row">
+              <span className="req-accent-bar"></span>
+              <h2 className="req-box-title">Реєстраційні відомості</h2>
+            </div>
+
+            <div className="req-fields-list">
+              <div className="req-field-item">
+                <div className="req-label">ПОВНЕ НАЙМЕНУВАННЯ:</div>
+                <div className="req-value">ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ "НОВЕКС ІНВЕСТ"</div>
+              </div>
+
+              <div className="req-field-item">
+                <div className="req-label">СКОРОЧЕНА НАЗВА:</div>
+                <div className="req-value">ТОВ "НОВЕКС ІНВЕСТ"</div>
+              </div>
+
+              <div className="req-field-item">
+                <div className="req-label">КОД ЄДРПОУ:</div>
+                <div className="req-edrpou-row">
+                  <span className="req-value req-edrpou-green">43980756</span>
+                  <button 
+                    onClick={() => handleCopy('43980756')} 
+                    className="req-copy-btn"
+                    title="Скопіювати код ЄДРПОУ"
+                  >
+                    {copied ? <Check size={13} className="text-green" /> : <Copy size={13} />}
+                    <span>{copied ? 'Скопійовано' : 'Копіювати'}</span>
+                  </button>
                 </div>
               </div>
 
-              <div className="kved-item">
-                <span className="kved-code">68.10</span>
-                <div className="kved-info">
-                  <strong>Купівля та продаж власного нерухомого майна</strong>
-                  <p>Операції з власними квартирами, котеджами, комерційними приміщеннями.</p>
-                </div>
+              <div className="req-field-item">
+                <div className="req-label">ЮРИДИЧНА АДРЕСА:</div>
+                <div className="req-value">Україна, 36020, Полтавська обл., м. Полтава, вул. Соборності, буд. 22</div>
               </div>
 
-              <div className="kved-item">
-                <span className="kved-code">68.20</span>
-                <div className="kved-info">
-                  <strong>Надання в оренду й експлуатацію власного чи орендованого майна</strong>
-                  <p>Довгострокова та подобова оренда, довірче управління активами інвесторів.</p>
-                </div>
+              <div className="req-field-item">
+                <div className="req-label">ФАКТИЧНА АДРЕСА ОФІСУ:</div>
+                <div className="req-value">Україна, 36020, м. Полтава, вул. Соборності, 22</div>
               </div>
 
-              <div className="kved-item">
-                <span className="kved-code">68.32</span>
-                <div className="kved-info">
-                  <strong>Управління нерухомим майном за винагороду або на основі контракту</strong>
-                  <p>Обслуговування ОСББ, бізнес-центрів, житлових комплексів.</p>
-                </div>
+              <div className="req-field-item">
+                <div className="req-label">КЕРІВНИК (ДИРЕКТОР):</div>
+                <div className="req-value">Омельяненко Владислав Юрійович</div>
               </div>
 
-              <div className="kved-item">
-                <span className="kved-code">41.20</span>
-                <div className="kved-info">
-                  <strong>Будівництво житлових і нежитлових будівель</strong>
-                  <p>Будівельні та монтажні роботи, зведення котеджів та таунхаусів.</p>
-                </div>
+              <div className="req-field-item">
+                <div className="req-label">КОНТАКТНИЙ ТЕЛЕФОН:</div>
+                <a href="tel:+380987204050" className="req-value req-link font-mono">+380 (98) 720-40-50</a>
               </div>
 
-              <div className="kved-item">
-                <span className="kved-code">43.31–43.39</span>
-                <div className="kved-info">
-                  <strong>Ремонтно-оздоблювальні роботи та Home Staging</strong>
-                  <p>Штукатурні, малярні, столярні роботи, укладання плитки, передпродажна підготовка об'єктів.</p>
-                </div>
+              <div className="req-field-item">
+                <div className="req-label">ЕЛЕКТРОННА ПОШТА (EMAIL):</div>
+                <a href="mailto:novexinvest.poltava@gmail.com" className="req-value req-link">novexinvest.poltava@gmail.com</a>
+              </div>
+
+              <div className="req-field-item">
+                <div className="req-label">РЕЖИМ РОБОТИ ОФІСУ:</div>
+                <div className="req-value">Пн–Нд: 10:00 — 18:00 (без вихідних)</div>
               </div>
             </div>
           </div>
@@ -146,157 +92,160 @@ export const LegalPage = () => {
       </div>
 
       <style>{`
-        .legal-hero {
-          position: relative;
-          background: linear-gradient(180deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.85) 100%),
-                      url('/images/poltava-hero.jpg') center 40%/cover no-repeat;
-          color: #ffffff;
-          padding: 56px 0;
-          overflow: hidden;
+        .req-page-wrapper {
+          background: #f8fafc;
+          min-height: calc(100vh - 200px);
+          padding: 40px 0 60px;
         }
 
-        .legal-hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.12) 0%, rgba(15, 23, 42, 0.35) 100%);
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .legal-hero-content {
-          position: relative;
-          z-index: 2;
-          text-align: left;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .lh-title {
-          font-size: 2.2rem;
-          font-weight: 900;
-          color: #ffffff;
-          margin-bottom: 10px;
-          text-align: left;
-        }
-
-        .lh-subtitle {
-          font-size: 1rem;
-          color: #cbd5e1;
-          max-width: 820px;
-          margin: 0;
-          text-align: left;
-          line-height: 1.55;
-        }
-
-        .legal-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 32px;
-          align-items: start;
-        }
-
-        .legal-card {
+        .req-main-card {
+          max-width: 960px;
+          margin: 0 auto;
           background: #ffffff;
-          border: 1px solid var(--c-border);
-          border-radius: var(--radius-lg);
-          padding: 28px;
-          box-shadow: var(--shadow-sm);
+          border: 1px solid #e2e8f0;
+          border-radius: 20px;
+          padding: 40px 44px;
+          box-shadow: 0 4px 24px rgba(15, 23, 42, 0.05);
         }
 
-        .card-title {
+        .req-header {
+          margin-bottom: 24px;
+        }
+
+        .req-title {
+          font-size: 1.85rem;
+          font-weight: 900;
+          color: #0f172a;
+          margin: 0 0 12px 0;
+          letter-spacing: -0.3px;
+        }
+
+        .req-subtitle {
+          font-size: 0.95rem;
+          color: #64748b;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .req-divider {
+          height: 1px;
+          background: #f1f5f9;
+          margin: 28px 0;
+        }
+
+        .req-inner-box {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 32px 36px;
+        }
+
+        .req-box-title-row {
           display: flex;
           align-items: center;
-          gap: 10px;
-          font-size: 1.25rem;
+          gap: 12px;
+          margin-bottom: 26px;
+        }
+
+        .req-accent-bar {
+          width: 4px;
+          height: 24px;
+          background: #65a30d;
+          border-radius: 2px;
+          flex-shrink: 0;
+        }
+
+        .req-box-title {
+          font-size: 1.22rem;
           font-weight: 800;
-          color: var(--c-slate);
-          margin-bottom: 20px;
-          padding-bottom: 14px;
-          border-bottom: 1px solid var(--c-border);
+          color: #0f172a;
+          margin: 0;
         }
 
-        .legal-table {
-          width: 100%;
-          border-collapse: collapse;
-          font-size: 0.9rem;
-        }
-
-        .legal-table td {
-          padding: 12px 8px;
-          border-bottom: 1px solid #f1f5f9;
-          vertical-align: top;
-        }
-
-        .field-name {
-          color: #64748b;
-          font-weight: 600;
-          width: 38%;
-        }
-
-        .field-value {
-          color: var(--c-dark);
-        }
-
-        .edrpou-tag {
-          font-size: 1.1rem;
-          font-weight: 900;
-          color: var(--c-primary);
-          background: var(--c-primary-light);
-          padding: 2px 10px;
-          border-radius: var(--radius-sm);
-          letter-spacing: 1px;
-        }
-
-        .kved-list {
+        .req-fields-list {
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 20px;
         }
 
-        .kved-item {
+        .req-field-item {
           display: flex;
-          align-items: flex-start;
-          gap: 14px;
-          background: #f8fafc;
-          padding: 14px;
-          border-radius: var(--radius-sm);
-          border: 1px solid #e2e8f0;
+          flex-direction: column;
+          gap: 4px;
         }
 
-        .kved-item.main-kved {
-          background: var(--c-primary-light);
-          border-color: #bfdbfe;
-        }
-
-        .kved-code {
-          font-size: 1rem;
-          font-weight: 900;
-          color: var(--c-primary);
-          background: #ffffff;
-          padding: 4px 10px;
-          border-radius: var(--radius-sm);
-          box-shadow: var(--shadow-sm);
-          white-space: nowrap;
-        }
-
-        .kved-info strong {
-          display: block;
-          font-size: 0.92rem;
-          color: var(--c-slate);
-          margin-bottom: 2px;
-        }
-
-        .kved-info p {
-          font-size: 0.78rem;
+        .req-label {
+          font-size: 0.75rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
           color: #64748b;
-          margin: 0;
-          line-height: 1.4;
         }
 
-        @media (max-width: 960px) {
-          .legal-grid {
-            grid-template-columns: 1fr;
+        .req-value {
+          font-size: 0.96rem;
+          font-weight: 700;
+          color: #0f172a;
+          line-height: 1.45;
+        }
+
+        .req-edrpou-row {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .req-edrpou-green {
+          font-size: 1.25rem;
+          font-weight: 900;
+          color: #16a34a;
+          letter-spacing: 0.5px;
+        }
+
+        .req-copy-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          background: #ffffff;
+          border: 1px solid #cbd5e1;
+          border-radius: 6px;
+          padding: 3px 9px;
+          font-size: 0.74rem;
+          font-weight: 700;
+          color: #1e293b;
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+
+        .req-copy-btn:hover {
+          background: #f1f5f9;
+          border-color: #94a3b8;
+        }
+
+        .req-link {
+          text-decoration: none;
+          color: #0f172a;
+          transition: color 0.15s ease;
+        }
+
+        .req-link:hover {
+          color: #2563eb;
+          text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+          .req-page-wrapper {
+            padding: 20px 0 40px;
+          }
+          .req-main-card {
+            padding: 24px 18px;
+            border-radius: 16px;
+          }
+          .req-title {
+            font-size: 1.45rem;
+          }
+          .req-inner-box {
+            padding: 20px 16px;
           }
         }
       `}</style>
