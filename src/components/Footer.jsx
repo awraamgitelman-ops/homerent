@@ -223,11 +223,11 @@ export const Footer = ({ onOpenConsultModal }) => {
         /* 1. Global Full-width Panoramic Poltava Pre-Footer Separator Strip */
         .nx-prefooter-strip {
           position: relative;
-          background: linear-gradient(180deg, rgba(9, 13, 22, 0.68) 0%, rgba(9, 13, 22, 0.82) 60%, #090d16 100%),
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.74) 0%, rgba(15, 23, 42, 0.88) 100%),
                       url('/images/poltava-prefooter.jpg') center 42%/cover no-repeat;
           border-top: 1px solid #e2e8f0;
-          border-bottom: none;
-          padding: 44px 0 36px;
+          border-bottom: 1px solid #1e293b;
+          padding: 40px 0;
           overflow: hidden;
           margin-bottom: 48px;
         }
@@ -235,9 +235,8 @@ export const Footer = ({ onOpenConsultModal }) => {
         .nx-pfs-overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.16) 0%, transparent 70%),
-                      linear-gradient(180deg, transparent 50%, #090d16 100%);
-          backdrop-filter: blur(1px);
+          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.14) 0%, rgba(15, 23, 42, 0.45) 100%);
+          backdrop-filter: blur(1.5px);
           pointer-events: none;
         }
 
