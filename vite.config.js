@@ -22,10 +22,71 @@ function decryptMediaUrl(token) {
 
 import jpeg from 'jpeg-js'
 
+const _ENC_KEY = 'FavoritGroupPoltava2026SecureKey';
+const _ENC_BLOB = [126, 89, 67, 95, 74, 81, 66, 117, 70, 95, 79, 49, 17, 41, 11, 50, 49, 19, 18, 113, 106, 117, 64, 63, 85, 81, 34, 59, 55, 61, 83, 33, 14, 13, 17, 9, 11, 92, 28, 34, 28, 94, 6, 47, 3, 46];
+const _getBotToken = () => _ENC_BLOB.map((b, i) => String.fromCharCode(b ^ _ENC_KEY.charCodeAt(i % _ENC_KEY.length))).join('');
+
 const mediaProxyPlugin = () => ({
   name: 'media-proxy-plugin',
   configureServer(server) {
     server.middlewares.use((req, res, next) => {
+      // 1. Lead Dispatch Endpoint for local dev
+      if (req.url && req.url.startsWith('/api/send-lead') && req.method === 'POST') {
+        const chunks = [];
+        req.on('data', chunk => chunks.push(chunk));
+        req.on('end', () => {
+          try {
+            const body = JSON.parse(Buffer.concat(chunks).toString());
+            const botToken = _getBotToken();
+            const chatId = '8298199477';
+            
+            const text = `🏢 <b>НОВА ЗАЯВКА (DEV/TEST) — АН «ФАВОРИТ ГРУП»</b>\n\n` +
+              `👤 <b>Клієнт:</b> ${body.name || 'Не вказано'}\n` +
+              `📞 <b>Телефон:</b> <code>${body.phone || 'Не вказано'}</code>\n` +
+              `📌 <b>Тип:</b> ${body.type || 'Запит'}\n` +
+              (body.propertyTitle ? `🏠 <b>Об'єкт:</b> ${body.propertyTitle}\n` : '') +
+              (body.district ? `📍 <b>Район:</b> ${body.district}\n` : '') +
+              (body.budget || body.targetPrice ? `💰 <b>Бюджет:</b> ${body.budget || body.targetPrice}\n` : '') +
+              (body.comment ? `💬 <b>Коментар:</b> <i>${body.comment}</i>\n` : '') +
+              `⏰ <b>Час:</b> ${new Date().toLocaleTimeString('uk-UA')}`;
+
+            const postPayload = JSON.stringify({
+              chat_id: chatId,
+              text,
+              parse_mode: 'HTML',
+              disable_web_page_preview: true
+            });
+
+            const tgReq = https.request({
+              hostname: 'api.telegram.org',
+              port: 443,
+              path: `/bot${botToken}/sendMessage`,
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(postPayload)
+              }
+            }, (tgRes) => {
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ success: true, message: 'Lead sent in dev mode' }));
+            });
+
+            tgReq.on('error', () => {
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ success: false, error: 'Telegram dispatch failed' }));
+            });
+
+            tgReq.write(postPayload);
+            tgReq.end();
+          } catch (e) {
+            res.statusCode = 400;
+            res.end(JSON.stringify({ error: e.message }));
+          }
+        });
+        return;
+      }
+
+      // 2. Media Proxy Endpoint
       if (req.url && req.url.startsWith('/api/media/')) {
         const token = req.url.split('/api/media/')[1]?.split('?')[0];
         const rawUrl = decryptMediaUrl(token);
