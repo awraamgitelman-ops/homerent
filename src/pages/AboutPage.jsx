@@ -106,9 +106,17 @@ export const AboutPage = ({ onOpenConsultModal }) => {
 
               <div className="av2-details-list">
                 <div className="av2-detail-row">
+                  <span className="av2-d-label">Повне найменування:</span>
+                  <span className="av2-d-val">ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ "НОВЕКС ІНВЕСТ"</span>
+                </div>
+                <div className="av2-detail-row">
+                  <span className="av2-d-label">Скорочена назва:</span>
+                  <span className="av2-d-val">ТОВ "НОВЕКС ІНВЕСТ"</span>
+                </div>
+                <div className="av2-detail-row">
                   <span className="av2-d-label">Код ЄДРПОУ:</span>
                   <span className="av2-d-val font-mono">
-                    <strong>43980756</strong>
+                    <strong style={{ color: '#16a34a', fontSize: '1.05rem' }}>43980756</strong>
                     <button 
                       onClick={handleCopyEdrpou} 
                       className="av2-copy-btn" 
@@ -121,26 +129,34 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                   </span>
                 </div>
                 <div className="av2-detail-row">
-                  <span className="av2-d-label">Керівник:</span>
+                  <span className="av2-d-label">Керівник (Директор):</span>
                   <span className="av2-d-val">
-                    <strong>Владислав Омельяненко</strong> (Керівник ТОВ «НОВЕКС ІНВЕСТ»)
+                    <strong>Омельяненко Владислав Юрійович</strong> (Керівник ТОВ «НОВЕКС ІНВЕСТ»)
                   </span>
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Юридична адреса:</span>
-                  <span className="av2-d-val">36014, м. Полтава, вул. Європейська, 2, оф. 202</span>
+                  <span className="av2-d-val">36014, Україна, Полтавська обл., м. Полтава, вул. Європейська, буд. 2, офіс 202</span>
                 </div>
                 <div className="av2-detail-row">
-                  <span className="av2-d-label">Офіс прийому клієнтів:</span>
-                  <span className="av2-d-val">36020, м. Полтава, вул. Соборності, 22</span>
+                  <span className="av2-d-label">Фактична адреса офісу (прийом клієнтів):</span>
+                  <span className="av2-d-val">36020, Україна, м. Полтава, вул. Соборності, 22</span>
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Контактний телефон:</span>
-                  <span className="av2-d-val font-mono">+380 (98) 720-40-50</span>
+                  <span className="av2-d-val font-mono">
+                    <a href="tel:+380987204050" style={{ color: 'inherit', textDecoration: 'none' }}>+380 (98) 720-40-50</a>
+                  </span>
                 </div>
                 <div className="av2-detail-row">
-                  <span className="av2-d-label">Електронна пошта:</span>
-                  <span className="av2-d-val">novexinvest.poltava@gmail.com</span>
+                  <span className="av2-d-label">Електронна пошта (Email):</span>
+                  <span className="av2-d-val">
+                    <a href="mailto:novexinvest.poltava@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>novexinvest.poltava@gmail.com</a>
+                  </span>
+                </div>
+                <div className="av2-detail-row">
+                  <span className="av2-d-label">Режим роботи офісу:</span>
+                  <span className="av2-d-val">Пн–Нд: 10:00 — 18:00 (без вихідних)</span>
                 </div>
               </div>
             </div>
