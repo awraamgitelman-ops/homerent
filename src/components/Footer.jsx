@@ -76,6 +76,9 @@ export const Footer = ({ onOpenConsultModal }) => {
       </div>
 
       <div className="container">
+        {/* Clean horizontal divider line */}
+        <div className="nx-footer-divider" />
+
         {/* 2. Main Footer Grid (Brand moved to the RIGHT) */}
         <div className="nx-footer-grid">
           {/* Navigation Hub */}
@@ -342,6 +345,14 @@ export const Footer = ({ onOpenConsultModal }) => {
           .nx-pfs-action-btn {
             justify-content: center;
           }
+        }
+
+        /* Clean Separator Divider */
+        .nx-footer-divider {
+          width: 100%;
+          height: 1px;
+          background: #1e293b;
+          margin-bottom: 44px;
         }
 
         /* 2. Main Grid */
