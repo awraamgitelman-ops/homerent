@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import { Copy, Check, Building2, ShieldCheck, FileCheck } from 'lucide-react';
+import React from 'react';
+import { useRouter } from '../context/RouterContext';
 
 export const LegalPage = () => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = (text) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const { navigate } = useRouter();
 
   return (
     <div className="req-page-wrapper">
-      <div className="container py-5">
-        <div className="req-main-card">
-          {/* Card Header */}
+      <div className="container">
+        <div className="req-content-container">
+          {/* Breadcrumbs */}
+          <nav aria-label="Хлібні крихти" className="req-breadcrumbs">
+            <button onClick={() => navigate('/')} className="req-crumb-link">Головна</button>
+            <span className="req-crumb-sep">/</span>
+            <span className="req-crumb-current">Реєстраційні дані</span>
+          </nav>
+
+          {/* Page Header */}
           <div className="req-header">
             <h1 className="req-title">Реєстраційні дані ТОВ "НОВЕКС ІНВЕСТ"</h1>
             <p className="req-subtitle">
@@ -24,8 +25,8 @@ export const LegalPage = () => {
 
           <div className="req-divider"></div>
 
-          {/* Inner Details Card */}
-          <div className="req-inner-box">
+          {/* Details Section */}
+          <div className="req-section">
             <div className="req-box-title-row">
               <span className="req-accent-bar"></span>
               <h2 className="req-box-title">Реєстраційні відомості</h2>
@@ -33,58 +34,48 @@ export const LegalPage = () => {
 
             <div className="req-fields-list">
               <div className="req-field-item">
-                <div className="req-label">ПОВНЕ НАЙМЕНУВАННЯ:</div>
-                <div className="req-value">ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ "НОВЕКС ІНВЕСТ"</div>
+                <span className="req-label">ПОВНЕ НАЙМЕНУВАННЯ:</span>
+                <span className="req-value">ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ "НОВЕКС ІНВЕСТ"</span>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">СКОРОЧЕНА НАЗВА:</div>
-                <div className="req-value">ТОВ "НОВЕКС ІНВЕСТ"</div>
+                <span className="req-label">СКОРОЧЕНА НАЗВА:</span>
+                <span className="req-value">ТОВ "НОВЕКС ІНВЕСТ"</span>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">КОД ЄДРПОУ:</div>
-                <div className="req-edrpou-row">
-                  <span className="req-value req-edrpou-green">43980756</span>
-                  <button 
-                    onClick={() => handleCopy('43980756')} 
-                    className="req-copy-btn"
-                    title="Скопіювати код ЄДРПОУ"
-                  >
-                    {copied ? <Check size={13} className="text-green" /> : <Copy size={13} />}
-                    <span>{copied ? 'Скопійовано' : 'Копіювати'}</span>
-                  </button>
-                </div>
+                <span className="req-label">КОД ЄДРПОУ:</span>
+                <span className="req-value font-mono">43980756</span>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">ЮРИДИЧНА АДРЕСА:</div>
-                <div className="req-value">36014, Україна, Полтавська обл., м. Полтава, вул. Європейська, буд. 2, офіс 202</div>
+                <span className="req-label">ЮРИДИЧНА АДРЕСА:</span>
+                <span className="req-value">36014, Україна, Полтавська обл., м. Полтава, вул. Європейська, буд. 2, офіс 202</span>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">ФАКТИЧНА АДРЕСА ОФІСУ (ПРИЙОМ КЛІЄНТІВ):</div>
-                <div className="req-value">36020, Україна, м. Полтава, вул. Соборності, 22</div>
+                <span className="req-label">ФАКТИЧНА АДРЕСА ОФІСУ (ПРИЙОМ КЛІЄНТІВ):</span>
+                <span className="req-value">36020, Україна, м. Полтава, вул. Соборності, 22</span>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">КЕРІВНИК (ДИРЕКТОР):</div>
-                <div className="req-value">Омельяненко Владислав Юрійович</div>
+                <span className="req-label">КЕРІВНИК (ДИРЕКТОР):</span>
+                <span className="req-value">Омельяненко Владислав Юрійович</span>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">КОНТАКТНИЙ ТЕЛЕФОН:</div>
+                <span className="req-label">КОНТАКТНИЙ ТЕЛЕФОН:</span>
                 <a href="tel:+380987204050" className="req-value req-link font-mono">+380 (98) 720-40-50</a>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">ЕЛЕКТРОННА ПОШТА (EMAIL):</div>
+                <span className="req-label">ЕЛЕКТРОННА ПОШТА (EMAIL):</span>
                 <a href="mailto:novexinvest.poltava@gmail.com" className="req-value req-link">novexinvest.poltava@gmail.com</a>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">РЕЖИМ РОБОТИ ОФІСУ:</div>
-                <div className="req-value">Пн–Нд: 10:00 — 18:00 (без вихідних)</div>
+                <span className="req-label">РЕЖИМ РОБОТИ ОФІСУ:</span>
+                <span className="req-value">Пн–Нд: 10:00 — 18:00 (без вихідних)</span>
               </div>
             </div>
           </div>
@@ -93,19 +84,43 @@ export const LegalPage = () => {
 
       <style>{`
         .req-page-wrapper {
-          background: #f8fafc;
+          background: #ffffff;
           min-height: calc(100vh - 200px);
-          padding: 40px 0 60px;
+          padding: 40px 0 80px;
         }
 
-        .req-main-card {
-          max-width: 960px;
+        .req-content-container {
+          max-width: 860px;
           margin: 0 auto;
-          background: #ffffff;
-          border: 1px solid #e2e8f0;
-          border-radius: 20px;
-          padding: 40px 44px;
-          box-shadow: 0 4px 24px rgba(15, 23, 42, 0.05);
+        }
+
+        .req-breadcrumbs {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.86rem;
+          margin-bottom: 24px;
+        }
+
+        .req-crumb-link {
+          background: none;
+          border: none;
+          padding: 0;
+          color: #2563eb;
+          cursor: pointer;
+          font-weight: 600;
+        }
+
+        .req-crumb-link:hover {
+          text-decoration: underline;
+        }
+
+        .req-crumb-sep {
+          color: #94a3b8;
+        }
+
+        .req-crumb-current {
+          color: #64748b;
         }
 
         .req-header {
@@ -113,38 +128,36 @@ export const LegalPage = () => {
         }
 
         .req-title {
-          font-size: 1.85rem;
+          font-size: 2.1rem;
           font-weight: 900;
           color: #0f172a;
-          margin: 0 0 12px 0;
-          letter-spacing: -0.3px;
+          margin: 0 0 14px 0;
+          letter-spacing: -0.4px;
+          line-height: 1.25;
         }
 
         .req-subtitle {
-          font-size: 0.95rem;
-          color: #64748b;
-          line-height: 1.6;
+          font-size: 1rem;
+          color: #475569;
+          line-height: 1.65;
           margin: 0;
         }
 
         .req-divider {
           height: 1px;
-          background: #f1f5f9;
-          margin: 28px 0;
+          background: #e2e8f0;
+          margin: 32px 0;
         }
 
-        .req-inner-box {
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
-          border-radius: 16px;
-          padding: 32px 36px;
+        .req-section {
+          padding-top: 8px;
         }
 
         .req-box-title-row {
           display: flex;
           align-items: center;
           gap: 12px;
-          margin-bottom: 26px;
+          margin-bottom: 30px;
         }
 
         .req-accent-bar {
@@ -156,26 +169,27 @@ export const LegalPage = () => {
         }
 
         .req-box-title {
-          font-size: 1.22rem;
+          font-size: 1.35rem;
           font-weight: 800;
           color: #0f172a;
           margin: 0;
+          letter-spacing: -0.2px;
         }
 
         .req-fields-list {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 22px;
         }
 
         .req-field-item {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: 5px;
         }
 
         .req-label {
-          font-size: 0.75rem;
+          font-size: 0.76rem;
           font-weight: 800;
           text-transform: uppercase;
           letter-spacing: 0.5px;
@@ -183,49 +197,17 @@ export const LegalPage = () => {
         }
 
         .req-value {
-          font-size: 0.96rem;
+          font-size: 1.02rem;
           font-weight: 700;
           color: #0f172a;
-          line-height: 1.45;
-        }
-
-        .req-edrpou-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .req-edrpou-green {
-          font-size: 1.25rem;
-          font-weight: 900;
-          color: #16a34a;
-          letter-spacing: 0.5px;
-        }
-
-        .req-copy-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          background: #ffffff;
-          border: 1px solid #cbd5e1;
-          border-radius: 6px;
-          padding: 3px 9px;
-          font-size: 0.74rem;
-          font-weight: 700;
-          color: #1e293b;
-          cursor: pointer;
-          transition: all 0.15s ease;
-        }
-
-        .req-copy-btn:hover {
-          background: #f1f5f9;
-          border-color: #94a3b8;
+          line-height: 1.5;
         }
 
         .req-link {
           text-decoration: none;
           color: #0f172a;
           transition: color 0.15s ease;
+          width: fit-content;
         }
 
         .req-link:hover {
@@ -235,17 +217,16 @@ export const LegalPage = () => {
 
         @media (max-width: 768px) {
           .req-page-wrapper {
-            padding: 20px 0 40px;
-          }
-          .req-main-card {
-            padding: 24px 18px;
-            border-radius: 16px;
+            padding: 24px 0 50px;
           }
           .req-title {
-            font-size: 1.45rem;
+            font-size: 1.6rem;
           }
-          .req-inner-box {
-            padding: 20px 16px;
+          .req-subtitle {
+            font-size: 0.92rem;
+          }
+          .req-value {
+            font-size: 0.95rem;
           }
         }
       `}</style>
