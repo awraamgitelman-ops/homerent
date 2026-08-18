@@ -93,10 +93,10 @@ export const PrivacyPage = () => {
               <p>З усіх питань щодо реалізації ваших прав, зміни чи видалення персональних даних ви можете звернутися до адміністрації:</p>
               <div className="doc-contacts-box">
                 <p><strong>ТОВ «НОВЕКС ІНВЕСТ» (АН «ФАВОРИТ ГРУП»)</strong></p>
-                <p>📍 Юридична адреса: 36014, Україна, м. Полтава, вул. Європейська, буд. 2, оф. 202</p>
-                <p>🏢 Офіс прийому клієнтів: 36020, Україна, м. Полтава, вул. Соборності, 22</p>
-                <p>📞 Телефон: <a href="tel:+380987204050">+380 (98) 720-40-50</a></p>
-                <p>✉️ Email: <a href="mailto:novexinvest.poltava@gmail.com">novexinvest.poltava@gmail.com</a></p>
+                <p><strong>Юридична адреса:</strong> 36014, Україна, м. Полтава, вул. Європейська, буд. 2, оф. 202</p>
+                <p><strong>Офіс прийому клієнтів:</strong> 36020, Україна, м. Полтава, вул. Соборності, 22</p>
+                <p><strong>Телефон:</strong> <a href="tel:+380987204050">+380 (98) 720-40-50</a></p>
+                <p><strong>Email:</strong> <a href="mailto:novexinvest.poltava@gmail.com">novexinvest.poltava@gmail.com</a></p>
               </div>
             </section>
           </div>
