@@ -168,7 +168,7 @@ export const Footer = ({ onOpenConsultModal }) => {
             </p>
 
             <div className="nx-legal-subtle">
-              <span>ТОВ «НОВЕКС ІНВЕСТ» • ЄДРПОУ 43980756</span>
+              <span>Фаворит Груп — комерційна назва ТОВ «НОВЕКС ІНВЕСТ», ЄДРПОУ 43980756. Агентство нерухомості в Полтаві.</span>
             </div>
 
             <div className="nx-meta-contacts">
@@ -195,11 +195,11 @@ export const Footer = ({ onOpenConsultModal }) => {
         {/* 3. Bottom Certification Bar */}
         <div className="nx-bottom-bar">
           <div className="nx-bb-left">
-            <span>© {new Date().getFullYear()} ТОВ «НОВЕКС ІНВЕСТ». Всі права захищено.</span>
+            <span>© {new Date().getFullYear()} Фаворит Груп — комерційна назва ТОВ «НОВЕКС ІНВЕСТ», ЄДРПОУ 43980756. Всі права захищено.</span>
           </div>
 
           <div className="nx-bb-right">
-            <span className="nx-office-subtle">Офіс приймає клієнтів: Полтава, вул. Соборності, 22</span>
+            <span className="nx-office-subtle">Офіс приймає клієнтів: м. Полтава, вул. Соборності, 22</span>
           </div>
         </div>
       </div>
