@@ -115,18 +115,7 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Код ЄДРПОУ:</span>
-                  <span className="av2-d-val font-mono">
-                    <strong style={{ color: '#16a34a', fontSize: '1.05rem' }}>43980756</strong>
-                    <button 
-                      onClick={handleCopyEdrpou} 
-                      className="av2-copy-btn" 
-                      title="Скопіювати код ЄДРПОУ"
-                      style={{ marginLeft: '10px' }}
-                    >
-                      {copiedEdrpou ? <Check size={12} className="text-green" /> : <Copy size={12} />}
-                      <span>{copiedEdrpou ? 'Скопійовано' : 'Копіювати'}</span>
-                    </button>
-                  </span>
+                  <span className="av2-d-val font-mono">43980756</span>
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Керівник (Директор):</span>
