@@ -726,9 +726,9 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
         }
 
         .ref-sb-schedule-note {
-          font-size: 0.8rem;
+          font-size: 0.82rem;
           font-weight: 600;
-          color: #16a34a;
+          color: #64748b;
           margin-bottom: 14px;
         }
 
