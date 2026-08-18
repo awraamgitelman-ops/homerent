@@ -124,8 +124,16 @@ export const ContactsPage = () => {
 
               {isSuccess ? (
                 <div className="cf-success-box animate-fade">
-                  <h4>Повідомлення надіслано!</h4>
-                  <p className="text-muted text-sm">Дякуємо за звернення. Менеджер агентства відповість вам протягом кількох хвилин.</p>
+                  <div className="cf-success-left">
+                    <div className="cf-success-icon-badge">
+                      <CheckCircle2 size={38} strokeWidth={2.4} />
+                    </div>
+                  </div>
+                  <div className="cf-success-right">
+                    <span className="cf-success-badge">⚡ Повідомлення надіслано</span>
+                    <h4 className="cf-success-title">Дякуємо за звернення!</h4>
+                    <p className="cf-success-text">Менеджер агентства «ФАВОРИТ ГРУП» зв'яжеться з вами протягом кількох хвилин.</p>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
@@ -353,8 +361,58 @@ export const ContactsPage = () => {
         }
 
         .cf-success-box {
-          text-align: center;
-          padding: 32px 20px;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          padding: 24px 20px;
+          text-align: left;
+          background: #f0fdf4;
+          border: 1.5px solid #bbf7d0;
+          border-radius: 16px;
+        }
+
+        .cf-success-icon-badge {
+          width: 64px;
+          height: 64px;
+          min-width: 64px;
+          border-radius: 18px;
+          background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+          border: 1.5px solid #86efac;
+          color: #059669;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 6px 16px rgba(5, 150, 105, 0.16);
+        }
+
+        .cf-success-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .cf-success-badge {
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: #166534;
+          background: #dcfce7;
+          padding: 2px 8px;
+          border-radius: 12px;
+          margin-bottom: 6px;
+        }
+
+        .cf-success-title {
+          font-size: 1.15rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 0 0 4px 0;
+        }
+
+        .cf-success-text {
+          font-size: 0.86rem;
+          color: #475569;
+          margin: 0;
+          line-height: 1.45;
         }
 
         @media (max-width: 900px) {

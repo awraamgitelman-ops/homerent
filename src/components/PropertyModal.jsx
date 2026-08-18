@@ -302,8 +302,14 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
                 {isSuccess ? (
                   <div className="booking-success-box animate-fade">
-                    <h4>Заявку успішно прийнято!</h4>
-                    <p>Наш експерт зателефонує вам протягом 10 хвилин для узгодження зручного часу перегляду.</p>
+                    <div className="bsb-icon-badge">
+                      <CheckCircle2 size={36} strokeWidth={2.4} />
+                    </div>
+                    <div className="bsb-content">
+                      <span className="bsb-badge">⚡ Заявку прийнято</span>
+                      <h4 className="bsb-title">Запис на перегляд оформлено!</h4>
+                      <p className="bsb-text">Наш експерт зателефонує вам протягом 10 хвилин для узгодження зручного часу.</p>
+                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="booking-form">
@@ -975,8 +981,59 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         }
 
         .booking-success-box {
-          text-align: center;
-          padding: 24px 12px;
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          padding: 20px 16px;
+          text-align: left;
+          background: #f0fdf4;
+          border: 1px solid #bbf7d0;
+          border-radius: 14px;
+        }
+
+        .bsb-icon-badge {
+          width: 52px;
+          height: 52px;
+          min-width: 52px;
+          border-radius: 16px;
+          background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+          border: 1.5px solid #86efac;
+          color: #059669;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15);
+        }
+
+        .bsb-content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .bsb-badge {
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: #166534;
+          background: #dcfce7;
+          padding: 2px 8px;
+          border-radius: 12px;
+          margin-bottom: 6px;
+        }
+
+        .bsb-title {
+          font-size: 1.02rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 0 0 4px 0;
+          line-height: 1.25;
+        }
+
+        .bsb-text {
+          font-size: 0.84rem;
+          color: #475569;
+          line-height: 1.45;
+          margin: 0;
         }
 
         @media (max-width: 768px) {

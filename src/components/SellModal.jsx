@@ -109,13 +109,23 @@ export const SellModal = ({ onClose }) => {
 
         {isSuccess ? (
           <div className="sell-success-box animate-fade">
-            <h3 className="text-xl font-bold mb-2">Дякуємо! Заявку прийнято</h3>
-            <p className="text-muted mb-4">
-              Експерт агентства «ФАВОРИТ ГРУП» зателефонує вам протягом 15 хвилин для узгодження деталей, безкоштовної оцінки вартості та організації співпраці.
-            </p>
-            <button onClick={onClose} className="btn btn-primary">
-              Зрозуміло
-            </button>
+            <div className="sell-success-left">
+              <div className="sell-success-icon-badge">
+                <CheckCircle2 size={44} strokeWidth={2.4} />
+              </div>
+            </div>
+            <div className="sell-success-right">
+              <div className="sell-success-badge">
+                <span>⚡ Заявку прийнято</span>
+              </div>
+              <h3 className="sell-success-title">Дякуємо! Заявку успішно зареєстровано</h3>
+              <p className="sell-success-text">
+                Експерт агентства «ФАВОРИТ ГРУП» зателефонує вам протягом 15 хвилин для узгодження деталей, безкоштовної оцінки вартості та організації співпраці.
+              </p>
+              <button onClick={onClose} className="btn btn-primary sell-success-btn">
+                Зрозуміло
+              </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="sell-form">
@@ -392,11 +402,86 @@ export const SellModal = ({ onClose }) => {
         }
 
         .sell-success-box {
-          text-align: center;
-          padding: 30px 10px;
+          display: grid;
+          grid-template-columns: 80px 1fr;
+          align-items: center;
+          gap: 28px;
+          padding: 24px 16px 20px 8px;
+          text-align: left;
+        }
+
+        .sell-success-left {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .sell-success-icon-badge {
+          width: 80px;
+          height: 80px;
+          min-width: 80px;
+          border-radius: 22px;
+          background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+          border: 1.5px solid #a7f3d0;
+          color: #059669;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.22);
+        }
+
+        .sell-success-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .sell-success-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #f0fdf4;
+          border: 1px solid #bbf7d0;
+          color: #166534;
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 0.76rem;
+          font-weight: 800;
+          margin-bottom: 8px;
+        }
+
+        .sell-success-title {
+          font-size: 1.35rem;
+          font-weight: 900;
+          color: #0f172a;
+          margin: 0 0 8px 0;
+          line-height: 1.25;
+          letter-spacing: -0.3px;
+        }
+
+        .sell-success-text {
+          font-size: 0.9rem;
+          color: #64748b;
+          line-height: 1.55;
+          margin: 0 0 20px 0;
+        }
+
+        .sell-success-btn {
+          padding: 10px 28px;
+          font-weight: 800;
+          border-radius: 12px;
         }
 
         @media (max-width: 640px) {
+          .sell-success-box {
+            grid-template-columns: 1fr;
+            text-align: center;
+            padding: 20px 8px;
+            gap: 16px;
+          }
+          .sell-success-right {
+            align-items: center;
+          }
           .form-grid-2 {
             grid-template-columns: 1fr;
             gap: 0;

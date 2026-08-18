@@ -151,16 +151,23 @@ export const SearchConsultModal = ({ onClose }) => {
 
         {isSuccess ? (
           <div className="sc-success-box animate-fade">
-            <div className="sc-success-icon">
-              <CheckCircle2 size={48} className="text-primary" />
+            <div className="sc-success-left">
+              <div className="sc-success-icon-badge">
+                <CheckCircle2 size={44} strokeWidth={2.4} />
+              </div>
             </div>
-            <h3 className="text-xl font-bold mb-2">Дякуємо! Заявку на підбір прийнято</h3>
-            <p className="text-muted mb-4">
-              Рієлтор АН «ФАВОРИТ ГРУП» зателефонує вам протягом 15 хвилин із готовою добіркою найкращих об'єктів у Полтаві під ваші критерії.
-            </p>
-            <button onClick={onClose} className="btn btn-primary">
-              Зрозуміло
-            </button>
+            <div className="sc-success-right">
+              <div className="sc-success-badge">
+                <span>⚡ Заявку прийнято</span>
+              </div>
+              <h3 className="sc-success-title">Дякуємо! Заявку на підбір прийнято</h3>
+              <p className="sc-success-text">
+                Рієлтор АН «ФАВОРИТ ГРУП» зателефонує вам протягом 15 хвилин із готовою добіркою найкращих об'єктів у Полтаві під ваші критерії.
+              </p>
+              <button onClick={onClose} className="btn btn-primary sc-success-btn">
+                Зрозуміло
+              </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="sc-form">
@@ -612,17 +619,87 @@ export const SearchConsultModal = ({ onClose }) => {
         }
 
         .sc-success-box {
-          text-align: center;
-          padding: 24px 10px;
+          display: grid;
+          grid-template-columns: 80px 1fr;
+          align-items: center;
+          gap: 28px;
+          padding: 24px 16px 20px 8px;
+          text-align: left;
         }
 
-        .sc-success-icon {
+        .sc-success-left {
           display: flex;
           justify-content: center;
-          margin-bottom: 12px;
+          align-items: center;
+        }
+
+        .sc-success-icon-badge {
+          width: 80px;
+          height: 80px;
+          min-width: 80px;
+          border-radius: 22px;
+          background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+          border: 1.5px solid #a7f3d0;
+          color: #059669;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.22);
+        }
+
+        .sc-success-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .sc-success-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #f0fdf4;
+          border: 1px solid #bbf7d0;
+          color: #166534;
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 0.76rem;
+          font-weight: 800;
+          margin-bottom: 8px;
+        }
+
+        .sc-success-title {
+          font-size: 1.35rem;
+          font-weight: 900;
+          color: #0f172a;
+          margin: 0 0 8px 0;
+          line-height: 1.25;
+          letter-spacing: -0.3px;
+        }
+
+        .sc-success-text {
+          font-size: 0.9rem;
+          color: #64748b;
+          line-height: 1.55;
+          margin: 0 0 20px 0;
+        }
+
+        .sc-success-btn {
+          padding: 10px 28px;
+          font-weight: 800;
+          border-radius: 12px;
         }
 
         @media (max-width: 640px) {
+          .sc-success-box {
+            grid-template-columns: 1fr;
+            text-align: center;
+            padding: 20px 8px;
+            gap: 16px;
+          }
+          .sc-success-right {
+            align-items: center;
+          }
+        }
           .sc-modal-window {
             padding: 20px 16px;
           }
