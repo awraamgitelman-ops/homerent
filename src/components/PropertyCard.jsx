@@ -58,67 +58,71 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
   return (
     <div className={`property-card ${isRented ? 'is-rented' : ''}`} onClick={() => onSelect(property)}>
       {/* Image Container with Slider & Badges */}
-      <div className="pc-image-wrapper">
-        <img 
-          src={property.images[activeImgIdx] || property.images[0]} 
-          alt={property.title}
-          className="pc-img"
-          loading="lazy"
-          referrerPolicy="no-referrer"
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            if (property.images && property.images.length > 0 && e.currentTarget.src !== property.images[0]) {
-              e.currentTarget.src = property.images[0];
-            }
-          }}
-        />
-
-        {/* Center Rented Stamp */}
-        {isRented && (
-          <div className="pc-rented-center-stamp">
-            <span>ЗДАНО</span>
+      <div className={`pc-image-wrapper ${isRented ? 'pc-rented-wrapper' : ''}`}>
+        {isRented ? (
+          <div className="pc-rented-canvas">
+            <svg className="pc-rented-diagonal-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <line x1="0" y1="100" x2="100" y2="0" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.2" />
+            </svg>
+            <div className="pc-rented-center-box">
+              <span className="pc-rented-gray-text">ЗДАНО</span>
+            </div>
+            <span className="pc-trans-tag tag-rented">Здано в оренду</span>
           </div>
-        )}
-
-        {/* Badges Overlay */}
-        <div className="pc-badges-row">
-          {isRented && (
-            <span className="pc-badge badge-rented">ЗДАНО</span>
-          )}
-          {property.badges?.filter(b => {
-            const lower = b.toLowerCase();
-            return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд') && lower !== 'здано';
-          }).map((badge, idx) => (
-            <span 
-              key={idx} 
-              className={`pc-badge ${badge.includes('Торг') ? 'badge-bargain' : ''}`}
-            >
-              {badge}
-            </span>
-          ))}
-        </div>
-
-        {/* Image Nav Arrows (if multiple images) */}
-        {property.images.length > 1 && (
+        ) : (
           <>
-            <button className="pc-img-nav prev" onClick={prevImage} aria-label="Попереднє фото">
-              <ChevronLeft size={16} />
-            </button>
-            <button className="pc-img-nav next" onClick={nextImage} aria-label="Наступне фото">
-              <ChevronRight size={16} />
-            </button>
-            <div className="pc-dots-indicator">
-              {property.images.map((_, i) => (
-                <span key={i} className={`pc-dot ${i === activeImgIdx ? 'active' : ''}`} />
+            <img 
+              src={property.images[activeImgIdx] || property.images[0]} 
+              alt={property.title}
+              className="pc-img"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                if (property.images && property.images.length > 0 && e.currentTarget.src !== property.images[0]) {
+                  e.currentTarget.src = property.images[0];
+                }
+              }}
+            />
+
+            {/* Badges Overlay */}
+            <div className="pc-badges-row">
+              {property.badges?.filter(b => {
+                const lower = b.toLowerCase();
+                return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд') && lower !== 'здано';
+              }).map((badge, idx) => (
+                <span 
+                  key={idx} 
+                  className={`pc-badge ${badge.includes('Торг') ? 'badge-bargain' : ''}`}
+                >
+                  {badge}
+                </span>
               ))}
             </div>
+
+            {/* Image Nav Arrows (if multiple images) */}
+            {property.images.length > 1 && (
+              <>
+                <button className="pc-img-nav prev" onClick={prevImage} aria-label="Попереднє фото">
+                  <ChevronLeft size={16} />
+                </button>
+                <button className="pc-img-nav next" onClick={nextImage} aria-label="Наступне фото">
+                  <ChevronRight size={16} />
+                </button>
+                <div className="pc-dots-indicator">
+                  {property.images.map((_, i) => (
+                    <span key={i} className={`pc-dot ${i === activeImgIdx ? 'active' : ''}`} />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* Transaction Tag */}
+            <span className="pc-trans-tag">
+              {property.transaction === 'buy' ? 'Продаж' : property.transaction === 'rent' ? 'Оренда' : 'Подобово'}
+            </span>
           </>
         )}
-
-        {/* Transaction Tag */}
-        <span className={`pc-trans-tag ${isRented ? 'tag-rented' : ''}`}>
-          {isRented ? 'Здано в оренду' : (property.transaction === 'buy' ? 'Продаж' : property.transaction === 'rent' ? 'Оренда' : 'Подобово')}
-        </span>
       </div>
 
       {/* Card Content */}
@@ -293,41 +297,59 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
 
         /* Rented / Dimmed Card Styles */
         .property-card.is-rented {
-          opacity: 0.76;
-          background: #f8fafc;
+          opacity: 0.9;
+          background: #ffffff;
           border-color: #cbd5e1;
         }
 
         .property-card.is-rented:hover {
-          opacity: 0.94;
+          opacity: 1;
+          border-color: #94a3b8;
         }
 
-        .property-card.is-rented .pc-image-wrapper::after {
-          content: '';
+        .pc-rented-canvas {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+
+        .pc-rented-diagonal-svg {
           position: absolute;
           inset: 0;
-          background: rgba(15, 23, 42, 0.48);
-          z-index: 1;
+          width: 100%;
+          height: 100%;
           pointer-events: none;
         }
 
-        .pc-rented-center-stamp {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 3;
-          background: rgba(220, 38, 38, 0.94);
-          border: 2px solid #ffffff;
-          color: #ffffff;
-          padding: 6px 18px;
-          border-radius: 8px;
+        .pc-rented-center-box {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .pc-rented-gray-text {
+          color: #f1f5f9;
+          font-size: 1.55rem;
           font-weight: 900;
-          font-size: 0.95rem;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.28em;
           text-transform: uppercase;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-          pointer-events: none;
+          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+          padding-left: 0.28em; /* optical balance */
+          user-select: none;
+        }
+
+        .pc-trans-tag.tag-rented {
+          background: rgba(30, 41, 59, 0.85);
+          backdrop-filter: blur(4px);
+          border: 1px solid rgba(148, 163, 184, 0.25);
+          color: #94a3b8;
         }
 
         /* Carousel Navigation */
