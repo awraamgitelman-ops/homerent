@@ -126,11 +126,10 @@ export const ContactsPage = () => {
                 <div className="cf-success-box animate-fade">
                   <div className="cf-success-left">
                     <div className="cf-success-icon-badge">
-                      <CheckCircle2 size={38} strokeWidth={2.4} />
+                      <CheckCircle2 size={34} strokeWidth={2.2} />
                     </div>
                   </div>
                   <div className="cf-success-right">
-                    <span className="cf-success-badge">⚡ Повідомлення надіслано</span>
                     <h4 className="cf-success-title">Дякуємо за звернення!</h4>
                     <p className="cf-success-text">Менеджер агентства «ФАВОРИТ ГРУП» зв'яжеться з вами протягом кількох хвилин.</p>
                   </div>
@@ -362,43 +361,39 @@ export const ContactsPage = () => {
 
         .cf-success-box {
           display: flex;
-          align-items: center;
-          gap: 20px;
-          padding: 24px 20px;
+          align-items: flex-start;
+          gap: 16px;
+          padding: 20px 16px;
           text-align: left;
-          background: #f0fdf4;
-          border: 1.5px solid #bbf7d0;
+          background: #f8fafc;
+          border: 1.5px solid #e2e8f0;
           border-radius: 16px;
         }
 
+        .cf-success-left {
+          flex-shrink: 0;
+          padding-top: 2px;
+        }
+
         .cf-success-icon-badge {
-          width: 64px;
-          height: 64px;
-          min-width: 64px;
-          border-radius: 18px;
-          background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-          border: 1.5px solid #86efac;
-          color: #059669;
+          width: 52px;
+          height: 52px;
+          min-width: 52px;
+          border-radius: 14px;
+          background: #f1f5f9;
+          border: 1.5px solid #cbd5e1;
+          color: #475569;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 6px 16px rgba(5, 150, 105, 0.16);
+          box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
         }
 
         .cf-success-right {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-        }
-
-        .cf-success-badge {
-          font-size: 0.72rem;
-          font-weight: 800;
-          color: #166534;
-          background: #dcfce7;
-          padding: 2px 8px;
-          border-radius: 12px;
-          margin-bottom: 6px;
+          flex: 1;
         }
 
         .cf-success-title {
@@ -409,8 +404,8 @@ export const ContactsPage = () => {
         }
 
         .cf-success-text {
-          font-size: 0.86rem;
-          color: #475569;
+          font-size: 0.88rem;
+          color: #64748b;
           margin: 0;
           line-height: 1.45;
         }

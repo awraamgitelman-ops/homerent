@@ -303,10 +303,9 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
                 {isSuccess ? (
                   <div className="booking-success-box animate-fade">
                     <div className="bsb-icon-badge">
-                      <CheckCircle2 size={36} strokeWidth={2.4} />
+                      <CheckCircle2 size={30} strokeWidth={2.2} />
                     </div>
                     <div className="bsb-content">
-                      <span className="bsb-badge">⚡ Заявку прийнято</span>
                       <h4 className="bsb-title">Запис на перегляд оформлено!</h4>
                       <p className="bsb-text">Наш експерт зателефонує вам протягом 10 хвилин для узгодження зручного часу.</p>
                     </div>
@@ -983,46 +982,39 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         .booking-success-box {
           display: flex;
           align-items: flex-start;
-          gap: 16px;
-          padding: 20px 16px;
+          gap: 14px;
+          padding: 16px 14px;
           text-align: left;
-          background: #f0fdf4;
-          border: 1px solid #bbf7d0;
+          background: #f8fafc;
+          border: 1.5px solid #e2e8f0;
           border-radius: 14px;
         }
 
         .bsb-icon-badge {
-          width: 52px;
-          height: 52px;
-          min-width: 52px;
-          border-radius: 16px;
-          background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-          border: 1.5px solid #86efac;
-          color: #059669;
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
+          border-radius: 12px;
+          background: #f1f5f9;
+          border: 1.5px solid #cbd5e1;
+          color: #475569;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15);
+          box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+          flex-shrink: 0;
+          margin-top: 1px;
         }
 
         .bsb-content {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-        }
-
-        .bsb-badge {
-          font-size: 0.72rem;
-          font-weight: 800;
-          color: #166534;
-          background: #dcfce7;
-          padding: 2px 8px;
-          border-radius: 12px;
-          margin-bottom: 6px;
+          flex: 1;
         }
 
         .bsb-title {
-          font-size: 1.02rem;
+          font-size: 1rem;
           font-weight: 800;
           color: #0f172a;
           margin: 0 0 4px 0;
@@ -1031,7 +1023,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
         .bsb-text {
           font-size: 0.84rem;
-          color: #475569;
+          color: #64748b;
           line-height: 1.45;
           margin: 0;
         }
