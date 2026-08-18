@@ -7,10 +7,6 @@ export const TrustSection = () => {
       <div className="container">
         <div className="trust-strip-wrapper">
           <div className="trust-strip-header">
-            <div className="tsh-badge">
-              <ShieldCheck size={18} />
-              <span>Стандарти безпеки</span>
-            </div>
             <h3 className="tsh-title">Гарантії захисту кожної угоди</h3>
           </div>
 
@@ -21,7 +17,7 @@ export const TrustSection = () => {
               </div>
               <div className="tsi-body">
                 <h4>Юридична відповідальність</h4>
-                <p>Офіційний договір із ТОВ «НОВЕКС ІНВЕСТ» (ЄДРПОУ 43980756). Повна правова перевірка об'єкта перед угодою.</p>
+                <p>Повна комплексна правова перевірка об'єкта та документів власника перед угодою.</p>
               </div>
             </div>
 
