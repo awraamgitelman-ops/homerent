@@ -27,6 +27,61 @@ app.use((req, res, next) => {
 });
 
 // ==========================================
+// ENCRYPTED MEDIA PROXY & URL SHIELD
+// ==========================================
+const _MEDIA_KEY = 'FavoritGroupPoltava2026MediaKey';
+
+function decryptMediaUrl(token) {
+  if (!token || typeof token !== 'string') return '';
+  const clean = token.replace(/^\/api\/media\//, '');
+  if (!clean.startsWith('FG_')) return clean;
+  
+  const b64 = clean.slice(3).replace(/-/g, '+').replace(/_/g, '/');
+  const pad = b64.length % 4 === 0 ? '' : '='.repeat(4 - (b64.length % 4));
+  const binary = Buffer.from(b64 + pad, 'base64').toString('binary');
+  
+  let url = '';
+  for (let i = 0; i < binary.length; i++) {
+    url += String.fromCharCode(binary.charCodeAt(i) ^ _MEDIA_KEY.charCodeAt(i % _MEDIA_KEY.length));
+  }
+  return url;
+}
+
+app.get('/api/media/:token', (req, res) => {
+  try {
+    const rawUrl = decryptMediaUrl(req.params.token);
+    if (!rawUrl || !rawUrl.startsWith('http')) {
+      return res.status(404).send('Not found');
+    }
+
+    const options = {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+      }
+    };
+
+    https.get(rawUrl, options, (upstream) => {
+      if (upstream.statusCode !== 200) {
+        return res.status(upstream.statusCode).send('Media unavailable');
+      }
+
+      res.setHeader('Content-Type', upstream.headers['content-type'] || 'image/jpeg');
+      res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+      res.setHeader('X-Content-Type-Options', 'nosniff');
+      res.setHeader('Content-Disposition', 'inline');
+      upstream.pipe(res);
+    }).on('error', (err) => {
+      console.error('[Media Proxy] Error:', err.message);
+      res.status(502).send('Upstream error');
+    });
+  } catch (err) {
+    console.error('[Media Proxy] Decryption error:', err.message);
+    res.status(400).send('Invalid token');
+  }
+});
+
+// ==========================================
 // ENCRYPTED TELEGRAM BOT SECRETS & ENGINE
 // ==========================================
 const _ENC_KEY = 'FavoritGroupPoltava2026SecureKey';
