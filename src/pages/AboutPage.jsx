@@ -115,8 +115,8 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                       title="Скопіювати код ЄДРПОУ"
                       style={{ marginLeft: '10px' }}
                     >
-                      {copied ? <Check size={12} className="text-green" /> : <Copy size={12} />}
-                      <span>{copied ? 'Скопійовано' : 'Копіювати'}</span>
+                      {copiedEdrpou ? <Check size={12} className="text-green" /> : <Copy size={12} />}
+                      <span>{copiedEdrpou ? 'Скопійовано' : 'Копіювати'}</span>
                     </button>
                   </span>
                 </div>
