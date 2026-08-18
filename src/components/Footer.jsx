@@ -143,7 +143,7 @@ export const Footer = ({ onOpenConsultModal }) => {
               </a>
 
               <a 
-                href="https://t.me/novexinvest" 
+                href="https://t.me/ah_favorit_group" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="nx-msg-icon-btn"

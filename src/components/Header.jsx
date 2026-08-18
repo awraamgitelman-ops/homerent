@@ -155,7 +155,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
               </a>
 
               <a
-                href="https://t.me/novexinvest"
+                href="https://t.me/ah_favorit_group"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ref-circle-msg ref-tg"
@@ -333,7 +333,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
                   </a>
 
                   <a
-                    href="https://t.me/novexinvest"
+                    href="https://t.me/ah_favorit_group"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ref-circle-msg ref-tg"
