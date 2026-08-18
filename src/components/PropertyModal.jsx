@@ -5,6 +5,7 @@ import {
   CheckCircle2, 
   Phone, 
   Calendar, 
+  Clock,
   Layers, 
   Maximize2, 
   Building2, 
@@ -23,11 +24,34 @@ import { sendTelegramLeadNotification } from '../utils/telegram';
 export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
   if (!property) return null;
 
+  const getTodayISO = () => {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const getTomorrowISO = () => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('+380');
-  const [preferredDate, setPreferredDate] = useState('');
+  
+  // Date & Time Picker States
+  const [selectedDate, setSelectedDate] = useState(getTodayISO());
+  const [datePreset, setDatePreset] = useState('today'); // 'today' | 'tomorrow' | 'custom'
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState('17:00 — 20:00 (Вечір)'); // '10:00 — 13:00' | '13:00 — 17:00' | '17:00 — 20:00' | 'custom'
+  const [customTime, setCustomTime] = useState('16:00');
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -89,6 +113,31 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
     setErrors({});
     setIsSubmitting(true);
 
+    const formatUkDate = (isoStr) => {
+      if (!isoStr) return 'Найближчим часом';
+      try {
+        const [y, m, d] = isoStr.split('-');
+        const dateObj = new Date(Number(y), Number(m) - 1, Number(d));
+        const weekdays = ['неділя', 'понеділок', 'вівторок', 'середа', 'четвер', 'п\'ятниця', 'субота'];
+        const months = ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'];
+        const dayName = weekdays[dateObj.getDay()];
+        const monthName = months[dateObj.getMonth()];
+        return `${Number(d)} ${monthName} (${dayName})`;
+      } catch (e) {
+        return isoStr;
+      }
+    };
+
+    const formattedDate = datePreset === 'today' 
+      ? `Сьогодні, ${formatUkDate(selectedDate)}`
+      : datePreset === 'tomorrow'
+      ? `Завтра, ${formatUkDate(selectedDate)}`
+      : formatUkDate(selectedDate);
+
+    const formattedTime = selectedTimeSlot === 'custom'
+      ? `${customTime} (точний час)`
+      : selectedTimeSlot;
+
     try {
       await sendTelegramLeadNotification({
         formType: 'viewing',
@@ -103,7 +152,8 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         area: property.area,
         floor: property.floor ? `${property.floor}/${property.totalFloors}` : undefined,
         budget: `${formatCurrency(property.priceUSD, 'USD')} (${formatCurrency(property.priceUAH, 'UAH')})`,
-        preferredDate: preferredDate || 'Якнайшвидше',
+        preferredDate: formattedDate,
+        preferredTime: formattedTime,
         sourceUrl: `https://favorit-group.com/property/${property.id}`
       });
 
@@ -341,15 +391,108 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
                       {errors.phone && <div className="form-error">{errors.phone}</div>}
                     </div>
 
+                    {/* Date selection: Calendar & Tumblers */}
                     <div className="form-group">
-                      <label className="form-label">Бажаний день / час</label>
-                      <input 
-                        type="text" 
-                        placeholder="Сьогодні після 17:00 / Завтра"
-                        value={preferredDate}
-                        onChange={(e) => setPreferredDate(e.target.value)}
-                        className="form-input"
-                      />
+                      <label className="form-label bf-label-with-icon">
+                        <Calendar size={14} className="text-primary" />
+                        <span>Бажаний день перегляду</span>
+                      </label>
+                      
+                      <div className="bf-tumbler-row">
+                        <button 
+                          type="button" 
+                          className={`bf-tumbler-pill ${datePreset === 'today' ? 'active' : ''}`}
+                          onClick={() => { setDatePreset('today'); setSelectedDate(getTodayISO()); }}
+                        >
+                          Сьогодні
+                        </button>
+                        <button 
+                          type="button" 
+                          className={`bf-tumbler-pill ${datePreset === 'tomorrow' ? 'active' : ''}`}
+                          onClick={() => { setDatePreset('tomorrow'); setSelectedDate(getTomorrowISO()); }}
+                        >
+                          Завтра
+                        </button>
+                        <button 
+                          type="button" 
+                          className={`bf-tumbler-pill ${datePreset === 'custom' ? 'active' : ''}`}
+                          onClick={() => setDatePreset('custom')}
+                        >
+                          Інша дата
+                        </button>
+                      </div>
+
+                      <div className="bf-calendar-picker-wrap">
+                        <input 
+                          type="date"
+                          min={getTodayISO()}
+                          value={selectedDate}
+                          onChange={(e) => {
+                            setSelectedDate(e.target.value);
+                            if (e.target.value === getTodayISO()) setDatePreset('today');
+                            else if (e.target.value === getTomorrowISO()) setDatePreset('tomorrow');
+                            else setDatePreset('custom');
+                          }}
+                          className="form-input bf-calendar-input"
+                          title="Виберіть дату в календарі"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Time selection: Time Tumblers */}
+                    <div className="form-group">
+                      <label className="form-label bf-label-with-icon">
+                        <Clock size={14} className="text-primary" />
+                        <span>Зручний час</span>
+                      </label>
+                      
+                      <div className="bf-time-tumbler-grid">
+                        <button 
+                          type="button" 
+                          className={`bf-time-slot-btn ${selectedTimeSlot === '10:00 — 13:00 (Ранок)' ? 'active' : ''}`}
+                          onClick={() => setSelectedTimeSlot('10:00 — 13:00 (Ранок)')}
+                        >
+                          <span className="bf-ts-hours">10:00 — 13:00</span>
+                          <span className="bf-ts-tag">Ранок</span>
+                        </button>
+
+                        <button 
+                          type="button" 
+                          className={`bf-time-slot-btn ${selectedTimeSlot === '13:00 — 17:00 (День)' ? 'active' : ''}`}
+                          onClick={() => setSelectedTimeSlot('13:00 — 17:00 (День)')}
+                        >
+                          <span className="bf-ts-hours">13:00 — 17:00</span>
+                          <span className="bf-ts-tag">День</span>
+                        </button>
+
+                        <button 
+                          type="button" 
+                          className={`bf-time-slot-btn ${selectedTimeSlot === '17:00 — 20:00 (Вечір)' ? 'active' : ''}`}
+                          onClick={() => setSelectedTimeSlot('17:00 — 20:00 (Вечір)')}
+                        >
+                          <span className="bf-ts-hours">17:00 — 20:00</span>
+                          <span className="bf-ts-tag">Вечір</span>
+                        </button>
+                      </div>
+
+                      {/* Custom exact time tumbler button & time input */}
+                      <div className="bf-custom-time-row">
+                        <button
+                          type="button"
+                          className={`bf-custom-time-toggle ${selectedTimeSlot === 'custom' ? 'active' : ''}`}
+                          onClick={() => setSelectedTimeSlot(selectedTimeSlot === 'custom' ? '17:00 — 20:00 (Вечір)' : 'custom')}
+                        >
+                          <span>Точний час:</span>
+                        </button>
+                        {selectedTimeSlot === 'custom' && (
+                          <input 
+                            type="time" 
+                            value={customTime}
+                            onChange={(e) => setCustomTime(e.target.value)}
+                            className="form-input bf-time-input animate-fade"
+                          />
+                        )}
+                      </div>
                     </div>
 
                     <button 
@@ -961,6 +1104,154 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           font-size: 0.8rem;
           color: #64748b;
           margin-bottom: 14px;
+        }
+
+        .bf-label-with-icon {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 6px;
+          font-weight: 700;
+        }
+
+        .bf-tumbler-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+          margin-bottom: 8px;
+        }
+
+        .bf-tumbler-pill {
+          padding: 7px 4px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          border-radius: 8px;
+          border: 1.5px solid #e2e8f0;
+          background: #ffffff;
+          color: #475569;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          text-align: center;
+        }
+
+        .bf-tumbler-pill:hover {
+          border-color: #cbd5e1;
+          background: #f8fafc;
+        }
+
+        .bf-tumbler-pill.active {
+          border-color: #1e3a8a;
+          background: #1e3a8a;
+          color: #ffffff;
+          box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+        }
+
+        .bf-calendar-picker-wrap {
+          position: relative;
+        }
+
+        .bf-calendar-input {
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 0.88rem;
+          color: #0f172a;
+          padding: 8px 12px;
+          border-radius: 8px;
+          background: #ffffff;
+          border: 1.5px solid #e2e8f0;
+          width: 100%;
+        }
+
+        .bf-calendar-input:focus {
+          border-color: #1e3a8a;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .bf-time-tumbler-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+          margin-bottom: 6px;
+        }
+
+        .bf-time-slot-btn {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 7px 2px;
+          border-radius: 8px;
+          border: 1.5px solid #e2e8f0;
+          background: #ffffff;
+          color: #1e293b;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .bf-time-slot-btn:hover {
+          border-color: #cbd5e1;
+          background: #f8fafc;
+        }
+
+        .bf-time-slot-btn.active {
+          border-color: #1e3a8a;
+          background: #1e3a8a;
+          color: #ffffff;
+          box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+        }
+
+        .bf-ts-hours {
+          font-size: 0.74rem;
+          font-weight: 800;
+          line-height: 1.2;
+        }
+
+        .bf-ts-tag {
+          font-size: 0.68rem;
+          opacity: 0.8;
+          font-weight: 600;
+          margin-top: 1px;
+        }
+
+        .bf-time-slot-btn.active .bf-ts-tag {
+          color: #93c5fd;
+          opacity: 1;
+        }
+
+        .bf-custom-time-row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 6px;
+        }
+
+        .bf-custom-time-toggle {
+          padding: 5px 10px;
+          font-size: 0.74rem;
+          font-weight: 700;
+          border-radius: 6px;
+          border: 1.5px dashed #cbd5e1;
+          background: transparent;
+          color: #64748b;
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+
+        .bf-custom-time-toggle.active {
+          border-style: solid;
+          border-color: #1e3a8a;
+          color: #1e3a8a;
+          background: #eff6ff;
+        }
+
+        .bf-time-input {
+          width: 120px;
+          padding: 5px 8px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          border-radius: 6px;
+          border: 1.5px solid #e2e8f0;
         }
 
         .bf-guarantee {
