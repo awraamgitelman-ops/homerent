@@ -21,6 +21,16 @@ export const SearchConsultModal = ({ onClose }) => {
   const [district, setDistrict] = useState('all');
   const [rooms, setRooms] = useState('all');
   const [budget, setBudget] = useState('');
+  
+  // Rental specific living questions
+  const [residents, setResidents] = useState('1-2');
+  const [children, setChildren] = useState('no');
+  const [pets, setPets] = useState('no');
+
+  // Purchase specific questions
+  const [buyGoal, setBuyGoal] = useState('own');
+  const [repairPref, setRepairPref] = useState('ready');
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('+380');
   const [comment, setComment] = useState('');
@@ -68,6 +78,36 @@ export const SearchConsultModal = ({ onClose }) => {
       ? (dealType === 'buy' ? `$ ${budget}` : `${budget} грн/міс`) 
       : 'Будь-який бюджет';
 
+    const residentsLabel = residents === '1' ? '1 людина'
+      : residents === '1-2' ? '1-2 людини (пара)'
+      : residents === 'family' ? 'Сім\'я (3-4 людини)'
+      : '4+ людей / компанія';
+
+    const childrenLabel = children === 'no' ? 'Без дітей'
+      : children === 'young' ? 'З маленькими дітьми (до 6 років)'
+      : 'З дітьми шкільного віку';
+
+    const petsLabel = pets === 'no' ? 'Без тварин'
+      : pets === 'cat' ? 'З котиком'
+      : pets === 'small_dog' ? 'З песиком (маленька порода)'
+      : pets === 'big_dog' ? 'З собакою (середня/велика)'
+      : 'Інші домашні улюбленці';
+
+    const buyGoalLabel = buyGoal === 'own' ? 'Для власного проживання'
+      : buyGoal === 'invest' ? 'Під інвестицію / оренду'
+      : 'Для батьків / дітей';
+
+    const repairLabel = repairPref === 'ready' ? 'З готовим ремонтом'
+      : repairPref === 'rough' ? 'Під чистову / чернова'
+      : 'Будь-який стан';
+
+    let extraDetails = '';
+    if (dealType === 'rent' && (propCategory === 'apartment' || propCategory === 'house')) {
+      extraDetails = `👥 Проживатиме: ${residentsLabel} | 👶 Діти: ${childrenLabel} | 🐾 Тварини: ${petsLabel}`;
+    } else if (dealType === 'buy') {
+      extraDetails = `🎯 Мета: ${buyGoalLabel} | 🛠️ Ремонт: ${repairLabel}`;
+    }
+
     try {
       await sendTelegramLeadNotification({
         name,
@@ -76,7 +116,7 @@ export const SearchConsultModal = ({ onClose }) => {
         propertyTitle: `Клієнт шукає: ${categoryTitle}, ${rooms === 'all' ? 'Будь-яка к-сть кімнат' : rooms + ' кімн.'}`,
         district: districtName,
         budget: budgetFormatted,
-        comment: comment || 'Без додаткових побажань'
+        comment: `${extraDetails ? extraDetails + '\n' : ''}${comment ? 'Коментар: ' + comment : 'Без додаткових коментарів'}`
       });
 
       setIsSuccess(true);
@@ -97,6 +137,9 @@ export const SearchConsultModal = ({ onClose }) => {
     { id: 'house', label: 'Будинок / Котедж' },
     { id: 'commercial', label: 'Комерція' }
   ];
+
+  const isResidentialRent = dealType === 'rent' && (propCategory === 'apartment' || propCategory === 'house');
+  const isResidentialBuy = dealType === 'buy' && (propCategory === 'apartment' || propCategory === 'house');
 
   return (
     <div className="modal-backdrop animate-fade" onClick={onClose}>
@@ -237,6 +280,130 @@ export const SearchConsultModal = ({ onClose }) => {
               />
             </div>
 
+            {/* Logical Rental Questions (Living criteria) */}
+            {isResidentialRent && (
+              <div className="sc-rent-special-box">
+                <div className="sc-box-header">
+                  <span>Склад проживаючих (важливо для власників житла)</span>
+                </div>
+
+                {/* Question 1: Residents count */}
+                <div className="form-group mb-2">
+                  <label className="form-sublabel">Скільки людей проживатиме?</label>
+                  <div className="sc-option-row">
+                    {[
+                      { id: '1', label: '1 людина' },
+                      { id: '1-2', label: '2 людей (пара)' },
+                      { id: 'family', label: 'Сім\'я (3-4)' },
+                      { id: '4+', label: '4+ осіб' }
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        className={`sc-opt-btn ${residents === opt.id ? 'active' : ''}`}
+                        onClick={() => setResidents(opt.id)}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Question 2: Children */}
+                <div className="form-group mb-2">
+                  <label className="form-sublabel">Чи є діти?</label>
+                  <div className="sc-option-row">
+                    {[
+                      { id: 'no', label: 'Без дітей' },
+                      { id: 'young', label: 'З дітьми (до 6 років)' },
+                      { id: 'school', label: 'З дітьми (школярі)' }
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        className={`sc-opt-btn ${children === opt.id ? 'active' : ''}`}
+                        onClick={() => setChildren(opt.id)}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Question 3: Pets */}
+                <div className="form-group mb-0">
+                  <label className="form-sublabel">Чи є домашні улюбленці (тварини)?</label>
+                  <div className="sc-option-row">
+                    {[
+                      { id: 'no', label: 'Без тварин' },
+                      { id: 'cat', label: 'З котиком' },
+                      { id: 'small_dog', label: 'З песиком (маленький)' },
+                      { id: 'big_dog', label: 'З собакою (середня/велика)' },
+                      { id: 'other', label: 'Інші тварини' }
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        className={`sc-opt-btn ${pets === opt.id ? 'active' : ''}`}
+                        onClick={() => setPets(opt.id)}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Logical Buy Questions */}
+            {isResidentialBuy && (
+              <div className="sc-rent-special-box">
+                <div className="sc-box-header">
+                  <span>Вимоги до покупки</span>
+                </div>
+
+                <div className="form-group mb-2">
+                  <label className="form-sublabel">Мета купівлі</label>
+                  <div className="sc-option-row">
+                    {[
+                      { id: 'own', label: 'Для власного проживання' },
+                      { id: 'invest', label: 'Під оренду / інвестицію' },
+                      { id: 'parents', label: 'Для батьків / дітей' }
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        className={`sc-opt-btn ${buyGoal === opt.id ? 'active' : ''}`}
+                        onClick={() => setBuyGoal(opt.id)}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="form-group mb-0">
+                  <label className="form-sublabel">Стан ремонту</label>
+                  <div className="sc-option-row">
+                    {[
+                      { id: 'ready', label: 'З готовим ремонтом' },
+                      { id: 'rough', label: 'Під чистову / чернова' },
+                      { id: 'any', label: 'Будь-який стан' }
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        className={`sc-opt-btn ${repairPref === opt.id ? 'active' : ''}`}
+                        onClick={() => setRepairPref(opt.id)}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Personal Contacts */}
             <div className="form-grid-2">
               <div className="form-group">
@@ -265,7 +432,7 @@ export const SearchConsultModal = ({ onClose }) => {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Додаткові побажання (поверх, ремонт, опалення тощо)</label>
+              <label className="form-label">Додаткові побажання (поверх, опалення, меблі тощо)</label>
               <textarea 
                 rows="2"
                 placeholder="Наприклад: середній поверх, індивідуальне опалення, поруч парк або школа..."
@@ -397,6 +564,67 @@ export const SearchConsultModal = ({ onClose }) => {
           background: var(--c-primary);
           color: #ffffff;
           border-color: var(--c-primary);
+        }
+
+        /* Rent/Buy Special Criteria Box */
+        .sc-rent-special-box {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 14px 16px;
+          margin-bottom: 16px;
+        }
+
+        .sc-box-header {
+          font-size: 0.85rem;
+          font-weight: 800;
+          color: #1e293b;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .form-sublabel {
+          display: block;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #64748b;
+          margin-bottom: 5px;
+        }
+
+        .sc-option-row {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+
+        .sc-opt-btn {
+          padding: 6px 12px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: #475569;
+          background: #ffffff;
+          border: 1px solid var(--c-border);
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+
+        .sc-opt-btn:hover {
+          background: #f1f5f9;
+          border-color: #cbd5e1;
+        }
+
+        .sc-opt-btn.active {
+          background: var(--c-primary);
+          color: #ffffff;
+          border-color: var(--c-primary);
+          box-shadow: 0 1px 3px rgba(30, 58, 138, 0.2);
+        }
+
+        .form-textarea {
+          resize: none !important;
         }
 
         .sc-submit-btn {

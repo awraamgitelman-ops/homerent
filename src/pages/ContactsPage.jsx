@@ -347,6 +347,10 @@ export const ContactsPage = () => {
           margin-bottom: 6px;
         }
 
+        .cf-form-card textarea, .form-textarea {
+          resize: none !important;
+        }
+
         .cf-success-box {
           text-align: center;
           padding: 32px 20px;

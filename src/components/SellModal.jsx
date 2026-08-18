@@ -388,6 +388,10 @@ export const SellModal = ({ onClose }) => {
           gap: 12px;
         }
 
+        .form-textarea, textarea {
+          resize: none !important;
+        }
+
         .sell-guarantee-note {
           display: flex;
           align-items: center;
