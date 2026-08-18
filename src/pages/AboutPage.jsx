@@ -147,7 +147,7 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                     className="btn btn-primary btn-block av2-cta-btn"
                   >
                     <PhoneCall size={16} />
-                    <span>Зв'язатися</span>
+                    <span>Замовити консультацію</span>
                   </button>
                 </div>
               </div>
