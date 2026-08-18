@@ -1244,7 +1244,69 @@ export const PROPERTIES_DATA = [
    "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
   }
  },
- {
+  {
+  "id": "dom-34645958",
+  "status": "rented",
+  "isRented": true,
+  "title": "Оренда офісного приміщення на вул. Соборності, приміщень -, поверх - 2 • ID 34645958",
+  "type": "commercial",
+  "transaction": "rent",
+  "priceUSD": 379,
+  "priceUAH": 17000,
+  "pricePerM2": 7,
+  "district": "center",
+  "districtName": "Центр",
+  "address": "м. Полтава, Полтаві, в районі Центр, вулиця Соборності ",
+  "lat": 49.587929,
+  "lng": 34.555127,
+  "rooms": 2,
+  "area": 55.0,
+  "livingArea": 33.0,
+  "kitchenArea": 11.0,
+  "floor": 3,
+  "totalFloors": 16,
+  "yearBuilt": 2019,
+  "buildingType": "Утеплена цегла / Моноліт",
+  "heating": "Індивідуальне газове",
+  "condition": "Житловий стан",
+  "badges": [
+   "ЗДАНО"
+  ],
+  "isExclusive": true,
+  "isVerified": true,
+  "description": "Пропонується Оренда офісного приміщення на вул. Соборності, приміщень -, поверх - 2 • ID 34645958. Локація у затишному районі Центр. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
+  "images": [
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYT1AFBEpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYT1AFB0paYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYT1AFBUpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYT1AFBkpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlYGBUpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlYGA0paYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlYGB0paYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlkCBEpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlYLAkpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlYLCEpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlkCAEpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlkDBEpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlkAA0paYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlkAAUpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlkACUpaYw8UDg",
+   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QbIRscGwk1QhwbDBMSUVhXWCQcBUQRJAkNJxcXQgYaESkGHVgDPw0DBg8ZEkZZH1kmER0IAzkWEicYF0IHBR0zAQ4qL2NbXEZYRlkBBUpaYw8UDg"
+  ],
+  "features": [
+   "Лічильники",
+   "Wi-Fi інтернет",
+   "Броньовані двері",
+   "Паркінг",
+   "З меблями"
+  ],
+  "agent": {
+   "name": "Омельяненко Владислав",
+   "phone": "+380986241429",
+   "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
+  }
+ },
+{
   "id": "dom-34640993",
   "title": "Оренда офісного приміщення на вул. Небесної Сотні 4А, приміщень -, поверх - 1 • ID 34640993",
   "type": "commercial",
