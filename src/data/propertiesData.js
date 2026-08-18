@@ -1244,6 +1244,8 @@ export const PROPERTIES_DATA = [
  },
  {
   "id": "dom-34645958",
+   "status": "rented",
+   "isRented": true,
   "title": "Оренда офісного приміщення на вул. Соборності, приміщень -, поверх - 2 • ID 34645958",
   "type": "commercial",
   "transaction": "rent",
@@ -1266,7 +1268,7 @@ export const PROPERTIES_DATA = [
   "heating": "Індивідуальне газове",
   "condition": "Житловий стан",
   "badges": [
-   "Оренда"
+   "ЗДАНО"
   ],
   "isExclusive": true,
   "isVerified": true,

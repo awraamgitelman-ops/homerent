@@ -166,15 +166,20 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
     }
   };
 
-  return (
+    const isRented = property.isRented || property.status === 'rented' || property.badges?.some(b => b.toUpperCase() === 'ЗДАНО');
+
+    return (
     <div className="modal-backdrop animate-fade" onClick={onClose}>
       <div className="property-modal-window animate-slide" onClick={(e) => e.stopPropagation()}>
         {/* Top Header Bar: Badges on Left, Actions on Right */}
         <div className="pm-top-bar">
           <div className="pm-top-badges">
+            {isRented && (
+              <span className="badge badge-rented">ЗДАНО</span>
+            )}
             {property.badges?.filter(b => {
               const lower = b.toLowerCase();
-              return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд');
+              return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд') && lower !== 'здано';
             }).map((b, i) => (
               <span key={i} className="badge badge-green">{b}</span>
             ))}
@@ -217,8 +222,16 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
             </div>
           </div>
 
+          {/* Rented Notice Banner if property is already rented */}
+          {isRented && (
+            <div className="pm-rented-notice-banner animate-fade">
+              <span className="pm-rnb-tag">ЗДАНО</span>
+              <span className="pm-rnb-text">Цей об'єкт уже успішно здано в оренду. Ви можете переглянути характеристики або залишити заявку на підбір схожих варіантів.</span>
+            </div>
+          )}
+
           {/* Photo Gallery Grid */}
-          <div className="pm-gallery-section">
+          <div className={`pm-gallery-section ${isRented ? 'is-rented' : ''}`}>
             <div 
               className="pm-main-photo-box" 
               onClick={() => setIsLightboxOpen(true)}
@@ -236,6 +249,11 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
                   }
                 }}
               />
+              {isRented && (
+                <div className="pm-rented-photo-stamp">
+                  <span>ЗДАНО В ОРЕНДУ</span>
+                </div>
+              )}
               <div className="pm-photo-zoom-hint">
                 <Maximize2 size={15} />
                 <span>На весь екран</span>
@@ -733,16 +751,69 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           white-space: nowrap;
         }
 
-        .pm-price-m2 {
-          font-size: 0.82rem;
-          color: #94a3b8;
-          margin-top: 2px;
-          white-space: nowrap;
+        .badge.badge-rented {
+          background: #dc2626;
+          color: #ffffff;
+          font-weight: 900;
+          letter-spacing: 0.05em;
+          padding: 4px 10px;
+          border-radius: 6px;
+        }
+
+        .pm-rented-notice-banner {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background: #fef2f2;
+          border: 1.5px solid #fca5a5;
+          padding: 12px 16px;
+          border-radius: 10px;
+          margin-bottom: 20px;
+        }
+
+        .pm-rnb-tag {
+          background: #dc2626;
+          color: #ffffff;
+          font-size: 0.76rem;
+          font-weight: 900;
+          padding: 3px 8px;
+          border-radius: 6px;
+          letter-spacing: 0.06em;
+          flex-shrink: 0;
+        }
+
+        .pm-rnb-text {
+          font-size: 0.88rem;
+          color: #991b1b;
+          font-weight: 600;
+          line-height: 1.35;
         }
 
         /* Gallery */
         .pm-gallery-section {
           margin-bottom: 24px;
+        }
+
+        .pm-gallery-section.is-rented .pm-main-img {
+          filter: brightness(0.85);
+        }
+
+        .pm-rented-photo-stamp {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          z-index: 5;
+          background: rgba(220, 38, 38, 0.94);
+          border: 2px solid #ffffff;
+          color: #ffffff;
+          padding: 6px 16px;
+          border-radius: 8px;
+          font-weight: 900;
+          font-size: 0.9rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+          pointer-events: none;
         }
 
         .pm-main-photo-box {

@@ -53,8 +53,10 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
     ? formatCurrency(property.priceUSD, 'USD') 
     : formatCurrency(property.priceUAH, 'UAH');
 
+  const isRented = property.isRented || property.status === 'rented' || property.badges?.some(b => b.toUpperCase() === 'ЗДАНО');
+
   return (
-    <div className="property-card" onClick={() => onSelect(property)}>
+    <div className={`property-card ${isRented ? 'is-rented' : ''}`} onClick={() => onSelect(property)}>
       {/* Image Container with Slider & Badges */}
       <div className="pc-image-wrapper">
         <img 
@@ -71,11 +73,21 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           }}
         />
 
+        {/* Center Rented Stamp */}
+        {isRented && (
+          <div className="pc-rented-center-stamp">
+            <span>ЗДАНО</span>
+          </div>
+        )}
+
         {/* Badges Overlay */}
         <div className="pc-badges-row">
+          {isRented && (
+            <span className="pc-badge badge-rented">ЗДАНО</span>
+          )}
           {property.badges?.filter(b => {
             const lower = b.toLowerCase();
-            return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд');
+            return !lower.includes('перевір') && !lower.includes('єоселя') && !lower.includes('новобуд') && lower !== 'здано';
           }).map((badge, idx) => (
             <span 
               key={idx} 
@@ -104,8 +116,8 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
         )}
 
         {/* Transaction Tag */}
-        <span className="pc-trans-tag">
-          {property.transaction === 'buy' ? 'Продаж' : property.transaction === 'rent' ? 'Оренда' : 'Подобово'}
+        <span className={`pc-trans-tag ${isRented ? 'tag-rented' : ''}`}>
+          {isRented ? 'Здано в оренду' : (property.transaction === 'buy' ? 'Продаж' : property.transaction === 'rent' ? 'Оренда' : 'Подобово')}
         </span>
       </div>
 
@@ -255,6 +267,13 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           background: #f59e0b;
         }
 
+        .pc-badge.badge-rented {
+          background: #dc2626;
+          color: #ffffff;
+          font-weight: 900;
+          letter-spacing: 0.05em;
+        }
+
         .pc-trans-tag {
           position: absolute;
           bottom: 10px;
@@ -266,6 +285,49 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
           padding: 4px 10px;
           border-radius: 6px;
           z-index: 2;
+        }
+
+        .pc-trans-tag.tag-rented {
+          background: #475569;
+        }
+
+        /* Rented / Dimmed Card Styles */
+        .property-card.is-rented {
+          opacity: 0.76;
+          background: #f8fafc;
+          border-color: #cbd5e1;
+        }
+
+        .property-card.is-rented:hover {
+          opacity: 0.94;
+        }
+
+        .property-card.is-rented .pc-image-wrapper::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.48);
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .pc-rented-center-stamp {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+          background: rgba(220, 38, 38, 0.94);
+          border: 2px solid #ffffff;
+          color: #ffffff;
+          padding: 6px 18px;
+          border-radius: 8px;
+          font-weight: 900;
+          font-size: 0.95rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+          pointer-events: none;
         }
 
         /* Carousel Navigation */
