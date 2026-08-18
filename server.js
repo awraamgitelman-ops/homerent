@@ -4,6 +4,7 @@ import https from 'https';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import jpeg from 'jpeg-js';
+import { renderSeoPage, generateSitemapXml, generateRobotsTxt } from './seoEngine.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -648,11 +649,18 @@ app.get('/api/telegram-status', (req, res) => {
   });
 });
 
-// 3. Test Message Endpoint
-app.post('/api/telegram-test', async (req, res) => {
-  const testMsg = `🔔 <b>ТЕСТОВЕ СПОВІЩЕННЯ ВІД БОТА АН «ФАВОРИТ ГРУП»</b>\n\nСервер та бот успішно працюють на Railway.\nЧас: ${new Date().toLocaleTimeString('uk-UA')}`;
-  const result = await sendTelegramMessage(testMsg);
-  res.json(result);
+// 3. Dynamic Sitemap XML Endpoint (1,198+ properties + all static pages)
+app.get('/sitemap.xml', (req, res) => {
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.send(generateSitemapXml());
+});
+
+// 4. Dynamic Robots.txt Endpoint
+app.get('/robots.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.send(generateRobotsTxt());
 });
 
 // Serve static compiled assets
@@ -663,13 +671,33 @@ app.use(express.static(path.join(__dirname, 'dist'), {
   }
 }));
 
-// SPA Catch-all routing (Express 5 compatible)
+// Template HTML Cache
+let cachedIndexHtml = '';
+function getTemplateHtml() {
+  const indexPath = path.join(__dirname, 'dist', 'index.html');
+  if (!cachedIndexHtml && fs.existsSync(indexPath)) {
+    cachedIndexHtml = fs.readFileSync(indexPath, 'utf8');
+  }
+  return cachedIndexHtml || '<!doctype html><html><head><title>ФАВОРИТ ГРУП</title></head><body><div id="root"></div></body></html>';
+}
+
+// SPA Catch-all routing with Dynamic SEO Pre-Rendering
 app.use((req, res) => {
   res.setHeader('Server', 'nginx');
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+
+  try {
+    const rawTemplate = getTemplateHtml();
+    const seoHtml = renderSeoPage(rawTemplate, req.originalUrl || req.url);
+    res.send(seoHtml);
+  } catch (err) {
+    console.error('[SEO Render Error]:', err.message);
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  }
 });
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Corporate portal server listening on port ${PORT}`);
   console.log(`Telegram Bot engine initialized with encrypted token.`);
+  console.log(`Dynamic SEO Engine initialized with Schema.org and Sitemap.xml.`);
 });
