@@ -59,12 +59,12 @@ export const LegalPage = () => {
 
               <div className="req-field-item">
                 <div className="req-label">ЮРИДИЧНА АДРЕСА:</div>
-                <div className="req-value">Україна, 36020, Полтавська обл., м. Полтава, вул. Соборності, буд. 22</div>
+                <div className="req-value">36014, Україна, Полтавська обл., м. Полтава, вул. Європейська, буд. 2, офіс 202</div>
               </div>
 
               <div className="req-field-item">
-                <div className="req-label">ФАКТИЧНА АДРЕСА ОФІСУ:</div>
-                <div className="req-value">Україна, 36020, м. Полтава, вул. Соборності, 22</div>
+                <div className="req-label">ФАКТИЧНА АДРЕСА ОФІСУ (ПРИЙОМ КЛІЄНТІВ):</div>
+                <div className="req-value">36020, Україна, м. Полтава, вул. Соборності, 22</div>
               </div>
 
               <div className="req-field-item">
