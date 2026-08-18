@@ -58,66 +58,6 @@ export const PROPERTIES_DATA = [
   }
  },
  {
-  "id": "dom-34645953",
-  "title": "Довготривала оренда 4к квартири на вул. Соборності • ID 34645953",
-  "type": "apartment",
-  "transaction": "rent",
-  "priceUSD": 334,
-  "priceUAH": 15000,
-  "pricePerM2": 6,
-  "district": "center",
-  "districtName": "Центр",
-  "address": "м. Полтава, Полтаві в довгострокову оренду, ціна: 15 000 грн ID34645953",
-  "lat": 49.587886,
-  "lng": 34.555302,
-  "rooms": 4,
-  "area": 55.0,
-  "livingArea": 33.0,
-  "kitchenArea": 11.0,
-  "floor": 6,
-  "totalFloors": 16,
-  "yearBuilt": 2021,
-  "buildingType": "Утеплена цегла / Моноліт",
-  "heating": "Індивідуальне газове",
-  "condition": "Житловий стан",
-  "badges": [
-   "Оренда"
-  ],
-  "isExclusive": false,
-  "isVerified": true,
-  "description": "Пропонується Довготривала оренда 4к квартири на вул. Соборності • ID 34645953. Локація у затишному районі Центр. Повний юридичний супровід та перевірка документів від АН «ФАВОРИТ ГРУП».",
-  "images": [
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1LUUJyQhcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1LUUJ_QxcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1LUUJyQxcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1LUUJzSxcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUxzShcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUx_QRcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUF-RxcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUF-ShcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUF0QBcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUF2RBcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUU13QBcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUEV1QhcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUEVyRxcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUN3RBcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUNwQxcZXjofCw",
-   "/api/media/FG_LhUCHwFTW2gRCxteIgYNBxUXFVtTHFUiCEsZCSQRFjUPExhdDRsqXR8dHyQAQxAOGgZdQ0BZLg0KCBgqSBg0BBgLE0QfMRMdARkiDkEEDhoVU0ZTGzkWAQcVOUgKKQMZHRwGBzMbQhobJBYNFhMFClNJUxs4CQ0dEio6JnVVRl1KUUNxRxcZXjofCw"
-  ],
-  "features": [
-   "Лічильники",
-   "Wi-Fi інтернет",
-   "Броньовані двері",
-   "Паркінг",
-   "З меблями"
-  ],
-  "agent": {
-   "name": "Омельяненко Владислав",
-   "phone": "+380986241429",
-   "role": "Керівник відділу нерухомості АН «ФАВОРИТ ГРУП»"
-  }
- },
- {
   "id": "dom-34616897",
   "title": "Довготривала оренда 2к квартири на вул. Володимира Козака • ID 34616897",
   "type": "apartment",
