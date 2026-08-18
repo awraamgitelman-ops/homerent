@@ -1,94 +1,164 @@
 import React from 'react';
-import { ShieldCheck, Award, Users, Clock, CheckCircle2, Lock } from 'lucide-react';
+import { ShieldCheck, Lock, CheckCircle2 } from 'lucide-react';
 
 export const TrustSection = () => {
   return (
-    <section className="trust-section">
+    <section className="trust-strip-section">
       <div className="container">
-        {/* Core Pillars */}
-        <div className="pillars-grid">
-          <div className="pillar-item">
-            <div className="pillar-icon">
-              <ShieldCheck size={28} />
+        <div className="trust-strip-wrapper">
+          <div className="trust-strip-header">
+            <div className="tsh-badge">
+              <ShieldCheck size={18} />
+              <span>Стандарти безпеки</span>
             </div>
-            <h4>Офіційна реєстрація та юридична відповідальність</h4>
-            <p>Працюємо як зареєстроване товариство «ФАВОРИТ ГРУП» (ТОВ «НОВЕКС ІНВЕСТ», код ЄДРПОУ 43980756). Всі відносини з клієнтами закріплюються офіційним договором.</p>
+            <h3 className="tsh-title">Гарантії захисту кожної угоди</h3>
           </div>
 
-          <div className="pillar-item">
-            <div className="pillar-icon">
-              <Lock size={28} />
+          <div className="trust-strip-items">
+            <div className="trust-strip-item">
+              <div className="tsi-icon">
+                <ShieldCheck size={22} />
+              </div>
+              <div className="tsi-body">
+                <h4>Юридична відповідальність</h4>
+                <p>Офіційний договір із ТОВ «НОВЕКС ІНВЕСТ» (ЄДРПОУ 43980756). Повна правова перевірка об'єкта перед угодою.</p>
+              </div>
             </div>
-            <h4>Безпека розрахунків та завдатків</h4>
-            <p>Фіксація домовленостей через нотаріально посвідчені попередні договори. Захист покупця від втрати завдатку та захист продавця від зриву термінів.</p>
-          </div>
 
-          <div className="pillar-item">
-            <div className="pillar-icon">
-              <Award size={28} />
+            <div className="trust-strip-divider" />
+
+            <div className="trust-strip-item">
+              <div className="tsi-icon">
+                <Lock size={22} />
+              </div>
+              <div className="tsi-body">
+                <h4>Безпека розрахунків</h4>
+                <p>Нотаріальне оформлення попередніх договорів, фіксація домовленостей та захист передачі завдатку.</p>
+              </div>
             </div>
-            <h4>Без прихованих комісій та платежів</h4>
-            <p>Фіксований та прозорий розмір винагороди, що сплачується виключно за фактом успішного укладення угоди у нотаріуса.</p>
+
+            <div className="trust-strip-divider" />
+
+            <div className="trust-strip-item">
+              <div className="tsi-icon">
+                <CheckCircle2 size={22} />
+              </div>
+              <div className="tsi-body">
+                <h4>Прозорість умов</h4>
+                <p>Фіксована комісія за договором без прихованих платежів — оплата виключно за результатом угоди.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <style>{`
-        .trust-section {
-          padding: 48px 0 60px;
-          background: #ffffff;
+        .trust-strip-section {
+          padding: 20px 0 50px;
+          background: #f8fafc;
         }
 
-        .pillars-grid {
+        .trust-strip-wrapper {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 20px;
+          padding: 32px 38px;
+          box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.04);
+        }
+
+        .trust-strip-header {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          margin-bottom: 24px;
+          padding-bottom: 18px;
+          border-bottom: 1px solid #f1f5f9;
+        }
+
+        .tsh-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #eff6ff;
+          color: #1e3a8a;
+          padding: 6px 14px;
+          border-radius: 30px;
+          font-size: 0.82rem;
+          font-weight: 700;
+        }
+
+        .tsh-title {
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 0;
+          letter-spacing: -0.2px;
+        }
+
+        .trust-strip-items {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: 1fr auto 1fr auto 1fr;
+          align-items: center;
           gap: 28px;
         }
 
-        .pillar-item {
-          background: #f8fafc;
-          border: 1px solid var(--c-border);
-          border-radius: var(--radius-lg);
-          padding: 28px;
-          transition: all 0.2s ease;
+        .trust-strip-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
         }
 
-        .pillar-item:hover {
-          border-color: #cbd5e1;
-          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-        }
-
-        .pillar-icon {
-          width: 54px;
-          height: 54px;
-          border-radius: var(--radius-md);
-          background: var(--c-primary-light);
-          color: var(--c-primary);
+        .tsi-icon {
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
+          border-radius: 12px;
+          background: #eff6ff;
+          color: #1e3a8a;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 18px;
         }
 
-        .pillar-item h4 {
-          font-size: 1.15rem;
+        .tsi-body h4 {
+          font-size: 1.02rem;
           font-weight: 800;
-          color: var(--c-slate);
-          margin-bottom: 10px;
-          line-height: 1.35;
+          color: #0f172a;
+          margin-bottom: 6px;
+          line-height: 1.3;
         }
 
-        .pillar-item p {
-          font-size: 0.88rem;
+        .tsi-body p {
+          font-size: 0.86rem;
           color: #64748b;
-          line-height: 1.55;
+          line-height: 1.5;
           margin: 0;
         }
 
+        .trust-strip-divider {
+          width: 1px;
+          height: 56px;
+          background: #e2e8f0;
+        }
+
         @media (max-width: 1024px) {
-          .pillars-grid {
+          .trust-strip-wrapper {
+            padding: 24px 20px;
+          }
+
+          .trust-strip-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+          }
+
+          .trust-strip-items {
             grid-template-columns: 1fr;
             gap: 20px;
+          }
+
+          .trust-strip-divider {
+            display: none;
           }
         }
       `}</style>
