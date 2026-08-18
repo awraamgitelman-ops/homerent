@@ -73,7 +73,7 @@ export const LegalPage = () => {
                   <tr>
                     <td className="field-name">Контактний телефон:</td>
                     <td className="field-value">
-                      <a href="tel:+380988612938" className="text-primary font-bold">+380 (98) 861-29-38</a>
+                      <a href="tel:+380987204050" className="text-primary font-bold">+380 (98) 720-40-50</a>
                     </td>
                   </tr>
                   <tr>

@@ -29,7 +29,7 @@ export const Footer = ({ onOpenConsultModal }) => {
 
   const handleViberClick = (e) => {
     e.preventDefault();
-    const phone = '380988612938';
+    const phone = '380987204050';
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobile) {
       window.location.href = `viber://chat?number=${phone}`;
@@ -56,11 +56,11 @@ export const Footer = ({ onOpenConsultModal }) => {
             </p>
           </div>
           <div className="nx-pfc-right">
-            <a href="tel:+380988612938" className="nx-pfc-phone-btn">
+            <a href="tel:+380987204050" className="nx-pfc-phone-btn">
               <PhoneCall size={18} />
               <div className="nx-ppb-text">
                 <span className="nx-ppb-label">Гаряча лінія</span>
-                <span className="nx-ppb-num">+380 (98) 861-29-38</span>
+                <span className="nx-ppb-num">+380 (98) 720-40-50</span>
               </div>
             </a>
             <button 
@@ -110,7 +110,7 @@ export const Footer = ({ onOpenConsultModal }) => {
 
             <div className="nx-messengers-icons">
               <a 
-                href="https://viber.click/380988612938" 
+                href="https://viber.click/380987204050" 
                 onClick={handleViberClick} 
                 target="_blank" 
                 rel="noopener noreferrer" 
@@ -133,7 +133,7 @@ export const Footer = ({ onOpenConsultModal }) => {
               </a>
 
               <a 
-                href="https://wa.me/380988612938" 
+                href="https://wa.me/380987204050" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="nx-msg-icon-btn"
@@ -182,7 +182,7 @@ export const Footer = ({ onOpenConsultModal }) => {
               </div>
               <div className="nx-mc-row">
                 <Phone size={15} className="text-primary" />
-                <span>+380 (98) 861-29-38</span>
+                <span>+380 (98) 720-40-50</span>
               </div>
               <div className="nx-mc-row">
                 <Mail size={15} className="text-primary" />

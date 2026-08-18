@@ -131,7 +131,7 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Контактний телефон:</span>
-                  <span className="av2-d-val font-mono">+380 (98) 861-29-38</span>
+                  <span className="av2-d-val font-mono">+380 (98) 720-40-50</span>
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Електронна пошта:</span>

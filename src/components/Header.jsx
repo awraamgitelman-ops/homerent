@@ -27,7 +27,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
 
   const handleViberClick = (e) => {
     e.preventDefault();
-    const phone = '380988612938';
+    const phone = '380987204050';
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobile) {
       window.location.href = `viber://chat?number=${phone}`;
@@ -121,14 +121,14 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
             </button>
 
             {/* Phone link */}
-            <a href="tel:+380988612938" className="ref-phone-link">
-              +380 (98) 861-29-38
+            <a href="tel:+380987204050" className="ref-phone-link">
+              +380 (98) 720-40-50
             </a>
 
             {/* Messengers */}
             <div className="ref-messengers-group">
               <a
-                href="https://viber.click/380988612938"
+                href="https://viber.click/380987204050"
                 onClick={handleViberClick}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -291,8 +291,8 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
               {/* Sidebar Bottom Contacts Section */}
               <div className="ref-sidebar-footer">
                 <div className="ref-sb-hotline-label">Гаряча лінія:</div>
-                <a href="tel:+380988612938" className="ref-sb-phone">
-                  +380 (98) 861-29-38
+                <a href="tel:+380987204050" className="ref-sb-phone">
+                  +380 (98) 720-40-50
                 </a>
                 <div className="ref-sb-schedule-note">
                   Графік: щоденно 10:00 — 18:00 (без вихідних)
@@ -300,7 +300,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
 
                 <div className="ref-sb-messengers">
                   <a
-                    href="https://viber.click/380988612938"
+                    href="https://viber.click/380987204050"
                     onClick={handleViberClick}
                     target="_blank"
                     rel="noopener noreferrer"

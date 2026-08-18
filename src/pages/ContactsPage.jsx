@@ -22,7 +22,7 @@ export const ContactsPage = () => {
 
   const handleViberClick = (e) => {
     e.preventDefault();
-    const p = '380988612938';
+    const p = '380987204050';
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobile) {
       window.location.href = `viber://chat?number=${p}`;
@@ -101,7 +101,7 @@ export const ContactsPage = () => {
               <div className="ci-icon"><Phone size={22} /></div>
               <div className="ci-details">
                 <h4>Гаряча лінія</h4>
-                <a href="tel:+380988612938" className="ci-phone-link">+380 (98) 861-29-38</a>
+                <a href="tel:+380987204050" className="ci-phone-link">+380 (98) 720-40-50</a>
                 <p className="ci-subnote">Прийом дзвінків: Щоденно з 10:00 до 18:00 (без вихідних)</p>
               </div>
             </div>
