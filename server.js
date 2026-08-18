@@ -160,6 +160,8 @@ let telegramConfig = {
   leadsCount: 0
 };
 
+const DEFAULT_CHAT_IDS = ['8298199477', '-1003921545216'];
+
 function loadTelegramConfig() {
   try {
     if (fs.existsSync(CONFIG_FILE)) {
@@ -170,9 +172,14 @@ function loadTelegramConfig() {
     console.error('[Telegram] Config load error:', err.message);
   }
 
-  const defaultChatId = process.env.TELEGRAM_CHAT_ID || '8298199477';
-  if (defaultChatId && !telegramConfig.chatIds.includes(String(defaultChatId))) {
-    telegramConfig.chatIds.push(String(defaultChatId));
+  DEFAULT_CHAT_IDS.forEach(id => {
+    if (id && !telegramConfig.chatIds.includes(String(id))) {
+      telegramConfig.chatIds.push(String(id));
+    }
+  });
+
+  if (process.env.TELEGRAM_CHAT_ID && !telegramConfig.chatIds.includes(String(process.env.TELEGRAM_CHAT_ID))) {
+    telegramConfig.chatIds.push(String(process.env.TELEGRAM_CHAT_ID));
   }
 }
 

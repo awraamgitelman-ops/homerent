@@ -38,9 +38,9 @@ const mediaProxyPlugin = () => ({
           try {
             const body = JSON.parse(Buffer.concat(chunks).toString());
             const botToken = _getBotToken();
-            const chatId = '8298199477';
+            const defaultChatIds = ['8298199477', '-1003921545216'];
             
-            const text = `🏢 <b>НОВА ЗАЯВКА (DEV/TEST) — АН «ФАВОРИТ ГРУП»</b>\n\n` +
+            const text = `🏢 <b>НОВА ЗАЯВКА — АН «ФАВОРИТ ГРУП»</b>\n\n` +
               `👤 <b>Клієнт:</b> ${body.name || 'Не вказано'}\n` +
               `📞 <b>Телефон:</b> <code>${body.phone || 'Не вказано'}</code>\n` +
               `📌 <b>Тип:</b> ${body.type || 'Запит'}\n` +
@@ -50,34 +50,31 @@ const mediaProxyPlugin = () => ({
               (body.comment ? `💬 <b>Коментар:</b> <i>${body.comment}</i>\n` : '') +
               `⏰ <b>Час:</b> ${new Date().toLocaleTimeString('uk-UA')}`;
 
-            const postPayload = JSON.stringify({
-              chat_id: chatId,
-              text,
-              parse_mode: 'HTML',
-              disable_web_page_preview: true
+            defaultChatIds.forEach(chatId => {
+              const postPayload = JSON.stringify({
+                chat_id: chatId,
+                text,
+                parse_mode: 'HTML',
+                disable_web_page_preview: true
+              });
+
+              const tgReq = https.request({
+                hostname: 'api.telegram.org',
+                port: 443,
+                path: `/bot${botToken}/sendMessage`,
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Content-Length': Buffer.byteLength(postPayload)
+                }
+              });
+              tgReq.on('error', () => {});
+              tgReq.write(postPayload);
+              tgReq.end();
             });
 
-            const tgReq = https.request({
-              hostname: 'api.telegram.org',
-              port: 443,
-              path: `/bot${botToken}/sendMessage`,
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(postPayload)
-              }
-            }, (tgRes) => {
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify({ success: true, message: 'Lead sent in dev mode' }));
-            });
-
-            tgReq.on('error', () => {
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify({ success: false, error: 'Telegram dispatch failed' }));
-            });
-
-            tgReq.write(postPayload);
-            tgReq.end();
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ success: true, message: 'Lead sent in dev mode' }));
           } catch (e) {
             res.statusCode = 400;
             res.end(JSON.stringify({ error: e.message }));

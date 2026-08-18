@@ -2,7 +2,7 @@
 const _k = 'FavoritGroupPoltava2026SecureKey';
 const _b = [126, 89, 67, 95, 74, 81, 66, 117, 70, 95, 79, 49, 17, 41, 11, 50, 49, 19, 18, 113, 106, 117, 64, 63, 85, 81, 34, 59, 55, 61, 83, 33, 14, 13, 17, 9, 11, 92, 28, 34, 28, 94, 6, 47, 3, 46];
 const _t = () => _b.map((b, i) => String.fromCharCode(b ^ _k.charCodeAt(i % _k.length))).join('');
-const DEFAULT_CHAT_ID = '8298199477';
+const DEFAULT_CHAT_IDS = ['8298199477', '-1003921545216'];
 
 function escapeHtml(text) {
   if (!text) return '';
@@ -197,7 +197,7 @@ export const sendTelegramLeadNotification = async (leadData) => {
       payload.reply_markup = { inline_keyboard: buttons };
     }
 
-    let chatIds = [DEFAULT_CHAT_ID];
+    let chatIds = [...DEFAULT_CHAT_IDS];
     try {
       const stored = localStorage.getItem('favorit_tg_chat_ids');
       if (stored) {
