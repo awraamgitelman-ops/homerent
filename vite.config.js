@@ -20,7 +20,7 @@ function decryptMediaUrl(token) {
   return url;
 }
 
-import sharp from 'sharp'
+import jpeg from 'jpeg-js'
 
 const mediaProxyPlugin = () => ({
   name: 'media-proxy-plugin',
@@ -39,24 +39,29 @@ const mediaProxyPlugin = () => ({
           https.get(rawUrl, options, (upstream) => {
             const chunks = [];
             upstream.on('data', chunk => chunks.push(chunk));
-            upstream.on('end', async () => {
+            upstream.on('end', () => {
               try {
                 const rawBuffer = Buffer.concat(chunks);
-                const meta = await sharp(rawBuffer).metadata();
-                const cropTop = Math.min(200, meta.height > 600 ? 200 : Math.floor(meta.height * 0.20));
-                const processed = await sharp(rawBuffer)
-                  .extract({
-                    left: 0,
-                    top: cropTop,
-                    width: meta.width,
-                    height: Math.max(100, meta.height - cropTop)
-                  })
-                  .jpeg({ quality: 86 })
-                  .toBuffer();
+                const decoded = jpeg.decode(rawBuffer, { useTArray: true });
+                const cropTop = Math.min(200, decoded.height > 600 ? 200 : Math.floor(decoded.height * 0.20));
+                const newHeight = decoded.height - cropTop;
+                const newWidth = decoded.width;
+                
+                const rowBytes = newWidth * 4;
+                const startByte = cropTop * rowBytes;
+                const totalBytes = newHeight * rowBytes;
+                
+                const croppedPixels = decoded.data.subarray(startByte, startByte + totalBytes);
+                
+                const encoded = jpeg.encode({
+                  data: croppedPixels,
+                  width: newWidth,
+                  height: newHeight
+                }, 85);
                 
                 res.setHeader('Content-Type', 'image/jpeg');
                 res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
-                res.end(processed);
+                res.end(encoded.data);
               } catch {
                 res.setHeader('Content-Type', upstream.headers['content-type'] || 'image/jpeg');
                 res.end(Buffer.concat(chunks));

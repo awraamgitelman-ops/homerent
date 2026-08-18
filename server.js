@@ -3,7 +3,7 @@ import path from 'path';
 import https from 'https';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import sharp from 'sharp';
+import jpeg from 'jpeg-js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -82,24 +82,29 @@ app.get('/api/media/:token', async (req, res) => {
 
       const chunks = [];
       upstream.on('data', chunk => chunks.push(chunk));
-      upstream.on('end', async () => {
+      upstream.on('end', () => {
         try {
           const rawBuffer = Buffer.concat(chunks);
-          const meta = await sharp(rawBuffer).metadata();
+          const decoded = jpeg.decode(rawBuffer, { useTArray: true });
           
           // Physically remove top 200px watermark / status banner from image binary
-          const cropTop = Math.min(200, meta.height > 600 ? 200 : Math.floor(meta.height * 0.20));
-          const targetHeight = Math.max(100, meta.height - cropTop);
+          const cropTop = Math.min(200, decoded.height > 600 ? 200 : Math.floor(decoded.height * 0.20));
+          const newHeight = decoded.height - cropTop;
+          const newWidth = decoded.width;
           
-          const processedBuffer = await sharp(rawBuffer)
-            .extract({
-              left: 0,
-              top: cropTop,
-              width: meta.width,
-              height: targetHeight
-            })
-            .jpeg({ quality: 86, progressive: true })
-            .toBuffer();
+          const rowBytes = newWidth * 4;
+          const startByte = cropTop * rowBytes;
+          const totalBytes = newHeight * rowBytes;
+          
+          const croppedPixels = decoded.data.subarray(startByte, startByte + totalBytes);
+          
+          const encoded = jpeg.encode({
+            data: croppedPixels,
+            width: newWidth,
+            height: newHeight
+          }, 85);
+
+          const processedBuffer = encoded.data;
 
           // Store in LRU cache
           if (_imageCache.size >= MAX_CACHE_SIZE) {
@@ -114,8 +119,8 @@ app.get('/api/media/:token', async (req, res) => {
           res.setHeader('Content-Disposition', 'inline');
           return res.send(processedBuffer);
         } catch (procErr) {
-          console.error('[Media Process] Sharp Error:', procErr.message);
-          // Fallback to raw buffer if image format is unusual
+          console.error('[Media Process] Error:', procErr.message);
+          // Fallback to raw buffer
           const rawBuffer = Buffer.concat(chunks);
           res.setHeader('Content-Type', upstream.headers['content-type'] || 'image/jpeg');
           res.setHeader('Cache-Control', 'public, max-age=86400, immutable');
