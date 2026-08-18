@@ -103,15 +103,28 @@ export const AboutPage = ({ onOpenConsultModal }) => {
             <div className="av2-legal-left">
               <div className="av2-legal-tag">Про нас</div>
               <h3>ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ «НОВЕКС ІНВЕСТ»</h3>
-              
-              <div className="av2-edrpou-chip">
-                <span>Код ЄДРПОУ: <strong>43980756</strong></span>
-              </div>
 
               <div className="av2-details-list">
                 <div className="av2-detail-row">
+                  <span className="av2-d-label">Код ЄДРПОУ:</span>
+                  <span className="av2-d-val font-mono">
+                    <strong>43980756</strong>
+                    <button 
+                      onClick={handleCopyEdrpou} 
+                      className="av2-copy-btn" 
+                      title="Скопіювати код ЄДРПОУ"
+                      style={{ marginLeft: '10px' }}
+                    >
+                      {copied ? <Check size={12} className="text-green" /> : <Copy size={12} />}
+                      <span>{copied ? 'Скопійовано' : 'Копіювати'}</span>
+                    </button>
+                  </span>
+                </div>
+                <div className="av2-detail-row">
                   <span className="av2-d-label">Керівник:</span>
-                  <span className="av2-d-val">Омельяненко Владислав Юрійович</span>
+                  <span className="av2-d-val">
+                    <strong>Владислав Омельяненко</strong> (Керівник ТОВ «НОВЕКС ІНВЕСТ»)
+                  </span>
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Юридична адреса:</span>
@@ -124,31 +137,6 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Електронна пошта:</span>
                   <span className="av2-d-val">novexinvest.poltava@gmail.com</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="av2-legal-right">
-              <div className="av2-director-box">
-                <div className="av2-director-avatar">
-                  <Building2 size={36} className="text-white" />
-                </div>
-                <div className="av2-director-info">
-                  <h4>Владислав Омельяненко</h4>
-                  <span className="av2-dir-post">Керівник ТОВ «НОВЕКС ІНВЕСТ»</span>
-                  <p className="av2-dir-quote">
-                    «Наша головна мета — зробити кожну угоду в Полтаві на 100% захищеною, простою та комфортною для людей.»
-                  </p>
-                </div>
-
-                <div className="av2-dir-actions">
-                  <button 
-                    onClick={onOpenConsultModal} 
-                    className="btn btn-primary btn-block av2-cta-btn"
-                  >
-                    <PhoneCall size={16} />
-                    <span>Замовити консультацію</span>
-                  </button>
                 </div>
               </div>
             </div>
@@ -362,18 +350,17 @@ export const AboutPage = ({ onOpenConsultModal }) => {
 
         /* Legal Details Card */
         .av2-legal-banner {
-          display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
           background: #ffffff;
           border: 1px solid #e2e8f0;
           border-radius: 20px;
           overflow: hidden;
           box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
           margin-bottom: 50px;
+          padding: 40px;
         }
 
         .av2-legal-left {
-          padding: 40px;
+          width: 100%;
         }
 
         .av2-legal-tag {
@@ -393,26 +380,15 @@ export const AboutPage = ({ onOpenConsultModal }) => {
           font-size: 1.35rem;
           font-weight: 900;
           color: #0f172a;
-          margin-bottom: 18px;
-        }
-
-        .av2-edrpou-chip {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          background: #f1f5f9;
-          padding: 6px 14px;
-          border-radius: 8px;
-          font-size: 0.86rem;
-          color: #334155;
-          margin-bottom: 24px;
+          margin-bottom: 22px;
+          line-height: 1.3;
         }
 
         .av2-copy-btn {
           display: inline-flex;
           align-items: center;
           gap: 4px;
-          background: #ffffff;
+          background: #f1f5f9;
           border: 1px solid #cbd5e1;
           border-radius: 6px;
           padding: 3px 8px;
@@ -430,15 +406,16 @@ export const AboutPage = ({ onOpenConsultModal }) => {
         .av2-details-list {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 14px;
         }
 
         .av2-detail-row {
           display: flex;
           justify-content: space-between;
+          align-items: center;
           border-bottom: 1px solid #f1f5f9;
-          padding-bottom: 8px;
-          font-size: 0.88rem;
+          padding-bottom: 10px;
+          font-size: 0.92rem;
         }
 
         .av2-d-label {
@@ -451,64 +428,18 @@ export const AboutPage = ({ onOpenConsultModal }) => {
           text-align: right;
         }
 
-        .av2-legal-right {
-          background: #0f172a;
-          color: #ffffff;
-          padding: 40px 32px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .av2-director-box {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-
-        .av2-director-avatar {
-          width: 72px;
-          height: 72px;
-          border-radius: 50%;
-          background: #2563eb;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 16px;
-          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
-        }
-
-        .av2-director-info h4 {
-          font-size: 1.25rem;
-          font-weight: 900;
-          color: #ffffff;
-          margin-bottom: 4px;
-        }
-
-        .av2-dir-post {
-          font-size: 0.8rem;
-          color: #93c5fd;
-          font-weight: 600;
-          margin-bottom: 16px;
-          display: block;
-        }
-
-        .av2-dir-quote {
-          font-size: 0.88rem;
-          color: #cbd5e1;
-          font-style: italic;
-          line-height: 1.5;
-          margin-bottom: 24px;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          padding-top: 16px;
-        }
-
-        .av2-dir-actions {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
+        @media (max-width: 640px) {
+          .av2-legal-banner {
+            padding: 24px 20px;
+          }
+          .av2-detail-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+          }
+          .av2-d-val {
+            text-align: left;
+          }
         }
 
         .av2-cta-btn {
