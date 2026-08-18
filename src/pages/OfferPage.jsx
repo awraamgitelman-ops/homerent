@@ -95,8 +95,8 @@ export const OfferPage = () => {
                 <p>Директор: <strong>Омельяненко Владислав Юрійович</strong></p>
                 <p><strong>Юридична адреса:</strong> 36014, Україна, м. Полтава, вул. Європейська, буд. 2, оф. 202</p>
                 <p><strong>Офіс прийому клієнтів:</strong> 36020, Україна, м. Полтава, вул. Соборності, 22</p>
-                <p><strong>Телефон:</strong> <a href="tel:+380987204050">+380 (98) 720-40-50</a></p>
-                <p><strong>Email:</strong> <a href="mailto:novexinvest.poltava@gmail.com">novexinvest.poltava@gmail.com</a></p>
+                <p><strong>Телефон:</strong> <a href="tel:+380986241429">+380 (98) 624-14-29</a></p>
+                <p><strong>Email:</strong> <a href="mailto:ah.favorit.group@gmail.com">ah.favorit.group@gmail.com</a></p>
               </div>
             </section>
           </div>

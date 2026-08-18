@@ -52,7 +52,7 @@ export const MobileNav = ({ onOpenSellModal }) => {
       </button>
 
       <a 
-        href="tel:+380987204050"
+        href="tel:+380986241429"
         className="mfb-item"
       >
         <PhoneCall size={19} />

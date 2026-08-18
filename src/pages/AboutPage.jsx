@@ -134,13 +134,13 @@ export const AboutPage = ({ onOpenConsultModal }) => {
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Контактний телефон:</span>
                   <span className="av2-d-val font-mono">
-                    <a href="tel:+380987204050" style={{ color: 'inherit', textDecoration: 'none' }}>+380 (98) 720-40-50</a>
+                    <a href="tel:+380986241429" style={{ color: 'inherit', textDecoration: 'none' }}>+380 (98) 624-14-29</a>
                   </span>
                 </div>
                 <div className="av2-detail-row">
                   <span className="av2-d-label">Електронна пошта (Email):</span>
                   <span className="av2-d-val">
-                    <a href="mailto:novexinvest.poltava@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>novexinvest.poltava@gmail.com</a>
+                    <a href="mailto:ah.favorit.group@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>ah.favorit.group@gmail.com</a>
                   </span>
                 </div>
                 <div className="av2-detail-row">

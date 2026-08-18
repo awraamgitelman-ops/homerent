@@ -146,7 +146,7 @@ export function renderSeoPage(templateHtml, reqUrl = '/') {
           "seller": {
             "@type": "RealEstateAgent",
             "name": "АН «ФАВОРИТ ГРУП» Полтава",
-            "telephone": "+380987204050",
+            "telephone": "+380986241429",
             "url": SITE_URL
           }
         }
@@ -266,7 +266,7 @@ export function renderSeoPage(templateHtml, reqUrl = '/') {
   // 5. CONTACTS PAGE (/contacts)
   else if (pathname === '/contacts') {
     pageTitle = `Контакти АН «ФАВОРИТ ГРУП» у Полтаві | Телефон, Адреса офісу`;
-    pageDesc = `Офіс АН «ФАВОРИТ ГРУП» у центрі Полтави: вул. Соборності, 22. Телефон: +380 (98) 720-40-50. Працюємо щодня з 10:00 до 18:00 без вихідних.`;
+    pageDesc = `Офіс АН «ФАВОРИТ ГРУП» у центрі Полтави: вул. Соборності, 22. Телефон: +380 (98) 624-14-29. Працюємо щодня з 10:00 до 18:00 без вихідних.`;
     canonicalUrl = `${SITE_URL}/contacts`;
   }
 
@@ -308,8 +308,8 @@ export function renderSeoPage(templateHtml, reqUrl = '/') {
       "legalName": "ТОВАРИСТВО З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ НОВЕКС ІНВЕСТ",
       "taxID": "43980756",
       "description": "Провідне агентство нерухомості м. Полтава. База 1 198 перевірених об'єктів.",
-      "telephone": "+380987204050",
-      "email": "novexinvest.poltava@gmail.com",
+      "telephone": "+380986241429",
+      "email": "ah.favorit.group@gmail.com",
       "url": SITE_URL,
       "address": {
         "@type": "PostalAddress",

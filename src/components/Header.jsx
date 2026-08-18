@@ -27,7 +27,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
 
   const handleViberClick = (e) => {
     e.preventDefault();
-    const phone = '380987204050';
+    const phone = '380986241429';
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobile) {
       window.location.href = `viber://chat?number=${phone}`;
@@ -121,14 +121,14 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
             </button>
 
             {/* Phone link */}
-            <a href="tel:+380987204050" className="ref-phone-link">
-              +380 (98) 720-40-50
+            <a href="tel:+380986241429" className="ref-phone-link">
+              +380 (98) 624-14-29
             </a>
 
             {/* Messengers */}
             <div className="ref-messengers-group">
               <a
-                href="https://wa.me/380987204050"
+                href="https://wa.me/380986241429"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ref-circle-msg ref-wa"
@@ -141,7 +141,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
               </a>
 
               <a
-                href="https://viber.click/380987204050"
+                href="https://viber.click/380986241429"
                 onClick={handleViberClick}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -297,8 +297,8 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
               {/* Sidebar Bottom Contacts Section */}
               <div className="ref-sidebar-footer">
                 <div className="ref-sb-hotline-label">Гаряча лінія:</div>
-                <a href="tel:+380987204050" className="ref-sb-phone">
-                  +380 (98) 720-40-50
+                <a href="tel:+380986241429" className="ref-sb-phone">
+                  +380 (98) 624-14-29
                 </a>
                 <div className="ref-sb-schedule-note">
                   Графік: щоденно 10:00 — 18:00 (без вихідних)
@@ -306,7 +306,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
 
                 <div className="ref-sb-messengers">
                   <a
-                    href="https://wa.me/380987204050"
+                    href="https://wa.me/380986241429"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ref-circle-msg ref-wa"
@@ -319,7 +319,7 @@ export const Header = ({ onOpenMap, onOpenSellModal, onOpenSearchModal }) => {
                   </a>
 
                   <a
-                    href="https://viber.click/380987204050"
+                    href="https://viber.click/380986241429"
                     onClick={handleViberClick}
                     target="_blank"
                     rel="noopener noreferrer"

@@ -65,12 +65,12 @@ export const LegalPage = () => {
 
               <div className="req-field-item">
                 <span className="req-label">КОНТАКТНИЙ ТЕЛЕФОН:</span>
-                <a href="tel:+380987204050" className="req-value req-link font-mono">+380 (98) 720-40-50</a>
+                <a href="tel:+380986241429" className="req-value req-link font-mono">+380 (98) 624-14-29</a>
               </div>
 
               <div className="req-field-item">
                 <span className="req-label">ЕЛЕКТРОННА ПОШТА (EMAIL):</span>
-                <a href="mailto:novexinvest.poltava@gmail.com" className="req-value req-link">novexinvest.poltava@gmail.com</a>
+                <a href="mailto:ah.favorit.group@gmail.com" className="req-value req-link">ah.favorit.group@gmail.com</a>
               </div>
 
               <div className="req-field-item">
