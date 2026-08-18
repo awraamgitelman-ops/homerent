@@ -226,7 +226,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           {isRented && (
             <div className="pm-rented-notice-banner animate-fade">
               <span className="pm-rnb-tag">ЗДАНО</span>
-              <span className="pm-rnb-text">Цей об'єкт уже успішно здано в оренду. Ви можете переглянути характеристики або залишити заявку на підбір схожих варіантів.</span>
+              <span className="pm-rnb-text">Цей об'єкт уже здано в оренду. Ви можете переглянути характеристики або залишити заявку на підбір схожих варіантів.</span>
             </div>
           )}
 
@@ -239,7 +239,7 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
                 </svg>
                 <div className="pm-rented-modal-center">
                   <span className="pm-rented-modal-title">ЗДАНО</span>
-                  <span className="pm-rented-modal-subtitle">Об'єкт успішно здано в оренду</span>
+                  <span className="pm-rented-modal-subtitle">Об'єкт здано в оренду</span>
                 </div>
               </div>
             ) : (
@@ -761,9 +761,9 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
         }
 
         .badge.badge-rented {
-          background: #dc2626;
+          background: #475569;
           color: #ffffff;
-          font-weight: 900;
+          font-weight: 700;
           letter-spacing: 0.05em;
           padding: 4px 10px;
           border-radius: 6px;
@@ -773,18 +773,18 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
           display: flex;
           align-items: center;
           gap: 12px;
-          background: #fef2f2;
-          border: 1.5px solid #fca5a5;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
           padding: 12px 16px;
           border-radius: 10px;
           margin-bottom: 20px;
         }
 
         .pm-rnb-tag {
-          background: #dc2626;
+          background: #475569;
           color: #ffffff;
           font-size: 0.76rem;
-          font-weight: 900;
+          font-weight: 800;
           padding: 3px 8px;
           border-radius: 6px;
           letter-spacing: 0.06em;
@@ -793,8 +793,8 @@ export const PropertyModal = ({ property, onClose, onBookingSuccess }) => {
 
         .pm-rnb-text {
           font-size: 0.88rem;
-          color: #991b1b;
-          font-weight: 600;
+          color: #475569;
+          font-weight: 500;
           line-height: 1.35;
         }
 

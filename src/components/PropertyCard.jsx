@@ -272,9 +272,9 @@ export const PropertyCard = ({ property, onSelect, onBookViewing, currency = 'US
         }
 
         .pc-badge.badge-rented {
-          background: #dc2626;
+          background: #475569;
           color: #ffffff;
-          font-weight: 900;
+          font-weight: 700;
           letter-spacing: 0.05em;
         }
 
