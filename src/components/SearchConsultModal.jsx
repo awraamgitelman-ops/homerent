@@ -27,7 +27,6 @@ export const SearchConsultModal = ({ onClose }) => {
   const [pets, setPets] = useState('no');
 
   // Purchase specific questions
-  const [buyGoal, setBuyGoal] = useState('own');
   const [repairPref, setRepairPref] = useState('ready');
 
   const [name, setName] = useState('');
@@ -92,10 +91,6 @@ export const SearchConsultModal = ({ onClose }) => {
       : pets === 'big_dog' ? 'З собакою (середня/велика)'
       : 'Інші домашні улюбленці';
 
-    const buyGoalLabel = buyGoal === 'own' ? 'Для власного проживання'
-      : buyGoal === 'invest' ? 'Під інвестицію / оренду'
-      : 'Для батьків / дітей';
-
     const repairLabel = repairPref === 'ready' ? 'З готовим ремонтом'
       : repairPref === 'rough' ? 'Під чистову / чернова'
       : 'Будь-який стан';
@@ -103,8 +98,8 @@ export const SearchConsultModal = ({ onClose }) => {
     let extraDetails = '';
     if (dealType === 'rent' && (propCategory === 'apartment' || propCategory === 'house')) {
       extraDetails = `👥 Проживатиме: ${residentsLabel} | 👶 Діти: ${childrenLabel} | 🐾 Тварини: ${petsLabel}`;
-    } else if (dealType === 'buy') {
-      extraDetails = `🎯 Мета: ${buyGoalLabel} | 🛠️ Ремонт: ${repairLabel}`;
+    } else if (dealType === 'buy' && (propCategory === 'apartment' || propCategory === 'house')) {
+      extraDetails = `🛠️ Бажаний ремонт: ${repairLabel}`;
     }
 
     try {
@@ -361,28 +356,8 @@ export const SearchConsultModal = ({ onClose }) => {
                   <span>Вимоги до покупки</span>
                 </div>
 
-                <div className="form-group mb-2">
-                  <label className="form-sublabel">Мета купівлі</label>
-                  <div className="sc-option-row">
-                    {[
-                      { id: 'own', label: 'Для власного проживання' },
-                      { id: 'invest', label: 'Під оренду / інвестицію' },
-                      { id: 'parents', label: 'Для батьків / дітей' }
-                    ].map((opt) => (
-                      <button
-                        key={opt.id}
-                        type="button"
-                        className={`sc-opt-btn ${buyGoal === opt.id ? 'active' : ''}`}
-                        onClick={() => setBuyGoal(opt.id)}
-                      >
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
                 <div className="form-group mb-0">
-                  <label className="form-sublabel">Стан ремонту</label>
+                  <label className="form-sublabel">Бажаний стан ремонту</label>
                   <div className="sc-option-row">
                     {[
                       { id: 'ready', label: 'З готовим ремонтом' },
